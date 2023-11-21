@@ -60,18 +60,19 @@
             <TextBox x:Name="txtFilter" Style="{StaticResource textboxFilter}"/>
         </Grid>
 
-        <!--Customers Datagrid-->
+            <!--Customers Datagrid-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                   RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" 
-                  x:Name="customerDataGrid">
+                  x:Name="customerDataGrid" CanUserDeleteRows="True"
+                  SelectionMode="Extended" ItemsSource="{Binding customers}">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{DynamicResource CheckBoxStyle1}">
                     <DataGridCheckBoxColumn.HeaderTemplate>
                         <DataTemplate>
-                            <CheckBox Visibility="Visible"  Style="{DynamicResource CheckBoxStyle1}"
-                                      />
+                            <CheckBox Visibility="Visible"  />
                         </DataTemplate>
                     </DataGridCheckBoxColumn.HeaderTemplate>
+                    
                 </DataGridCheckBoxColumn>
 
                 <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding Number}"/>
@@ -101,7 +102,8 @@
                                 <Button Style="{StaticResource gridEditButton}">
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
-                                <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0">
+                                <Button x:Name="rmvBtn" Style="{StaticResource gridRemoveButton}" 
+                                        Click="rmvBtn_Click" Margin="5 0 0 0">
                                     <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
                             </StackPanel>

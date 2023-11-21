@@ -22,12 +22,17 @@ namespace SpaManagement.Pages
     /// </summary>
     public partial class CustomerPage : Page
     {
+        public ObservableCollection<Customer> customers { get; set; }
         public CustomerPage()
         {
             InitializeComponent();
 
+            DataContext = this;
+
+            customers = new ObservableCollection<Customer>();
+
             var converter = new BrushConverter();
-            ObservableCollection<Customer> customers = new ObservableCollection<Customer>();
+            
 
             //Create DataGrid Items Info
             customers.Add(new Customer { Number="1", Character="J", BgColor=(Brush)converter.ConvertFromString("#1098ad"), Name="John Doe", Email="john@gmail.com", Phone="001-564-721" });
@@ -85,7 +90,16 @@ namespace SpaManagement.Pages
             customers.Add(new Customer { Number="9", Character="F", BgColor=(Brush)converter.ConvertFromString("#1e88e5"), Name="Frank Word", Email="frank@gmail.com", Phone="159-785-459" });
             customers.Add(new Customer { Number="10", Character="S", BgColor=(Brush)converter.ConvertFromString("#0ca678"), Name="Saeed Sa", Email="sae@gmail.com", Phone="159-785-459" });
 
-            customerDataGrid.ItemsSource = customers;
+            //customerDataGrid.ItemsSource = customers;
+        }
+
+        private void rmvBtn_Click(object sender, RoutedEventArgs e)
+        {
+            customers.Remove(customerDataGrid.SelectedItem as Customer);
+            //foreach (var i in customerDataGrid.SelectedItems) 
+            //{
+            //    customers.Remove(i as Customer);
+            //}
         }
     }
 
