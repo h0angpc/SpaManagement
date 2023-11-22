@@ -12,10 +12,8 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
     
-    <Border Background="White" CornerRadius="30"
-         MouseLeftButtonDown="Border_MouseLeftButtonDown"
-         MouseDown="Border_MouseDown"
-         >
+    <Border Background="White" CornerRadius="20"
+            BorderThickness="2" BorderBrush="#FF33C1F0">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"></ColumnDefinition>
@@ -30,11 +28,11 @@
                 </Grid.RowDefinitions>
 
                 <!--Menu Icon-->
-                <Button Style="{StaticResource topButton}" Margin="20 28 0 35">
+                <Button Style="{StaticResource topButton}" Margin="20 35 0 35">
                     <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15"/>
                 </Button>
 
-                <Border Grid.Row="1" CornerRadius="0 50 0 30">
+                <Border Grid.Row="1" CornerRadius="0 50 0 20">
                     <Border.Background>
                         <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
                             <GradientStop Color="#FF11B0D2" Offset="0.558"/>
@@ -44,9 +42,9 @@
                     <DockPanel>
                         <!--Menu Logo-->
                         <Border Width="80" Height="80" Padding="3" Background="White"
-             CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left"
-             Margin="20 -30 0 0">
-                            <Ellipse>
+                                CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left"
+                                Margin="20 -30 0 0">
+                            <Ellipse RenderTransformOrigin="0.486,0.895">
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="/Images/spalogo.jpg"/>
                                 </Ellipse.Fill>
@@ -55,15 +53,15 @@
 
                         <!--Menu Titles-->
                         <TextBlock Text="Name Spa" Foreground="White" FontSize="22"
-                FontWeight="SemiBold" DockPanel.Dock="Top"
-                TextAlignment="Center" Margin="5 25 0 10"/>
+                                   FontWeight="SemiBold" DockPanel.Dock="Top"
+                                   TextAlignment="Center" Margin="5 25 0 10"/>
                         <TextBlock Text="Address or Details" Foreground="#FFA9D5FC" FontSize="14"
-                 FontWeight="SemiBold" DockPanel.Dock="Top"
-                 TextAlignment="Center"/>
+                                   FontWeight="SemiBold" DockPanel.Dock="Top"
+                                   TextAlignment="Center"/>
 
                         <!--Menu Seprator-->
                         <Separator Margin="25" DockPanel.Dock="Top" Height="0.8"
-                Background="AliceBlue"/>
+                                   Background="AliceBlue"/>
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top">
                             <RadioButton x:Name="homeBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn">
@@ -125,14 +123,35 @@
             </Grid>
 
             <!--Main Section-->
-            <Grid Grid.Column="1" Margin="30 20 20 20">
+            <Grid Grid.Column="1" Margin="30 0 20 20">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <!--Control Bar-->
+                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft"
+                            Margin="-217,0,-10,0" x:Name="controlBar"
+                            MouseLeftButtonDown="controlBar_MouseLeftButtonDown"
+                            MouseEnter="controlBar_MouseEnter" MouseDown="controlBar_MouseDown"
+                            Panel.ZIndex="2" Grid.Row="0" Background="Transparent">
+                    <Button Style="{StaticResource controlBarButton}" Margin="9 0 0 0"
+                            x:Name="closeBtn" Click="closeBtn_Click">
+                        <Icon:PackIconMaterial Kind="Close" Style="{StaticResource controlBarButtonIcon}"/>
+                    </Button>
 
+                    <Button Style="{StaticResource controlBarButton}"
+                            x:Name="maxBtn" Click="maxBtn_Click">
+                        <Icon:PackIconMaterial Kind="WindowMaximize" Style="{StaticResource controlBarButtonIcon}"/>
+                    </Button>
+
+                    <Button Style="{StaticResource controlBarButton}"
+                            x:Name="minBtn" Click="minBtn_Click">
+                        <Icon:PackIconMaterial Kind="WindowMinimize" Style="{StaticResource controlBarButtonIcon}"/>
+                    </Button>
+                </StackPanel>
                 <!--Top Section-->
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="1">
                     <!--Search TextBox-->
                     <Grid Width="300" HorizontalAlignment="Left">
                         <TextBlock Margin="20 0" Text="Search here ..." VerticalAlignment="Center"
@@ -148,12 +167,12 @@
                     </Grid>
 
                     <!--Top Buttons-->
-                    <Button Style="{StaticResource topButton}" Margin="0 0 20 0"
+                    <Button Style="{StaticResource topButton}" Margin="0 0 15 0"
                       HorizontalAlignment="Right">
                         <Icon:PackIconMaterial Kind="Cog"/>
                     </Button>
 
-                    <Button Style="{StaticResource topButton}" Margin="0 0 70 0"
+                    <Button Style="{StaticResource topButton}" Margin="0 0 65 0"
                      HorizontalAlignment="Right">
                         <Icon:PackIconMaterial Kind="Bell"/>
                     </Button>
@@ -161,7 +180,7 @@
 
 
                 <!--Bottom Section (Page Site)-->
-                <Frame Grid.Row="1"
+                <Frame Grid.Row="2"
                     Name="mContainer"
                     NavigationUIVisibility="Hidden">
                 </Frame>

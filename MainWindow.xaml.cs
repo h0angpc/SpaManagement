@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 
 namespace SpaManagement
@@ -13,18 +16,24 @@ namespace SpaManagement
 
         }  
 
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        bool IsMaximized = false;
+        [DllImport("user32.dll")]
+        public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        private void controlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
+            WindowInteropHelper helper = new WindowInteropHelper(this);
+            SendMessage(helper.Handle, 161, 2, 0);
         }
 
-        bool IsMaximized = false;
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private void controlBar_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (e.ClickCount == 2) 
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+        }
+
+        private void controlBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
             {
                 if (IsMaximized)
                 {
@@ -40,10 +49,29 @@ namespace SpaManagement
                 }
             }
         }
-
         private void cusBtn_Click(object sender, RoutedEventArgs e)
         {
             mContainer.Navigate(new System.Uri("Pages/CustomerPage.xaml", System.UriKind.RelativeOrAbsolute));
+        }
+
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void maxBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            else
+                this.WindowState = WindowState.Normal;
+        }
+
+        private void minBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
     }
 
