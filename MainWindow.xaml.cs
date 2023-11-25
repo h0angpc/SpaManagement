@@ -49,10 +49,6 @@ namespace SpaManagement
                 }
             }
         }
-        private void cusBtn_Click(object sender, RoutedEventArgs e)
-        {
-            mContainer.Navigate(new System.Uri("Pages/CustomerPage.xaml", System.UriKind.RelativeOrAbsolute));
-        }
 
         private void closeBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -72,6 +68,22 @@ namespace SpaManagement
         private void minBtn_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            mContainer.Navigate(new System.Uri("Pages/HomePage.xaml", System.UriKind.RelativeOrAbsolute));
+            homeBtn.IsChecked = true;
+        }
+
+        private void cusBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mContainer.Navigate(new System.Uri("Pages/CustomerPage.xaml", System.UriKind.RelativeOrAbsolute));
+        }
+
+
+        private void homeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mContainer.Navigate(new System.Uri("Pages/HomePage.xaml", System.UriKind.RelativeOrAbsolute));
         }
     }
 
