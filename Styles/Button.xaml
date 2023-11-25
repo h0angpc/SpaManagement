@@ -3,7 +3,7 @@
                     xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Style x:Key="topButton" TargetType="Button">
-        <Setter Property="Background" Value="#FFF1F1F1"></Setter>
+        <Setter Property="Background" Value="#ffffff"></Setter>
         <Setter Property="Foreground" Value="#6e7783"></Setter>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
         <Setter Property="Width" Value="40"></Setter>
@@ -162,7 +162,7 @@
     </Style>
 
     <Style x:Key="gridEditButton" TargetType="Button">
-        <Setter Property="Background" Value="#FF95F6F2"></Setter>
+        <Setter Property="Background" Value="#FF2AC1F0"></Setter>
         <Setter Property="BorderBrush" Value="#FF5FF6F2"></Setter>
         <Setter Property="Foreground" Value="#ffffff"></Setter>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
@@ -214,6 +214,61 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#dfdfdf"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="button" TargetType="Button">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Width" Value="170"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#fdfefe"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border  Background="{TemplateBinding Background}" CornerRadius="258" BorderThickness="1" BorderBrush="white" Padding="15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#e8e8e8"/>
+                <Setter Property="Foreground" Value="DimGray"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptured" Value="True">
+                <Setter Property="Background" Value="#d9d9d9"/>
+                <Setter Property="Foreground" Value="DimGray"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="mainButton" TargetType="Button">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Margin" Value="0 20 0 0"/>
+        <Setter Property="Background" Value="#3AB19B"/>
+        <Setter Property="Foreground" Value="#FDFEFE"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="258" BorderThickness="1" BorderBrush="#49B7A3" Padding="15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#e8e8e8"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptured" Value="True">
+                <Setter Property="Background" Value="#2d7a6c"/>
+                <Setter Property="Foreground" Value="White"/>
             </Trigger>
         </Style.Triggers>
     </Style>
