@@ -156,36 +156,55 @@
                 </StackPanel>
                 <!--Top Section-->
                 <Grid Grid.Row="1">
-                    <!--Search TextBox-->
-                    <Grid Width="300" HorizontalAlignment="Left">
-                        <TextBlock Margin="20 0" Text="Search here ..." VerticalAlignment="Center"
-                            Foreground="#b0b9c6" IsHitTestVisible="False"
-                            Panel.ZIndex="1" Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <!--Search TextBox-->
+                        <Grid Width="300" HorizontalAlignment="Left">
+                            <TextBlock Margin="20 0" Text="Search here ..." VerticalAlignment="Center"
+                                       Foreground="#b0b9c6" IsHitTestVisible="False"
+                                       Panel.ZIndex="1" Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}"/>
 
-                        <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}"/>
+                            <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}"/>
 
-                        <Icon:PackIconMaterial Kind="Magnify" Foreground="#b0b9c6"
+                            <Icon:PackIconMaterial Kind="Magnify" Foreground="#b0b9c6"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Right"
                                         Width="15" Height="15" Margin="0 0 15 0"/>
-                    </Grid>
-                    
+                        </Grid>
 
-                    <!--Top Buttons-->
-                    <Button Style="{StaticResource topButton}" Margin="0 0 15 0"
-                      HorizontalAlignment="Right">
-                        <Icon:PackIconMaterial Kind="Cog"/>
-                    </Button>
+                        <Border Padding="10 5 10 5" Style="{StaticResource whiteBorder1}" Width="260" HorizontalAlignment="Left"
+                                Margin="50 0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Border Width="45" Height="45" CornerRadius="10" Margin="5 0 20 0">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                            <GradientStop Color="#FF60BED2" Offset="0"/>
+                                            <GradientStop Color="#FF51CFF9" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Image Width="35" Height="35" Source="/Images/user1.png"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Châu Hoàng" FontSize="24" FontWeight="Bold"/>
+                                    <TextBlock Text="Chủ doanh nghiệp" Foreground="#6c879a" Margin="0 3 0 0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                        <!--Top Buttons-->
+                        <Button Style="{StaticResource topButton}" Margin="0 0 15 0"
+                                HorizontalAlignment="Right">
+                            <Icon:PackIconMaterial Kind="Cog"/>
+                        </Button>
 
-                    <Button Style="{StaticResource topButton}" Margin="0 0 65 0"
-                     HorizontalAlignment="Right">
-                        <Icon:PackIconMaterial Kind="Bell"/>
-                    </Button>
+                        <Button Style="{StaticResource topButton}" Margin="0 0 65 0"
+                                HorizontalAlignment="Right">
+                            <Icon:PackIconMaterial Kind="Bell"/>
+                        </Button>
                 </Grid>
 
 
                 <!--Bottom Section (Page Site)-->
-                <Frame Grid.Row="2"
+                <Frame Grid.Row="2" Margin="0 10 0 0"
                     Name="mContainer"
                     NavigationUIVisibility="Hidden">
                 </Frame>
