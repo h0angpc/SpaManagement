@@ -13,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SpaManagement.Pages
+namespace SpaManagement.UserControls
 {
     /// <summary>
-    /// Interaction logic for HomePage.xaml
+    /// Interaction logic for Legends.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class Legends : UserControl
     {
-        public HomePage()
+        public Legends()
         {
             InitializeComponent();
-        }
-
-        private void PART_PreviousButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void PART_NextButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

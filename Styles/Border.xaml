@@ -5,4 +5,10 @@
         <Setter Property="Background" Value="#ffffff"/>
         <Setter Property="CornerRadius" Value="15"/>
     </Style>
+
+    <Style x:Key="darkBorder" TargetType="Border">
+        <Setter Property="Width" Value="auto"/>
+        <Setter Property="Background" Value="#FF9EEFF6"/>
+        <Setter Property="CornerRadius" Value="15"/>
+    </Style>
 </ResourceDictionary>
