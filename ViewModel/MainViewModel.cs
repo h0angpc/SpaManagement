@@ -43,6 +43,6 @@ namespace SpaManagement.ViewModel
                 }
             }
             );
-        }
-    }
+       }
+   }
 }
