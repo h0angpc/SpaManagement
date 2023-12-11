@@ -246,8 +246,8 @@
     </Style>
 
     <Style x:Key="mainButton" TargetType="Button">
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Width" Value="200"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Width" Value="150"/>
         <Setter Property="Margin" Value="0 20 0 0"/>
         <Setter Property="Background" Value="#3AB19B"/>
         <Setter Property="Foreground" Value="#FDFEFE"/>
@@ -255,7 +255,7 @@
         <Setter Property="Template" >
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="258" BorderThickness="1" BorderBrush="#49B7A3" Padding="15">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="50" BorderThickness="1" BorderBrush="#49B7A3" Padding="15">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
