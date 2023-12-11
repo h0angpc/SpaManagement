@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpaManagement.Windows;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -31,64 +32,63 @@ namespace SpaManagement.Pages
 
             customers = new ObservableCollection<Customer>();
 
-            var converter = new BrushConverter();
             
 
             //Create DataGrid Items Info
-            customers.Add(new Customer { Number="1", Character="J", BgColor=(Brush)converter.ConvertFromString("#1098ad"), Name="John Doe", Email="john@gmail.com", Phone="001-564-721" });
-            customers.Add(new Customer { Number="2", Character="R", BgColor=(Brush)converter.ConvertFromString("#1e88e5"), Name="Reza Abc", Email="reza@gmail.com", Phone="456-413-879" });
-            customers.Add(new Customer { Number="3", Character="D", BgColor=(Brush)converter.ConvertFromString("#ff8f00"), Name="Dennis Bcd", Email="dennis@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="4", Character="G", BgColor=(Brush)converter.ConvertFromString("#ff5252"), Name="Gabriel Sla", Email="gabriel@gmail.com", Phone="001-564-721" });
-            customers.Add(new Customer { Number="5", Character="L", BgColor=(Brush)converter.ConvertFromString("#0ca678"), Name="Lena Jkl", Email="lena@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="6", Character="B", BgColor=(Brush)converter.ConvertFromString("#6741d9"), Name="Benjamin Culi", Email="ben@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="7", Character="S", BgColor=(Brush)converter.ConvertFromString("#ff6d00"), Name="Sophia Mur", Email="sophhia@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="8", Character="A", BgColor=(Brush)converter.ConvertFromString("#ff5252"), Name="Ali Ab", Email="ali@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="9", Character="F", BgColor=(Brush)converter.ConvertFromString("#1e88e5"), Name="Frank Word", Email="frank@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="10", Character="S", BgColor=(Brush)converter.ConvertFromString("#0ca678"), Name="Saeed Sa", Email="sae@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="1",  Name="John Doe", Email="john@gmail.com", Phone="001-564-721" });
+            customers.Add(new Customer { Number="2",  Name="Reza Abc", Email="reza@gmail.com", Phone="456-413-879" });
+            customers.Add(new Customer { Number="3",  Name="Dennis Bcd", Email="dennis@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="4",  Name="Gabriel Sla", Email="gabriel@gmail.com", Phone="001-564-721" });
+            customers.Add(new Customer { Number="5",  Name="Lena Jkl", Email="lena@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="6",  Name="Benjamin Culi", Email="ben@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="7",  Name="Sophia Mur", Email="sophhia@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="8",  Name="Ali Ab", Email="ali@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="9",  Name="Frank Word", Email="frank@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="10", Name="Saeed Sa", Email="sae@gmail.com", Phone="159-785-459" });
 
-            customers.Add(new Customer { Number="1", Character="J", BgColor=(Brush)converter.ConvertFromString("#1098ad"), Name="John Doe", Email="john@gmail.com", Phone="001-564-721" });
-            customers.Add(new Customer { Number="2", Character="R", BgColor=(Brush)converter.ConvertFromString("#1e88e5"), Name="Reza Abc", Email="reza@gmail.com", Phone="456-413-879" });
-            customers.Add(new Customer { Number="3", Character="D", BgColor=(Brush)converter.ConvertFromString("#ff8f00"), Name="Dennis Bcd", Email="dennis@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="4", Character="G", BgColor=(Brush)converter.ConvertFromString("#ff5252"), Name="Gabriel Sla", Email="gabriel@gmail.com", Phone="001-564-721" });
-            customers.Add(new Customer { Number="5", Character="L", BgColor=(Brush)converter.ConvertFromString("#0ca678"), Name="Lena Jkl", Email="lena@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="6", Character="B", BgColor=(Brush)converter.ConvertFromString("#6741d9"), Name="Benjamin Culi", Email="ben@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="7", Character="S", BgColor=(Brush)converter.ConvertFromString("#ff6d00"), Name="Sophia Mur", Email="sophhia@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="8", Character="A", BgColor=(Brush)converter.ConvertFromString("#ff5252"), Name="Ali Ab", Email="ali@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="9", Character="F", BgColor=(Brush)converter.ConvertFromString("#1e88e5"), Name="Frank Word", Email="frank@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="10", Character="S", BgColor=(Brush)converter.ConvertFromString("#0ca678"), Name="Saeed Sa", Email="sae@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="1",  Name="John Doe", Email="john@gmail.com", Phone="001-564-721" });
+            customers.Add(new Customer { Number="2",  Name="Reza Abc", Email="reza@gmail.com", Phone="456-413-879" });
+            customers.Add(new Customer { Number="3",  Name="Dennis Bcd", Email="dennis@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="4",  Name="Gabriel Sla", Email="gabriel@gmail.com", Phone="001-564-721" });
+            customers.Add(new Customer { Number="5",  Name="Lena Jkl", Email="lena@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="6",  Name="Benjamin Culi", Email="ben@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="7",  Name="Sophia Mur", Email="sophhia@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="8",  Name="Ali Ab", Email="ali@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="9",  Name="Frank Word", Email="frank@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="10", Name="Saeed Sa", Email="sae@gmail.com", Phone="159-785-459" });
 
-            customers.Add(new Customer { Number="1", Character="J", BgColor=(Brush)converter.ConvertFromString("#1098ad"), Name="John Doe", Email="john@gmail.com", Phone="001-564-721" });
-            customers.Add(new Customer { Number="2", Character="R", BgColor=(Brush)converter.ConvertFromString("#1e88e5"), Name="Reza Abc", Email="reza@gmail.com", Phone="456-413-879" });
-            customers.Add(new Customer { Number="3", Character="D", BgColor=(Brush)converter.ConvertFromString("#ff8f00"), Name="Dennis Bcd", Email="dennis@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="4", Character="G", BgColor=(Brush)converter.ConvertFromString("#ff5252"), Name="Gabriel Sla", Email="gabriel@gmail.com", Phone="001-564-721" });
-            customers.Add(new Customer { Number="5", Character="L", BgColor=(Brush)converter.ConvertFromString("#0ca678"), Name="Lena Jkl", Email="lena@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="6", Character="B", BgColor=(Brush)converter.ConvertFromString("#6741d9"), Name="Benjamin Culi", Email="ben@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="7", Character="S", BgColor=(Brush)converter.ConvertFromString("#ff6d00"), Name="Sophia Mur", Email="sophhia@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="8", Character="A", BgColor=(Brush)converter.ConvertFromString("#ff5252"), Name="Ali Ab", Email="ali@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="9", Character="F", BgColor=(Brush)converter.ConvertFromString("#1e88e5"), Name="Frank Word", Email="frank@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="10", Character="S", BgColor=(Brush)converter.ConvertFromString("#0ca678"), Name="Saeed Sa", Email="sae@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="1",  Name="John Doe", Email="john@gmail.com", Phone="001-564-721" });
+            customers.Add(new Customer { Number="2",  Name="Reza Abc", Email="reza@gmail.com", Phone="456-413-879" });
+            customers.Add(new Customer { Number="3",  Name="Dennis Bcd", Email="dennis@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="4",  Name="Gabriel Sla", Email="gabriel@gmail.com", Phone="001-564-721" });
+            customers.Add(new Customer { Number="5",  Name="Lena Jkl", Email="lena@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="6",  Name="Benjamin Culi", Email="ben@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="7",  Name="Sophia Mur", Email="sophhia@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="8",  Name="Ali Ab", Email="ali@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="9",  Name="Frank Word", Email="frank@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="10", Name="Saeed Sa", Email="sae@gmail.com", Phone="159-785-459" });
 
-            customers.Add(new Customer { Number="1", Character="J", BgColor=(Brush)converter.ConvertFromString("#1098ad"), Name="John Doe", Email="john@gmail.com", Phone="001-564-721" });
-            customers.Add(new Customer { Number="2", Character="R", BgColor=(Brush)converter.ConvertFromString("#1e88e5"), Name="Reza Abc", Email="reza@gmail.com", Phone="456-413-879" });
-            customers.Add(new Customer { Number="3", Character="D", BgColor=(Brush)converter.ConvertFromString("#ff8f00"), Name="Dennis Bcd", Email="dennis@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="4", Character="G", BgColor=(Brush)converter.ConvertFromString("#ff5252"), Name="Gabriel Sla", Email="gabriel@gmail.com", Phone="001-564-721" });
-            customers.Add(new Customer { Number="5", Character="L", BgColor=(Brush)converter.ConvertFromString("#0ca678"), Name="Lena Jkl", Email="lena@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="6", Character="B", BgColor=(Brush)converter.ConvertFromString("#6741d9"), Name="Benjamin Culi", Email="ben@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="7", Character="S", BgColor=(Brush)converter.ConvertFromString("#ff6d00"), Name="Sophia Mur", Email="sophhia@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="8", Character="A", BgColor=(Brush)converter.ConvertFromString("#ff5252"), Name="Ali Ab", Email="ali@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="9", Character="F", BgColor=(Brush)converter.ConvertFromString("#1e88e5"), Name="Frank Word", Email="frank@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="10", Character="S", BgColor=(Brush)converter.ConvertFromString("#0ca678"), Name="Saeed Sa", Email="sae@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="1",  Name="John Doe", Email="john@gmail.com", Phone="001-564-721" });
+            customers.Add(new Customer { Number="2",  Name="Reza Abc", Email="reza@gmail.com", Phone="456-413-879" });
+            customers.Add(new Customer { Number="3",  Name="Dennis Bcd", Email="dennis@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="4",  Name="Gabriel Sla", Email="gabriel@gmail.com", Phone="001-564-721" });
+            customers.Add(new Customer { Number="5",  Name="Lena Jkl", Email="lena@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="6",  Name="Benjamin Culi", Email="ben@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="7",  Name="Sophia Mur", Email="sophhia@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="8",  Name="Ali Ab", Email="ali@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="9",  Name="Frank Word", Email="frank@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="10", Name="Saeed Sa", Email="sae@gmail.com", Phone="159-785-459" });
 
-            customers.Add(new Customer { Number="1", Character="J", BgColor=(Brush)converter.ConvertFromString("#1098ad"), Name="John Doe", Email="john@gmail.com", Phone="001-564-721" });
-            customers.Add(new Customer { Number="2", Character="R", BgColor=(Brush)converter.ConvertFromString("#1e88e5"), Name="Reza Abc", Email="reza@gmail.com", Phone="456-413-879" });
-            customers.Add(new Customer { Number="3", Character="D", BgColor=(Brush)converter.ConvertFromString("#ff8f00"), Name="Dennis Bcd", Email="dennis@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="4", Character="G", BgColor=(Brush)converter.ConvertFromString("#ff5252"), Name="Gabriel Sla", Email="gabriel@gmail.com", Phone="001-564-721" });
-            customers.Add(new Customer { Number="5", Character="L", BgColor=(Brush)converter.ConvertFromString("#0ca678"), Name="Lena Jkl", Email="lena@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="6", Character="B", BgColor=(Brush)converter.ConvertFromString("#6741d9"), Name="Benjamin Culi", Email="ben@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="7", Character="S", BgColor=(Brush)converter.ConvertFromString("#ff6d00"), Name="Sophia Mur", Email="sophhia@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="8", Character="A", BgColor=(Brush)converter.ConvertFromString("#ff5252"), Name="Ali Ab", Email="ali@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="9", Character="F", BgColor=(Brush)converter.ConvertFromString("#1e88e5"), Name="Frank Word", Email="frank@gmail.com", Phone="159-785-459" });
-            customers.Add(new Customer { Number="10", Character="S", BgColor=(Brush)converter.ConvertFromString("#0ca678"), Name="Saeed Sa", Email="sae@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="1",  Name="John Doe", Email="john@gmail.com", Phone="001-564-721" });
+            customers.Add(new Customer { Number="2",  Name="Reza Abc", Email="reza@gmail.com", Phone="456-413-879" });
+            customers.Add(new Customer { Number="3",  Name="Dennis Bcd", Email="dennis@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="4",  Name="Gabriel Sla", Email="gabriel@gmail.com", Phone="001-564-721" });
+            customers.Add(new Customer { Number="5",  Name="Lena Jkl", Email="lena@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="6",  Name="Benjamin Culi", Email="ben@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="7",  Name="Sophia Mur", Email="sophhia@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="8",  Name="Ali Ab", Email="ali@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="9",  Name="Frank Word", Email="frank@gmail.com", Phone="159-785-459" });
+            customers.Add(new Customer { Number="10", Name="Saeed Sa", Email="sae@gmail.com", Phone="159-785-459" });
 
             //customerDataGrid.ItemsSource = customers;
         }
@@ -101,20 +101,42 @@ namespace SpaManagement.Pages
             //    customers.Remove(i as Customer);
             //}
         }
+        private void addCus_btn_Click(object sender, RoutedEventArgs e)
+        {
+            AddCustomer addCustomer = new AddCustomer();
+            addCustomer.ShowDialog();
+        }
+
+        private void customerDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var dataGrid = sender as DataGrid;
+            if (dataGrid == null)
+                return;
+
+            var row = FindVisualParent<DataGridRow>(e.OriginalSource as DependencyObject);
+            if (row == null)
+                return;
+
+            Customer rowData = (Customer)row.Item;
+
+            MessageBox.Show(rowData.Name);
+        }
+
+        private static T FindVisualParent<T>(DependencyObject obj) where T : DependencyObject
+        {
+            while (obj != null)
+            {
+                if (obj is T parent)
+                    return parent;
+
+                obj = VisualTreeHelper.GetParent(obj);
+            }
+            return null;
+        }
     }
 
     public class Customer: INotifyPropertyChanged
     {
-        public string character;
-        public string Character 
-        {
-            get { return character; }
-            set 
-            { 
-                character = value;
-                OnPropertyChanged(nameof(Character));
-            }
-        }
         public string number;
         public string Number 
         {
@@ -153,16 +175,6 @@ namespace SpaManagement.Pages
             {
                 phone = value;
                 OnPropertyChanged(nameof(Phone));
-            }
-        }
-        public Brush bgcolor;
-        public Brush BgColor
-        {
-            get { return bgcolor; }
-            set
-            {
-                bgcolor = value;
-                OnPropertyChanged(nameof(BgColor));
             }
         }
 

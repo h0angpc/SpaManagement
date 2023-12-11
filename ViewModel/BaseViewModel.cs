@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.ComponentModel;
 
 namespace SpaManagement.ViewModel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));   
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
-
     class RelayCommand<T> : ICommand
     {
         private readonly Predicate<T> _canExecute;
@@ -31,6 +30,7 @@ namespace SpaManagement.ViewModel
             _canExecute = canExecute;
             _execute = execute;
         }
+
         public bool CanExecute(object parameter)
         {
             try
@@ -42,14 +42,16 @@ namespace SpaManagement.ViewModel
                 return true;
             }
         }
+
         public void Execute(object parameter)
         {
             _execute((T)parameter);
         }
+
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value;}
+            remove { CommandManager.RequerySuggested -= value; }
         }
     }
 }

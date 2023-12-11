@@ -58,17 +58,6 @@ namespace SpaManagement
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if(!string.IsNullOrEmpty(userName.Text) && !string.IsNullOrEmpty(textPassword.Text))
-            {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-
-                this.Close();
-            }
-        }
-
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if(e.ChangedButton == MouseButton.Left)
@@ -79,7 +68,7 @@ namespace SpaManagement
 
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
     }
 }

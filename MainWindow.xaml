@@ -2,10 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        
         WindowStartupLocation="CenterScreen" 
         Height="780" Width="1200"
         x:Name="mainWindow"
         
+        DataContext="{StaticResource MainVM}"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -14,6 +17,13 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" 
+                                   CommandParameter="{Binding ElementName=mainWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     
     <Border Background="#f7f6f4" CornerRadius="15"
             BorderThickness="2" BorderBrush="#FF33C1F0">
@@ -79,7 +89,7 @@
                                     <TextBlock Text="Customer"/>
                                 </StackPanel>
                             </RadioButton>
-                            <RadioButton x:Name="empBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn">
+                            <RadioButton x:Name="empBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn" Checked="empBtn_Checked">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="AccountMultiple" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Employee"/>

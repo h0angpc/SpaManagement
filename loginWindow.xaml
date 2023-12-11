@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpaManagement"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        Title="Window1" Height="500" Width="800">
-    
+        
+        DataContext="{StaticResource LoginVM}"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparen
+        Title="Window1" Height="500" Width="800"
+        x:Name="loginWindow">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -61,7 +63,9 @@
                         <PasswordBox x:Name="txtPassword" PasswordChanged="txtPassword_PasswordChanged" Style="{StaticResource textBox}" />
                     </Grid>
                 </Border>
-                <Button Content="Sign in" Click="Button_Click" Style="{StaticResource mainButton}" />
+                <Button Content="Sign in" Style="{StaticResource mainButton}" 
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=loginWindow}"/>
 
             </StackPanel>
 
