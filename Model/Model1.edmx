@@ -1,0 +1,627 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QUANLYSPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'QUANLYSPA.dbo.ACCOUNT' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ACCOUNT">
+          <Property Name="A_USERNAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="A_PASSWORD" Type="nvarchar" MaxLength="255" />
+          <Property Name="A_EMAIL" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <EntityType Name="BOOKING">
+          <Key>
+            <PropertyRef Name="BK_ID" />
+          </Key>
+          <Property Name="BK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BK_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
+          <Property Name="C_ID" Type="int" Nullable="false" />
+          <Property Name="E_ID" Type="int" Nullable="false" />
+          <Property Name="S_ID" Type="int" Nullable="false" />
+          <Property Name="START_TIME" Type="datetime" Nullable="false" />
+          <Property Name="END_TIME" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUS_ID" />
+          </Key>
+          <Property Name="CUS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUS_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
+          <Property Name="CUS_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CUS_PHONE" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CUS_EMAIL" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMP_ID" />
+          </Key>
+          <Property Name="EMP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMP_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
+          <Property Name="EMP_DISPLAYNAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EMP_ADDRESS" Type="nvarchar(max)" />
+          <Property Name="EMP_PHONE" Type="nvarchar" MaxLength="20" />
+          <Property Name="EMP_CCCD" Type="nvarchar" MaxLength="12" />
+          <Property Name="EMP_SALARY" Type="money" />
+          <Property Name="EMP_ROLE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PAYMENT">
+          <Key>
+            <PropertyRef Name="PMT_ID" />
+          </Key>
+          <Property Name="PMT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PMT_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
+          <Property Name="C_ID" Type="int" />
+          <Property Name="PRICE" Type="money" Nullable="false" />
+          <Property Name="DAYTIME" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAYMENT_DETAIL_PRODUCT">
+          <Key>
+            <PropertyRef Name="PMT_ID" />
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="PMT_ID" Type="int" Nullable="false" />
+          <Property Name="P_ID" Type="int" Nullable="false" />
+          <Property Name="QUANTITY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAYMENT_DETAIL_SERVICE">
+          <Key>
+            <PropertyRef Name="PMT_ID" />
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="PMT_ID" Type="int" Nullable="false" />
+          <Property Name="S_ID" Type="int" Nullable="false" />
+          <Property Name="E_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="PRO_ID" />
+          </Key>
+          <Property Name="PRO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRO_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
+          <Property Name="PRO_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PRICE" Type="money" Nullable="false" />
+          <Property Name="IN_STOCK" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SERVICESS">
+          <Key>
+            <PropertyRef Name="SER_ID" />
+          </Key>
+          <Property Name="SER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SER_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
+          <Property Name="SER_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PRICE" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BOOKING__C_ID__412EB0B6">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUS_ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="C_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BOOKING__E_ID__3F466844">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMP_ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="E_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BOOKING__S_ID__403A8C7D">
+          <End Role="SERVICESS" Type="Self.SERVICESS" Multiplicity="1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICESS">
+              <PropertyRef Name="SER_ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PAYMENT__C_ID__440B1D61">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+          <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUS_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT">
+              <PropertyRef Name="C_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PAYMENT_D__PMT_I__47DBAE45">
+          <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="1" />
+          <End Role="PAYMENT_DETAIL_SERVICE" Type="Self.PAYMENT_DETAIL_SERVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAYMENT">
+              <PropertyRef Name="PMT_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT_DETAIL_SERVICE">
+              <PropertyRef Name="PMT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PAYMENT_D__PMT_I__4BAC3F29">
+          <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="1" />
+          <End Role="PAYMENT_DETAIL_PRODUCT" Type="Self.PAYMENT_DETAIL_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAYMENT">
+              <PropertyRef Name="PMT_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT_DETAIL_PRODUCT">
+              <PropertyRef Name="PMT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PAYMENT_DE__E_ID__46E78A0C">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="PAYMENT_DETAIL_SERVICE" Type="Self.PAYMENT_DETAIL_SERVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMP_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT_DETAIL_SERVICE">
+              <PropertyRef Name="E_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PAYMENT_DE__P_ID__4CA06362">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="PAYMENT_DETAIL_PRODUCT" Type="Self.PAYMENT_DETAIL_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRO_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT_DETAIL_PRODUCT">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PAYMENT_DE__S_ID__48CFD27E">
+          <End Role="SERVICESS" Type="Self.SERVICESS" Multiplicity="1" />
+          <End Role="PAYMENT_DETAIL_SERVICE" Type="Self.PAYMENT_DETAIL_SERVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICESS">
+              <PropertyRef Name="SER_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT_DETAIL_SERVICE">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLYSPAModelStoreContainer">
+          <EntitySet Name="BOOKING" EntityType="Self.BOOKING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAYMENT" EntityType="Self.PAYMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAYMENT_DETAIL_PRODUCT" EntityType="Self.PAYMENT_DETAIL_PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAYMENT_DETAIL_SERVICE" EntityType="Self.PAYMENT_DETAIL_SERVICE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERVICESS" EntityType="Self.SERVICESS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BOOKING__C_ID__412EB0B6" Association="Self.FK__BOOKING__C_ID__412EB0B6">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="BOOKING" EntitySet="BOOKING" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BOOKING__E_ID__3F466844" Association="Self.FK__BOOKING__E_ID__3F466844">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="BOOKING" EntitySet="BOOKING" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BOOKING__S_ID__403A8C7D" Association="Self.FK__BOOKING__S_ID__403A8C7D">
+            <End Role="SERVICESS" EntitySet="SERVICESS" />
+            <End Role="BOOKING" EntitySet="BOOKING" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PAYMENT__C_ID__440B1D61" Association="Self.FK__PAYMENT__C_ID__440B1D61">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="PAYMENT" EntitySet="PAYMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PAYMENT_D__PMT_I__47DBAE45" Association="Self.FK__PAYMENT_D__PMT_I__47DBAE45">
+            <End Role="PAYMENT" EntitySet="PAYMENT" />
+            <End Role="PAYMENT_DETAIL_SERVICE" EntitySet="PAYMENT_DETAIL_SERVICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PAYMENT_D__PMT_I__4BAC3F29" Association="Self.FK__PAYMENT_D__PMT_I__4BAC3F29">
+            <End Role="PAYMENT" EntitySet="PAYMENT" />
+            <End Role="PAYMENT_DETAIL_PRODUCT" EntitySet="PAYMENT_DETAIL_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PAYMENT_DE__E_ID__46E78A0C" Association="Self.FK__PAYMENT_DE__E_ID__46E78A0C">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="PAYMENT_DETAIL_SERVICE" EntitySet="PAYMENT_DETAIL_SERVICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PAYMENT_DE__P_ID__4CA06362" Association="Self.FK__PAYMENT_DE__P_ID__4CA06362">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="PAYMENT_DETAIL_PRODUCT" EntitySet="PAYMENT_DETAIL_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PAYMENT_DE__S_ID__48CFD27E" Association="Self.FK__PAYMENT_DE__S_ID__48CFD27E">
+            <End Role="SERVICESS" EntitySet="SERVICESS" />
+            <End Role="PAYMENT_DETAIL_SERVICE" EntitySet="PAYMENT_DETAIL_SERVICE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QUANLYSPAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BOOKING">
+          <Key>
+            <PropertyRef Name="BK_ID" />
+          </Key>
+          <Property Name="BK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BK_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="C_ID" Type="Int32" Nullable="false" />
+          <Property Name="E_ID" Type="Int32" Nullable="false" />
+          <Property Name="S_ID" Type="Int32" Nullable="false" />
+          <Property Name="START_TIME" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="END_TIME" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__BOOKING__C_ID__412EB0B6" FromRole="BOOKING" ToRole="CUSTOMER" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK__BOOKING__E_ID__3F466844" FromRole="BOOKING" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="SERVICESS" Relationship="Self.FK__BOOKING__S_ID__403A8C7D" FromRole="BOOKING" ToRole="SERVICESS" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUS_ID" />
+          </Key>
+          <Property Name="CUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUS_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CUS_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CUS_PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CUS_EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__C_ID__412EB0B6" FromRole="CUSTOMER" ToRole="BOOKING" />
+          <NavigationProperty Name="PAYMENTs" Relationship="Self.FK__PAYMENT__C_ID__440B1D61" FromRole="CUSTOMER" ToRole="PAYMENT" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMP_ID" />
+          </Key>
+          <Property Name="EMP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMP_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EMP_DISPLAYNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMP_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMP_PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EMP_CCCD" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="EMP_SALARY" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="EMP_ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__E_ID__3F466844" FromRole="EMPLOYEE" ToRole="BOOKING" />
+          <NavigationProperty Name="PAYMENT_DETAIL_SERVICE" Relationship="Self.FK__PAYMENT_DE__E_ID__46E78A0C" FromRole="EMPLOYEE" ToRole="PAYMENT_DETAIL_SERVICE" />
+        </EntityType>
+        <EntityType Name="PAYMENT">
+          <Key>
+            <PropertyRef Name="PMT_ID" />
+          </Key>
+          <Property Name="PMT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PMT_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="C_ID" Type="Int32" />
+          <Property Name="PRICE" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DAYTIME" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__PAYMENT__C_ID__440B1D61" FromRole="PAYMENT" ToRole="CUSTOMER" />
+          <NavigationProperty Name="PAYMENT_DETAIL_SERVICE" Relationship="Self.FK__PAYMENT_D__PMT_I__47DBAE45" FromRole="PAYMENT" ToRole="PAYMENT_DETAIL_SERVICE" />
+          <NavigationProperty Name="PAYMENT_DETAIL_PRODUCT" Relationship="Self.FK__PAYMENT_D__PMT_I__4BAC3F29" FromRole="PAYMENT" ToRole="PAYMENT_DETAIL_PRODUCT" />
+        </EntityType>
+        <EntityType Name="PAYMENT_DETAIL_PRODUCT">
+          <Key>
+            <PropertyRef Name="PMT_ID" />
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="PMT_ID" Type="Int32" Nullable="false" />
+          <Property Name="P_ID" Type="Int32" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PAYMENT" Relationship="Self.FK__PAYMENT_D__PMT_I__4BAC3F29" FromRole="PAYMENT_DETAIL_PRODUCT" ToRole="PAYMENT" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK__PAYMENT_DE__P_ID__4CA06362" FromRole="PAYMENT_DETAIL_PRODUCT" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="PAYMENT_DETAIL_SERVICE">
+          <Key>
+            <PropertyRef Name="PMT_ID" />
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="PMT_ID" Type="Int32" Nullable="false" />
+          <Property Name="S_ID" Type="Int32" Nullable="false" />
+          <Property Name="E_ID" Type="Int32" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK__PAYMENT_DE__E_ID__46E78A0C" FromRole="PAYMENT_DETAIL_SERVICE" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="PAYMENT" Relationship="Self.FK__PAYMENT_D__PMT_I__47DBAE45" FromRole="PAYMENT_DETAIL_SERVICE" ToRole="PAYMENT" />
+          <NavigationProperty Name="SERVICESS" Relationship="Self.FK__PAYMENT_DE__S_ID__48CFD27E" FromRole="PAYMENT_DETAIL_SERVICE" ToRole="SERVICESS" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="PRO_ID" />
+          </Key>
+          <Property Name="PRO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRO_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="PRO_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PRICE" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="IN_STOCK" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PAYMENT_DETAIL_PRODUCT" Relationship="Self.FK__PAYMENT_DE__P_ID__4CA06362" FromRole="PRODUCT" ToRole="PAYMENT_DETAIL_PRODUCT" />
+        </EntityType>
+        <EntityType Name="SERVICESS">
+          <Key>
+            <PropertyRef Name="SER_ID" />
+          </Key>
+          <Property Name="SER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SER_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="SER_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PRICE" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__S_ID__403A8C7D" FromRole="SERVICESS" ToRole="BOOKING" />
+          <NavigationProperty Name="PAYMENT_DETAIL_SERVICE" Relationship="Self.FK__PAYMENT_DE__S_ID__48CFD27E" FromRole="SERVICESS" ToRole="PAYMENT_DETAIL_SERVICE" />
+        </EntityType>
+        <Association Name="FK__BOOKING__C_ID__412EB0B6">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUS_ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="C_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BOOKING__E_ID__3F466844">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMP_ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="E_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BOOKING__S_ID__403A8C7D">
+          <End Role="SERVICESS" Type="Self.SERVICESS" Multiplicity="1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICESS">
+              <PropertyRef Name="SER_ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PAYMENT__C_ID__440B1D61">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+          <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUS_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT">
+              <PropertyRef Name="C_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PAYMENT_DE__E_ID__46E78A0C">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="PAYMENT_DETAIL_SERVICE" Type="Self.PAYMENT_DETAIL_SERVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMP_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT_DETAIL_SERVICE">
+              <PropertyRef Name="E_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PAYMENT_D__PMT_I__47DBAE45">
+          <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="1" />
+          <End Role="PAYMENT_DETAIL_SERVICE" Type="Self.PAYMENT_DETAIL_SERVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAYMENT">
+              <PropertyRef Name="PMT_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT_DETAIL_SERVICE">
+              <PropertyRef Name="PMT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PAYMENT_D__PMT_I__4BAC3F29">
+          <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="1" />
+          <End Role="PAYMENT_DETAIL_PRODUCT" Type="Self.PAYMENT_DETAIL_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAYMENT">
+              <PropertyRef Name="PMT_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT_DETAIL_PRODUCT">
+              <PropertyRef Name="PMT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PAYMENT_DE__P_ID__4CA06362">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="PAYMENT_DETAIL_PRODUCT" Type="Self.PAYMENT_DETAIL_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRO_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT_DETAIL_PRODUCT">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PAYMENT_DE__S_ID__48CFD27E">
+          <End Role="SERVICESS" Type="Self.SERVICESS" Multiplicity="1" />
+          <End Role="PAYMENT_DETAIL_SERVICE" Type="Self.PAYMENT_DETAIL_SERVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICESS">
+              <PropertyRef Name="SER_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT_DETAIL_SERVICE">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLYSPAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOOKINGs" EntityType="Self.BOOKING" />
+          <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+          <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="PAYMENTs" EntityType="Self.PAYMENT" />
+          <EntitySet Name="PAYMENT_DETAIL_PRODUCT" EntityType="Self.PAYMENT_DETAIL_PRODUCT" />
+          <EntitySet Name="PAYMENT_DETAIL_SERVICE" EntityType="Self.PAYMENT_DETAIL_SERVICE" />
+          <EntitySet Name="PRODUCTs" EntityType="Self.PRODUCT" />
+          <EntitySet Name="SERVICESSes" EntityType="Self.SERVICESS" />
+          <AssociationSet Name="FK__BOOKING__C_ID__412EB0B6" Association="Self.FK__BOOKING__C_ID__412EB0B6">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="BOOKING" EntitySet="BOOKINGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BOOKING__E_ID__3F466844" Association="Self.FK__BOOKING__E_ID__3F466844">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="BOOKING" EntitySet="BOOKINGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BOOKING__S_ID__403A8C7D" Association="Self.FK__BOOKING__S_ID__403A8C7D">
+            <End Role="SERVICESS" EntitySet="SERVICESSes" />
+            <End Role="BOOKING" EntitySet="BOOKINGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PAYMENT__C_ID__440B1D61" Association="Self.FK__PAYMENT__C_ID__440B1D61">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="PAYMENT" EntitySet="PAYMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PAYMENT_DE__E_ID__46E78A0C" Association="Self.FK__PAYMENT_DE__E_ID__46E78A0C">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="PAYMENT_DETAIL_SERVICE" EntitySet="PAYMENT_DETAIL_SERVICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PAYMENT_D__PMT_I__47DBAE45" Association="Self.FK__PAYMENT_D__PMT_I__47DBAE45">
+            <End Role="PAYMENT" EntitySet="PAYMENTs" />
+            <End Role="PAYMENT_DETAIL_SERVICE" EntitySet="PAYMENT_DETAIL_SERVICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PAYMENT_D__PMT_I__4BAC3F29" Association="Self.FK__PAYMENT_D__PMT_I__4BAC3F29">
+            <End Role="PAYMENT" EntitySet="PAYMENTs" />
+            <End Role="PAYMENT_DETAIL_PRODUCT" EntitySet="PAYMENT_DETAIL_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PAYMENT_DE__P_ID__4CA06362" Association="Self.FK__PAYMENT_DE__P_ID__4CA06362">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="PAYMENT_DETAIL_PRODUCT" EntitySet="PAYMENT_DETAIL_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PAYMENT_DE__S_ID__48CFD27E" Association="Self.FK__PAYMENT_DE__S_ID__48CFD27E">
+            <End Role="SERVICESS" EntitySet="SERVICESSes" />
+            <End Role="PAYMENT_DETAIL_SERVICE" EntitySet="PAYMENT_DETAIL_SERVICE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QUANLYSPAModelStoreContainer" CdmEntityContainer="QUANLYSPAEntities">
+          <EntitySetMapping Name="BOOKINGs">
+            <EntityTypeMapping TypeName="QUANLYSPAModel.BOOKING">
+              <MappingFragment StoreEntitySet="BOOKING">
+                <ScalarProperty Name="BK_ID" ColumnName="BK_ID" />
+                <ScalarProperty Name="BK_MA" ColumnName="BK_MA" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="E_ID" ColumnName="E_ID" />
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+                <ScalarProperty Name="START_TIME" ColumnName="START_TIME" />
+                <ScalarProperty Name="END_TIME" ColumnName="END_TIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMERs">
+            <EntityTypeMapping TypeName="QUANLYSPAModel.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="CUS_ID" ColumnName="CUS_ID" />
+                <ScalarProperty Name="CUS_MA" ColumnName="CUS_MA" />
+                <ScalarProperty Name="CUS_NAME" ColumnName="CUS_NAME" />
+                <ScalarProperty Name="CUS_PHONE" ColumnName="CUS_PHONE" />
+                <ScalarProperty Name="CUS_EMAIL" ColumnName="CUS_EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEEs">
+            <EntityTypeMapping TypeName="QUANLYSPAModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+                <ScalarProperty Name="EMP_MA" ColumnName="EMP_MA" />
+                <ScalarProperty Name="EMP_DISPLAYNAME" ColumnName="EMP_DISPLAYNAME" />
+                <ScalarProperty Name="EMP_ADDRESS" ColumnName="EMP_ADDRESS" />
+                <ScalarProperty Name="EMP_PHONE" ColumnName="EMP_PHONE" />
+                <ScalarProperty Name="EMP_CCCD" ColumnName="EMP_CCCD" />
+                <ScalarProperty Name="EMP_SALARY" ColumnName="EMP_SALARY" />
+                <ScalarProperty Name="EMP_ROLE" ColumnName="EMP_ROLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAYMENTs">
+            <EntityTypeMapping TypeName="QUANLYSPAModel.PAYMENT">
+              <MappingFragment StoreEntitySet="PAYMENT">
+                <ScalarProperty Name="PMT_ID" ColumnName="PMT_ID" />
+                <ScalarProperty Name="PMT_MA" ColumnName="PMT_MA" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="DAYTIME" ColumnName="DAYTIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAYMENT_DETAIL_PRODUCT">
+            <EntityTypeMapping TypeName="QUANLYSPAModel.PAYMENT_DETAIL_PRODUCT">
+              <MappingFragment StoreEntitySet="PAYMENT_DETAIL_PRODUCT">
+                <ScalarProperty Name="PMT_ID" ColumnName="PMT_ID" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAYMENT_DETAIL_SERVICE">
+            <EntityTypeMapping TypeName="QUANLYSPAModel.PAYMENT_DETAIL_SERVICE">
+              <MappingFragment StoreEntitySet="PAYMENT_DETAIL_SERVICE">
+                <ScalarProperty Name="PMT_ID" ColumnName="PMT_ID" />
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+                <ScalarProperty Name="E_ID" ColumnName="E_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTs">
+            <EntityTypeMapping TypeName="QUANLYSPAModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
+                <ScalarProperty Name="PRO_MA" ColumnName="PRO_MA" />
+                <ScalarProperty Name="PRO_NAME" ColumnName="PRO_NAME" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="IN_STOCK" ColumnName="IN_STOCK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICESSes">
+            <EntityTypeMapping TypeName="QUANLYSPAModel.SERVICESS">
+              <MappingFragment StoreEntitySet="SERVICESS">
+                <ScalarProperty Name="SER_ID" ColumnName="SER_ID" />
+                <ScalarProperty Name="SER_MA" ColumnName="SER_MA" />
+                <ScalarProperty Name="SER_NAME" ColumnName="SER_NAME" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
