@@ -12,7 +12,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Loaded="Window_Loaded">
+        >
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
@@ -77,19 +77,21 @@
                                    Background="AliceBlue"/>
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top">
-                            <RadioButton x:Name="homeBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn" Click="homeBtn_Click">
+                            <RadioButton x:Name="homeBtn" Style="{StaticResource menuRadioButton}" 
+                                         GroupName="MenuBtn" Command="{Binding UpdateViewCommand}" CommandParameter="Home">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Home"/>
                                 </StackPanel>
                             </RadioButton>
-                            <RadioButton x:Name="cusBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn" Click="cusBtn_Click">
+                            <RadioButton x:Name="cusBtn" Style="{StaticResource menuRadioButton}" 
+                                         GroupName="MenuBtn" Command="{Binding UpdateViewCommand}" CommandParameter="Customer">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="AccountGroupOutline" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Customer"/>
                                 </StackPanel>
                             </RadioButton>
-                            <RadioButton x:Name="empBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn" Checked="empBtn_Checked">
+                            <RadioButton x:Name="empBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="AccountMultiple" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Employee"/>
@@ -214,10 +216,14 @@
 
 
                 <!--Bottom Section (Page Site)-->
-                <Frame Grid.Row="2" Margin="0 10 0 0"
+                <!--<Frame Grid.Row="2" Margin="0 10 0 0"
                     Name="mContainer"
                     NavigationUIVisibility="Hidden">
-                </Frame>
+                </Frame>-->
+                <Frame Grid.Row="2" 
+                       Margin="0 10 0 0"
+                       Content="{Binding SelectedViewModel}"
+                       NavigationUIVisibility="Hidden"/>
             </Grid>
 
         </Grid>

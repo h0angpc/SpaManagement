@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SpaManagement.Windows
+namespace SpaManagement.Views
 {
     /// <summary>
-    /// Interaction logic for AddCustomer.xaml
+    /// Interaction logic for AddCustomerView.xaml
     /// </summary>
-    public partial class AddCustomer : Window
+    public partial class AddCustomerView : Window
     {
-        public AddCustomer()
+        public AddCustomerView()
         {
             InitializeComponent();
         }
