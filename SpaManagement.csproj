@@ -85,6 +85,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AddCustomerCommand.cs" />
     <Compile Include="loginWindow.xaml.cs">
       <DependentUpon>loginWindow.xaml</DependentUpon>
     </Compile>
@@ -100,7 +101,9 @@
     <Compile Include="UserControls\Legends.xaml.cs">
       <DependentUpon>Legends.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddCustomerViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\ErrorsViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Windows\AddCustomer.xaml.cs">

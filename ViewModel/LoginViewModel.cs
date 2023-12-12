@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace SpaManagement.ViewModel
 {
-    internal class LoginViewModel : BaseViewModel
+    public class LoginViewModel : BaseViewModel
     {
         public bool IsLogin { get; set; }
         public ICommand LoginCommand { get; set; }

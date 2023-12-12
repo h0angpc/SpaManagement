@@ -24,40 +24,6 @@ namespace SpaManagement
             InitializeComponent();
         }
 
-        private void usrName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if(!string.IsNullOrEmpty(usrName.Text) && usrName.Text.Length > 0)
-            {
-                userName.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                userName.Visibility= Visibility.Visible;
-            }
-        }
-
-        private void userName_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            usrName.Focus();
-        }
-
-        private void textPassword_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            txtPassword.Focus();
-        }
-
-        private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(usrName.Text) && usrName.Text.Length > 0)
-            {
-                textPassword.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                textPassword.Visibility = Visibility.Visible;
-            }
-        }
-
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if(e.ChangedButton == MouseButton.Left)

@@ -4,15 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpaManagement"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
         DataContext="{StaticResource LoginVM}"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        Title="Window1" Height="501" Width="800"
+        Title="Window1" Height="450" Width="800"
         x:Name="loginWindow">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Image Source="/Images/close.jpg" Grid.Column="1" Panel.ZIndex="1" MouseUp="Image_MouseUp" Style="{StaticResource imgClose }" />
         <Border CornerRadius="10 0 0 10">
@@ -26,7 +27,6 @@
                 <Canvas>
                     <Polygon Points="0,20 230, 140 0, 270" Fill ="#4EB1B6"/>
                     <Polygon Points="0,20 230, 140 0, 270" Fill ="#4EB1B6"/>
-                    <Ellipse Margin="250 450 0 0" Width=" 40" Height="40" Fill ="#4EB1B6"/>
                     <Ellipse Margin="50 400 0 0" Width=" 20" Height="20" Fill ="#4EB1B6"/>
                 </Canvas>
 
@@ -40,29 +40,38 @@
 
         <Border Background ="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown"> 
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Sign in to App" Style="{StaticResource titleText}" Foreground="#3AB19B"/>
-                <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7" CornerRadius="5">
-                    <Grid Margin="7 9">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="/Images/user.jpg" Height="20"/>
-                        <TextBlock x:Name="userName" MouseDown="userName_MouseDown" Text="userName" Style="{StaticResource textHint}"/>
-                        <TextBox x:Name="usrName" TextChanged="usrName_TextChanged" Style="{StaticResource textBox}" />
+                <TextBlock Text="Sign in to App" Style="{StaticResource titleText}" Foreground="#3AB19B"
+                           />
+
+                <StackPanel Orientation="Horizontal" Margin="60 15 0 0" VerticalAlignment="Top">
+                    <materialDesign:PackIcon Kind="AccountCircle" Height="35" Width="35" Margin="0 7.5 0 0"/>
+                    <Grid Margin="10 0 0 0">
+                        <TextBox Height="50" Width="250"
+                                 materialDesign:HintAssist.Hint="Username"
+                                 materialDesign:HintAssist.Foreground="#3AB19B"
+                                 AcceptsReturn="True"
+                                 IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 materialDesign:TextFieldAssist.UnderlineBrush="#3AB19B"
+                                 TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"/>
+
+                    </Grid>    
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="60 15 0 0" VerticalAlignment="Top">
+                    <materialDesign:PackIcon Kind="Lock" Height="35" Width="35" Margin="0 7.5 0 0"/>
+                    <Grid Margin="10 0 0 0">
+                        <PasswordBox Height="50" Width="250"
+                                materialDesign:HintAssist.Hint="Password"
+                                materialDesign:HintAssist.Foreground="#3AB19B"
+                                materialDesign:TextFieldAssist.HasClearButton="True"
+                                     materialDesign:TextFieldAssist.UnderlineBrush="#3AB19B"
+                                IsEnabled="{Binding ElementName=RevealPasswordOutlinedEnabled, Path=IsChecked}"
+                                Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" />
                     </Grid>
-                </Border>
-                <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7" CornerRadius="5">
-                    <Grid Margin="7 9">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="/Images/Lock.jpg" Height="20"/>
-                        <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text="Password" Style="{StaticResource textHint}"/>
-                        <PasswordBox x:Name="txtPassword" PasswordChanged="txtPassword_PasswordChanged" Style="{StaticResource textBox}" />
-                    </Grid>
-                </Border>
+                </StackPanel>
+
                 <Button Content="Sign in" Style="{StaticResource mainButton}" 
                         Command="{Binding LoginCommand}"
                         CommandParameter="{Binding ElementName=loginWindow}"/>
