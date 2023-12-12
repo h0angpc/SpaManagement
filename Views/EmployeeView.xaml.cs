@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpaManagement.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -15,23 +16,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SpaManagement.Pages
+namespace SpaManagement.Views
 {
     /// <summary>
-    /// Interaction logic for EmployeePage.xaml
+    /// Interaction logic for EmployeeView.xaml
     /// </summary>
-    public partial class EmployeePage : Page
+    public partial class EmployeeView : Page
     {
         public ObservableCollection<Employee> employees { get; set; }
-        public EmployeePage()
+        public EmployeeView()
         {
             InitializeComponent();
-         
+
             DataContext = this;
             employees = new ObservableCollection<Employee>();
 
 
-            employees.Add(new Employee{ Number="1", Name="Phan Châu Hoàng", Address="157 Cầu Xây, Quận 9", Phone="001-564-721", CCCD="049204001120", Salary=10000000000, Position="Chủ tịch" });
+            employees.Add(new Employee { Number="1", Name="Phan Châu Hoàng", Address="157 Cầu Xây, Quận 9", Phone="001-564-721", CCCD="049204001120", Salary=10000000000, Position="Chủ tịch" });
         }
 
         private void rmvBtn_Click(object sender, RoutedEventArgs e)
@@ -88,9 +89,9 @@ namespace SpaManagement.Pages
         public string CCCD
         {
             get { return cccd; }
-            set 
-            { 
-                cccd = value; 
+            set
+            {
+                cccd = value;
                 OnPropertyChanged(nameof(CCCD));
             }
         }
@@ -100,9 +101,9 @@ namespace SpaManagement.Pages
         public long Salary
         {
             get { return salary; }
-            set 
+            set
             {
-                salary = value; 
+                salary = value;
                 OnPropertyChanged(nameof(Salary));
             }
         }
@@ -112,9 +113,9 @@ namespace SpaManagement.Pages
         public string Position
         {
             get { return position; }
-            set 
-            { 
-                position = value; 
+            set
+            {
+                position = value;
                 OnPropertyChanged(nameof(Position));
             }
         }

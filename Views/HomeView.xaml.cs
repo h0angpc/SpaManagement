@@ -13,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SpaManagement.Pages
+namespace SpaManagement.Views
 {
     /// <summary>
-    /// Interaction logic for HomePage.xaml
+    /// Interaction logic for HomeView.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class HomeView : Page
     {
-        public HomePage()
+        public HomeView()
         {
             InitializeComponent();
-        }
-
-        private void PART_PreviousButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void PART_NextButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
