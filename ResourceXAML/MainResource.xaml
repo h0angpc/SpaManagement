@@ -8,6 +8,9 @@
     <DataTemplate DataType="{x:Type viewmodel:CustomerViewModel}">
         <views:CustomerView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:PaymentViewModel}">
+        <views:PaymentView/>
+    </DataTemplate>
     <viewmodel:MainViewModel x:Key="MainVM"/>
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
     <viewmodel:AddCustomerViewModel x:Key="AddCusomterVM"/>

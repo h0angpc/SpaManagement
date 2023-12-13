@@ -70,6 +70,8 @@ namespace SpaManagement
         {
             this.WindowState = WindowState.Minimized;
         }
+
+      
         //private void Window_Loaded(object sender, RoutedEventArgs e)
         //{
         //    mContainer.Navigate(new System.Uri("Pages/HomePage.xaml", System.UriKind.RelativeOrAbsolute));
