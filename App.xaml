@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:SpaManagement"
              
              
-             StartupUri="Views/AddCustomerView.xaml"
+             StartupUri="MainWindow.xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Application.Resources>

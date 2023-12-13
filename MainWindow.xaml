@@ -115,7 +115,8 @@
                                     <TextBlock Text="Product"/>
                                 </StackPanel>
                             </RadioButton>
-                            <RadioButton x:Name="payBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn">
+                            <RadioButton x:Name="payBtn" Style="{StaticResource menuRadioButton}" 
+                                          Command="{Binding UpdateViewCommand}" CommandParameter="Payment" GroupName="MenuBtn" >
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="Shopping" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Payment"/>
