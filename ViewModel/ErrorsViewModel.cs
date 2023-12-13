@@ -12,14 +12,8 @@ namespace SpaManagement.ViewModel
     {
         private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
 
-        public bool HasErrors => _propertyErrors.Any();
-
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
-        //public IEnumerable GetErrors(string propertyName)
-        //{
-        //    return _propertyErrors.GetValueOrDefault(propertyName, null);
-        //}
+        public bool HasErrors => _propertyErrors.Any();
 
         public void AddError(string propertyName, string errorMessage)
         {
@@ -40,14 +34,18 @@ namespace SpaManagement.ViewModel
             }
         }
 
-        public IEnumerable GetErrors(string propertyName)
-        {
-            throw new NotImplementedException();
-        }
-
         private void OnErrorsChanged(string propertyName)
         {
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        }
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            if (_propertyErrors.TryGetValue(propertyName, out List<string> errors))
+            {
+                return errors;
+            }
+            return null;
         }
     }
 }

@@ -15,10 +15,44 @@
         AllowsTransparency="True"
         Background="Transparent"
         Name="AddCustomer">
-        
+
+
     <Border Background="#ffffff" CornerRadius="15"
             BorderThickness="1" BorderBrush="#FF33C1F0">
         <Grid>
+            <Grid.Resources>
+                <Style TargetType="TextBox">
+                    <!--<Setter Property="Validation.ErrorTemplate">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Grid>
+                                    
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>-->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <StackPanel>
+                                    <Border Padding="{TemplateBinding Padding}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="3">
+                                    </Border>
+                                    <ItemsControl ItemsSource="{TemplateBinding Validation.Errors}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Foreground="Red" Text="{Binding ErrorContent}"/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -50,12 +84,14 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Vertical">
                     <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="MÃ KHÁCH HÀNG"/>
-                        <TextBox materialDesign:HintAssist.Hint="VD:"
+                        <TextBlock Text="HỌ TÊN"/>
+                        <TextBox materialDesign:HintAssist.Hint="VD: Nguyễn Văn A"
                                  materialDesign:HintAssist.IsFloating="False"
                                  Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                  Width="170" HorizontalAlignment="Left"
-                                 Margin="0 5 0 0">
+                                 Margin="0 5 0 0"
+                                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+             >
                         </TextBox>
                     </StackPanel>
 
@@ -65,30 +101,32 @@
                                  materialDesign:HintAssist.IsFloating="False"
                                  Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                  Width="170" HorizontalAlignment="Left"
-                                 Margin="0 5 0 0">
+                                 Margin="0 5 0 0"
+                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Vertical">
                     <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="HỌ TÊN"/>
-                        <TextBox materialDesign:HintAssist.Hint="VD: Nguyễn Văn A"
-                                 materialDesign:HintAssist.IsFloating="False"
-                                 Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 Width="170" HorizontalAlignment="Left"
-                                 Margin="0 5 0 0"
-                                 >
-                        </TextBox>
+                        <TextBlock Text="Giới Tính"/>
+                        <ComboBox
+                                Width="170" Height="27.96"
+                                HorizontalAlignment="Left" Margin="0 5 0 0"
+                                Padding="5 5 5 5"
+                                materialDesign:HintAssist.Hint="VD: Nam"
+                                IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                                
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />                        
                     </StackPanel>
-
                     <StackPanel Orientation="Vertical" Margin="10 15 0 0">
                         <TextBlock Text="SĐT"/>
                         <TextBox materialDesign:HintAssist.Hint="VD: 09050001"
                                  materialDesign:HintAssist.IsFloating="False"
                                  Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                  Width="170" HorizontalAlignment="Left"
-                                 Margin="0 5 0 0">
+                                 Margin="0 5 0 0"
+                                 Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
                     </StackPanel>
                 </StackPanel>
@@ -102,10 +140,10 @@
                     <Button
                         Width="170" VerticalAlignment="Center"
                         materialDesign:ButtonAssist.CornerRadius="10"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         ToolTip="MaterialDesignRaisedButton with Round Corners"
-                        Background="#FF33C1F0" BorderThickness="0">
+                        Background="#FF33C1F0" BorderThickness="0"
+                        Command="{Binding AddCustomerCommand}" IsEnabled="{Binding CanCreate}">
                         <TextBlock
                             Text="THÊM KHÁCH HÀNG" />
                     </Button>

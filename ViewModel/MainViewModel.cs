@@ -11,7 +11,7 @@ namespace SpaManagement.ViewModel
 {
     public class MainViewModel : BaseViewModel 
     {
-        private BaseViewModel _selectedViewModel;
+        private BaseViewModel _selectedViewModel = new HomeViewModel();
 
         public BaseViewModel  SelectedViewModel
         {
