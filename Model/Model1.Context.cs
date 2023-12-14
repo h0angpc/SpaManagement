@@ -25,6 +25,7 @@ namespace SpaManagement.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ACCOUNT> ACCOUNTs { get; set; }
         public virtual DbSet<BOOKING> BOOKINGs { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
         public virtual DbSet<EMPLOYEE> EMPLOYEEs { get; set; }
@@ -33,5 +34,6 @@ namespace SpaManagement.Model
         public virtual DbSet<PAYMENT_DETAIL_SERVICE> PAYMENT_DETAIL_SERVICE { get; set; }
         public virtual DbSet<PRODUCT> PRODUCTs { get; set; }
         public virtual DbSet<SERVICESS> SERVICESSes { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
