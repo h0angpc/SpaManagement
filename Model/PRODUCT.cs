@@ -24,7 +24,6 @@ namespace SpaManagement.Model
         public string PRO_MA { get; set; }
         public string PRO_NAME { get; set; }
         public decimal PRICE { get; set; }
-        public int IN_STOCK { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PAYMENT_DETAIL_PRODUCT> PAYMENT_DETAIL_PRODUCT { get; set; }

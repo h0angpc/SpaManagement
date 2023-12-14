@@ -26,6 +26,7 @@ namespace SpaManagement.Model
         public string CUS_NAME { get; set; }
         public string CUS_PHONE { get; set; }
         public string CUS_EMAIL { get; set; }
+        public string CUS_SEX { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOKING> BOOKINGs { get; set; }
