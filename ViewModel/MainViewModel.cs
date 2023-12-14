@@ -1,4 +1,5 @@
 ﻿using SpaManagement.Commands;
+using SpaManagement.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,9 @@ namespace SpaManagement.ViewModel
                 }
             }
             );
+
+
+            MessageBox.Show(DataProvider.Ins.DB.ACCOUNTs.First().A_USERNAME);
        }
    }
 }
