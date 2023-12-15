@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpaManagement"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
         DataContext="{StaticResource LoginVM}"
@@ -38,47 +39,59 @@
             </Grid>
         </Border>
 
-        <Border Background ="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown"> 
+        <Border Background ="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown">
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="Sign in to App" Style="{StaticResource titleText}" Foreground="#3AB19B"
-                           />
+                   />
 
                 <StackPanel Orientation="Horizontal" Margin="60 15 0 0" VerticalAlignment="Top">
                     <materialDesign:PackIcon Kind="AccountCircle" Height="35" Width="35" Margin="0 7.5 0 0"/>
                     <Grid Margin="10 0 0 0">
                         <TextBox Height="50" Width="250"
-                                 materialDesign:HintAssist.Hint="Username"
-                                 materialDesign:HintAssist.Foreground="#3AB19B"
-                                 AcceptsReturn="True"
-                                 IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
-                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 materialDesign:TextFieldAssist.UnderlineBrush="#3AB19B"
-                                 TextWrapping="Wrap"
-                                 VerticalScrollBarVisibility="Auto"/>
+                         Text="{Binding UserName}"
+                         materialDesign:HintAssist.Hint="Username"
+                         materialDesign:HintAssist.Foreground="#3AB19B"
+                         AcceptsReturn="True"
+                         IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:TextFieldAssist.UnderlineBrush="#3AB19B"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"/>
 
-                    </Grid>    
+                    </Grid>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="60 15 0 0" VerticalAlignment="Top">
                     <materialDesign:PackIcon Kind="Lock" Height="35" Width="35" Margin="0 7.5 0 0"/>
                     <Grid Margin="10 0 0 0">
-                        <PasswordBox Height="50" Width="250"
-                                materialDesign:HintAssist.Hint="Password"
-                                materialDesign:HintAssist.Foreground="#3AB19B"
-                                materialDesign:TextFieldAssist.HasClearButton="True"
-                                     materialDesign:TextFieldAssist.UnderlineBrush="#3AB19B"
-                                IsEnabled="{Binding ElementName=RevealPasswordOutlinedEnabled, Path=IsChecked}"
-                                Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" />
+                        <PasswordBox 
+                        x:Name="passwordBox"
+                        Height="50" Width="250"
+                        materialDesign:HintAssist.Hint="Password"
+                        materialDesign:HintAssist.Foreground="#3AB19B"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        materialDesign:TextFieldAssist.UnderlineBrush="#3AB19B"
+                        IsEnabled="{Binding ElementName=RevealPasswordOutlinedEnabled, Path=IsChecked}"
+                        Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PasswordChanged">
+                                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
+                                                            CommandParameter="{Binding ElementName=passwordBox}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
+
                     </Grid>
                 </StackPanel>
 
                 <Button Content="Sign in" Style="{StaticResource mainButton}" 
-                        Command="{Binding LoginCommand}"
-                        CommandParameter="{Binding ElementName=loginWindow}"/>
+                Command="{Binding LoginCommand}"
+                CommandParameter="{Binding ElementName=loginWindow}"
+                IsDefault="True"/>
 
             </StackPanel>
 
         </Border>
-       
+
     </Grid>
 </Window>

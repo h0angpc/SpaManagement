@@ -115,9 +115,11 @@
                                 HorizontalAlignment="Left" Margin="0 5 0 0"
                                 Padding="5 5 5 5"
                                 materialDesign:HintAssist.Hint="VD: Nam"
+                                materialDesign:HintAssist.IsFloating="False"
+                                Text="{Binding Sex, UpdateSourceTrigger=PropertyChanged}"
                                 IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                                
-                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />                        
+                                ItemsSource="{Binding sexsource}"
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="10 15 0 0">
                         <TextBlock Text="SĐT"/>
