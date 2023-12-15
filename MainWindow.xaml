@@ -147,12 +147,12 @@
                 </Grid.RowDefinitions>
                 <!--Control Bar-->
                 <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft"
-                                Margin="-217,0,-10,0" x:Name="controlBar"
+                                Margin="-217,0,-20,0" x:Name="controlBar"
                                 MouseLeftButtonDown="controlBar_MouseLeftButtonDown"
                                 MouseEnter="controlBar_MouseEnter" MouseDown="controlBar_MouseDown"
                                 Panel.ZIndex="2" Grid.Row="0" Background="Transparent"
                                 >
-                    <Button Style="{StaticResource controlBarButton}" Margin="0 0 0 0"
+                    <Button Style="{StaticResource controlCloseBarButton}" Margin="0 0 0 0"
                                 x:Name="closeBtn" Click="closeBtn_Click">
                         <Icon:PackIconMaterial Kind="Close" Style="{StaticResource controlBarButtonIcon}"/>
                     </Button>

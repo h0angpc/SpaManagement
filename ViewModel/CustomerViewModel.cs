@@ -19,26 +19,14 @@ namespace SpaManagement.ViewModel
             set
             {
                 _CustomerList = value;
-                OnPropertyChanged(nameof(CustomerList));
+                OnPropertyChanged();
             }
         }
-        public ICommand AddCommand { get; set; }
+        public ICommand ShowAddCusCommand { get; set; }
         public CustomerViewModel()
         {
-            LoadCustomerData();
-            AddCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AddCustomerView wd = new AddCustomerView(); wd.ShowDialog(); });
-        }
-
-        void LoadCustomerData()
-        {
-            //CustomerList = new ObservableCollection<CUSTOMER>();
-
-            //var list = DataProvider.Ins.DB.CUSTOMERs;
-            //foreach (var item in list)
-            //{
-            //    CustomerList.Add(item);
-            //}
-            CustomerList = new ObservableCollection<CUSTOMER>(DataProvider.Ins.DB.CUSTOMERs);
+            _CustomerList = CustomerManager.GetCustomers();
+            ShowAddCusCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AddCustomerView wd = new AddCustomerView(); wd.ShowDialog();});
         }
     }
 }
