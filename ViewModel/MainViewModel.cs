@@ -63,7 +63,6 @@ namespace SpaManagement.ViewModel
             );
 
 
-            MessageBox.Show(DataProvider.Ins.DB.ACCOUNTs.First().A_USERNAME);
        }
    }
 }

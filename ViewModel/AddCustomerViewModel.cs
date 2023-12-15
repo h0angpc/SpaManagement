@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace SpaManagement.ViewModel
 {
     public class AddCustomerViewModel : BaseViewModel, INotifyDataErrorInfo
     {
+        public ObservableCollection<string> sexsource { get; set; }
         public bool IsNumeric(string value)
         {
             return long.TryParse(value, out _);
@@ -20,18 +22,18 @@ namespace SpaManagement.ViewModel
 
         private string _name;
 
-		public string Name
-		{
-			get 
-			{
-				return _name; 
-			}
-			set 
-			{ 
-				_name = value; 
-				OnPropertyChanged(nameof(Name));
-			}
-		}
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
 
         private string _email;
 
@@ -69,6 +71,20 @@ namespace SpaManagement.ViewModel
             }
         }
 
+        private string _sex;
+        public string Sex
+        {
+            get
+            {
+                return _sex;
+            }
+            set
+            {
+                _sex = value;
+                OnPropertyChanged(nameof(Phone));
+            }
+        }
+
 
 
         public bool CanCreate => !HasErrors;
@@ -83,6 +99,8 @@ namespace SpaManagement.ViewModel
 
         public AddCustomerViewModel() 
         {
+            sexsource = new ObservableCollection<string> { "Nam", "Nữ" };
+
             AddCustomerCommand = new AddCustomerCommand(this);
             _errorsViewModel = new ErrorsViewModel();
             _errorsViewModel.ErrorsChanged += _errorsViewModel_ErrorsChanged;
