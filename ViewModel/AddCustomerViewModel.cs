@@ -1,4 +1,6 @@
 ﻿using SpaManagement.Commands;
+using SpaManagement.Model;
+using SpaManagement.Views;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -89,7 +91,10 @@ namespace SpaManagement.ViewModel
 
         public bool CanCreate => !HasErrors;
 
-        public ICommand AddCustomerCommand { get; }
+        //public bool CanCreate => true;
+
+        public ICommand AddCustomerCommand { get; set; }
+        public ICommand CloseCommand { get; set; }
 
         private readonly ErrorsViewModel _errorsViewModel;
 
@@ -101,10 +106,47 @@ namespace SpaManagement.ViewModel
         {
             sexsource = new ObservableCollection<string> { "Nam", "Nữ" };
 
-            AddCustomerCommand = new AddCustomerCommand(this);
+
+            CloseCommand = new RelayCommand<Window>((p) => { return p == null ? false : true; }, (p) => {
+                var w = (p);
+                if (w != null)
+                {
+                    w.Close();
+                }
+            });
+
+            AddCustomerCommand = new RelayCommand<Window>((p) => 
+            { 
+                if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Sex) || string.IsNullOrEmpty(Phone))
+                {
+                    return false;
+                }
+
+                var displaylist = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_NAME == Name && x.CUS_EMAIL == Email && x.CUS_SEX == Sex);
+                if (displaylist == null || displaylist.Count() != 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }, (p) => 
+            {
+                var customer = new CUSTOMER() {CUS_NAME = Name, CUS_EMAIL = Email, CUS_SEX = Sex, CUS_PHONE = Phone};
+
+                DataProvider.Ins.DB.CUSTOMERs.Add(customer);
+                DataProvider.Ins.DB.SaveChanges();
+
+                CustomerManager.AddCustomer(customer);
+
+                MessageBox.Show("Thêm khách hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            });
+
+
             _errorsViewModel = new ErrorsViewModel();
             _errorsViewModel.ErrorsChanged += _errorsViewModel_ErrorsChanged;
         }
+
+
 
         private void _errorsViewModel_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
         {

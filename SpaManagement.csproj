@@ -96,7 +96,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\AddCustomerCommand.cs" />
     <Compile Include="Commands\UpdateViewCommand.cs" />
     <Compile Include="loginWindow.xaml.cs">
       <DependentUpon>loginWindow.xaml</DependentUpon>
@@ -110,6 +109,7 @@
     <Compile Include="Model\CUSTOMER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CustomerManager.cs" />
     <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Model\EMPLOYEE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
