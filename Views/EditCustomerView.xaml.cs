@@ -1,8 +1,5 @@
-﻿using SpaManagement.Model;
-using SpaManagement.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +15,11 @@ using System.Windows.Shapes;
 namespace SpaManagement.Views
 {
     /// <summary>
-    /// Interaction logic for AddCustomerView.xaml
+    /// Interaction logic for EditCustomerView.xaml
     /// </summary>
-    public partial class AddCustomerView : Window
+    public partial class EditCustomerView : Window
     {
-        public AddCustomerView()
+        public EditCustomerView()
         {
             InitializeComponent();
         }

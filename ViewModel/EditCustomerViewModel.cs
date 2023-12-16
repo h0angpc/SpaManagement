@@ -1,6 +1,4 @@
-﻿using SpaManagement.Commands;
-using SpaManagement.Model;
-using SpaManagement.Views;
+﻿using SpaManagement.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,13 +12,15 @@ using System.Windows.Input;
 
 namespace SpaManagement.ViewModel
 {
-    public class AddCustomerViewModel : BaseViewModel, INotifyDataErrorInfo
+    public class EditCustomerViewModel: BaseViewModel, INotifyDataErrorInfo
     {
         public ObservableCollection<string> gendersource { get; set; }
         public bool IsNumeric(string value)
         {
             return long.TryParse(value, out _);
         }
+
+        public string ID { get; set; }
 
         private string _name;
 
@@ -86,24 +86,26 @@ namespace SpaManagement.ViewModel
                 OnPropertyChanged(nameof(Gender));
             }
         }
-
-
+        public ICommand EditCustomerCommand {  get; set; }
+        public ICommand CloseCommand { get; set; }
 
         public bool CanCreate => !HasErrors;
 
-        //public bool CanCreate => true;
 
-        public ICommand AddCustomerCommand { get; set; }
-        public ICommand CloseCommand { get; set; }
 
         private readonly ErrorsViewModel _errorsViewModel;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
         public bool HasErrors => _errorsViewModel.HasErrors;
-
-
-        public AddCustomerViewModel() 
+        public EditCustomerViewModel(CUSTOMER SelectedCus)
         {
+            _errorsViewModel = new ErrorsViewModel();
+            Name = SelectedCus.CUS_NAME;
+            Gender = SelectedCus.CUS_SEX;
+            Phone = SelectedCus.CUS_PHONE;
+            Email = SelectedCus.CUS_EMAIL;
+            ID = SelectedCus.CUS_MA;
+
             gendersource = new ObservableCollection<string> { "Nam", "Nữ" };
 
 
@@ -115,38 +117,38 @@ namespace SpaManagement.ViewModel
                 }
             });
 
-            AddCustomerCommand = new RelayCommand<Window>((p) => 
-            { 
+            EditCustomerCommand = new RelayCommand<Window>((p) =>
+            {
                 if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Gender) || string.IsNullOrEmpty(Phone))
                 {
                     return false;
                 }
 
-                var displaylist = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_NAME == Name && x.CUS_EMAIL == Email && x.CUS_SEX == Gender);
+                var displaylist = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_NAME == Name && x.CUS_EMAIL == Email && x.CUS_SEX == Gender &&x.CUS_PHONE == Phone);
                 if (displaylist == null || displaylist.Count() != 0)
                 {
                     return false;
                 }
 
                 return true;
-            }, (p) => 
+            }, (p) =>
             {
-                var customer = new CUSTOMER() {CUS_NAME = Name, CUS_EMAIL = Email, CUS_SEX = Gender, CUS_PHONE = Phone};
+                var customer = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_MA == SelectedCus.CUS_MA).SingleOrDefault();
 
-                DataProvider.Ins.DB.CUSTOMERs.Add(customer);
+                customer.CUS_NAME = Name;
+                customer.CUS_EMAIL = Email;
+                customer.CUS_SEX = Gender;
+                customer.CUS_PHONE = Phone;
+
                 DataProvider.Ins.DB.SaveChanges();
 
-                CustomerManager.AddCustomer(customer);
-
-                MessageBox.Show("Thêm khách hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                SelectedCus.CUS_NAME = Name;
+                SelectedCus.CUS_EMAIL = Email;
+                SelectedCus.CUS_SEX = Gender;
+                SelectedCus.CUS_PHONE = Phone;
             });
-
-
-            _errorsViewModel = new ErrorsViewModel();
             _errorsViewModel.ErrorsChanged += _errorsViewModel_ErrorsChanged;
         }
-
-
 
         private void _errorsViewModel_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
         {

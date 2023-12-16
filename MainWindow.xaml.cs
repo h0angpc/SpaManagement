@@ -70,29 +70,6 @@ namespace SpaManagement
         {
             this.WindowState = WindowState.Minimized;
         }
-
-      
-        //private void Window_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    mContainer.Navigate(new System.Uri("Pages/HomePage.xaml", System.UriKind.RelativeOrAbsolute));
-        //    homeBtn.IsChecked = true;
-        //}
-
-        //private void cusBtn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    mContainer.Navigate(new System.Uri("Pages/CustomerPage.xaml", System.UriKind.RelativeOrAbsolute));
-        //}
-
-
-        //private void homeBtn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    mContainer.Navigate(new System.Uri("Pages/HomePage.xaml", System.UriKind.RelativeOrAbsolute));
-        //}
-
-        //private void empBtn_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    mContainer.Navigate(new System.Uri("Pages/EmployeePage.xaml", System.UriKind.RelativeOrAbsolute));
-        //}
     }
 
     
