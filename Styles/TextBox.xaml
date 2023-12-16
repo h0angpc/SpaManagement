@@ -34,14 +34,21 @@
     </Style>
 
     <Style x:Key="textboxFilter" TargetType="TextBox" BasedOn="{StaticResource textboxSearch}">
-        <Setter Property="Padding" Value="10 7"></Setter>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="10 10"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBoxBase">
-                    <Border x:Name="border" CornerRadius="7" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
-                        BorderThickness="1" BorderBrush="#e0e6ed">
+                    <Border x:Name="border" CornerRadius="8" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
+                    BorderThickness="1" BorderBrush="#e0e6ed">
                         <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden"
-                                  VerticalScrollBarVisibility="Hidden"/>
+                              VerticalScrollBarVisibility="Hidden">
+                            <ScrollViewer.RenderTransform>
+                                <TranslateTransform X="10.5"/>
+                                <!-- Điều chỉnh giá trị X tại đây -->
+                            </ScrollViewer.RenderTransform>
+                        </ScrollViewer>
                     </Border>
 
                     <ControlTemplate.Triggers>

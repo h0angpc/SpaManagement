@@ -51,7 +51,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGrid}">
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
-                            Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True" CornerRadius="15">
+                            Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True" CornerRadius="0">
                         <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false">
                             <ScrollViewer.Template>
                                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
