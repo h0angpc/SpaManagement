@@ -70,6 +70,11 @@ namespace SpaManagement
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        private void mainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            homeBtn.IsChecked = true;
+        }
     }
 
     

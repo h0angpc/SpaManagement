@@ -8,6 +8,7 @@
         Height="780" Width="1200"
         x:Name="mainWindow"
         
+        Loaded="mainWindow_Loaded"
         DataContext="{StaticResource MainVM}"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -139,7 +140,7 @@
             </Grid>
 
             <!--Main Section-->
-            <Grid Grid.Column="1" Margin="30 0 20 20">
+            <Grid Grid.Column="1" Margin="30 0 20 10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="auto"/>
