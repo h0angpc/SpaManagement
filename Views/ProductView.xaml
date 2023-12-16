@@ -92,7 +92,7 @@
                                             <TextBlock HorizontalAlignment="Center" FontSize="13" Grid.Row="1" Text="{Binding Price,StringFormat=\{0:N0\}}"></TextBlock>
                                         </Grid>
                                         <Grid Grid.Row="3">
-                                            <Button HorizontalAlignment="Right" Content="?" ></Button>
+                                            <Button HorizontalAlignment="Right" Content="?"  Style="{StaticResource button}"></Button>
                                         </Grid>
                                     </Grid>
 
