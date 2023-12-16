@@ -37,7 +37,15 @@ namespace SpaManagement.Commands
             else if (parameter.ToString() == "Payment")
             {
                 viewModel.SelectedViewModel = new PaymentViewModel();
-            }    
+            }
+            else if (parameter.ToString() == "Product")
+            {
+                viewModel.SelectedViewModel = new ProductViewModel();
+            }
+            else if (parameter.ToString() == "Employee")
+            {
+                viewModel.SelectedViewModel = new EmployeeViewModel();
+            }
         }
     }
 }

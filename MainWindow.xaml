@@ -92,7 +92,8 @@
                                     <TextBlock Text="Customer"/>
                                 </StackPanel>
                             </RadioButton>
-                            <RadioButton x:Name="empBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn">
+                            <RadioButton x:Name="empBtn" Style="{StaticResource menuRadioButton}" 
+                                         Command="{Binding UpdateViewCommand}" CommandParameter="Employee" GroupName="MenuBtn">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="AccountMultiple" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Employee"/>
@@ -110,7 +111,8 @@
                                     <TextBlock Text="Service"/>
                                 </StackPanel>
                             </RadioButton>
-                            <RadioButton x:Name="proBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn">
+                            <RadioButton x:Name="proBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn"
+                                         Command="{Binding UpdateViewCommand}" CommandParameter="Product">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="PackageVariantClosed" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Product"/>
