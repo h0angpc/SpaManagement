@@ -449,9 +449,9 @@
                 </Grid.ColumnDefinitions>
 
                 <!--Card-->
-                <uc:InfoCard Grid.Column="0" Title="Doanh thu" SubTitle="Tháng này" Amount="250000000" Image="/Images/sale.png"/>
-                <uc:InfoCard Grid.Column="1" Title="Phí sửa chữa" SubTitle="Cao hơn 5% so với tháng trước" Amount="10000000" Image="/Images/repair.png"/>
-                <uc:InfoCard2 Grid.Column="2" Title="Tổng số đơn hàng" SubTitle="Tháng này" Amount="1000" Image="/Images/purchase.jpg"/>
+                <uc:InfoCard Grid.Column="0" Title="Doanh thu" SubTitle="Tháng trước" Amount="250000000" Image="/Images/sale.png"/>
+                <uc:InfoCard2 Grid.Column="1" Title="Khách hàng mới" SubTitle="Tháng này" Amount="50" Image="/Images/customer.png"/>
+                <uc:InfoCard3 Grid.Column="2" Title="Số lượng bán ra" SubTitle="Trong tháng" Amount="100" Image="/Images/comestic.png"/>
             </Grid>
 
             <!--Main Chart Section-->
