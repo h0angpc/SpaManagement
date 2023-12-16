@@ -57,43 +57,12 @@
 
             <!--Customers Datagrid-->
             <DataGrid   Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                    RowStyle="{DynamicResource DataGridRowStyle1}"
-                    Grid.Row="4" 
-                    x:Name="customerDataGrid" CanUserDeleteRows="True"
-                    SelectionMode="Single"  ItemsSource="{Binding CustomerList, UpdateSourceTrigger=PropertyChanged}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding CUS_MA}"/>
-
-                    <DataGridTextColumn Header="Họ Tên" IsReadOnly="True" Width="*" Binding="{Binding CUS_NAME}"/>
-
-                    <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding CUS_EMAIL}"/>
-                    <DataGridTextColumn Header="SĐT" IsReadOnly="True" Width="*" Binding="{Binding CUS_PHONE}"/>
-
-                    <DataGridTemplateColumn Header="Tính Năng" IsReadOnly="True" Width="auto">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource gridEditButton}">
-                                        <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                    </Button>
-                                    <Button x:Name="rmvBtn" Style="{StaticResource gridRemoveButton}" 
-                                         Margin="5 0 0 0">
-                                        <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                    </Button>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
-                </DataGrid.Columns>
-            </DataGrid>
-            <DataGrid   Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                 RowStyle="{DynamicResource DataGridRowStyle1}"
                 Grid.Row="4" 
-                x:Name="customerDataGrid_Copy" CanUserDeleteRows="True"
-                SelectionMode="Single"  ItemsSource="{Binding CustomerList}">
+                x:Name="customerDataGrid" CanUserDeleteRows="True"
+                SelectionMode="Single"  ItemsSource="{Binding CustomerList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding CUS_MA}"/>
+                    <DataGridTextColumn Header="Mã KH" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding CUS_MA}"/>
 
                     <DataGridTextColumn Header="Họ Tên" IsReadOnly="True" Width="*" Binding="{Binding CUS_NAME}"/>
 
@@ -104,7 +73,8 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource gridEditButton}">
+                                    <Button Style="{StaticResource gridEditButton}" Command="{Binding DataContext.ShowEditCusCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                            CommandParameter="{Binding SelectedItem,ElementName=customerDataGrid,Mode=TwoWay}">
                                         <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
                                     <Button x:Name="rmvBtn" Style="{StaticResource gridRemoveButton}" 
