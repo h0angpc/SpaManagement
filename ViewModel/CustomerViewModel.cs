@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -66,6 +67,7 @@ namespace SpaManagement.ViewModel
                     editView.ShowDialog();
                 }
             });
+
         }
 
         private bool FilterByName(object cus)

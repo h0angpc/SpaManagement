@@ -1,5 +1,6 @@
 ﻿using SpaManagement.Commands;
 using SpaManagement.Model;
+using SpaManagement.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,43 +27,37 @@ namespace SpaManagement.ViewModel
 
         public ICommand UpdateViewCommand { get; set; }
 
+        public ICommand LogOutCommand { get; set; }
+
 
 
         public bool IsLoaded = false;
-        public ICommand LoadedWindowCommand { get; set; }
         public MainViewModel() 
         {
             UpdateViewCommand = new UpdateViewCommand(this);
-            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+
+            LogOutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-                IsLoaded = true;
-                if (p == null)
+                bool? result = new MessageBoxCustom("Xác nhận đăng xuất", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                if (result.Value)
                 {
-                    return;
-                }
-                p.Hide();
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
-
-                if (loginWindow.DataContext == null)
-                {
-                    return;
-                }
-
-                var loginVM = loginWindow.DataContext as LoginViewModel;
-
-                if (loginVM.IsLogin)
-                {
-                    p.Show();
+                    foreach (Window window in Application.Current.Windows)
+                    {
+                        if (window != p)
+                        {
+                            window.Close();
+                        }
+                    }
+                    LoginWindow w = new LoginWindow();
+                    p.Close();
+                    w.Show();
                 }
                 else
                 {
-                    p.Close();
+                    return;
                 }
             }
             );
-
-
-       }
+        }
    }
 }

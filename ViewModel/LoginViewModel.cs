@@ -1,4 +1,5 @@
 ﻿using SpaManagement.Model;
+using SpaManagement.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,6 @@ namespace SpaManagement.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
-        public bool IsLogin { get; set; }
 
         private string _UserName;
         public string UserName
@@ -41,9 +41,10 @@ namespace SpaManagement.ViewModel
 
         public ICommand PasswordChangedCommand { get; set; }
 
+        public ICommand LoadedWindowCommand { get; set; }
+
         public LoginViewModel()
         {
-            IsLogin = false;
             UserName = "";
             PassWord = "";
             LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => {
@@ -68,14 +69,16 @@ namespace SpaManagement.ViewModel
 
             if (accCount > 0)
             {
-                IsLogin = true;
-
+                MainWindow mwindow = new MainWindow();
+                MessageBoxCustom m = new MessageBoxCustom("Đăng nhập thành công!", MessageType.Info, MessageButtons.Ok);
+                m.ShowDialog();
                 p.Close();
+                mwindow.Show();
             }
             else
             {
-                IsLogin = false;
-                MessageBox.Show("Sai thông tin đăng nhập!");
+                MessageBoxCustom m = new MessageBoxCustom("Đăng nhập thất bại!", MessageType.Error, MessageButtons.Ok);
+                m.ShowDialog();
             }
         }
 

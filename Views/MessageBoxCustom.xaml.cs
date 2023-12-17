@@ -27,20 +27,23 @@ namespace SpaManagement.Views
             {
                 case MessageType.Info:
                     txtTitle.Text = "Thông báo";
+                    imgIcon.Source = new BitmapImage(new Uri("/Images/info.png", UriKind.Relative));
                     break;
                 case MessageType.Confirmation:
                     txtTitle.Text = "Xác nhận";
+                    imgIcon.Source = new BitmapImage(new Uri("/Images/question.jpg", UriKind.Relative));
                     break;
-                case MessageType.Success:
-                    {
-                        string defaultColor = "#FF11B0D2";
-                        Color bkColor = (Color)ColorConverter.ConvertFromString(defaultColor);
-                        changeBackgroundThemeColor(Colors.Green);
-                        txtTitle.Text = "Thành công";
-                    }
-                    break;
+                //case MessageType.Success:
+                //    {
+                //        string defaultColor = "#FF11B0D2";
+                //        Color bkColor = (Color)ColorConverter.ConvertFromString(defaultColor);
+                //        changeBackgroundThemeColor(Colors.Green);
+                //        txtTitle.Text = "Thành công";
+                //    }
+                //    break;
                 case MessageType.Warning:
                     txtTitle.Text = "Cảnh báo";
+                    imgIcon.Source = new BitmapImage(new Uri("/Images/warn.jpg", UriKind.Relative));
                     break;
                 case MessageType.Error:
                     {
@@ -49,6 +52,7 @@ namespace SpaManagement.Views
                         changeBackgroundThemeColor(bkColor);
                         changeBackgroundThemeColor(Colors.Red);
                         txtTitle.Text = "Lỗi";
+                        imgIcon.Source = new BitmapImage(new Uri("/Images/error.jpg", UriKind.Relative));
                     }
                     break;
             }
@@ -101,7 +105,6 @@ namespace SpaManagement.Views
             this.DialogResult = false;
             this.Close();
         }
-
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;

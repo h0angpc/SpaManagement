@@ -48,7 +48,7 @@
                     <materialDesign:PackIcon Kind="AccountCircle" Height="35" Width="35" Margin="0 7.5 0 0"/>
                     <Grid Margin="10 0 0 0">
                         <TextBox Height="50" Width="250"
-                         Text="{Binding UserName}"
+                         Text="{Binding UserName, Mode=TwoWay}"
                          materialDesign:HintAssist.Hint="Username"
                          materialDesign:HintAssist.Foreground="#3AB19B"
                          AcceptsReturn="True"

@@ -138,7 +138,8 @@ namespace SpaManagement.ViewModel
 
                 CustomerManager.AddCustomer(customer);
 
-                MessageBox.Show("Thêm khách hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBoxCustom m = new MessageBoxCustom("Thêm khách hàng mới thành công", MessageType.Info, MessageButtons.Ok);
+                m.ShowDialog();
             });
 
 
