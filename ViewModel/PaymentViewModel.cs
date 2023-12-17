@@ -50,7 +50,7 @@ namespace SpaManagement.ViewModel
         {
             _CustomerList = CustomerManager.GetCustomers();
             _PaymentList = PaymentManager.GetPayment();
-            PaymentCollection = CollectionViewSource.GetDefaultView( _PaymentList);
+            //PaymentCollection = CollectionViewSource.GetDefaultView( _PaymentList);
             ShowAddPayCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AddCustomerView wd = new AddCustomerView(); wd.ShowDialog(); });
 
         }
