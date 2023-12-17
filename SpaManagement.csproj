@@ -132,6 +132,7 @@
     <Compile Include="Model\PAYMENT.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\PaymentManager.cs" />
     <Compile Include="Model\PAYMENT_DETAIL_PRODUCT.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
