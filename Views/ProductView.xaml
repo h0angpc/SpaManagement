@@ -48,7 +48,7 @@
 
             <!--Filter TextBox-->
             <Grid Width="200" HorizontalAlignment="Right" Grid.Row="3">
-                <TextBlock Margin="15 0" Text="Search in Customer here ..." VerticalAlignment="Center"
+                <TextBlock Margin="15 0" Text="Search in Products here ..." VerticalAlignment="Center"
                         Foreground="#b0b9c6" IsHitTestVisible="False"
                         Panel.ZIndex="1" Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}"/>
                 <TextBox x:Name="txtFilter" Style="{StaticResource textboxFilter}"
