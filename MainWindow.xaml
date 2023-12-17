@@ -19,13 +19,6 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
 
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" 
-                                   CommandParameter="{Binding ElementName=mainWindow}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-    
     <Border Background="#f7f6f4" CornerRadius="15"
             BorderThickness="2" BorderBrush="#FF33C1F0">
         <Grid>
@@ -130,7 +123,7 @@
                         <!--MLogout Button-->
                         <Button Style="{StaticResource menuButton}" 
                              VerticalAlignment="Bottom" DockPanel.Dock="Bottom"
-                             Margin="15 0 15 20">
+                             Margin="15 0 15 20" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=mainWindow}">
                             <StackPanel Orientation="Horizontal" >
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Log out"/>
