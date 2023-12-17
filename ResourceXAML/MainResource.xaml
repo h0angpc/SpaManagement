@@ -21,4 +21,6 @@
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
     <viewmodel:AddCustomerViewModel x:Key="AddCusomterVM"/>
     <viewmodel:EditCustomerViewModel x:Key="EditCustomerVM"/>
+    <viewmodel:AddProductViewModel x:Key="AddProductVM"/>
+    <viewmodel:ProductViewModel x:Key="ProductVM"/>
 </ResourceDictionary>

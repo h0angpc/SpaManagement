@@ -129,7 +129,7 @@
                         Background="#FF33C1F0" BorderThickness="0"
                         Command="{Binding AddCustomerCommand}" IsEnabled="{Binding CanCreate}">
                         <TextBlock
-                            Text="THÊM SẢN PHẨM" />
+                            Text="CẬP NHẬT SẢN PHẨM" />
                     </Button>
                 </Grid>
             </Grid>

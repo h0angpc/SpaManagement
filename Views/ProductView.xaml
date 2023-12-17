@@ -10,6 +10,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProductView"
+      DataContext="{StaticResource ProductVM}"
       >
 
     <Page.Resources>
@@ -31,7 +32,7 @@
        Margin="15 20 0 0" HorizontalAlignment="Left" Foreground="#121518"/>
             <!--Add Button-->
             <Button Style="{StaticResource addButton}" Grid.Row="3" Margin="20,0,0,0" 
-                HorizontalAlignment="Left" x:Name="addCus_btn" Command="{Binding ShowAddCusCommand}">
+                HorizontalAlignment="Left" x:Name="addPro_btn" Command="{Binding ShowAddProCommand}">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11"
                                        Height="11" Margin="0 1 8 0"/>
@@ -59,7 +60,7 @@
             <!--Customers Datagrid-->
             <materialDesign:Card Grid.Row="4">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" >
-                    <ListView ItemsSource="{Binding List}" Height="277" Width="795" Margin="5" Foreground="#FF6B4309"
+                    <ListView ItemsSource="{Binding List}" Height="335" Width="795" Margin="5" Foreground="#FF6B4309"
               
               ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
                         <ListView.ItemsPanel>
@@ -69,7 +70,7 @@
                         </ListView.ItemsPanel>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Border Height="180" Width="170"
+                                <Border Height="250" Width="170"
                         Background="#cbd1cc"
                         BorderBrush="Orange" BorderThickness="1"
                         CornerRadius="10" Padding="5">
@@ -92,7 +93,7 @@
                                             <TextBlock HorizontalAlignment="Center" FontSize="13" Grid.Row="1" Text="{Binding Price,StringFormat=\{0:N0\}}"></TextBlock>
                                         </Grid>
                                         <Grid Grid.Row="3">
-                                            <Button HorizontalAlignment="Right" Content="?"  Style="{StaticResource button}"></Button>
+                                            <Button VerticalAlignment="Center" HorizontalAlignment="Right" Content="?" Height="20" Width="20"  Style="{StaticResource CircularButtonStyle}"></Button>
                                         </Grid>
                                     </Grid>
 
