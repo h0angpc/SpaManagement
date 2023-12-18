@@ -27,7 +27,7 @@ namespace SpaManagement.Model
         public string EMP_ADDRESS { get; set; }
         public string EMP_PHONE { get; set; }
         public string EMP_CCCD { get; set; }
-        public Nullable<decimal> EMP_SALARY { get; set; }
+        public decimal EMP_SALARY { get; set; }
         public string EMP_ROLE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

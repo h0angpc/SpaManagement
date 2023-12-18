@@ -17,5 +17,8 @@ namespace SpaManagement.Model
         public string A_USERNAME { get; set; }
         public string A_PASSWORD { get; set; }
         public string A_EMAIL { get; set; }
+        public string A_DISPLAYNAME { get; set; }
+        public string A_GENDER { get; set; }
+        public System.DateTime A_BDAY { get; set; }
     }
 }
