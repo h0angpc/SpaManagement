@@ -23,7 +23,7 @@ namespace SpaManagement.Model
     
         public int PMT_ID { get; set; }
         public string PMT_MA { get; set; }
-        public Nullable<int> C_ID { get; set; }
+        public int C_ID { get; set; }
         public decimal PRICE { get; set; }
         public System.DateTime DAYTIME { get; set; }
     

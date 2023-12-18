@@ -10,8 +10,11 @@
             <PropertyRef Name="A_USERNAME" />
           </Key>
           <Property Name="A_USERNAME" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="A_PASSWORD" Type="nvarchar" MaxLength="255" />
-          <Property Name="A_EMAIL" Type="nvarchar" MaxLength="255" />
+          <Property Name="A_PASSWORD" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="A_EMAIL" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="A_DISPLAYNAME" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="A_GENDER" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="A_BDAY" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="BOOKING">
           <Key>
@@ -33,7 +36,7 @@
           <Property Name="CUS_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
           <Property Name="CUS_NAME" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CUS_PHONE" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="CUS_EMAIL" Type="nvarchar" MaxLength="200" />
+          <Property Name="CUS_EMAIL" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="CUS_SEX" Type="nvarchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="EMPLOYEE">
@@ -43,11 +46,11 @@
           <Property Name="EMP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EMP_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
           <Property Name="EMP_DISPLAYNAME" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="EMP_ADDRESS" Type="nvarchar(max)" />
-          <Property Name="EMP_PHONE" Type="nvarchar" MaxLength="20" />
-          <Property Name="EMP_CCCD" Type="nvarchar" MaxLength="12" />
-          <Property Name="EMP_SALARY" Type="money" />
-          <Property Name="EMP_ROLE" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMP_ADDRESS" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EMP_PHONE" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="EMP_CCCD" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="EMP_SALARY" Type="money" Nullable="false" />
+          <Property Name="EMP_ROLE" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="PAYMENT">
           <Key>
@@ -55,7 +58,7 @@
           </Key>
           <Property Name="PMT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PMT_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
-          <Property Name="C_ID" Type="int" />
+          <Property Name="C_ID" Type="int" Nullable="false" />
           <Property Name="PRICE" Type="money" Nullable="false" />
           <Property Name="DAYTIME" Type="datetime" Nullable="false" />
         </EntityType>
@@ -75,7 +78,7 @@
           </Key>
           <Property Name="PMT_ID" Type="int" Nullable="false" />
           <Property Name="S_ID" Type="int" Nullable="false" />
-          <Property Name="E_ID" Type="int" />
+          <Property Name="E_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PRODUCT">
           <Key>
@@ -84,6 +87,7 @@
           <Property Name="PRO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PRO_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
           <Property Name="PRO_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PRO_IMG" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PRICE" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="SERVICESS">
@@ -142,7 +146,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__PAYMENT__C_ID__440B1D61">
-          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
           <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CUSTOMER">
@@ -178,7 +182,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__PAYMENT_DE__E_ID__46E78A0C">
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
           <End Role="PAYMENT_DETAIL_SERVICE" Type="Self.PAYMENT_DETAIL_SERVICE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EMPLOYEE">
@@ -318,8 +322,11 @@
             <PropertyRef Name="A_USERNAME" />
           </Key>
           <Property Name="A_USERNAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="A_PASSWORD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="A_EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="A_PASSWORD" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="A_EMAIL" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="A_DISPLAYNAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="A_GENDER" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="A_BDAY" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="BOOKING">
           <Key>
@@ -344,7 +351,7 @@
           <Property Name="CUS_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="CUS_NAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CUS_PHONE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="CUS_EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CUS_EMAIL" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CUS_SEX" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BOOKINGs" Relationship="QUANLYSPAModel.FK__BOOKING__C_ID__412EB0B6" FromRole="CUSTOMER" ToRole="BOOKING" />
           <NavigationProperty Name="PAYMENTs" Relationship="QUANLYSPAModel.FK__PAYMENT__C_ID__440B1D61" FromRole="CUSTOMER" ToRole="PAYMENT" />
@@ -356,11 +363,11 @@
           <Property Name="EMP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EMP_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="EMP_DISPLAYNAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EMP_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EMP_PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="EMP_CCCD" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="EMP_SALARY" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="EMP_ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMP_ADDRESS" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMP_PHONE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EMP_CCCD" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="EMP_SALARY" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="EMP_ROLE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BOOKINGs" Relationship="QUANLYSPAModel.FK__BOOKING__E_ID__3F466844" FromRole="EMPLOYEE" ToRole="BOOKING" />
           <NavigationProperty Name="PAYMENT_DETAIL_SERVICE" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__E_ID__46E78A0C" FromRole="EMPLOYEE" ToRole="PAYMENT_DETAIL_SERVICE" />
         </EntityType>
@@ -370,7 +377,7 @@
           </Key>
           <Property Name="PMT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PMT_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="C_ID" Type="Int32" />
+          <Property Name="C_ID" Type="Int32" Nullable="false" />
           <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="DAYTIME" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CUSTOMER" Relationship="QUANLYSPAModel.FK__PAYMENT__C_ID__440B1D61" FromRole="PAYMENT" ToRole="CUSTOMER" />
@@ -395,7 +402,7 @@
           </Key>
           <Property Name="PMT_ID" Type="Int32" Nullable="false" />
           <Property Name="S_ID" Type="Int32" Nullable="false" />
-          <Property Name="E_ID" Type="Int32" />
+          <Property Name="E_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="EMPLOYEE" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__E_ID__46E78A0C" FromRole="PAYMENT_DETAIL_SERVICE" ToRole="EMPLOYEE" />
           <NavigationProperty Name="PAYMENT" Relationship="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__47DBAE45" FromRole="PAYMENT_DETAIL_SERVICE" ToRole="PAYMENT" />
           <NavigationProperty Name="SERVICESS" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__S_ID__48CFD27E" FromRole="PAYMENT_DETAIL_SERVICE" ToRole="SERVICESS" />
@@ -407,6 +414,7 @@
           <Property Name="PRO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PRO_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="PRO_NAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PRO_IMG" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="PAYMENT_DETAIL_PRODUCT" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__P_ID__4CA06362" FromRole="PRODUCT" ToRole="PAYMENT_DETAIL_PRODUCT" />
         </EntityType>
@@ -468,7 +476,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__PAYMENT__C_ID__440B1D61">
-          <End Type="QUANLYSPAModel.CUSTOMER" Role="CUSTOMER" Multiplicity="0..1" />
+          <End Type="QUANLYSPAModel.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
           <End Type="QUANLYSPAModel.PAYMENT" Role="PAYMENT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CUSTOMER">
@@ -480,7 +488,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__PAYMENT_DE__E_ID__46E78A0C">
-          <End Type="QUANLYSPAModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="0..1" />
+          <End Type="QUANLYSPAModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="1" />
           <End Type="QUANLYSPAModel.PAYMENT_DETAIL_SERVICE" Role="PAYMENT_DETAIL_SERVICE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EMPLOYEE">
@@ -539,7 +547,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -548,6 +556,9 @@
           <EntitySetMapping Name="ACCOUNTs">
             <EntityTypeMapping TypeName="QUANLYSPAModel.ACCOUNT">
               <MappingFragment StoreEntitySet="ACCOUNT">
+                <ScalarProperty Name="A_BDAY" ColumnName="A_BDAY" />
+                <ScalarProperty Name="A_GENDER" ColumnName="A_GENDER" />
+                <ScalarProperty Name="A_DISPLAYNAME" ColumnName="A_DISPLAYNAME" />
                 <ScalarProperty Name="A_EMAIL" ColumnName="A_EMAIL" />
                 <ScalarProperty Name="A_PASSWORD" ColumnName="A_PASSWORD" />
                 <ScalarProperty Name="A_USERNAME" ColumnName="A_USERNAME" />
@@ -626,6 +637,7 @@
             <EntityTypeMapping TypeName="QUANLYSPAModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
                 <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="PRO_IMG" ColumnName="PRO_IMG" />
                 <ScalarProperty Name="PRO_NAME" ColumnName="PRO_NAME" />
                 <ScalarProperty Name="PRO_MA" ColumnName="PRO_MA" />
                 <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />

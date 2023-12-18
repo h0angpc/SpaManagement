@@ -12,8 +12,8 @@ namespace SpaManagement.Model
     using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
-    
-    public partial class CUSTOMER: BaseViewModel
+
+    public partial class CUSTOMER:BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CUSTOMER()
@@ -21,7 +21,7 @@ namespace SpaManagement.Model
             this.BOOKINGs = new HashSet<BOOKING>();
             this.PAYMENTs = new HashSet<PAYMENT>();
         }
-    
+
         public int CUS_ID { get; set; }
         public string CUS_MA { get; set; }
 
@@ -33,7 +33,7 @@ namespace SpaManagement.Model
         public string CUS_EMAIL { get => _CUS_EMAIL; set { _CUS_EMAIL = value; OnPropertyChanged(); } }
         private string _CUS_SEX;
         public string CUS_SEX { get => _CUS_SEX; set { _CUS_SEX = value; OnPropertyChanged(); } }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOKING> BOOKINGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
