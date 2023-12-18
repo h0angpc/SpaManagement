@@ -70,8 +70,8 @@ namespace SpaManagement.ViewModel
             if (accCount > 0)
             {
                 MainWindow mwindow = new MainWindow();
-                MessageBoxCustom m = new MessageBoxCustom("Đăng nhập thành công!", MessageType.Info, MessageButtons.Ok);
-                m.ShowDialog();
+                //MessageBoxCustom m = new MessageBoxCustom("Đăng nhập thành công!", MessageType.Info, MessageButtons.Ok);
+                //m.ShowDialog();
                 p.Close();
                 mwindow.Show();
             }
