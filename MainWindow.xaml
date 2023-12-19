@@ -118,7 +118,13 @@
                                     <TextBlock Text="Payment"/>
                                 </StackPanel>
                             </RadioButton>
-
+                            <RadioButton x:Name="accBtn" Style="{StaticResource menuRadioButton}"
+                                         GroupName="MenuBtn" Command="{Binding UpdateViewCommand}" CommandParameter="Account">
+                                <StackPanel Orientation="Horizontal" >
+                                    <Icon:PackIconMaterial Kind="AccountBox" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Account"/>
+                                </StackPanel>
+                            </RadioButton>
                         </StackPanel>
                         <!--MLogout Button-->
                         <Button Style="{StaticResource menuButton}" 

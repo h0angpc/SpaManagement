@@ -34,6 +34,5 @@ namespace SpaManagement.Model
         public virtual DbSet<PAYMENT_DETAIL_SERVICE> PAYMENT_DETAIL_SERVICE { get; set; }
         public virtual DbSet<PRODUCT> PRODUCTs { get; set; }
         public virtual DbSet<SERVICESS> SERVICESSes { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

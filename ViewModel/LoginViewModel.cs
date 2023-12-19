@@ -41,7 +41,6 @@ namespace SpaManagement.ViewModel
 
         public ICommand PasswordChangedCommand { get; set; }
 
-        public ICommand LoadedWindowCommand { get; set; }
 
         public LoginViewModel()
         {
@@ -70,8 +69,10 @@ namespace SpaManagement.ViewModel
             if (accCount > 0)
             {
                 MainWindow mwindow = new MainWindow();
-                //MessageBoxCustom m = new MessageBoxCustom("Đăng nhập thành công!", MessageType.Info, MessageButtons.Ok);
-                //m.ShowDialog();
+                foreach (var acc in DataProvider.Ins.DB.ACCOUNTs.Where(x => x.A_USERNAME== UserName && x.A_PASSWORD == passEncode))
+                {
+                    acc.IsLogin = true;
+                }
                 p.Close();
                 mwindow.Show();
             }
