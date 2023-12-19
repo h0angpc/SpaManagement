@@ -11,4 +11,19 @@
         <Setter Property="Background" Value="#FF9EEFF6"/>
         <Setter Property="CornerRadius" Value="15"/>
     </Style>
+    <Style x:Key="CustomDatePickerStyle" TargetType="{x:Type DatePicker}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePicker}">
+                    <DatePickerTextBox x:Name="PART_TextBox"
+                                       Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource TemplatedParent}, StringFormat='dd/MM/yyyy', UpdateSourceTrigger=PropertyChanged}"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       Background="{TemplateBinding Background}"
+                                       BorderBrush="{TemplateBinding BorderBrush}"
+                                       BorderThickness="{TemplateBinding BorderThickness}"
+                                       HorizontalContentAlignment="Center"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

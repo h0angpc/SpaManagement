@@ -110,10 +110,11 @@
                     <Button
                         FontSize="30"
                         Height="50" Width="250"
-                        Margin="0 45 0 0"
+                        Margin="0 64 0 0"
                         Background="#FF51CFF9"
                         BorderThickness="0"
                         Content="ĐỔI MẬT KHẨU"
+                        Command="{Binding ChangePassword}"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         ToolTip="Cập nhật " />

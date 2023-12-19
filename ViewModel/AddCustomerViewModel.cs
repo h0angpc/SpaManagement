@@ -87,14 +87,10 @@ namespace SpaManagement.ViewModel
             }
         }
 
-
-
-        public bool CanCreate => !HasErrors;
-
-        //public bool CanCreate => true;
-
         public ICommand AddCustomerCommand { get; set; }
         public ICommand CloseCommand { get; set; }
+
+        public bool CanCreate => !HasErrors;
 
         private readonly ErrorsViewModel _errorsViewModel;
 

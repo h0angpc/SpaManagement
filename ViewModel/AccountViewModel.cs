@@ -79,8 +79,19 @@ namespace SpaManagement.ViewModel
                 acc.A_GENDER = SelectedGender;
 
                 DataProvider.Ins.DB.SaveChanges();
-                MessageBoxCustom m = new MessageBoxCustom("Cập nhật thành công", MessageType.Info, MessageButtons.Ok);
+                MessageBoxCustom m = new MessageBoxCustom("Cập nhật thành công!", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();
+            });
+
+            ChangePassword = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                ChangePasswordViewModel viewModel = new ChangePasswordViewModel(username);
+                ChangePasswordView wd = new ChangePasswordView();
+                wd.DataContext = viewModel;
+                wd.ShowDialog();
             });
         }
     }
