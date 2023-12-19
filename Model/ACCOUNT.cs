@@ -22,6 +22,7 @@ namespace SpaManagement.Model
         public System.DateTime A_BDAY { get; set; }
         public string A_ADDRESS { get; set; }
         public string A_PHONE { get; set; }
+        
         public bool IsLogin { get; set; }
     }
 }

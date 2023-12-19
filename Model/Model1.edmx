@@ -90,6 +90,7 @@
           <Property Name="PRO_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
           <Property Name="PRO_NAME" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PRO_IMG" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PRO_URL" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PRICE" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="SERVICESS">
@@ -407,6 +408,7 @@
           <Property Name="PRO_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="PRO_NAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PRO_IMG" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PRO_URL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="PAYMENT_DETAIL_PRODUCT" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__P_ID__4CA06362" FromRole="PRODUCT" ToRole="PAYMENT_DETAIL_PRODUCT" />
         </EntityType>
@@ -621,6 +623,7 @@
             <EntityTypeMapping TypeName="QUANLYSPAModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
                 <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="PRO_URL" ColumnName="PRO_URL" />
                 <ScalarProperty Name="PRO_IMG" ColumnName="PRO_IMG" />
                 <ScalarProperty Name="PRO_NAME" ColumnName="PRO_NAME" />
                 <ScalarProperty Name="PRO_MA" ColumnName="PRO_MA" />
