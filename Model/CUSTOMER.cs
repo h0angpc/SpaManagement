@@ -13,7 +13,7 @@ namespace SpaManagement.Model
     using System;
     using System.Collections.Generic;
 
-    public partial class CUSTOMER: BaseViewModel
+    public partial class CUSTOMER : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CUSTOMER()
