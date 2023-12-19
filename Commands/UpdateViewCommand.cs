@@ -46,6 +46,10 @@ namespace SpaManagement.Commands
             {
                 viewModel.SelectedViewModel = new EmployeeViewModel();
             }
+            else if (parameter.ToString() == "Account")
+            {
+                viewModel.SelectedViewModel = new AccountViewModel();
+            }
         }
     }
 }

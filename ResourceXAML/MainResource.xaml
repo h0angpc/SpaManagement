@@ -17,6 +17,9 @@
     <DataTemplate DataType="{x:Type viewmodel:EmployeeViewModel}">
         <views:EmployeeView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:AccountViewModel}">
+        <views:AccountView/>
+    </DataTemplate>
     <viewmodel:MainViewModel x:Key="MainVM"/>
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
     <viewmodel:AddCustomerViewModel x:Key="AddCusomterVM"/>

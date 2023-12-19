@@ -1,0 +1,128 @@
+﻿<Page x:Class="SpaManagement.Views.AccountView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SpaManagement.Views"
+      
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="665" d:DesignWidth="936"
+      Title="AccountView">
+
+    <Border Background="White" CornerRadius="15">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="85"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Background="#FF51CFF9" CornerRadius="10 10 0 0">
+                <TextBlock VerticalAlignment="Center" Text="Thông Tin Cá Nhân" FontSize="45" 
+                           FontWeight="Bold" Foreground="White"
+                           Margin="20 0 0 0"/>
+            </Border>
+
+            <Grid Grid.Row="1" Margin="0 3 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="1.2*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0 15 0 0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <TextBox Width="250"
+                                Text="{Binding hoten,UpdateSourceTrigger=PropertyChanged}"       
+                                VerticalAlignment="Top" HorizontalAlignment="Left"
+                                Margin="20 0 0 0"
+                                materialDesign:HintAssist.Hint="Họ Tên" 
+                                FontSize="26"                   
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" />
+                    <DatePicker
+                            Foreground="Black"
+                            FontSize="26" Width="250" Margin="20 10 0 0" 
+                            SelectedDate="{Binding ngaysinh,UpdateSourceTrigger=PropertyChanged}"
+                            materialDesign:HintAssist.Hint="Ngày Sinh"
+                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
+                            VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <TextBox Width="470"
+                            Text="{Binding email,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"
+                            Margin="20 10 0 0"
+                            materialDesign:HintAssist.Hint="Email" 
+                            FontSize="26"                   
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" />
+                    <TextBox Width="470"
+                            Text="{Binding diachi,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"
+                            Margin="20 10 0 0"
+                            materialDesign:HintAssist.Hint="Địa chỉ" 
+                            FontSize="26"                   
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" />
+                    <Button
+                            FontSize="30" Margin="-15 45 0 0"
+                            Height="50" Width="450"
+                            Background="#FF51CFF9"
+                            BorderThickness="0"
+                            Content="CẬP NHẬT THÔNG TIN"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Command="{Binding UpdateImfomation}"
+                            ToolTip="Cập nhật " />
+                </StackPanel>
+                <StackPanel Margin="0 15 0 0" Grid.Column="1">
+                    <ComboBox
+                                x:Name="cbb1"
+                                Height="55"
+                                materialDesign:HintAssist.Hint="Giới Tính"
+                                SelectedValue="{Binding SelectedGender}"
+                                SelectedValuePath="Content"
+                                Width="250" Margin="20 15 0 0" 
+                                VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" Foreground="Black" >
+                        <ComboBoxItem>Nam</ComboBoxItem>
+                        <ComboBoxItem>Nữ</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox Width="250"
+                                Text="{Binding sdt,UpdateSourceTrigger=PropertyChanged}"       
+                                VerticalAlignment="Top" HorizontalAlignment="Left"
+                                Margin="20 10 0 0"
+                                materialDesign:HintAssist.Hint="Số điện thoại" 
+                                FontSize="26"                   
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" />
+                </StackPanel>
+                <Border Margin="0 -4 0 0" Grid.Column="2" BorderThickness="1" BorderBrush="#dfdfdf"/>
+                <StackPanel Grid.Column="3" Margin="0 15 0 0">
+                    <TextBlock HorizontalAlignment="Center" Margin="0 50 0 0"
+                               Text="Thông Tin Tài Khoản"
+                               FontSize="34" FontWeight="Bold"/>
+                    <TextBox
+                        Text="{Binding username}"       
+                        materialDesign:HintAssist.Hint="Tên Đăng Nhập" 
+                        FontSize="30" HorizontalAlignment="Center"
+                        Width="300" Margin="0 15 0 0"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        Foreground="Black" FontStyle="Italic"  />
+                    <TextBox
+                        Text="(không hiển thị)"   
+                        materialDesign:HintAssist.Hint="Mật khẩu" 
+                        FontSize="30" HorizontalAlignment="Center"
+                        Width="300" Margin="0 20 0 0"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        Foreground="Black" FontStyle="Italic" IsEnabled="False" />
+                    <Button
+                        FontSize="30"
+                        Height="50" Width="250"
+                        Margin="0 45 0 0"
+                        Background="#FF51CFF9"
+                        BorderThickness="0"
+                        Content="ĐỔI MẬT KHẨU"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        ToolTip="Cập nhật " />
+                </StackPanel>
+            </Grid>
+
+            <Border Grid.Row="2" Background="#FF51CFF9" CornerRadius="0 0 10 10">
+
+            </Border>
+        </Grid>
+    </Border>
+</Page>

@@ -119,7 +119,7 @@ namespace SpaManagement.ViewModel
 
             EditCustomerCommand = new RelayCommand<Window>((p) =>
             {
-                if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Gender) || string.IsNullOrEmpty(Phone))
+                if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Gender) || string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(Email))
                 {
                     return false;
                 }
@@ -142,7 +142,7 @@ namespace SpaManagement.ViewModel
 
                 DataProvider.Ins.DB.SaveChanges();
 
-                SelectedCus.CUS_NAME = Name;
+                SelectedCus.CUS_NAME = Name;    
                 SelectedCus.CUS_EMAIL = Email;
                 SelectedCus.CUS_SEX = Gender;
                 SelectedCus.CUS_PHONE = Phone;

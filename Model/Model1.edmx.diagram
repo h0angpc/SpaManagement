@@ -5,16 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ce1f2cd8dc30484586cd3b33bdc69791" Name="Diagram1" ZoomLevel="86">
-        <EntityTypeShape EntityType="QUANLYSPAModel.ACCOUNT" Width="1.5" PointX="8" PointY="1.125" />
-        <EntityTypeShape EntityType="QUANLYSPAModel.BOOKING" Width="1.5" PointX="3.125" PointY="4.375" />
-        <EntityTypeShape EntityType="QUANLYSPAModel.CUSTOMER" Width="1.5" PointX="0.875" PointY="4.5" />
-        <EntityTypeShape EntityType="QUANLYSPAModel.EMPLOYEE" Width="1.5" PointX="0.875" PointY="8.75" />
-        <EntityTypeShape EntityType="QUANLYSPAModel.PAYMENT" Width="1.5" PointX="3.125" PointY="8.25" />
-        <EntityTypeShape EntityType="QUANLYSPAModel.PAYMENT_DETAIL_PRODUCT" Width="1.5" PointX="5.375" PointY="8.5" />
-        <EntityTypeShape EntityType="QUANLYSPAModel.PAYMENT_DETAIL_SERVICE" Width="1.5" PointX="5.375" PointY="5.375" />
-        <EntityTypeShape EntityType="QUANLYSPAModel.PRODUCT" Width="1.5" PointX="3.125" PointY="12.375" />
-        <EntityTypeShape EntityType="QUANLYSPAModel.SERVICESS" Width="1.5" PointX="0.875" PointY="0.875" />
-        <EntityTypeShape EntityType="QUANLYSPAModel.sysdiagram" Width="1.5" PointX="9.875" PointY="4" />
+        <EntityTypeShape EntityType="QUANLYSPAModel.ACCOUNT" Width="1.5" PointX="5.75" PointY="0.875" />
+        <EntityTypeShape EntityType="QUANLYSPAModel.BOOKING" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="QUANLYSPAModel.CUSTOMER" Width="1.5" PointX="0.75" PointY="4.375" />
+        <EntityTypeShape EntityType="QUANLYSPAModel.EMPLOYEE" Width="1.5" PointX="0.75" PointY="8.625" />
+        <EntityTypeShape EntityType="QUANLYSPAModel.PAYMENT" Width="1.5" PointX="3" PointY="8.125" />
+        <EntityTypeShape EntityType="QUANLYSPAModel.PAYMENT_DETAIL_PRODUCT" Width="1.5" PointX="5.25" PointY="5.375" />
+        <EntityTypeShape EntityType="QUANLYSPAModel.PAYMENT_DETAIL_SERVICE" Width="1.5" PointX="5.25" PointY="8.25" />
+        <EntityTypeShape EntityType="QUANLYSPAModel.PRODUCT" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="QUANLYSPAModel.SERVICESS" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="QUANLYSPAModel.FK__BOOKING__C_ID__412EB0B6" />
         <AssociationConnector Association="QUANLYSPAModel.FK__BOOKING__E_ID__3F466844" />
         <AssociationConnector Association="QUANLYSPAModel.FK__BOOKING__S_ID__403A8C7D" />
