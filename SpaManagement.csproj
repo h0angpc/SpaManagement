@@ -394,6 +394,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataBase\QUANLYSPA.sql" />
+    <Resource Include="niaBot.png" />
     <Resource Include="Images\customer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -412,6 +413,7 @@
     <Resource Include="Images\warn.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\niaBot.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

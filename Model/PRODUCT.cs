@@ -24,6 +24,7 @@ namespace SpaManagement.Model
         public string PRO_MA { get; set; }
         public string PRO_NAME { get; set; }
         public string PRO_IMG { get; set; }
+        public string PRO_URL { get; set; }
         public decimal PRICE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
