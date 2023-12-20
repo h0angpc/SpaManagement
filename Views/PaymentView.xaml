@@ -78,7 +78,7 @@
                 RowStyle="{DynamicResource DataGridRowStyle1}"
                 Grid.Row="4" 
                 x:Name="customerDataGrid" CanUserDeleteRows="True"
-                SelectionMode="Single"  ItemsSource="{Binding PaymentList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                SelectionMode="Single"  ItemsSource="{Binding PaymentCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Số HD" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding PMT_MA}"/>
 
