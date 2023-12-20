@@ -102,15 +102,15 @@ namespace SpaManagement.ViewModel
 
             });
             }
-        private bool FilterByName(object cus)
+        private bool FilterByName(object pay)
         {
             if (!string.IsNullOrEmpty(TextToFilter))
             {
-                var cusDetail = cus as CUSTOMER;
-                if (cusDetail != null)
+                var payDetail = pay as PAYMENT;
+                if (payDetail != null)
                 {
                     string filtertext = TextToFilter.ToLower();
-                    string customerName = cusDetail.CUS_NAME.ToLower();
+                    string customerName = payDetail.CUSTOMER.CUS_NAME.ToLower();
 
                     return customerName.Contains(filtertext);
                 }
