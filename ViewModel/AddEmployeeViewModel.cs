@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SpaManagement.ViewModel
 {
@@ -100,14 +101,20 @@ namespace SpaManagement.ViewModel
                 _salary = value;
 
                 _errorsViewModel.ClearErrors(nameof(Salary));
-                if (!IsNumeric(_salary) && _salary != "")
+                if (!IsNumeric(_salary.Replace(",","")) && _salary != "")
                 {
                     _errorsViewModel.AddError(nameof(Salary), "Lương nhân viên chỉ có các con số");
                 }
 
+                decimal num = decimal.Parse(_salary);
+                _salary = string.Format("{0:N0}", num);
+
+
                 OnPropertyChanged(nameof(Salary));
             }
         }
+
+
 
         private string _cccd;
         public string CCCD
@@ -144,7 +151,7 @@ namespace SpaManagement.ViewModel
 
         public AddEmployeeViewModel()
         {
-            rolesource = new ObservableCollection<string> { "Dịch Vụ", "Lễ Tân" };
+            rolesource = new ObservableCollection<string> { "Dịch vụ", "Quản lý", "Bảo vệ" };
 
 
             CloseCommand = new RelayCommand<Window>((p) => { return p == null ? false : true; }, (p) => {
