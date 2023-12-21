@@ -9,10 +9,11 @@
 
 namespace SpaManagement.Model
 {
+    using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class EMPLOYEE
+    public partial class EMPLOYEE: BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EMPLOYEE()
@@ -22,13 +23,74 @@ namespace SpaManagement.Model
         }
     
         public int EMP_ID { get; set; }
+
         public string EMP_MA { get; set; }
-        public string EMP_DISPLAYNAME { get; set; }
-        public string EMP_ADDRESS { get; set; }
-        public string EMP_PHONE { get; set; }
-        public string EMP_CCCD { get; set; }
-        public decimal EMP_SALARY { get; set; }
-        public string EMP_ROLE { get; set; }
+
+        private string _EMP_DISPLAYNAME;
+        public string EMP_DISPLAYNAME 
+        {
+            get => _EMP_DISPLAYNAME;
+            set
+            {
+                _EMP_DISPLAYNAME = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _EMP_ADDRESS;
+        public string EMP_ADDRESS 
+        {
+            get => _EMP_ADDRESS;
+            set
+            {
+                _EMP_ADDRESS = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _EMP_PHONE;
+        public string EMP_PHONE 
+        {
+            get => _EMP_PHONE;
+            set
+            {
+                _EMP_PHONE = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _EMP_CCCD;
+        public string EMP_CCCD 
+        {
+            get => _EMP_CCCD;
+            set
+            {
+                _EMP_CCCD = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private decimal _EMP_SALARY;
+        public decimal EMP_SALARY 
+        {
+            get => _EMP_SALARY;
+            set
+            {
+                _EMP_SALARY = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _EMP_ROLE;
+        public string EMP_ROLE 
+        {
+            get => _EMP_ROLE;
+            set
+            {
+                _EMP_ROLE = value;
+                OnPropertyChanged();
+            }
+        }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOKING> BOOKINGs { get; set; }

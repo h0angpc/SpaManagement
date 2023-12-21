@@ -113,7 +113,7 @@ namespace SpaManagement.ViewModel
 
             AddCustomerCommand = new RelayCommand<Window>((p) => 
             { 
-                if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Gender) || string.IsNullOrEmpty(Phone))
+                if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Gender) || string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(Email))
                 {
                     return false;
                 }

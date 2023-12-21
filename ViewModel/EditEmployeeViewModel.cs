@@ -13,13 +13,15 @@ using System.Windows;
 
 namespace SpaManagement.ViewModel
 {
-    public class AddEmployeeViewModel:BaseViewModel, INotifyDataErrorInfo
+    public class EditEmployeeViewModel:BaseViewModel, INotifyDataErrorInfo
     {
         public ObservableCollection<string> rolesource { get; set; }
         public bool IsNumeric(string value)
         {
             return long.TryParse(value, out _);
         }
+
+        public string ID { get; set; }
 
         private string _name;
 
@@ -91,11 +93,11 @@ namespace SpaManagement.ViewModel
 
         public string Salary
         {
-            get 
+            get
             {
-                return _salary; 
+                return _salary;
             }
-            set 
+            set
             {
                 _salary = value;
 
@@ -129,23 +131,30 @@ namespace SpaManagement.ViewModel
                 OnPropertyChanged(nameof(CCCD));
             }
         }
-
-
-        public ICommand AddEmployeeCommand { get; set; }
+        public ICommand EditEmployeeCommand { get; set; }
         public ICommand CloseCommand { get; set; }
 
         public bool CanCreate => !HasErrors;
+
+
 
         private readonly ErrorsViewModel _errorsViewModel;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
         public bool HasErrors => _errorsViewModel.HasErrors;
-
-
-        public AddEmployeeViewModel()
+        public EditEmployeeViewModel(EMPLOYEE SelectedEmp)
         {
-            rolesource = new ObservableCollection<string> { "Dịch Vụ", "Lễ Tân" };
+            _errorsViewModel = new ErrorsViewModel();
 
+            ID = SelectedEmp.EMP_MA;
+            Name = SelectedEmp.EMP_DISPLAYNAME;
+            Role = SelectedEmp.EMP_ROLE;
+            Phone = SelectedEmp.EMP_PHONE;
+            Address = SelectedEmp.EMP_ADDRESS;
+            CCCD = SelectedEmp.EMP_CCCD;
+            Salary = (SelectedEmp.EMP_SALARY).ToString("0");
+
+            rolesource = new ObservableCollection<string> { "Dịch vụ", "Quản lý", "Bảo vệ" };
 
             CloseCommand = new RelayCommand<Window>((p) => { return p == null ? false : true; }, (p) => {
                 var w = (p);
@@ -155,14 +164,16 @@ namespace SpaManagement.ViewModel
                 }
             });
 
-            AddEmployeeCommand = new RelayCommand<Window>((p) =>
+            EditEmployeeCommand = new RelayCommand<Window>((p) =>
             {
                 if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Role) || string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(CCCD) || string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(Salary))
                 {
                     return false;
                 }
 
-                var displaylist = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.EMP_DISPLAYNAME == Name && x.EMP_CCCD == CCCD);
+                decimal luong_tam = decimal.Parse(Salary);
+
+                var displaylist = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.EMP_DISPLAYNAME == Name && x.EMP_CCCD == CCCD && x.EMP_SALARY == luong_tam && x.EMP_PHONE == Phone && x.EMP_ROLE == Role && x.EMP_ADDRESS == Address);
                 if (displaylist == null || displaylist.Count() != 0)
                 {
                     return false;
@@ -171,23 +182,44 @@ namespace SpaManagement.ViewModel
                 return true;
             }, (p) =>
             {
-                var employee = new EMPLOYEE() { EMP_DISPLAYNAME = Name, EMP_SALARY = decimal.Parse(Salary), EMP_ADDRESS = Address, EMP_CCCD = CCCD, EMP_PHONE = Phone, EMP_ROLE = Role };
+                //var customer = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_MA == SelectedCus.CUS_MA).SingleOrDefault();
 
-                DataProvider.Ins.DB.EMPLOYEEs.Add(employee);
+                //customer.CUS_NAME = Name;
+                //customer.CUS_EMAIL = Email;
+                //customer.CUS_SEX = Gender;
+                //customer.CUS_PHONE = Phone;
+                var employee = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.EMP_MA == SelectedEmp.EMP_MA).SingleOrDefault();
+
+                employee.EMP_DISPLAYNAME = Name;
+                employee.EMP_PHONE = Phone;
+                employee.EMP_ROLE = Role;
+                employee.EMP_ADDRESS = Address;
+                employee.EMP_SALARY = decimal.Parse(Salary);
+                employee.EMP_CCCD = CCCD;
+
                 DataProvider.Ins.DB.SaveChanges();
 
-                EmployeeManager.AddEmployee(employee);
+                SelectedEmp.EMP_DISPLAYNAME = Name;
+                SelectedEmp.EMP_PHONE = Phone;
+                SelectedEmp.EMP_ROLE = Role;
+                SelectedEmp.EMP_ADDRESS = Address;
+                SelectedEmp.EMP_SALARY = decimal.Parse(Salary);
+                SelectedEmp.EMP_CCCD = CCCD;
 
-                MessageBoxCustom m = new MessageBoxCustom("Thêm nhân viên mới thành công", MessageType.Info, MessageButtons.Ok);
+                MessageBoxCustom m = new MessageBoxCustom("Cập nhật thành công!", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();
+
+                //DataProvider.Ins.DB.SaveChanges();
+
+                //SelectedCus.CUS_NAME = Name;
+                //SelectedCus.CUS_EMAIL = Email;
+                //SelectedCus.CUS_SEX = Gender;
+                //SelectedCus.CUS_PHONE = Phone;
+                //MessageBoxCustom m = new MessageBoxCustom("Cập nhật thành công!", MessageType.Info, MessageButtons.Ok);
+                //m.ShowDialog();
             });
-
-
-            _errorsViewModel = new ErrorsViewModel();
             _errorsViewModel.ErrorsChanged += _errorsViewModel_ErrorsChanged;
         }
-
-
 
         private void _errorsViewModel_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
         {
