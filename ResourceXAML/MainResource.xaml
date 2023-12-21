@@ -27,4 +27,5 @@
     <viewmodel:AddProductViewModel x:Key="AddProductVM"/>
     <viewmodel:ProductViewModel x:Key="ProductVM"/>
     <viewmodel:ChangePasswordViewModel x:Key="ChangePasswordVM"/>
+    <viewmodel:AddEmployeeViewModel x:Key="AddEmployeeVM"/>
 </ResourceDictionary>
