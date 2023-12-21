@@ -102,7 +102,7 @@
                                  materialDesign:HintAssist.IsFloating="False"
                                  Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                  Width="170" HorizontalAlignment="Left"
-                                 Margin="0 5 0 0"
+                                 Margin="0 5 0 0" x:Name="salary_Textbox"
                                  Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
                     </StackPanel>

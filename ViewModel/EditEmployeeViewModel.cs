@@ -102,10 +102,14 @@ namespace SpaManagement.ViewModel
                 _salary = value;
 
                 _errorsViewModel.ClearErrors(nameof(Salary));
-                if (!IsNumeric(_salary) && _salary != "")
+                if (!IsNumeric(_salary.Replace(",", "")) && _salary != "")
                 {
                     _errorsViewModel.AddError(nameof(Salary), "Lương nhân viên chỉ có các con số");
                 }
+
+                decimal num = decimal.Parse(_salary);
+                _salary = string.Format("{0:N0}", num);
+
 
                 OnPropertyChanged(nameof(Salary));
             }
@@ -152,7 +156,7 @@ namespace SpaManagement.ViewModel
             Phone = SelectedEmp.EMP_PHONE;
             Address = SelectedEmp.EMP_ADDRESS;
             CCCD = SelectedEmp.EMP_CCCD;
-            Salary = (SelectedEmp.EMP_SALARY).ToString("0");
+            Salary = string.Format("{0:N0}", SelectedEmp.EMP_SALARY);
 
             rolesource = new ObservableCollection<string> { "Dịch vụ", "Quản lý", "Bảo vệ" };
 
