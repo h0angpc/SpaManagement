@@ -1,4 +1,5 @@
 ﻿using SpaManagement.Model;
+using SpaManagement.Views;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -146,6 +147,8 @@ namespace SpaManagement.ViewModel
                 SelectedCus.CUS_EMAIL = Email;
                 SelectedCus.CUS_SEX = Gender;
                 SelectedCus.CUS_PHONE = Phone;
+                MessageBoxCustom m = new MessageBoxCustom("Cập nhật thành công!", MessageType.Info, MessageButtons.Ok);
+                m.ShowDialog();
             });
             _errorsViewModel.ErrorsChanged += _errorsViewModel_ErrorsChanged;
         }

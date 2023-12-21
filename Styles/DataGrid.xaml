@@ -97,6 +97,7 @@
         </Style.Triggers>
     </Style>
     <Style x:Key="DataGridCellStyle1" TargetType="{x:Type DataGridCell}">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -105,7 +106,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
                     <Border Background="{TemplateBinding Background}" BorderThickness="1" SnapsToDevicePixels="True">
-                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -131,7 +132,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#69717d"/>
         <Setter Property="Margin" Value="15 6 15 6"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <!--<Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
@@ -154,7 +155,7 @@
         <Setter Property="Margin" Value="0 0 0 0"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="ValidationErrorTemplate">
             <Setter.Value>
                 <ControlTemplate>

@@ -1,8 +1,5 @@
-﻿using SpaManagement.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SpaManagement.Views
 {
     /// <summary>
-    /// Interaction logic for EmployeeView.xaml
+    /// Interaction logic for AddEmployeeView.xaml
     /// </summary>
-    public partial class EmployeeView : Page
+    public partial class AddEmployeeView : Window
     {
-        public EmployeeView()
+        public AddEmployeeView()
         {
             InitializeComponent();
         }

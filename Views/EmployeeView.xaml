@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SpaManagement.Views"
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
         mc:Ignorable="d" 
@@ -28,7 +29,8 @@
             <TextBlock Text="Employee Management" Grid.Row="0" FontSize="28" FontWeight="Bold"
                        Margin="15 20 0 0" HorizontalAlignment="Left" Foreground="#121518"/>
             <!--Add Button-->
-            <Button Style="{StaticResource addButton}" Grid.Row="3" Margin="20,0,0,0" HorizontalAlignment="Left">
+            <Button Style="{StaticResource addButton}" Grid.Row="3" Margin="20,0,0,0" 
+                    HorizontalAlignment="Left" Command="{Binding ShowAddEmpCommand}">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11"
                                             Height="11" Margin="0 1 8 0"/>
@@ -40,23 +42,39 @@
             <Separator Height="1" Grid.Row="2" Background="#dae2ea" Margin="15 0 0 10"/>
 
             <!--Counter Title-->
-            <TextBlock Text="Filter by" Grid.Row="3" FontSize="13" FontWeight="SemiBold" Margin="0 0 215 0"
-                        Foreground="#121518" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <Grid Grid.Row="3" Margin="0 0 220 0"
+                    HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Border BorderBrush="#FF232020" BorderThickness="0.8" CornerRadius="8">
+                    <StackPanel Height="45" Orientation="Vertical">
+                        <TextBlock Text="Tìm kiếm theo" FontSize="10.5" FontWeight="SemiBold"
+                       Foreground="#121518" Margin="3"/>
+                        <ComboBox Margin="3 0 3 0" Width="85"
+                                  Height="26" SelectedItem="{Binding Filtercondition, Mode=TwoWay}"
+                                  Padding="5"
+                                  BorderThickness="0"
+                                  materialDesign:TextFieldAssist.HasOutlinedTextField="False"
+                                  materialDesign:TextFieldAssist.UnderlineBrush="Gray"
+                                  ItemsSource="{Binding filtersource}">
+                        </ComboBox>
+                    </StackPanel>
+                </Border>
+            </Grid>
 
             <!--Filter TextBox-->
             <Grid Width="200" HorizontalAlignment="Right" Grid.Row="3">
-                <TextBlock Margin="15 0" Text="Search in Employee here ..." VerticalAlignment="Center"
-                            Foreground="#b0b9c6" IsHitTestVisible="False"
-                            Panel.ZIndex="1" Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}"/>
-
-                <TextBox x:Name="txtFilter" Style="{StaticResource textboxFilter}"/>
+                <TextBlock Margin="15 0" Text="Tìm kiếm ..." VerticalAlignment="Center"
+                        Foreground="#b0b9c6" IsHitTestVisible="False"
+                        Panel.ZIndex="1" Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}"/>
+                <TextBox x:Name="txtFilter" Style="{StaticResource textboxFilter}"
+                         VerticalContentAlignment="Center" Text="{Binding TextToFilter, UpdateSourceTrigger=PropertyChanged}">
+                </TextBox>
             </Grid>
 
             <!--Employee Datagrid-->
             <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                         RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="4" 
                         x:Name="employeeDataGrid" CanUserDeleteRows="True"
-                        SelectionMode="Extended" ItemsSource="{Binding employees}">
+                        SelectionMode="Extended" ItemsSource="{Binding EmployeeList,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
                 <DataGrid.Columns>
                     <!--<DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{DynamicResource CheckBoxStyle1}">
                     <DataGridCheckBoxColumn.HeaderTemplate>
@@ -67,15 +85,15 @@
 
                 </DataGridCheckBoxColumn>-->
 
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding Number}"/>
+                    <DataGridTextColumn Header="Mã NV" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding EMP_MA}"/>
 
-                    <DataGridTextColumn Header="Họ Tên" IsReadOnly="True" Width="auto" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Họ Tên" IsReadOnly="True" Width="*" Binding="{Binding EMP_DISPLAYNAME}"/>
 
-                    <DataGridTextColumn Header="Địa Chỉ" IsReadOnly="True" Width="auto" Binding="{Binding Address}"/>
-                    <DataGridTextColumn Header="SĐT" IsReadOnly="True" Width="auto" Binding="{Binding Phone}"/>
+                    <DataGridTextColumn Header="Địa Chỉ" IsReadOnly="True" Width="*" Binding="{Binding EMP_ADDRESS}"/>
+                    <!--<DataGridTextColumn Header="SĐT" IsReadOnly="True" Width="auto" Binding="{Binding Phone}"/>
                     <DataGridTextColumn Header="CCCD" IsReadOnly="True" Width="auto" Binding="{Binding CCCD}"/>
-                    <DataGridTextColumn Header="Lương" IsReadOnly="True" Width="auto" Binding="{Binding Salary}"/>
-                    <DataGridTextColumn Header="Chức Vụ" IsReadOnly="True" Width="auto" Binding="{Binding Position}"/>
+                    <DataGridTextColumn Header="Lương" IsReadOnly="True" Width="auto" Binding="{Binding Salary}"/>-->
+                    <DataGridTextColumn Header="Chức Vụ" IsReadOnly="True" Width="*" Binding="{Binding EMP_ROLE}"/>
 
                     <DataGridTemplateColumn Header="Tính Năng" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
@@ -85,14 +103,13 @@
                                         <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
                                     <Button x:Name="rmvBtn" Style="{StaticResource gridRemoveButton}" 
-                                            Margin="5 0 0 0" Click="rmvBtn_Click">
+                                            Margin="5 0 0 0">
                                         <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
