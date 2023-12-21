@@ -74,7 +74,7 @@
             <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                         RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="4" 
                         x:Name="employeeDataGrid" CanUserDeleteRows="True"
-                        SelectionMode="Extended" ItemsSource="{Binding EmployeeList,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                        SelectionMode="Single" ItemsSource="{Binding EmployeeCollection,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
                 <DataGrid.Columns>
                     <!--<DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{DynamicResource CheckBoxStyle1}">
                     <DataGridCheckBoxColumn.HeaderTemplate>
@@ -99,7 +99,8 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource gridEditButton}">
+                                    <Button Style="{StaticResource gridEditButton}" Command="{Binding DataContext.ShowEditEmpCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                            CommandParameter="{Binding SelectedItem,ElementName=employeeDataGrid,Mode=TwoWay}">
                                         <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
                                     <Button x:Name="rmvBtn" Style="{StaticResource gridRemoveButton}" 

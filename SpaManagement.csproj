@@ -168,6 +168,7 @@
     <Compile Include="ViewModel\CTHDViewModel.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\EditCustomerViewModel.cs" />
+    <Compile Include="ViewModel\EditEmployeeViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel.cs" />
     <Compile Include="ViewModel\ErrorsViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
@@ -199,6 +200,9 @@
     </Compile>
     <Compile Include="Views\EditCustomerView.xaml.cs">
       <DependentUpon>EditCustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditEmployeeView.xaml.cs">
+      <DependentUpon>EditEmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditProductView.xaml.cs">
       <DependentUpon>EditProductView.xaml</DependentUpon>
@@ -310,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditCustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditEmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -13,6 +13,5 @@ namespace SpaManagement.ViewModel
     public class PrintBillViewModel : BaseViewModel
     {
        
-        }
     }
 }

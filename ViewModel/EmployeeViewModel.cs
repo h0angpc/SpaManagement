@@ -82,6 +82,16 @@ namespace SpaManagement.ViewModel
             EmployeeCollection = CollectionViewSource.GetDefaultView(_EmployeeList);
 
             ShowAddEmpCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AddEmployeeView wd = new AddEmployeeView(); wd.ShowDialog(); });
+
+            ShowEditEmpCommand = new RelayCommand<EMPLOYEE>((p) => { return p!=null; }, (p) => {
+                if (p !=null)
+                {
+                    EditEmployeeViewModel editViewModel = new EditEmployeeViewModel(p);
+                    EditEmployeeView editView = new EditEmployeeView();
+                    editView.DataContext = editViewModel;
+                    editView.ShowDialog();
+                }
+            });
         }
 
         private bool FilterByName(object emp)

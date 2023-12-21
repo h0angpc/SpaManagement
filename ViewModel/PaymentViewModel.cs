@@ -98,9 +98,7 @@ namespace SpaManagement.ViewModel
             {
                 if (p != null)
                 {
-               
                     CTHDView CTView = new CTHDView();
-               
                  
                 }
 
