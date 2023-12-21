@@ -61,7 +61,7 @@ namespace SpaManagement.ViewModel
             {
                 return;
             }
-
+            
             string passEncode = MD5Hash(Base64Encode(PassWord));
 
             var accCount = DataProvider.Ins.DB.ACCOUNTs.Where(x => x.A_USERNAME == UserName && x.A_PASSWORD == passEncode).Count();
