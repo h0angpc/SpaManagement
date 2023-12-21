@@ -33,6 +33,8 @@ namespace SpaManagement.ViewModel
         public ICommand AddProductCommand { get; set; }
         public ICommand ImageProduct { get; set; }
 
+        private string tempIMG;
+        
         public ICommand CloseCommand { get; set; }
         public AddProductViewModel()
         {
@@ -74,6 +76,7 @@ namespace SpaManagement.ViewModel
                 {
                     Uri fileUri = new Uri(openFileDialog.FileName);
                     ProductImage = new BitmapImage(fileUri);
+                    tempIMG = ProductImage.ToString();
                     string sourcefile = openFileDialog.FileName;
                     string resourceUri = "..//..//Image//" + System.IO.Path.GetFileName(openFileDialog.FileName);
                     var list1 = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_IMG == resourceUri);

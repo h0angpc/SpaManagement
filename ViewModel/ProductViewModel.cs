@@ -37,6 +37,7 @@ namespace SpaManagement.ViewModel
 
         private string _textToFilter;
 
+        
         public string TextToFilter
         {
             get { return _textToFilter; }

@@ -30,6 +30,8 @@ namespace SpaManagement.ViewModel
         public ICommand ImageProduct { get; set; }
 
         private Uri tempUri;
+
+        private string tempIMG;
         public ICommand CloseCommand { get; set; }
         public EditProductViewModel(PRODUCT SelectedProduct) 
         {
@@ -59,6 +61,7 @@ namespace SpaManagement.ViewModel
                 {
                     Uri fileUri = new Uri(openFileDialog.FileName);
                     ProductImage = new BitmapImage(fileUri);
+                    tempIMG = ProductImage.ToString(); // Gáng tạm
                     string sourcefile = openFileDialog.FileName;
                     string resourceUri = "..//..//Image//" + System.IO.Path.GetFileName(openFileDialog.FileName);
                     var list1 = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_IMG == resourceUri);
@@ -79,7 +82,7 @@ namespace SpaManagement.ViewModel
                     return false;
                 }
 
-                var displaylist = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_NAME == ProductName && x.PRICE == ProductPrice && x.PRO_URL == ProductLink && x.PRO_IMG == ProductImage.ToString());
+                var displaylist = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_NAME == ProductName && x.PRICE == ProductPrice && x.PRO_URL == ProductLink && x.PRO_IMG == tempIMG); // nếu chưa thay đổi gì so với cái cũ thì button không được bật
                 if (displaylist == null || displaylist.Count() != 0)
                 {
                     return false;
@@ -88,7 +91,7 @@ namespace SpaManagement.ViewModel
                 return true;
             }, (p) =>
             {
-                var product = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_NAME == SelectedProduct.PRO_NAME).SingleOrDefault();
+                var product = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_ID == SelectedProduct.PRO_ID).SingleOrDefault();
 
 
                 product.PRO_NAME = ProductName;
