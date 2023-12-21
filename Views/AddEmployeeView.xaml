@@ -1,5 +1,5 @@
-﻿<Window x:Class="SpaManagement.Views.AddCustomerView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window x:Class="SpaManagement.Views.AddEmployeeView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,19 +7,18 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Title="AddCustomer" Height="400" Width="400"
+        Title="AddEmployee" Height="450" Width="400"
         
-        DataContext="{StaticResource AddCusomterVM}"
+        DataContext="{StaticResource AddEmployeeVM}"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         Background="Transparent"
-        Name="AddCustomer">
+        Name="AddEmployee">
 
 
     <Border Background="#ffffff" CornerRadius="15"
-            BorderThickness="1" BorderBrush="#FF33C1F0"
-            MouseDown="Border_MouseDown">
+            BorderThickness="1" BorderBrush="#FF33C1F0">
         <Grid>
             <Grid.Resources>
                 <Style TargetType="TextBox">
@@ -57,18 +56,18 @@
                 <Border CornerRadius="0 0 15 0">
                     <Button Style="{StaticResource controlCloseBarButton}" 
                             x:Name="closeBtn" Command="{Binding CloseCommand}"
-                            CommandParameter="{Binding ElementName=AddCustomer}"
+                            CommandParameter="{Binding ElementName=AddEmployee}"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
                         <Icon:PackIconMaterial Kind="Close" Style="{StaticResource controlBarButtonIcon}"/>
                     </Button>
                 </Border>
             </StackPanel>
             <!--Title-->
-            <TextBlock Grid.Row="1" Text="THÔNG TIN KHÁCH HÀNG" HorizontalAlignment="Center"
+            <TextBlock Grid.Row="1" Text="THÔNG TIN NHÂN VIÊN" HorizontalAlignment="Center"
                        FontWeight="Bold" FontSize="30" Margin="0 17 0 0"/>
 
             <!--Information-->
-            <Grid Grid.Row="2" Margin="0 17 0 0">
+            <Grid Grid.Row="2" Margin="0 20 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -87,31 +86,40 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Margin="10 15 0 0">
-                        <TextBlock Text="EMAIL" FontWeight="Bold"/>
-                        <TextBox materialDesign:HintAssist.Hint="VD: abc@gmail.com"
+                        <TextBlock Text="CCCD" FontWeight="Bold"/>
+                        <TextBox materialDesign:HintAssist.Hint="VD: 0492000011"
                                  materialDesign:HintAssist.IsFloating="False"
                                  Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                  Width="170" HorizontalAlignment="Left"
                                  Margin="0 5 0 0"
-                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding CCCD, UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="10 15 0 0">
+                        <TextBlock Text="LƯƠNG" FontWeight="Bold"/>
+                        <TextBox materialDesign:HintAssist.Hint="VD: ...."
+                                 materialDesign:HintAssist.IsFloating="False"
+                                 Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 Width="170" HorizontalAlignment="Left"
+                                 Margin="0 5 0 0"
+                                 Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Vertical">
                     <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="GIỚI TÍNH" FontWeight="Bold"/>
-                        <ComboBox
-                                Width="170" Height="27.96"
-                                HorizontalAlignment="Left" Margin="0 5 0 0"
-                                Padding="5 5 5 5"
-                                materialDesign:HintAssist.Hint="VD: Nam"
-                                materialDesign:HintAssist.IsFloating="False"
-                                Text="{Binding Gender, UpdateSourceTrigger=PropertyChanged}"
-                                IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                                ItemsSource="{Binding gendersource}"
-                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                        <TextBlock Text="ĐỊA CHỈ" FontWeight="Bold"/>
+                        <TextBox materialDesign:HintAssist.Hint="VD: 18 Linh Trung Thủ Đức"
+                                 materialDesign:HintAssist.IsFloating="False"
+                                 Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 Width="170" HorizontalAlignment="Left"
+                                 Margin="0 5 0 0"
+                                 Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
                     </StackPanel>
+                    
                     <StackPanel Orientation="Vertical" Margin="10 15 0 0">
                         <TextBlock Text="SĐT" FontWeight="Bold"/>
                         <TextBox materialDesign:HintAssist.Hint="VD: 09050001"
@@ -121,6 +129,20 @@
                                  Margin="0 5 0 0"
                                  Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="10 15 0 0">
+                        <TextBlock Text="CHỨC VỤ" FontWeight="Bold"/>
+                        <ComboBox
+                                Width="170" Height="27.96"
+                                HorizontalAlignment="Left" Margin="0 5 0 0"
+                                Padding="5 5 5 5"
+                                materialDesign:HintAssist.Hint="VD: Nhân Viên"
+                                materialDesign:HintAssist.IsFloating="False"
+                                Text="{Binding Role, UpdateSourceTrigger=PropertyChanged}"
+                                IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                                ItemsSource="{Binding rolesource}"
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                     </StackPanel>
                 </StackPanel>
 
@@ -136,9 +158,9 @@
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         ToolTip="Thêm"
                         Background="#FF33C1F0" BorderThickness="0"
-                        Command="{Binding AddCustomerCommand}" IsEnabled="{Binding CanCreate}">
+                        Command="{Binding AddEmployeeCommand}" IsEnabled="{Binding CanCreate}">
                         <TextBlock
-                            Text="THÊM KHÁCH HÀNG" />
+                            Text="THÊM NHÂN VIÊN" />
                     </Button>
                 </Grid>
             </Grid>

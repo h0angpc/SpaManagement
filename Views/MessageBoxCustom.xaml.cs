@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +20,12 @@ namespace SpaManagement.Views
     /// </summary>
     public partial class MessageBoxCustom : Window
     {
+        
+
         public MessageBoxCustom(string Message, MessageType Type, MessageButtons Buttons)//Nhận ba tham số đầu vào là message, loại message và loại nút
         {
             InitializeComponent();
-            txtMessage.Content = Message;//Hiển thị đoạn message lên messagebox
+            txtMessage.Text = Message;//Hiển thị đoạn message lên messagebox
             switch (Type)//Kiểm tra loại message được yêu cầu
             {
                 case MessageType.Info:
@@ -42,6 +45,7 @@ namespace SpaManagement.Views
                 //    }
                 //    break;
                 case MessageType.Warning:
+
                     txtTitle.Text = "Cảnh báo";
                     imgIcon.Source = new BitmapImage(new Uri("/Images/warn.jpg", UriKind.Relative));
                     break;
@@ -74,6 +78,7 @@ namespace SpaManagement.Views
         }
         public void changeBackgroundThemeColor(Color newColor)//Thay đổi màu sắc background theo từng loại messagebox
         {
+            border_1.BorderBrush = new SolidColorBrush(newColor);
             cardHeader.Background = new SolidColorBrush(newColor);
             btnClose.Foreground = new SolidColorBrush(newColor);
             btnYes.Background = new SolidColorBrush(newColor);

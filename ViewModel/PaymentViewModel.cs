@@ -44,6 +44,10 @@ namespace SpaManagement.ViewModel
                 {
                     PaymentCollection.Filter = FilterByDate;
                 }
+                else if (Filtercondition == "Số HD")
+                {
+                    PaymentCollection.Filter = FilterByPMTMA;
+                }    
             }
         }
 
@@ -84,7 +88,7 @@ namespace SpaManagement.ViewModel
         }
         public PaymentViewModel()
         {
-            filtersource = new ObservableCollection<string> { "Họ tên", "Ngày" };
+            filtersource = new ObservableCollection<string> { "Họ tên","Số HD", "Ngày" };
             Filtercondition = "Họ tên"; // Default value
             _CustomerList = CustomerManager.GetCustomers();
             _PaymentList = PaymentManager.GetPayment();
@@ -102,17 +106,32 @@ namespace SpaManagement.ViewModel
 
             });
             }
-        private bool FilterByName(object cus)
+        private bool FilterByName(object pay)
         {
             if (!string.IsNullOrEmpty(TextToFilter))
             {
-                var cusDetail = cus as CUSTOMER;
-                if (cusDetail != null)
+                var payDetail = pay as PAYMENT;
+                if (payDetail != null)
                 {
                     string filtertext = TextToFilter.ToLower();
-                    string customerName = cusDetail.CUS_NAME.ToLower();
+                    string customerName = payDetail.CUSTOMER.CUS_NAME.ToLower();
 
                     return customerName.Contains(filtertext);
+                }
+            }
+            return true;
+        }
+        private bool FilterByPMTMA(object MA)
+        {
+            if (!string.IsNullOrEmpty(TextToFilter))
+            {
+                var payDetail = MA as PAYMENT;
+                if (payDetail != null)
+                {
+                    string filtertext = TextToFilter.ToLower();
+                    string paymentMA = payDetail.PMT_MA.ToLower();
+
+                    return paymentMA.Contains(filtertext);
                 }
             }
             return true;
@@ -126,9 +145,9 @@ namespace SpaManagement.ViewModel
                 if (payDetail != null)
                 {
                     string filtertext = TextToFilter.ToLower();
-                    string customerMA = payDetail.DAYTIME.ToString("dd/MM/yyyy HH:mm:ss");
+                    string date = payDetail.DAYTIME.ToString("dd/MM/yyyy HH:mm:ss");
 
-                    return customerMA.Contains(filtertext);
+                    return date.Contains(filtertext);
                 }
             }
             return true;
