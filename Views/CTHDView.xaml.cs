@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SpaManagement.Views
@@ -18,7 +17,7 @@ namespace SpaManagement.Views
     /// <summary>
     /// Interaction logic for CTHDView.xaml
     /// </summary>
-    public partial class CTHDView : Page
+    public partial class CTHDView : Window
     {
         public CTHDView()
         {
