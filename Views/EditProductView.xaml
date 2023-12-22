@@ -9,7 +9,6 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         Title="AddCustomer" Height="475" Width="400"
         
-        DataContext="{StaticResource AddProductVM}"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
