@@ -1,0 +1,159 @@
+﻿<Page x:Class="SpaManagement.Views.ServiceView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SpaManagement.Views"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+      mc:Ignorable="d" 
+      d:DesignHeight="665.116666666667" d:DesignWidth="936"
+      Title="ServiceView"
+      >
+
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Page.Resources>
+    <Border CornerRadius="15 15 0 0" Background="White">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!--Page Title-->
+            <TextBlock Text="Service " Grid.Row="0" FontSize="28" FontWeight="Bold"
+       Margin="15 20 0 0" HorizontalAlignment="Left" Foreground="#121518"/>
+            <!--Add Button-->
+            <Button
+            Width="150" Grid.Row="3" HorizontalAlignment="Left" Margin="20,0,0,0"
+            materialDesign:ButtonAssist.CornerRadius="10"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            ToolTip="MaterialDesignRaisedButton with Round Corners"
+            Background="#FF33C1F0" BorderThickness="0"
+            Command="{Binding ShowAddSerCommand}">
+                <TextBlock
+        Text="THÊM DỊCH VỤ" />
+            </Button>
+            <!--Edit Button-->
+            <Button
+             Width="150" Grid.Row="3" HorizontalAlignment="Left" Margin="185,0,0,0"
+             materialDesign:ButtonAssist.CornerRadius="10"
+             Style="{StaticResource MaterialDesignRaisedButton}"
+             ToolTip="MaterialDesignRaisedButton with Round Corners"
+             Background="#FF33C1F0" BorderThickness="0"
+             Command="{Binding ShowEditSerCommand}" CommandParameter="{Binding SelectedItem, ElementName=ProductListView, Mode=TwoWay}">
+                <TextBlock Text="SỬA DỊCH VỤ"></TextBlock>
+            </Button>
+            <!--Info Button-->
+            
+
+            <!--Seprator-->
+
+            <Separator Height="1" Grid.Row="2" Background="#dae2ea" Margin="15 0 0 10"/>
+
+            <!--Counter Title-->
+            <TextBlock Text="Filter by Name" Grid.Row="3" FontSize="13" FontWeight="SemiBold" Margin="0 0 230 0"
+                        Foreground="#121518" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+            <!--Filter TextBox-->
+            <Grid Width="150" Margin="0,0,50,0" HorizontalAlignment="Right" Grid.Row="3">
+                <TextBlock Margin="15 0" Text="Search in Service here ..." VerticalAlignment="Center"
+                        Foreground="#b0b9c6" IsHitTestVisible="False"
+                        Panel.ZIndex="1" Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}"/>
+                <TextBox x:Name="txtFilter" Style="{StaticResource textboxFilter}"
+                         VerticalContentAlignment="Center" Text="{Binding TextToFilter, UpdateSourceTrigger=PropertyChanged}">
+                </TextBox>
+            </Grid>
+
+            <!--Customers Datagrid-->
+            <materialDesign:Card Grid.Row="4">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" >
+                    <ListView x:Name="ServiceListView" ItemsSource="{Binding ServiceCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="461" Width="860" Margin="5" Foreground="#FF6B4309"
+                    SelectedItem="{Binding SelectedService, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+              ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel></WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Height="250" Width="170"
+                        Background="GhostWhite"
+                        BorderBrush="Orange" BorderThickness="1"
+                        CornerRadius="10" Padding="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="0" Width="160" Height="130">
+                                            <Grid.Background>
+                                                <ImageBrush ImageSource="pack://application:,,/Images/Service.jpg"></ImageBrush>
+                                            </Grid.Background>
+                                        </Grid>
+                                        <Grid Grid.Row="1">
+                                            <TextBlock  FontWeight="Bold" Margin="5" FontSize="12" HorizontalAlignment="Center" Grid.Row="0" Text="{Binding SER_NAME}"></TextBlock>
+                                        </Grid>
+                                        <Grid Grid.Row="2">
+                                            <TextBlock HorizontalAlignment="Center" FontSize="11" Grid.Row="1" Text="{Binding PRICE,StringFormat=\{0:N0\}}"></TextBlock>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+                <!--<ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged" 
+              Height="350" Width="330">
+        <ListView.View>
+            <GridView>
+                <GridViewColumn Header="Tên món" DisplayMemberBinding="{Binding name}"></GridViewColumn>
+                <GridViewColumn Header="Size" DisplayMemberBinding="{Binding size}"></GridViewColumn>
+                <GridViewColumn Header="Giá" DisplayMemberBinding="{Binding price}"></GridViewColumn>
+            </GridView>
+        </ListView.View>
+    </ListView>
+</ScrollViewer>-->
+            </materialDesign:Card>
+            <!--Pagination Section-->
+            <!--<Border Grid.Row="5" HorizontalAlignment="Right" BorderBrush="#dee4ec" BorderThickness="1"
+    CornerRadius="5" Padding="5" Background="White" Margin="0 10 10 10">
+            <StackPanel Orientation="Horizontal">
+
+                <Button Style="{StaticResource pagingButton}">
+                    <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButonIcon}"/>
+                </Button>
+
+                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
+
+                <Button Style="{StaticResource pagingButton}" Content="1" Background="#E55ECBEB" Foreground="White"/>
+                <Button Style="{StaticResource pagingButton}" Content="2"/>
+                <Button Style="{StaticResource pagingButton}" Content="3"/>
+
+                <TextBlock Text="..." Foreground="#6c7682" VerticalAlignment="Center" FontSize="15" Margin="10 0"/>
+
+                <Button Style="{StaticResource pagingButton}" Content="7"/>
+                <Button Style="{StaticResource pagingButton}" Content="8"/>
+                <Button Style="{StaticResource pagingButton}" Content="9"/>
+
+                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
+
+                <Button Style="{StaticResource pagingButton}">
+                    <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButonIcon}"/>
+                </Button>
+
+            </StackPanel>
+        </Border>-->
+        </Grid>
+    </Border>
+</Page>

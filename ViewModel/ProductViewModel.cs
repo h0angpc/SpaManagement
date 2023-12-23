@@ -114,7 +114,7 @@ namespace SpaManagement.ViewModel
             },
             (p) =>
             {
-                EditProductViewModel editProductViewModel = new EditProductViewModel(p);
+                EditProductViewModel editProductViewModel = new EditProductViewModel(SelectedProduct);
                 EditProductView wd = new EditProductView();
                 wd.DataContext = editProductViewModel;
                 wd.ShowDialog();
