@@ -50,6 +50,10 @@ namespace SpaManagement.Commands
             {
                 viewModel.SelectedViewModel = new AccountViewModel();
             }
+            else if(parameter.ToString() == "Service")
+            {
+                viewModel.SelectedViewModel = new ServiceViewModel();
+            }
         }
     }
 }
