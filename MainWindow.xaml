@@ -92,7 +92,8 @@
                                     <TextBlock Text="Employee"/>
                                 </StackPanel>
                             </RadioButton>
-                            <RadioButton x:Name="bookBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn">
+                            <RadioButton x:Name="bookBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn"
+                                          Command="{Binding UpdateViewCommand}" CommandParameter="Booking">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Booking"/>
