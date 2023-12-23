@@ -106,6 +106,7 @@
     <Compile Include="Model\BOOKING.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\BookingManager.cs" />
     <Compile Include="Model\CUSTOMER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -166,6 +167,7 @@
     <Compile Include="ViewModel\AddProductViewModel.cs" />
     <Compile Include="ViewModel\AddServiceViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\BookingViewModel.cs" />
     <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\CTHDViewModel.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
@@ -199,6 +201,9 @@
     </Compile>
     <Compile Include="Views\AddServiceView.xaml.cs">
       <DependentUpon>AddServiceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookingView.xaml.cs">
+      <DependentUpon>BookingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ChangePasswordView.xaml.cs">
       <DependentUpon>ChangePasswordView.xaml</DependentUpon>
@@ -323,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddServiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BookingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

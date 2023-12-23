@@ -54,6 +54,10 @@ namespace SpaManagement.Commands
             {
                 viewModel.SelectedViewModel = new ServiceViewModel();
             }
+            else if (parameter.ToString() == "Booking")
+            {
+                viewModel.SelectedViewModel = new BookingViewModel();
+            }
         }
     }
 }
