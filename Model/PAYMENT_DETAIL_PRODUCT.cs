@@ -17,6 +17,7 @@ namespace SpaManagement.Model
     {
         public int PMT_ID { get; set; }
         public int P_ID { get; set; }
+
         private int _QUANTITY;
         public int QUANTITY
         {

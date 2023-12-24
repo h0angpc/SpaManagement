@@ -80,9 +80,9 @@
                 x:Name="customerDataGrid" CanUserDeleteRows="True"
                 SelectionMode="Single"  ItemsSource="{Binding PaymentCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Số HD" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding PMT_MA}"/>
+                    <DataGridTextColumn Header="Mã HD" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding PMT_MA}"/>
 
-                    <DataGridTextColumn Header="Họ Tên" IsReadOnly="True" Width="*" Binding="{Binding CUSTOMER.CUS_NAME}"/>
+                    <DataGridTextColumn Header="Họ Tên KH" IsReadOnly="True" Width="*" Binding="{Binding CUSTOMER.CUS_NAME}"/>
 
                     <DataGridTextColumn Header="Ngày" IsReadOnly="True" Width="*" Binding="{Binding DAYTIME, StringFormat=dd/MM/yyyy HH:mm:ss}"/>
                     <DataGridTextColumn Header="Tổng" IsReadOnly="True" Width="*" Binding="{Binding PRICE, StringFormat={}{0:#,0}}"/>

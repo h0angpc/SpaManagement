@@ -1,11 +1,13 @@
 ﻿using SpaManagement.Model;
 using SpaManagement.Views;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +17,10 @@ namespace SpaManagement.ViewModel
 {
     public class AddPaymentViewModel: BaseViewModel
     {
+        public bool IsNumeric(string value)
+        {
+            return int.TryParse(value, out _);
+        }
         public bool IsConfirm;
         private ObservableCollection<string> _sersource;
         public ObservableCollection<string> sersource
@@ -62,7 +68,9 @@ namespace SpaManagement.ViewModel
         public string Ma_Ten_KH { get; set; }
         public string Ma_HD { get; set; }
         public int MA_Pro { get; set; }
+        public int MA_Ser { get; set; }
         public decimal price_pro { get; set; }
+        public decimal price_ser { get; set; }
 
 
         private string _SelectedProduct;
@@ -90,6 +98,32 @@ namespace SpaManagement.ViewModel
             }
         }
 
+        private string _SelectedService;
+
+        public string SelectedService
+        {
+            get => _SelectedService; 
+            set 
+            { 
+                _SelectedService = value;
+                OnPropertyChanged();
+                if (!string.IsNullOrEmpty(SelectedService))
+                {
+                    string serviceId = SelectedService.Split('|')[0].Trim();
+
+                    var selectedPrice = DataProvider.Ins.DB.SERVICESSes.FirstOrDefault(x => x.SER_MA == serviceId);
+                    MA_Ser = selectedPrice.SER_ID;
+
+                    if (selectedPrice != null)
+                    {
+                        price_ser  = selectedPrice.PRICE;
+                        PriceSer = string.Format("{0:N0}", price_ser);
+                    }
+                }
+            }
+        }
+
+
 
         private string _PricePro;
 
@@ -103,14 +137,41 @@ namespace SpaManagement.ViewModel
             }
         }
 
-        private int _ProQuantity;
+        private string _PriceSer;
 
-        public int ProQuantity
+        public string PriceSer
+        {
+            get => _PriceSer;
+            set 
+            { 
+                _PriceSer = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private string _ProQuantity;
+
+        public string ProQuantity
         {
             get => _ProQuantity;
             set 
             {
                 _ProQuantity = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private string _SerQuantity;
+
+        public string SerQuantity
+        {
+            get => _SerQuantity;
+            set
+            {
+                _SerQuantity = value;
+
                 OnPropertyChanged();
             }
         }
@@ -131,9 +192,10 @@ namespace SpaManagement.ViewModel
 
         public ICommand AddProDetailCommand { get; set; }
         public ICommand RemoveProDetailCommand { get; set; }
+        public ICommand AddSerDetailCommand { get; set; }
+        public ICommand RemoveSerDetailCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
         public ICommand CloseCommand { get; set; }
-
 
         public AddPaymentViewModel(PAYMENT payment, string SelectedCus) 
         {
@@ -177,7 +239,14 @@ namespace SpaManagement.ViewModel
 
             AddProDetailCommand = new RelayCommand<object>((p) => 
             {
-                if (string.IsNullOrEmpty(SelectedProduct) || ProQuantity == 0)
+                if (string.IsNullOrEmpty(SelectedProduct) || ProQuantity == "0" || string.IsNullOrEmpty(ProQuantity) || !IsNumeric(ProQuantity)) 
+                {
+                    return false;
+                }
+
+                var detail = PM_Detail_Pro.Where(x => x.PMT_ID == payment.PMT_ID && x.P_ID == MA_Pro).SingleOrDefault();
+
+                if (detail == null && int.Parse(ProQuantity) < 0)
                 {
                     return false;
                 }
@@ -188,9 +257,9 @@ namespace SpaManagement.ViewModel
                 var detail = PM_Detail_Pro.Where(x => x.PMT_ID == payment.PMT_ID && x.P_ID == MA_Pro).SingleOrDefault();
                 if (detail == null)
                 {
-                    decimal sumprice = ProQuantity * price_pro;
+                    decimal sumprice = int.Parse(ProQuantity) * price_pro;
 
-                    var prodetail = new PAYMENT_DETAIL_PRODUCT() { PMT_ID = payment.PMT_ID, P_ID = MA_Pro, QUANTITY = ProQuantity, AMOUNT = sumprice };
+                    var prodetail = new PAYMENT_DETAIL_PRODUCT() { PMT_ID = payment.PMT_ID, P_ID = MA_Pro, QUANTITY = int.Parse(ProQuantity), AMOUNT = sumprice };
 
                     DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Add(prodetail);
 
@@ -200,10 +269,19 @@ namespace SpaManagement.ViewModel
                 }
                 else
                 {
-                    detail.QUANTITY += ProQuantity;
-                    detail.AMOUNT += ProQuantity * price_pro;
+                    detail.QUANTITY += int.Parse(ProQuantity);
+                    if (detail.QUANTITY <= 0)
+                    {
+                        TotalPrice -= detail.AMOUNT;
+                        DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Remove(detail);
+                        PM_Detail_Pro.Remove(detail);
+                    }
+                    else
+                    {
+                        detail.AMOUNT += int.Parse(ProQuantity) * price_pro;
 
-                    TotalPrice += ProQuantity * price_pro;
+                        TotalPrice += int.Parse(ProQuantity) * price_pro;
+                    }
                 }
 
             });
@@ -220,6 +298,69 @@ namespace SpaManagement.ViewModel
                 TotalPrice -= p.AMOUNT;
                 DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Remove(p);
                 PM_Detail_Pro.Remove(p);
+            });
+
+            AddSerDetailCommand = new RelayCommand<object>((p) =>
+            {
+                if (string.IsNullOrEmpty(SelectedService) || SerQuantity == "0" || string.IsNullOrEmpty(SerQuantity) || !IsNumeric(SerQuantity))
+                {
+                    return false;
+                }
+
+                var detail = PM_Detail_Ser.Where(x => x.PMT_ID == payment.PMT_ID && x.S_ID == MA_Ser).SingleOrDefault();
+                
+                if (detail == null && int.Parse(SerQuantity) < 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }, (p) =>
+            {
+                var detail = PM_Detail_Ser.Where(x => x.PMT_ID == payment.PMT_ID && x.S_ID == MA_Ser).SingleOrDefault();
+                if (detail == null)
+                {
+                    decimal sumprice = int.Parse(SerQuantity) * price_ser;
+
+                    var serdetail = new PAYMENT_DETAIL_SERVICE() { PMT_ID = payment.PMT_ID, S_ID = MA_Ser, QUANTITY = int.Parse(SerQuantity), AMOUNT = sumprice };
+
+                    DataProvider.Ins.DB.PAYMENT_DETAIL_SERVICE.Add(serdetail);
+
+                    PM_Detail_Ser.Add(serdetail);
+
+                    TotalPrice += serdetail.AMOUNT;
+                }
+                else
+                {
+                    detail.QUANTITY += int.Parse(SerQuantity);
+
+                    if (detail.QUANTITY <= 0)
+                    {
+                        TotalPrice -= detail.AMOUNT;
+                        DataProvider.Ins.DB.PAYMENT_DETAIL_SERVICE.Remove(detail);
+                        PM_Detail_Ser.Remove(detail);
+                    }
+                    else
+                    {
+                        detail.AMOUNT += int.Parse(SerQuantity) * price_ser;
+
+                        TotalPrice += int.Parse(SerQuantity) * price_ser;
+                    }
+                }
+            });
+
+            RemoveSerDetailCommand = new RelayCommand<PAYMENT_DETAIL_SERVICE>((p) =>
+            {
+                if (p == null)
+                {
+                    return false;
+                }
+                return true;
+            }, (p) =>
+            {
+                TotalPrice -= p.AMOUNT;
+                DataProvider.Ins.DB.PAYMENT_DETAIL_SERVICE.Remove(p);
+                PM_Detail_Ser.Remove(p);
             });
 
             ConfirmCommand = new RelayCommand<Window>((p) =>
@@ -249,6 +390,7 @@ namespace SpaManagement.ViewModel
                     return;
                 }
             });
+
         }
     }
 }

@@ -9,15 +9,36 @@
 
 namespace SpaManagement.Model
 {
+    using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class PAYMENT_DETAIL_SERVICE
+    public partial class PAYMENT_DETAIL_SERVICE:BaseViewModel
     {
         public int PMT_ID { get; set; }
         public int S_ID { get; set; }
-        public int QUANTITY { get; set; }
-    
+
+        private int _QUANTITY;
+        public int QUANTITY 
+        {
+            get => _QUANTITY;
+            set
+            {
+                _QUANTITY = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _AMOUNT;
+        public decimal AMOUNT
+        {
+            get => _AMOUNT;
+            set
+            {
+                _AMOUNT = value;
+                OnPropertyChanged();
+            }
+        }
+
         public virtual PAYMENT PAYMENT { get; set; }
         public virtual SERVICESS SERVICESS { get; set; }
     }
