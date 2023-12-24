@@ -19,8 +19,8 @@ namespace SpaManagement.ViewModel
         private string _ServiceName;
         public string ServiceName { get => _ServiceName; set { _ServiceName = value; OnPropertyChanged(); } }
 
-        private decimal _ServicePrice;
-        public decimal ServicePrice { get => _ServicePrice; set { _ServicePrice = value; OnPropertyChanged(); } }
+        private string _ServicePrice;
+        public string ServicePrice { get => _ServicePrice; set { _ServicePrice = value; OnPropertyChanged(); } }
 
        
         public ICommand AddServiceCommand { get; set; }
@@ -36,7 +36,7 @@ namespace SpaManagement.ViewModel
             });
             AddServiceCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(ServiceName) || string.IsNullOrEmpty(ServicePrice.ToString()))
+                if (string.IsNullOrEmpty(ServiceName) || string.IsNullOrEmpty(ServicePrice))
                 {
                     return false;
                 }
@@ -48,7 +48,7 @@ namespace SpaManagement.ViewModel
                 return true;
             }, (p) =>
             {
-                var Service = new SERVICESS() { SER_NAME = ServiceName, PRICE = ServicePrice };
+                var Service = new SERVICESS() { SER_NAME = ServiceName, PRICE = Convert.ToDecimal(ServicePrice) };
 
                 DataProvider.Ins.DB.SERVICESSes.Add(Service);
                 DataProvider.Ins.DB.SaveChanges();
@@ -57,6 +57,8 @@ namespace SpaManagement.ViewModel
 
                 MessageBoxCustom m = new MessageBoxCustom("Thêm dịch vụ mới thành công", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();
+                ServiceName = null;
+                ServicePrice = null;
             });
 
 

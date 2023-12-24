@@ -22,8 +22,8 @@ namespace SpaManagement.ViewModel
         private string _ProductName;
         public string ProductName { get => _ProductName; set { _ProductName = value; OnPropertyChanged(); } }
 
-        private decimal _ProductPrice;
-        public decimal ProductPrice { get => _ProductPrice; set { _ProductPrice = value; OnPropertyChanged(); } }
+        private string _ProductPrice;
+        public string ProductPrice { get => _ProductPrice; set { _ProductPrice = value; OnPropertyChanged(); } }
 
         private string _ProductLink;
         public string ProductLink { get => _ProductLink; set { _ProductLink = value; OnPropertyChanged(); } }
@@ -41,7 +41,7 @@ namespace SpaManagement.ViewModel
 
             AddProductCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(ProductName) || string.IsNullOrEmpty(ProductLink) || string.IsNullOrEmpty(ProductPrice.ToString()) || ProductImage == null)
+                if (string.IsNullOrEmpty(ProductName) || string.IsNullOrEmpty(ProductLink) || string.IsNullOrEmpty(ProductPrice) || ProductImage == null)
                 {
                     return false;
                 }
@@ -53,7 +53,7 @@ namespace SpaManagement.ViewModel
                 return true;
             }, (p) =>
             {
-                var Product = new PRODUCT() { PRO_NAME = ProductName, PRICE = ProductPrice, PRO_URL = ProductLink, PRO_IMG = ProductImage.ToString() };
+                var Product = new PRODUCT() { PRO_NAME = ProductName, PRICE = Convert.ToDecimal(ProductPrice), PRO_URL = ProductLink, PRO_IMG = ProductImage.ToString() };
 
                 DataProvider.Ins.DB.PRODUCTs.Add(Product);
                 DataProvider.Ins.DB.SaveChanges();
@@ -62,6 +62,10 @@ namespace SpaManagement.ViewModel
 
                 MessageBoxCustom m = new MessageBoxCustom("Thêm sản phẩm mới thành công", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();
+                ProductName = null;
+                ProductPrice = null;
+                ProductLink = null;
+                ProductImage = null;
             });
             ImageProduct = new RelayCommand<object>((p) =>
             {
