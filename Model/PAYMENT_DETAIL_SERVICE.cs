@@ -16,9 +16,8 @@ namespace SpaManagement.Model
     {
         public int PMT_ID { get; set; }
         public int S_ID { get; set; }
-        public int E_ID { get; set; }
+        public int QUANTITY { get; set; }
     
-        public virtual EMPLOYEE EMPLOYEE { get; set; }
         public virtual PAYMENT PAYMENT { get; set; }
         public virtual SERVICESS SERVICESS { get; set; }
     }

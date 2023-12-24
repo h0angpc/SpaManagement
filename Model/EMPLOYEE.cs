@@ -12,8 +12,8 @@ namespace SpaManagement.Model
     using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
-    
-    public partial class EMPLOYEE: BaseViewModel
+
+    public partial class EMPLOYEE : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EMPLOYEE()
@@ -21,13 +21,13 @@ namespace SpaManagement.Model
             this.BOOKINGs = new HashSet<BOOKING>();
             this.PAYMENT_DETAIL_SERVICE = new HashSet<PAYMENT_DETAIL_SERVICE>();
         }
-    
+
         public int EMP_ID { get; set; }
 
         public string EMP_MA { get; set; }
 
         private string _EMP_DISPLAYNAME;
-        public string EMP_DISPLAYNAME 
+        public string EMP_DISPLAYNAME
         {
             get => _EMP_DISPLAYNAME;
             set
@@ -38,7 +38,7 @@ namespace SpaManagement.Model
         }
 
         private string _EMP_ADDRESS;
-        public string EMP_ADDRESS 
+        public string EMP_ADDRESS
         {
             get => _EMP_ADDRESS;
             set
@@ -49,7 +49,7 @@ namespace SpaManagement.Model
         }
 
         private string _EMP_PHONE;
-        public string EMP_PHONE 
+        public string EMP_PHONE
         {
             get => _EMP_PHONE;
             set
@@ -60,7 +60,7 @@ namespace SpaManagement.Model
         }
 
         private string _EMP_CCCD;
-        public string EMP_CCCD 
+        public string EMP_CCCD
         {
             get => _EMP_CCCD;
             set
@@ -71,7 +71,7 @@ namespace SpaManagement.Model
         }
 
         private decimal _EMP_SALARY;
-        public decimal EMP_SALARY 
+        public decimal EMP_SALARY
         {
             get => _EMP_SALARY;
             set
@@ -82,7 +82,7 @@ namespace SpaManagement.Model
         }
 
         private string _EMP_ROLE;
-        public string EMP_ROLE 
+        public string EMP_ROLE
         {
             get => _EMP_ROLE;
             set
@@ -91,7 +91,7 @@ namespace SpaManagement.Model
                 OnPropertyChanged();
             }
         }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOKING> BOOKINGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

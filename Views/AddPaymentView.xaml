@@ -9,13 +9,13 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         Title="AddPaymentView" Height="600" Width="900"    
         WindowStyle="None"
+        
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         Background="Transparent"
         Name="AddPayment">
     <Border  CornerRadius="15" Background="White"
             BorderThickness="1" BorderBrush="#FF33C1F0">
-
         <Grid Height="600" VerticalAlignment="Top">
             <Grid.Resources>
                 <Style TargetType="TextBox">
@@ -54,7 +54,7 @@
                 <Border CornerRadius="0 0 15 0">
                     <Button Style="{StaticResource controlCloseBarButton}" 
                             x:Name="closeBtn" Command="{Binding CloseCommand}"
-                            CommandParameter="{Binding ElementName=AddCustomer}"
+                            CommandParameter="{Binding ElementName=AddPayment}"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
                         <Icon:PackIconMaterial Kind="Close" Style="{StaticResource controlBarButtonIcon}"/>
                     </Button>
@@ -62,7 +62,7 @@
             </StackPanel>
 
             <!--Title-->
-            <TextBlock Grid.Row="1" Text="THÊM HOÁ ĐƠN" HorizontalAlignment="Center"  
+            <TextBlock Grid.Row="1" Text="TẠO HOÁ ĐƠN" HorizontalAlignment="Center"  
                        FontWeight="Bold" FontSize="30" />
 
             <Grid Grid.Row="2">
@@ -71,141 +71,155 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-
-                <StackPanel Grid.Column="0" Orientation="Vertical" Background="AliceBlue">
-                    <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="Tên KH" FontWeight="Bold"/>
-                        <TextBox materialDesign:HintAssist.Hint="VD: Nguyễn Văn A"
-                    materialDesign:HintAssist.IsFloating="False"
-                    Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Width="170" HorizontalAlignment="Left"
-                    Margin="0 5 0 0">
-
-
-                        </TextBox>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="Sản Phẩm" FontWeight="Bold"/>
-                        <ComboBox Margin="0,5,0,0" 
-                                Padding="5 5 5 5"  Width="170" 
-                                HorizontalAlignment="Left" 
-                                BorderBrush="Black" 
-                                BorderThickness="1">
-                        </ComboBox>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="Giá" FontWeight="Bold"/>
-                        <TextBox 
-                   
-                    Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Width="170" HorizontalAlignment="Left"
-                    Margin="0 5 0 0">
-
-
-                        </TextBox>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="Số lượng" FontWeight="Bold"/>
-                        <TextBox 
-                   
-                    Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Width="170" HorizontalAlignment="Left"
-                    Margin="0 5 0 0">
-
-
-                        </TextBox>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Grid.Column="1" Orientation="Vertical" Background="AliceBlue">
-                    <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="Dịch vụ" FontWeight="Bold"/>
-                        <ComboBox Margin="0,5,0,0" 
-                                 Padding="5 5 5 5"  Width="170" 
-                                 HorizontalAlignment="Left" 
-                                 BorderBrush="Black" 
-                                 BorderThickness="1">
-                        </ComboBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="Nhân viên" FontWeight="Bold"/>
-                        <ComboBox Margin="0,5,0,0" 
-                                Padding="5 5 5 5"  Width="170" 
-                                HorizontalAlignment="Left" 
-                                BorderBrush="Black" 
-                                BorderThickness="1">
-                        </ComboBox>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="Giá" FontWeight="Bold"/>
-                        <TextBox 
-                   
-                    Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Width="170" HorizontalAlignment="Left"
-                    Margin="0 5 0 0">
-
-
-                        </TextBox>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="Số lượng" FontWeight="Bold"/>
-                        <TextBox 
-               
-                    Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Width="170" HorizontalAlignment="Left"
-                    Margin="0 5 0 0">
-
-
-                        </TextBox>
-                    </StackPanel>
-                </StackPanel>
-                <Grid Grid.Column="2" Background="AliceBlue">
+                <!--Product-->
+                <Grid Grid.Column="0" Background="AliceBlue">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="Số lượng" FontWeight="Bold"/>
+
+                    <StackPanel Orientation="Vertical" Margin="10 0 0 0" HorizontalAlignment="Center" >
+                        <TextBlock Text="Mã SP | Tên SP" FontWeight="Bold"/>
+                        <ComboBox Margin="0,5,0,0" 
+                                Padding="5 5 5 5"  Width="180" 
+                                HorizontalAlignment="Left" 
+                                BorderBrush="Black" 
+                                BorderThickness="1"
+                                SelectedItem="{Binding SelectedProduct, Mode=TwoWay}"
+                                ItemsSource="{Binding prosource}"
+                                materialDesign:HintAssist.IsFloating="False"
+                                IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="10 0 0 0" Grid.Row="1" HorizontalAlignment="Center">
+                        <TextBlock Text="Giá" FontWeight="Bold"/>
                         <TextBox 
-                   
-                    Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Width="170" HorizontalAlignment="Left"
-                    Margin="0 5 0 0">
-
-
+                                Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                Width="180" HorizontalAlignment="Left"
+                                Margin="0 5 0 0" Text="{Binding PricePro}" IsReadOnly="True">
                         </TextBox>
                     </StackPanel>
-                    <Grid  Grid.Row="1" >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button Content="Thêm" Margin="15,10,15,10" Background="#FF2AC1F0"  />
-                        <Button Content="Xoá" Grid.Column="1" Margin="20,10,10,10" Background="#FF2AC1F0" />
+
+                    <StackPanel Orientation="Vertical" Margin="10 0 0 0" Grid.Row="2" HorizontalAlignment="Center">
+                        <TextBlock Text="Số lượng" FontWeight="Bold"/>
+                        <TextBox 
+                                Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                Width="180" HorizontalAlignment="Left"
+                                Margin="0 5 0 0" Text="{Binding ProQuantity, UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
+                    </StackPanel>
+
+
+                    <Grid Grid.Row="3" >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Thêm" HorizontalAlignment="Center"
+                                    Background="#FF2AC1F0"
+                                    Command="{Binding AddProDetailCommand}"/>
+                            <Button Content="Xóa" Margin="20 0 0 0" Background="#FF2AC1F0"
+                                     Command="{Binding RemoveProDetailCommand}"
+                                     CommandParameter="{Binding SelectedItem,ElementName=ProDetailsDataGrid}"/>
+                        </StackPanel>
                     </Grid>
 
-                    <StackPanel Grid.Row="2" Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="Thành tiền" FontWeight="Bold"/>
+                    <Border BorderBrush="LightGray" BorderThickness="0.6" Grid.ColumnSpan="2" Margin="298,0,0,0" Grid.RowSpan="4"/>
+                </Grid>
+
+
+                <!--Service-->
+                <Grid Grid.Column="1" Background="AliceBlue">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Vertical" Margin="10 0 0 0" HorizontalAlignment="Center">
+                        <TextBlock Text="Mã DV | Tên DV" FontWeight="Bold"/>
+                        <ComboBox Margin="0,5,0,0" 
+                            Padding="5 5 5 5"  Width="180" 
+                            HorizontalAlignment="Left" 
+                            BorderBrush="Black" 
+                            BorderThickness="1"
+                            ItemsSource="{Binding sersource}"
+                            materialDesign:HintAssist.IsFloating="False"
+                            IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                            Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="10 0 0 0" Grid.Row="1" HorizontalAlignment="Center">
+                        <TextBlock Text="Giá" FontWeight="Bold"/>
                         <TextBox 
-                   
-                    Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Width="261" HorizontalAlignment="Left"
-                    Margin="0 5 0 0">
+                            Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            Width="180" HorizontalAlignment="Left"
+                            Margin="0 5 0 0" Text="{Binding PriceSer}" IsReadOnly="True">
+                        </TextBox>
+                    </StackPanel>
 
-
+                    <StackPanel Orientation="Vertical" Margin="10 0 0 0" Grid.Row="2" HorizontalAlignment="Center">
+                        <TextBlock Text="Số lượng" FontWeight="Bold"/>
+                        <TextBox 
+                            Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            Width="180" HorizontalAlignment="Left"
+                            Margin="0 5 0 0" >
                         </TextBox>
                     </StackPanel>
 
                     <Grid Grid.Row="3" >
-
-                        <Button Content="Thanh Toán"  Margin="64,10,64,10" Background="#FF2AC1F0" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Thêm" HorizontalAlignment="Center" Background="#FF2AC1F0" />
+                            <Button Content="Xóa" Margin="20 0 0 0" Background="#FF2AC1F0" />
+                        </StackPanel>
                     </Grid>
+
+                    <Border BorderBrush="LightGray" BorderThickness="0.6" Grid.ColumnSpan="2" Margin="298,0,0,0" Grid.RowSpan="4"/>
+                </Grid>
+
+                <Grid Grid.Column="2" Background="AliceBlue">
+                    <StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="20 0 0 0">
+                            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                                <TextBlock Text="Mã HD:  " FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="{Binding Ma_HD}" Margin="0 0 0 0" FontSize="15"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 28 0 0">
+                                <TextBlock Text="Mã KH | Tên KH:  " FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="{Binding Ma_Ten_KH}" Margin="0 0 0 0" Width="150" TextWrapping="Wrap" FontSize="15"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Margin="20 30 0 0"
+                                >
+                            <TextBlock Text="Thành tiền" FontWeight="Bold" FontSize="14"/>
+                            <TextBox 
+                                Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                Width="250" HorizontalAlignment="Left"
+                                Margin="0 5 0 0" IsReadOnly="True" Text="{Binding TotalPrice,UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:#,0}}">
+                            </TextBox>
+                        </StackPanel>
+
+                        <Grid>
+
+                            <Button Content="Thanh Toán" HorizontalAlignment="Center" Margin="0 17 0 0"
+                                Background="#FF2AC1F0" Command="{Binding ConfirmCommand}"
+                                CommandParameter="{Binding ElementName=AddPayment}"/>
+                        </Grid>
+                    </StackPanel>
+                        
                 </Grid>
 
 
@@ -216,8 +230,8 @@
 
             <Grid Grid.Row="3" Height="310" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="400" />
-                    <ColumnDefinition Width="500" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
@@ -228,13 +242,14 @@
 
                     <TextBlock Grid.Row="0" Text="Sản phẩm" HorizontalAlignment="Center" FontSize="25" ></TextBlock>
 
-                    <DataGrid Grid.Row="1" Background="AliceBlue" BorderBrush="Black" BorderThickness="1" >
-
+                    <DataGrid Grid.Row="1" Background="AliceBlue" BorderBrush="Black"  Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ProDetailsDataGrid"
+                              BorderThickness="1" ItemsSource="{Binding PM_Detail_Pro, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" CanUserDeleteRows="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã SP" Width="70"/>
-                            <DataGridTextColumn Header="Tên SP" Width="150"/>
-                            <DataGridTextColumn Header="SL" Width="50"/>
-                            <DataGridTextColumn Header="Thành tiền" Width="130"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="Mã SP" Width="auto" Binding="{Binding PRODUCT.PRO_MA}"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="Tên SP" Width="*" Binding="{Binding PRODUCT.PRO_NAME}"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="SL" Width="60" Binding="{Binding QUANTITY}"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="Thành tiền" Width="*" Binding="{Binding AMOUNT, StringFormat={}{0:#,0}}"/>
                         </DataGrid.Columns>
 
                     </DataGrid>
@@ -247,14 +262,13 @@
 
                     <TextBlock Grid.Row="0" Text="Dịch vụ" HorizontalAlignment="Center" FontSize="25" ></TextBlock>
 
-                    <DataGrid Grid.Row="1" Background="AliceBlue" BorderBrush="Black" BorderThickness="1">
+                    <DataGrid Grid.Row="1" Background="AliceBlue" BorderBrush="Black" 
+                              BorderThickness="1" ItemsSource="{Binding PM_Detail_Ser}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                RowStyle="{DynamicResource DataGridRowStyle1}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã DV" Width="75"/>
-                            <DataGridTextColumn Header="Tên DV" Width="150"/>
-                            <DataGridTextColumn Header="Tên NV" Width="150"/>
-
-
-                            <DataGridTextColumn Header="Thành tiền" Width="125"/>
+                            <DataGridTextColumn Header="Mã DV" Width="auto"/>
+                            <DataGridTextColumn Header="Tên DV" Width="*"/>
+                            <DataGridTextColumn Header="Thành tiền" Width="0.7*"/>
                         </DataGrid.Columns>
 
                     </DataGrid>

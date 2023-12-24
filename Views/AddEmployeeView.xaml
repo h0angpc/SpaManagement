@@ -18,7 +18,8 @@
 
 
     <Border Background="#ffffff" CornerRadius="15"
-            BorderThickness="1" BorderBrush="#FF33C1F0">
+            BorderThickness="1" BorderBrush="#FF33C1F0"
+            MouseDown="Border_MouseDown">
         <Grid>
             <Grid.Resources>
                 <Style TargetType="TextBox">
@@ -98,7 +99,7 @@
 
                     <StackPanel Orientation="Vertical" Margin="10 15 0 0">
                         <TextBlock Text="LƯƠNG" FontWeight="Bold"/>
-                        <TextBox materialDesign:HintAssist.Hint="VD: ...."
+                        <TextBox materialDesign:HintAssist.Hint="VD: 5,000,000"
                                  materialDesign:HintAssist.IsFloating="False"
                                  Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                  Width="170" HorizontalAlignment="Left"
@@ -138,10 +139,10 @@
                                 HorizontalAlignment="Left" Margin="0 5 0 0"
                                 Padding="5 5 5 5"
                                 materialDesign:HintAssist.Hint="VD: Nhân Viên"
-                                materialDesign:HintAssist.IsFloating="False"
                                 Text="{Binding Role, UpdateSourceTrigger=PropertyChanged}"
-                                IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
                                 ItemsSource="{Binding rolesource}"
+                                materialDesign:HintAssist.IsFloating="False"
+                                IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
                                 Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                     </StackPanel>
                 </StackPanel>

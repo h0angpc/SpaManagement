@@ -136,6 +136,10 @@ namespace SpaManagement.ViewModel
 
                 MessageBoxCustom m = new MessageBoxCustom("Thêm khách hàng mới thành công", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();
+                Name = "";
+                Email = "";
+                Gender = "";
+                Phone = "";
             });
 
 

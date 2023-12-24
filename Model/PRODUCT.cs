@@ -12,8 +12,8 @@ namespace SpaManagement.Model
     using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
-    
-    public partial class PRODUCT:BaseViewModel
+
+    public partial class PRODUCT : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCT()
@@ -25,7 +25,7 @@ namespace SpaManagement.Model
         public string PRO_MA { get; set; }
 
         private string _PRO_NAME;
-        public string PRO_NAME 
+        public string PRO_NAME
         {
             get => _PRO_NAME;
             set
@@ -36,7 +36,7 @@ namespace SpaManagement.Model
         }
 
         private string _PRO_IMG;
-        public string PRO_IMG 
+        public string PRO_IMG
         {
             get => _PRO_IMG;
             set
@@ -47,7 +47,7 @@ namespace SpaManagement.Model
         }
 
         private string _PRO_URL;
-        public string PRO_URL 
+        public string PRO_URL
         {
             get => _PRO_URL;
             set
@@ -58,15 +58,16 @@ namespace SpaManagement.Model
         }
 
         private decimal _PRICE;
-        public decimal PRICE { 
-            get => _PRICE; 
+        public decimal PRICE
+        {
+            get => _PRICE;
             set
             {
                 _PRICE = value;
                 OnPropertyChanged();
             }
         }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PAYMENT_DETAIL_PRODUCT> PAYMENT_DETAIL_PRODUCT { get; set; }
     }

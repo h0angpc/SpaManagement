@@ -15,16 +15,16 @@ namespace SpaManagement.ViewModel
 {
     public class PaymentViewModel : BaseViewModel
     {
-        private ObservableCollection<CUSTOMER> _CustomerList;
-        public ObservableCollection<CUSTOMER> CustomerList
-        {
-            get => _CustomerList;
-            set
-            {
-                _CustomerList = value;
-                OnPropertyChanged();
-            }
-        }
+        //private ObservableCollection<CUSTOMER> _CustomerList;
+        //public ObservableCollection<CUSTOMER> CustomerList
+        //{
+        //    get => _CustomerList;
+        //    set
+        //    {
+        //        _CustomerList = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
         
         public ObservableCollection<string> filtersource { get; set; }
         private string _TextToFilter;
@@ -90,10 +90,16 @@ namespace SpaManagement.ViewModel
         {
             filtersource = new ObservableCollection<string> { "Họ tên","Số HD", "Ngày" };
             Filtercondition = "Họ tên"; // Default value
-            _CustomerList = CustomerManager.GetCustomers();
+
             _PaymentList = PaymentManager.GetPayment();
             PaymentCollection = CollectionViewSource.GetDefaultView(_PaymentList);
-            ShowAddPayCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AddCustomerView wd = new AddCustomerView(); wd.ShowDialog(); });
+            ShowAddPayCommand = new RelayCommand<object>((p) => { return true; }, (p) => 
+            {
+                AddPaymentStep0View wd = new AddPaymentStep0View();
+                AddPaymentStep0ViewModel vm = new AddPaymentStep0ViewModel();
+                wd.DataContext = vm;
+                wd.ShowDialog(); 
+            });
             ShowCTHDCommand = new RelayCommand<PAYMENT>((p) => { return p != null; }, (p) =>
             {
                 if (p != null)
@@ -140,6 +146,7 @@ namespace SpaManagement.ViewModel
             if (!string.IsNullOrEmpty(TextToFilter))
             {
                 var payDetail = pay as PAYMENT;
+                payDetail.DAYTIME = DateTime.Now;
                 if (payDetail != null)
                 {
                     string filtertext = TextToFilter.ToLower();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpaManagement.ViewModel
 {
-    internal class CTHDViewModel : BaseViewModel
+    public class CTHDViewModel : BaseViewModel
     {
         
     }
