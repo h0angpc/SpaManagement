@@ -140,10 +140,10 @@
                 <DataGrid  Background="AliceBlue" BorderBrush="Black" BorderThickness="1" >
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Mã SP/DV" Width="100"/>
-                        <DataGridTextColumn Header="Tên SP/DV" Width="250"/>
-                        <DataGridTextColumn Header="SL" Width="50"/>
-                        <DataGridTextColumn Header="Thành tiền" Width="200"/>
+                        <!--<DataGridTextColumn Header="Mã SP/DV" Width="100"/>-->
+                        <DataGridTextColumn Header="Tên SP/DV" Width="*"/>
+                        <DataGridTextColumn Header="SL" Width="100"/>
+                        <DataGridTextColumn Header="Thành tiền" Width="*"/>
                     </DataGrid.Columns>
 
                 </DataGrid>

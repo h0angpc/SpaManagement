@@ -16,7 +16,7 @@
         Name="EditEmployee">
     <Border Background="#ffffff" CornerRadius="15"
         BorderThickness="1" BorderBrush="#FF33C1F0"
-            >
+            MouseDown="Border_MouseDown">
         <Grid>
             <Grid.Resources>
                 <Style TargetType="TextBox">

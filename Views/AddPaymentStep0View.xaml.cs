@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace SpaManagement.Views
 {
     /// <summary>
-    /// Interaction logic for EditEmployeeView.xaml
+    /// Interaction logic for AddPaymentStep0View.xaml
     /// </summary>
-    public partial class EditEmployeeView : Window
+    public partial class AddPaymentStep0View : Window
     {
-        public EditEmployeeView()
+        public AddPaymentStep0View()
         {
             InitializeComponent();
         }

@@ -20,15 +20,6 @@
         <Grid>
             <Grid.Resources>
                 <Style TargetType="TextBox">
-                    <!--<Setter Property="Validation.ErrorTemplate">
-                    <Setter.Value>
-                        <ControlTemplate>
-                            <Grid>
-                                
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>-->
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="TextBox">

@@ -85,7 +85,7 @@
                     <DataGridTextColumn Header="Họ Tên" IsReadOnly="True" Width="*" Binding="{Binding CUSTOMER.CUS_NAME}"/>
 
                     <DataGridTextColumn Header="Ngày" IsReadOnly="True" Width="*" Binding="{Binding DAYTIME, StringFormat=dd/MM/yyyy HH:mm:ss}"/>
-                    <DataGridTextColumn Header="Tổng" IsReadOnly="True" Width="*" Binding="{Binding PRICE}"/>
+                    <DataGridTextColumn Header="Tổng" IsReadOnly="True" Width="*" Binding="{Binding PRICE, StringFormat={}{0:#,0}}"/>
 
                     <DataGridTemplateColumn Header="CTHD" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
