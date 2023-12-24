@@ -40,9 +40,9 @@
             <!--Title-->
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15 17 0 0">
                 <TextBlock Text="Chọn khách hàng"
-                   FontWeight="Bold" FontSize="18"/>
-                <ComboBox Margin="10,0,0,0" 
-                            Padding="5 5 5 5"  Width="180" Height="25"
+                   FontWeight="Bold" FontSize="18" Margin="0 2 0 0"/>
+                <ComboBox Margin="10,0,0,2" 
+                            Padding="5 5 5 5"  Width="180" Height="28"
                             HorizontalAlignment="Left" 
                             BorderBrush="Black" 
                             BorderThickness="1"

@@ -154,6 +154,7 @@
                             HorizontalAlignment="Left" 
                             BorderBrush="Black" 
                             BorderThickness="1"
+                            SelectedItem="{Binding SelectedService, Mode=TwoWay}"
                             ItemsSource="{Binding sersource}"
                             materialDesign:HintAssist.IsFloating="False"
                             IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
@@ -175,14 +176,17 @@
                         <TextBox 
                             Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             Width="180" HorizontalAlignment="Left"
-                            Margin="0 5 0 0" >
+                            Margin="0 5 0 0" Text="{Binding SerQuantity, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
                     </StackPanel>
 
                     <Grid Grid.Row="3" >
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Thêm" HorizontalAlignment="Center" Background="#FF2AC1F0" />
-                            <Button Content="Xóa" Margin="20 0 0 0" Background="#FF2AC1F0" />
+                            <Button Content="Thêm" HorizontalAlignment="Center"
+                                    Background="#FF2AC1F0" Command="{Binding AddSerDetailCommand}"/>
+                            <Button Content="Xóa" Margin="20 0 0 0" 
+                                    Background="#FF2AC1F0" Command="{Binding RemoveSerDetailCommand}"
+                                    CommandParameter="{Binding SelectedItem,ElementName=SerDetailsDataGrid}"/>
                         </StackPanel>
                     </Grid>
 
@@ -191,18 +195,18 @@
 
                 <Grid Grid.Column="2" Background="AliceBlue">
                     <StackPanel>
-                        <StackPanel Orientation="Vertical" Margin="20 0 0 0">
+                        <StackPanel Orientation="Vertical" Margin="15 0 0 0">
                             <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                                 <TextBlock Text="Mã HD:  " FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Text="{Binding Ma_HD}" Margin="0 0 0 0" FontSize="15"/>
+                                <TextBlock Text="{Binding Ma_HD}" Margin="0 0 0 0" FontSize="14"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 28 0 0">
                                 <TextBlock Text="Mã KH | Tên KH:  " FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Text="{Binding Ma_Ten_KH}" Margin="0 0 0 0" Width="150" TextWrapping="Wrap" FontSize="15"/>
+                                <TextBlock Text="{Binding Ma_Ten_KH}" Margin="0 0 0 0" Width="160" TextWrapping="Wrap" FontSize="14"/>
                             </StackPanel>
                         </StackPanel>
 
-                        <StackPanel Orientation="Vertical" Margin="20 30 0 0"
+                        <StackPanel Orientation="Vertical" Margin="15 10 0 0"
                                 >
                             <TextBlock Text="Thành tiền" FontWeight="Bold" FontSize="14"/>
                             <TextBox 
@@ -262,13 +266,14 @@
 
                     <TextBlock Grid.Row="0" Text="Dịch vụ" HorizontalAlignment="Center" FontSize="25" ></TextBlock>
 
-                    <DataGrid Grid.Row="1" Background="AliceBlue" BorderBrush="Black" 
-                              BorderThickness="1" ItemsSource="{Binding PM_Detail_Ser}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                RowStyle="{DynamicResource DataGridRowStyle1}">
+                    <DataGrid Grid.Row="1" Background="AliceBlue" BorderBrush="Black" CanUserDeleteRows="True"
+                              BorderThickness="1" ItemsSource="{Binding PM_Detail_Ser, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                                RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="SerDetailsDataGrid">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã DV" Width="auto"/>
-                            <DataGridTextColumn Header="Tên DV" Width="*"/>
-                            <DataGridTextColumn Header="Thành tiền" Width="0.7*"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="Mã DV" Width="auto" Binding="{Binding SERVICESS.SER_MA}"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="Tên DV" Width="*" Binding="{Binding SERVICESS.SER_NAME}"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="SL" Width="60" Binding="{Binding QUANTITY}"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="Thành tiền" Width="*" Binding="{Binding AMOUNT, StringFormat={}{0:#,0}}"/>
                         </DataGrid.Columns>
 
                     </DataGrid>
