@@ -107,6 +107,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\BookingManager.cs" />
+    <Compile Include="Model\CTHD.cs" />
     <Compile Include="Model\CUSTOMER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
