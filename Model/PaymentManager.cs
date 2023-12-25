@@ -24,7 +24,10 @@ namespace SpaManagement.Model
         public static void AddPayment(PAYMENT payment)
         {
            _DatabasePayments.Add(payment);
-
+        }
+        public static void RemovePayment(PAYMENT payment)
+        {
+            _DatabasePayments.Remove(payment);
         }
     }
 }

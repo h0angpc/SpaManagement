@@ -104,12 +104,14 @@ namespace SpaManagement.ViewModel
             {
                 if (p != null)
                 {
+                    CTHDViewModel vm = new CTHDViewModel(p);
                     CTHDView CTView = new CTHDView();
-                 
+                    CTView.DataContext = vm;
+                    CTView.ShowDialog();
                 }
 
             });
-            }
+        }
         private bool FilterByName(object pay)
         {
             if (!string.IsNullOrEmpty(TextToFilter))
