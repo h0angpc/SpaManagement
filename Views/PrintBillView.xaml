@@ -9,7 +9,15 @@
         x:Name="PrintBillVM"
         xmlns:f="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" 
+                               CommandParameter="{Binding ElementName=Bill}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
 
     <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
         <Grid Width="300">
@@ -18,33 +26,17 @@
                 <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <!--<Button
-                    Background="White"
-                    Command="{Binding CloseCommand}"
-                    CommandParameter="{Binding ElementName=PrintBillVM}"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="528,70,16,-126" RenderTransformOrigin="-0.852,0.568">
-                <f:IconImage Height="auto" Width="22"  VerticalAlignment="Center" HorizontalAlignment="Center" Icon="Close" Style="{StaticResource menuIcon}"/>
-            </Button>-->
-                <Button Width="50" Height="40" Background="White"  Click="Button_Click" Margin="102,0,103,0"  >
+               
+                <Button Width="50" Height="40" Background="White"  Margin="102,0,103,0"  >
                     <materialDesign:PackIcon Foreground="Black" Width="30" Height="26" HorizontalAlignment="Center" Kind="Printer" VerticalAlignment="Center"/>
                 </Button>
-                <!--<Button
-                    Background="White"
-                    Command="{Binding CloseCommand}"
-                    CommandParameter="{Binding ElementName=PrintBillVM}"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="528,70,16,-126" RenderTransformOrigin="-0.852,0.568">
-                <f:IconImage Height="auto" Width="22"  VerticalAlignment="Center" HorizontalAlignment="Center" Icon="Close" Style="{StaticResource menuIcon}"/>
-            </Button>-->
-                <Button 
-                Command="{Binding CloseCommand}"
-                CommandParameter="{Binding ElementName=PrintBillVM}"
-                Width="auto"
-                Height="40"
-                Background="White"
-                Foreground="#c9803c"
-                Style="{StaticResource MaterialDesignFloatingActionDarkButton}" Margin="199,0,0,0" >
+               
+                <Button Style="{StaticResource controlCloseBarButton}" 
+                        Margin="250,0,0,0"
+                        x:Name="closeBtn" Command="{Binding CloseCommand}"
+                        CommandParameter="{Binding ElementName=Bill}"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">   
+                    <Icon:PackIconMaterial Kind="Close" Style="{StaticResource controlBarButtonIcon}"/>
                 </Button>
             </Grid>
             <Grid x:Name="Print" Grid.Row="1" >
@@ -58,7 +50,7 @@
                     <TextBlock Height="35" FontSize="13" TextWrapping="Wrap" Text="Đường Hàn Thuyên, khu phố 6 P, Thủ Đức, Thành phố Hồ Chí Minh" TextAlignment="Center" />
                     <TextBlock Text="Hotline: 0123456789" FontSize="18" Height="30" TextAlignment="Center"  />
                     <TextBlock Text="Giờ in hóa đơn:" Height="30 " FontSize="18" TextAlignment="Center"  />
-                    <TextBlock Height="30" Text="{Binding time,StringFormat='dd/MM/yyyy  mm:hh tt'}" FontSize="16" Width="218" />
+                    <TextBlock Height="30" Text="{Binding NgHD}" FontSize="16" Width="218" />
                     <Line Stretch="Fill" Margin="0 5 0 5" Stroke="Black" Height="10"  X2="1"/>
                 </StackPanel>
                 <Grid Grid.Row="1">
@@ -73,7 +65,7 @@
                     </StackPanel>
                     <Grid Grid.Row="1" Height="auto" >
                         <!--<ScrollViewer VerticalScrollBarVisibility="Hidden">-->
-                        <ListView ItemsSource="{Binding ListBillInfoConvert}" Height="auto" Width="255"
+                        <ListView ItemsSource="{Binding Billsource}" Height="auto" Width="255"
                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden"
                                   IsEnabled="False"
                               TextElement.Foreground="{DynamicResource MaterialDesignBody}"       
@@ -103,8 +95,8 @@
                                             <Grid Grid.Row="1">
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Foreground="Black" FontFamily="Times New Roman" MinWidth="120" FontWeight="ExtraBlack" Margin="5 0 0 0" Padding="10 0 0 0" HorizontalAlignment="Left"  FontSize="16" Text="{Binding Price,StringFormat=\{0:N0\}}"></TextBlock>
-                                                    <TextBlock Foreground="Black" MinWidth="50" FontFamily="Times New Roman" FontWeight="ExtraBlack" TextWrapping="WrapWithOverflow" Margin="5 0 5 0" HorizontalAlignment="Center"   FontSize="16"  Text="{Binding Amount}" ></TextBlock>
-                                                    <TextBlock Foreground="Black" FontFamily="Times New Roman" MinWidth="120" FontWeight="ExtraBlack" TextWrapping="WrapWithOverflow" HorizontalAlignment="Right" FontSize="16" Text="{Binding Total,StringFormat=\{0:N0\}}"></TextBlock>
+                                                    <TextBlock Foreground="Black" MinWidth="50" FontFamily="Times New Roman" FontWeight="ExtraBlack" TextWrapping="WrapWithOverflow" Margin="5 0 5 0" HorizontalAlignment="Center"   FontSize="16"  Text="{Binding Quantity}" ></TextBlock>
+                                                    <TextBlock Foreground="Black" FontFamily="Times New Roman" MinWidth="120" FontWeight="ExtraBlack" TextWrapping="WrapWithOverflow" HorizontalAlignment="Right" FontSize="16" Text="{Binding AMOUNT,StringFormat=\{0:N0\}}"></TextBlock>
                                                 </StackPanel>
                                             </Grid>
                                         </Grid>
@@ -121,11 +113,11 @@
                     <Line Stretch="Fill" Margin="0 5 0 5" Height="10" Stroke="Black" X2="1"  />
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Thanh toán:" FontWeight="Bold" Height="30" FontSize="18"/>
-                        <TextBlock Text="{Binding Money,StringFormat=\{0:N0\}}" FontWeight="Bold" Height="30" FontSize="18" Width="152" TextAlignment="Right"/>
+                        <TextBlock Text="{Binding TongTien,StringFormat=\{0:N0\}}" FontWeight="Bold" Height="30" FontSize="18" Width="152" TextAlignment="Right"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Mã hóa đơn:" FontSize="18" Height="30"/>
-                        <TextBlock Text="{Binding SoHD}"  FontSize="18" Height="30" Width="150"   TextAlignment="Right"/>
+                        <TextBlock Text="{Binding MaHD}"  FontSize="18" Height="30" Width="150"   TextAlignment="Right"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"/>
                     <StackPanel Orientation="Vertical">
