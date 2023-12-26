@@ -120,13 +120,13 @@ namespace SpaManagement.ViewModel
             {
                 try
                 {
-                    string pass1 = MD5Hash(Base64Encode(password1));
+                    string pass1 = Base64Encode(password1);
                     var acc = DataProvider.Ins.DB.ACCOUNTs.Where(x => x.A_USERNAME == username && x.A_PASSWORD == pass1).SingleOrDefault();
                     if (acc != null)
                     {
                         if (password2 == password3)
                         {
-                            string Password3 = MD5Hash(Base64Encode(password3));
+                            string Password3 = Base64Encode(password3);
                             acc.A_PASSWORD = Password3;
                             DataProvider.Ins.DB.SaveChanges();
                             MessageBoxCustom m = new MessageBoxCustom("Đổi mật khẩu thành công!", MessageType.Info, MessageButtons.Ok);
@@ -156,23 +156,6 @@ namespace SpaManagement.ViewModel
             }
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
             return System.Convert.ToBase64String(plainTextBytes);
-        }
-
-        public static string MD5Hash(string input)
-        {
-            if (input == null)
-            {
-                return string.Empty;
-            }
-            StringBuilder hash = new StringBuilder();
-            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
-            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
-
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                hash.Append(bytes[i].ToString("x2"));
-            }
-            return hash.ToString();
         }
     }
 }

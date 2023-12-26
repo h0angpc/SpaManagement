@@ -29,12 +29,10 @@
     <viewmodel:MainViewModel x:Key="MainVM"/>
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
     <viewmodel:AddCustomerViewModel x:Key="AddCusomterVM"/>
-    <viewmodel:EditCustomerViewModel x:Key="EditCustomerVM"/>
+    <!--<viewmodel:EditCustomerViewModel x:Key="EditCustomerVM"/>-->
     <viewmodel:AddProductViewModel x:Key="AddProductVM"/>
-    <viewmodel:ProductViewModel x:Key="ProductVM"/>
     <viewmodel:ChangePasswordViewModel x:Key="ChangePasswordVM"/>
     <viewmodel:AddEmployeeViewModel x:Key="AddEmployeeVM"/>
     <viewmodel:AddServiceViewModel x:Key="AddServiceVM"/>
     <viewmodel:EditServiceViewModel x:Key="EditServiceVM"/>
-    <viewmodel:AddBookingViewModel x:Key="AddBookingVM"/>
 </ResourceDictionary>

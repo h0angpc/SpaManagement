@@ -42,9 +42,9 @@
         <Border Background ="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown">
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="Sign in to App" Style="{StaticResource titleText}" Foreground="#3AB19B"
-                   />
+                   Margin="20 0 0 0"/>
 
-                <StackPanel Orientation="Horizontal" Margin="60 15 0 0" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" Margin="75 15 0 0" VerticalAlignment="Top">
                     <materialDesign:PackIcon Kind="AccountCircle" Height="35" Width="35" Margin="0 7.5 0 0"/>
                     <Grid Margin="10 0 0 0">
                         <TextBox Height="50" Width="250"
@@ -61,7 +61,7 @@
                     </Grid>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="60 15 0 0" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" Margin="75 15 0 0" VerticalAlignment="Top">
                     <materialDesign:PackIcon Kind="Lock" Height="35" Width="35" Margin="0 7.5 0 0"/>
                     <Grid Margin="10 0 0 0">
                         <PasswordBox 
@@ -83,11 +83,20 @@
 
                     </Grid>
                 </StackPanel>
+                <Grid VerticalAlignment="Center" Margin="0 10 83 0" HorizontalAlignment="Right">
+                    <TextBlock FontSize="14">
+                                <Hyperlink Foreground="Black" Command="{Binding ShowQuenMK}">Quên mật khẩu?</Hyperlink>
+                    </TextBlock>
+                </Grid>
 
-                <Button Content="Sign in" Style="{StaticResource mainButton}" 
-                Command="{Binding LoginCommand}"
-                CommandParameter="{Binding ElementName=loginWindow}"
-                IsDefault="True"/>
+                <Button Width="180" Height="50" FontSize="18" Background="#3AB19B"
+                        Content="ĐĂNG NHẬP" FontWeight="Bold" BorderThickness="0"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                        materialDesign:ButtonAssist.CornerRadius="25"
+                        Margin="0 15 0 0"  Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=loginWindow}"
+                        IsDefault="True"/>
 
             </StackPanel>
 
