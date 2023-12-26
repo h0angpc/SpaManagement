@@ -103,6 +103,7 @@
     <Compile Include="Model\ACCOUNT.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Bill.cs" />
     <Compile Include="Model\BOOKING.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
