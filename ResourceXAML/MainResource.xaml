@@ -36,4 +36,5 @@
     <viewmodel:AddEmployeeViewModel x:Key="AddEmployeeVM"/>
     <viewmodel:AddServiceViewModel x:Key="AddServiceVM"/>
     <viewmodel:EditServiceViewModel x:Key="EditServiceVM"/>
+    <viewmodel:AddBookingViewModel x:Key="AddBookingVM"/>
 </ResourceDictionary>

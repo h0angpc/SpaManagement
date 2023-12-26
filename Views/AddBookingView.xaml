@@ -9,7 +9,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         Title="AddBooking" Height="600" Width="400"
         
-        DataContext="{StaticResource AddProductVM}"
+        DataContext="{StaticResource AddBookingVM}"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
@@ -88,43 +88,80 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,20,0,20">
                     <TextBlock Text="TÊN KHÁCH HÀNG" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>
-                    <TextBox
-                        materialDesign:HintAssist.Hint="VD: Bột rửa mặt Nia"
-                    materialDesign:HintAssist.IsFloating="False"
-                    Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Width="170" HorizontalAlignment="Left"
-                    Margin="80 0 0 0"
-                    Text="{Binding ProductName, UpdateSourceTrigger=PropertyChanged}"
->
-                    </TextBox>
+                    <ComboBox Margin="60,0,0,2" 
+                        Padding="5 5 5 5"  Width="180" Height="28"
+                        HorizontalAlignment="Right" 
+                        BorderBrush="Black" 
+                        BorderThickness="1"
+                        SelectedItem="{Binding SelectedCus, Mode=TwoWay}"
+                        ItemsSource="{Binding CusSource, UpdateSourceTrigger=PropertyChanged}"
+                        materialDesign:HintAssist.IsFloating="False"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,20,0,20">
                     <TextBlock Text="TÊN DỊCH VỤ" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>
-                    <TextBox materialDesign:HintAssist.Hint="VD: 500.000"
-                    materialDesign:HintAssist.IsFloating="False"
-                    Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Width="170" HorizontalAlignment="Left"
-                    Margin="110 0 0 0"
-                    Text="{Binding ProductPrice, UpdateSourceTrigger=PropertyChanged}"
->
-                    </TextBox>
+                    <ComboBox Margin="92,0,0,2" 
+                        Padding="5 5 5 5"  Width="180" Height="28"
+                        HorizontalAlignment="Left" 
+                        BorderBrush="Black" 
+                        BorderThickness="1"
+                        SelectedItem="{Binding SelectedSer, Mode=TwoWay}"
+                        ItemsSource="{Binding SerSource, UpdateSourceTrigger=PropertyChanged}"
+                        materialDesign:HintAssist.IsFloating="False"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">    
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,20,0,20">
                     <TextBlock Text="GIỜ BẮT ĐẦU" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>
-                    <ComboBox Margin="110,0,0,0"></ComboBox>
+                    <ComboBox Margin="90,0,0,2" 
+                        Padding="5 5 5 5"  Width="180" Height="28"
+                        HorizontalAlignment="Left" 
+                        BorderBrush="Black" 
+                        BorderThickness="1"
+                        SelectedItem="{Binding SelectedStart, Mode=TwoWay}"
+                        ItemsSource="{Binding StartTime, UpdateSourceTrigger=PropertyChanged}"
+                        materialDesign:HintAssist.IsFloating="False"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,20,0,20">
                     <TextBlock Text="GIỜ KẾT THÚC" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>
-                    <ComboBox Margin="110,0,0,0"></ComboBox>
+                    <ComboBox Margin="85,0,0,2" 
+                        Padding="5 5 5 5"  Width="180" Height="28"
+                        HorizontalAlignment="Left" 
+                        BorderBrush="Black" 
+                        BorderThickness="1"
+                        SelectedItem="{Binding SelectedEnd, Mode=TwoWay}"
+                        ItemsSource="{Binding EndTime, UpdateSourceTrigger=PropertyChanged}"
+                        materialDesign:HintAssist.IsFloating="False"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,20,0,20">
                     <TextBlock Text="NGÀY" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>
-                    <DatePicker Margin="155,0,0,0"/>
+                    <DatePicker 
+                        SelectedDate="{Binding SelectedDate, Mode=TwoWay, StringFormat=yyyy-MM-dd}"
+                        Margin="135,0,0,0"/>
 
                 </StackPanel>
                 <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,20,0,20">
                     <TextBlock Text="NHÂN VIÊN ĐẢM NHẬN" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>
-                    <ComboBox Margin="50,0,0,0"/>
+                    <ComboBox Margin="27,0,0,2" 
+                        Padding="5 5 5 5"  Width="180" Height="28"
+                        HorizontalAlignment="Left" 
+                        BorderBrush="Black" 
+                        BorderThickness="1"
+                        SelectedItem="{Binding SelectedEmp, Mode=TwoWay}"
+                        ItemsSource="{Binding EmpSource, UpdateSourceTrigger=PropertyChanged}"
+                        materialDesign:HintAssist.IsFloating="False"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                    </ComboBox>
                 </StackPanel>
                 
             </Grid>
@@ -138,9 +175,9 @@
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         ToolTip="MaterialDesignRaisedButton with Round Corners"
                         Background="#FF33C1F0" BorderThickness="0"
-                        Command="{Binding AddProductCommand}">
+                        Command="{Binding AddBookingCommand}">
                         <TextBlock
-                            Text="THÊM SẢN PHẨM" />
+                            Text="THÊM BOOKING" />
                     </Button>
                 </Grid>
             </Grid>
