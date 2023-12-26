@@ -21,6 +21,7 @@ namespace SpaManagement.Model
         public int S_ID { get; set; }
         public System.DateTime START_TIME { get; set; }
         public System.DateTime END_TIME { get; set; }
+        public System.DateTime B_DATE { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }
         public virtual EMPLOYEE EMPLOYEE { get; set; }

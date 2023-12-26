@@ -27,8 +27,9 @@
           <Property Name="C_ID" Type="int" Nullable="false" />
           <Property Name="E_ID" Type="int" Nullable="false" />
           <Property Name="S_ID" Type="int" Nullable="false" />
-          <Property Name="START_TIME" Type="datetime" Nullable="false" />
-          <Property Name="END_TIME" Type="datetime" Nullable="false" />
+          <Property Name="START_TIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="END_TIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="B_DATE" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="CUSTOMER">
           <Key>
@@ -310,8 +311,9 @@
           <Property Name="C_ID" Type="Int32" Nullable="false" />
           <Property Name="E_ID" Type="Int32" Nullable="false" />
           <Property Name="S_ID" Type="Int32" Nullable="false" />
-          <Property Name="START_TIME" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="END_TIME" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="START_TIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="END_TIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="B_DATE" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="CUSTOMER" Relationship="QUANLYSPAModel.FK__BOOKING__C_ID__412EB0B6" FromRole="BOOKING" ToRole="CUSTOMER" />
           <NavigationProperty Name="EMPLOYEE" Relationship="QUANLYSPAModel.FK__BOOKING__E_ID__3F466844" FromRole="BOOKING" ToRole="EMPLOYEE" />
           <NavigationProperty Name="SERVICESS" Relationship="QUANLYSPAModel.FK__BOOKING__S_ID__403A8C7D" FromRole="BOOKING" ToRole="SERVICESS" />
@@ -520,6 +522,7 @@
           <EntitySetMapping Name="BOOKINGs">
             <EntityTypeMapping TypeName="QUANLYSPAModel.BOOKING">
               <MappingFragment StoreEntitySet="BOOKING">
+                <ScalarProperty Name="B_DATE" ColumnName="B_DATE" />
                 <ScalarProperty Name="END_TIME" ColumnName="END_TIME" />
                 <ScalarProperty Name="START_TIME" ColumnName="START_TIME" />
                 <ScalarProperty Name="S_ID" ColumnName="S_ID" />

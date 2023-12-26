@@ -9,12 +9,10 @@
 
 namespace SpaManagement.Model
 {
-    using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
-    using System.Windows;
-
-    public partial class SERVICESS:BaseViewModel
+    
+    public partial class SERVICESS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SERVICESS()
@@ -25,28 +23,8 @@ namespace SpaManagement.Model
     
         public int SER_ID { get; set; }
         public string SER_MA { get; set; }
-        private string _SER_NAME;
-        public string SER_NAME
-        {
-            get => _SER_NAME;
-            set
-            {
-                _SER_NAME = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        private decimal _PRICE;
-        public decimal PRICE
-        {
-            get => _PRICE;
-            set
-            {
-                _PRICE = value;
-                OnPropertyChanged();
-            }
-        }
+        public string SER_NAME { get; set; }
+        public decimal PRICE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOKING> BOOKINGs { get; set; }

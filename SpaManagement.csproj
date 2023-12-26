@@ -159,10 +159,8 @@
     <Compile Include="UserControls\InfoCard3.xaml.cs">
       <DependentUpon>InfoCard3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Legends.xaml.cs">
-      <DependentUpon>Legends.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\AccountViewModel.cs" />
+    <Compile Include="ViewModel\AddBookingViewModel.cs" />
     <Compile Include="ViewModel\AddCustomerViewModel.cs" />
     <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModel\AddPaymentStep0ViewModel.cs" />
@@ -313,10 +311,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\InfoCard3.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Legends.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

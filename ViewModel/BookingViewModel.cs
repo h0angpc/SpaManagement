@@ -92,8 +92,16 @@ namespace SpaManagement.ViewModel
             _CustomerList = CustomerManager.GetCustomers();
             _BookingList = BookingManager.GetBOOKINGs();
             BookingCollection = CollectionViewSource.GetDefaultView(_BookingList);
-         
-            
+
+            ShowAddBookCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                AddBookingView wd = new AddBookingView();
+                wd.ShowDialog();
+            });
+
         }
         private bool FilterByName(object book)
         {
@@ -141,5 +149,7 @@ namespace SpaManagement.ViewModel
             }
             return true;
         }
+       
+
     }
 }
