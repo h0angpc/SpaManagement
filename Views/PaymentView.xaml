@@ -82,7 +82,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Mã HD" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding PMT_MA}"/>
 
-                    <DataGridTextColumn Header="Họ Tên Khách Hàng" IsReadOnly="True" Width="*" Binding="{Binding CUSTOMER.CUS_NAME}"/>
+                    <DataGridTextColumn Header="Khách Hàng" IsReadOnly="True" Width="*" Binding="{Binding CUSTOMER.CUS_NAME}"/>
 
                     <DataGridTextColumn Header="Ngày" IsReadOnly="True" Width="*" Binding="{Binding DAYTIME, StringFormat=dd/MM/yyyy HH:mm:ss}"/>
                     <DataGridTextColumn Header="Trị Giá" IsReadOnly="True" Width="*" Binding="{Binding PRICE, StringFormat={}{0:#,0}}"/>
