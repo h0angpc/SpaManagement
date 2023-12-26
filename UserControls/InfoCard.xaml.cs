@@ -32,14 +32,14 @@ namespace SpaManagement.UserControls
         public static readonly DependencyProperty SubTitleProperty =
             DependencyProperty.Register("SubTitle", typeof(string), typeof(InfoCard));
 
-        public int Amount
+        public string Amount
         {
-            get { return (int)GetValue(AmountProperty); }
+            get { return (string)GetValue(AmountProperty); }
             set { SetValue(AmountProperty, value); }
         }
 
         public static readonly DependencyProperty AmountProperty =
-            DependencyProperty.Register("Amount", typeof(int), typeof(InfoCard));
+            DependencyProperty.Register("Amount", typeof(string), typeof(InfoCard));
 
         public ImageSource Image
         {
