@@ -30,7 +30,7 @@
        Margin="15 20 0 0" HorizontalAlignment="Left" Foreground="#121518"/>
             <!--Add Button-->
             <Button Style="{StaticResource addButton}" Grid.Row="3" Margin="20,0,0,0" 
-                HorizontalAlignment="Left" Command="{Binding ShowAddCusCommand}">
+                HorizontalAlignment="Left" Command="{Binding ShowAddBookCommand}">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11"
                                        Height="11" Margin="0 1 8 0"/>
@@ -78,15 +78,16 @@
                 RowStyle="{DynamicResource DataGridRowStyle1}"
                 Grid.Row="4" 
                 x:Name="customerDataGrid" CanUserDeleteRows="True"
-                SelectionMode="Single"  ItemsSource="{Binding CustomerCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                SelectionMode="Single"  ItemsSource="{Binding BookingCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mã BK" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding BK_MA}"/>
+                    
 
-                    <DataGridTextColumn Header="Tên KH" IsReadOnly="True" Width="*" Binding="{Binding CUS_NAME}"/>
+                    <DataGridTextColumn Header="Tên KH" IsReadOnly="True" Width="auto" Binding="{Binding CUSTOMER.CUS_NAME}"/>
 
-                    <DataGridTextColumn Header="Tên DV" IsReadOnly="True" Width="*" Binding="{Binding SER_NAME}"/>
-                    <DataGridTextColumn Header="BĐ/KT" IsReadOnly="True" Width="*" Binding="{Binding START_TIME}"/>
-
+                    <DataGridTextColumn Header="Tên DV" IsReadOnly="True" Width="auto" Binding="{Binding SERVICESS.SER_NAME}"/>
+                    <DataGridTextColumn Header="Giờ Bắt Đầu" IsReadOnly="True" Width="auto" Binding="{Binding START_TIME}"/>
+                    <DataGridTextColumn Header="Giờ Kết Thúc" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding END_TIME}"/>
+                    <DataGridTextColumn Header="Tên NV" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding EMPLOYEE.EMP_DISPLAYNAME}"/>
                     <DataGridTemplateColumn Header="Tính Năng" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
