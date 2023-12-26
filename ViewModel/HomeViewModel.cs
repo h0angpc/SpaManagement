@@ -1,4 +1,5 @@
 ﻿using LiveCharts;
+using SpaManagement.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,12 +34,20 @@ namespace SpaManagement.ViewModel
             set { _datelabels = value; OnPropertyChanged(); }
         }
 
-        private ChartValues<int> _values;
+        private ChartValues<int> _Curvalues;
 
-        public ChartValues<int> values
+        public ChartValues<int> Curvalues
         {
-            get { return _values; }
-            set { _values = value; OnPropertyChanged(); }
+            get { return _Curvalues; }
+            set { _Curvalues = value; OnPropertyChanged(); }
+        }
+
+        private ChartValues<int> _Prevalues;
+
+        public ChartValues<int> Prevalues   
+        {
+            get { return _Prevalues; }
+            set { _Prevalues = value; OnPropertyChanged(); }
         }
 
 
@@ -46,32 +55,100 @@ namespace SpaManagement.ViewModel
         private int _step;
         public int step
         {
-            get;
-            set;
+            get
+            {
+                return _step;
+            }
+            set
+            {
+                _step = value;
+                OnPropertyChanged();
+            }
         }
 
+        private int _MaxValueY;
+
+        public int MaxValueY
+        {
+            get 
+            {
+                return _MaxValueY; 
+            }
+            set 
+            {
+                _MaxValueY = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public ICommand LoadedWindowCommand { get; set; }
+        public ICommand LoadChart {  get; set; }
 
         public HomeViewModel() 
         {
+            MaxValueY = 0;
             LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 EndDate = DateTime.Now;
-                StartDate = EndDate.AddDays(-30);
+                StartDate = EndDate.AddDays(-7);
+                step = 1;
+                Load();
+            });
+
+            LoadChart = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                EndDate = DateTime.Now;
+                StartDate = EndDate.AddDays(-7);
+                step = 1;
                 Load();
             });
         }
 
-        void Load()
+        public void Load()
         {
             datelabels = new List<string>();
-            values = new ChartValues<int>();
+            Curvalues = new ChartValues<int>();
+            Prevalues = new ChartValues<int>() { 50000, 30000, 60000 , 40000};
+            //DateTime datePre = StartDate.AddYears(-1);
             for (DateTime date = StartDate; date <= EndDate; date = date.AddDays(1))
             {
                 datelabels.Add(date.ToString("dd/MM/yyyy"));
-                values.Add(100);
+
+                int revenue = GetRevenue(date);
+                if (revenue > MaxValueY)
+                {
+                    MaxValueY = revenue;
+                }
+                Curvalues.Add(revenue);
+
+                //int revenuePre = GetRevenue(datePre);
+                //if (revenuePre > MaxValueY)
+                //{
+                //    MaxValueY = revenuePre;
+                //}
+                //Prevalues.Add(revenuePre);
+
+
             }
-            step = 5;
+            int temp = MaxValueY / 50000;
+            MaxValueY = (temp + 1) * 50000;
+        }
+
+        public int GetRevenue(DateTime date)
+        {
+            var querry = DataProvider.Ins.DB.PAYMENTs.Where(hd => hd.DAYTIME.Year == date.Year && hd.DAYTIME.Month == date.Month && hd.DAYTIME.Day == date.Day);
+            int totalValues = 0;
+            if (querry.Count() > 0)
+            {
+                foreach (var hoadon in querry)
+                {
+                    PAYMENT hd = (PAYMENT)hoadon;
+                    totalValues += (int)hoadon.PRICE;
+                }
+                return totalValues;
+            }
+            return 0;
         }
     }
 }
