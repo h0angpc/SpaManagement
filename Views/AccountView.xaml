@@ -42,7 +42,7 @@
                             Foreground="Black"
                             FontSize="26" Width="250" Margin="20 10 0 0" 
                             SelectedDate="{Binding ngaysinh,UpdateSourceTrigger=PropertyChanged}"
-                            materialDesign:HintAssist.Hint="Ngày Sinh"
+                            materialDesign:HintAssist.Hint="Ngày Sinh" Language="vi-VN"
                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
                             VerticalAlignment="Top" HorizontalAlignment="Left"/>
                     <TextBox Width="470"

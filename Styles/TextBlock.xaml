@@ -32,7 +32,7 @@
     </Style>
 
     <Style x:Key="secondaryText" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="Margin" Value="5"/>
         <Setter Property="Foreground" Value="#b7b7b7"/>
     </Style>

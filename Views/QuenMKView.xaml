@@ -22,6 +22,7 @@
         WindowStartupLocation="CenterScreen" 
         Title="QuenMKView" Height="250" Width="400"
         x:Name="QuenMKV">
+    
     <Window.Resources>
         <Style x:Key="controlCloseBarButton1" TargetType="Button">
             <Setter Property="ToolBar.OverflowMode" Value="AsNeeded"/>
