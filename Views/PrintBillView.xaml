@@ -27,7 +27,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                
-                <Button Width="50" Height="40" Background="White"  Margin="102,0,103,0"  >
+                <Button x:Name="btnPrint" Width="50" Height="40" Background="White"  Margin="102,0,103,0" Click="btn_Print" >
                     <materialDesign:PackIcon Foreground="Black" Width="30" Height="26" HorizontalAlignment="Center" Kind="Printer" VerticalAlignment="Center"/>
                 </Button>
                
