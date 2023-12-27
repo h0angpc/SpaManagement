@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,23 @@ namespace SpaManagement.Views
         public PrintBillView()
         {
             InitializeComponent();
+        }
+        private void btn_Print(object sender, RoutedEventArgs e)//Print
+        {
+            //Hàm in ra hóa đơn
+            try
+            {
+                this.IsEnabled = false;
+                PrintDialog printDialog = new PrintDialog();
+                if (printDialog.ShowDialog() == true)
+                {
+                    printDialog.PrintVisual(Print, "Invoice");
+                }
+            }
+            finally
+            {
+                this.IsEnabled = true;
+            }
         }
     }
 }

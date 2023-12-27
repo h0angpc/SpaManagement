@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using System.Net.NetworkInformation;
+using System.Windows.Controls;
 
 namespace SpaManagement.ViewModel
 {
