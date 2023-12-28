@@ -9,98 +9,104 @@
         
         DataContext="{StaticResource LoginVM}"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        Title="Window1" Height="450" Width="800"
+        Title="Window1" Height="530" Width="800"
         x:Name="loginWindow">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="350"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Image Source="/Images/close.jpg" Grid.Column="1" Panel.ZIndex="1" MouseUp="Image_MouseUp" Style="{StaticResource imgClose }" />
-        <Border CornerRadius="10 0 0 10">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color = "#3AA9AD" Offset="0"/>
-                    <GradientStop Color="#3AA9AD" Offset="0" />
-                </LinearGradientBrush>
-            </Border.Background>
-            <Grid>
-                <Canvas>
-                    <Polygon Points="0,20 230, 140 0, 270" Fill ="#4EB1B6"/>
-                    <Polygon Points="0,20 230, 140 0, 270" Fill ="#4EB1B6"/>
-                    <Ellipse Margin="50 400 0 0" Width=" 20" Height="20" Fill ="#4EB1B6"/>
-                </Canvas>
+    <Border BorderThickness="4" BorderBrush="LightSteelBlue" Background="LightSteelBlue" CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image Source="/Images/close.jpg" Grid.Column="1" Panel.ZIndex="1" MouseUp="Image_MouseUp" Style="{StaticResource imgClose }" />
+            <Border CornerRadius="10 0 0 10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color = "#FF8DE1FD" Offset="0"/>
+                        <GradientStop Color="#FF39CEFF" Offset="0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Canvas>
+                        <Polygon Points="0, 20, 250, 140, 0 270" Fill="#07BDF2"/>
+                        <Polygon Points="275, 0, 400, 20, 325, 100" Fill="#07BDF2"/>
+                        <Polygon Points="30, 520, 120, 370, 250, 570" Fill="#07BDF2" Canvas.Left="10" Canvas.Top="-58" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <Polygon Points="230, 250, 400, 300, 275, 400" Fill="#07BDF2"/>
+                        <Ellipse Width="50" Height="50" Fill="#07BDF2" RenderTransformOrigin="-0.308,-0.281" Canvas.Left="290" Canvas.Top="462" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <Ellipse Margin="300 150 0 0" Width="40" Height="40" Fill="#07BDF2" />
+                        <Ellipse Width="80" Height="80" Fill="#07BDF2" Canvas.Top="299" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    </Canvas>
 
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Hi, Welcome back" Style="{StaticResource titleText}"/>
-                    <TextBlock Text="Hope you have had a great using experiecne" Style="{StaticResource normalText}"/>
-                </StackPanel>
-                
-            </Grid>
-        </Border>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Hi, Welcome back" Style="{StaticResource titleText}"/>
+                        <TextBlock Text="Hope you have had a great using experiecne" Style="{StaticResource normalText}"/>
+                    </StackPanel>
 
-        <Border Background ="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown">
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Sign in to App" Style="{StaticResource titleText}" Foreground="#3AB19B"
-                   Margin="20 0 0 0"/>
-
-                <StackPanel Orientation="Horizontal" Margin="75 15 0 0" VerticalAlignment="Top">
-                    <materialDesign:PackIcon Kind="AccountCircle" Height="35" Width="35" Margin="0 7.5 0 0"/>
-                    <Grid Margin="10 0 0 0">
-                        <TextBox Height="50" Width="250"
-                         Text="{Binding UserName, Mode=TwoWay}"
-                         materialDesign:HintAssist.Hint="Username"
-                         materialDesign:HintAssist.Foreground="#3AB19B"
-                         AcceptsReturn="True"
-                         IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:TextFieldAssist.UnderlineBrush="#3AB19B"
-                         TextWrapping="Wrap"
-                         VerticalScrollBarVisibility="Auto"/>
-
-                    </Grid>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="75 15 0 0" VerticalAlignment="Top">
-                    <materialDesign:PackIcon Kind="Lock" Height="35" Width="35" Margin="0 7.5 0 0"/>
-                    <Grid Margin="10 0 0 0">
-                        <PasswordBox 
-                        x:Name="passwordBox"
-                        Height="50" Width="250"
-                        materialDesign:HintAssist.Hint="Password"
-                        materialDesign:HintAssist.Foreground="#3AB19B"
-                        materialDesign:TextFieldAssist.HasClearButton="True"
-                        materialDesign:TextFieldAssist.UnderlineBrush="#3AB19B"
-                        IsEnabled="{Binding ElementName=RevealPasswordOutlinedEnabled, Path=IsChecked}"
-                        Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="PasswordChanged">
-                                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
-                                                            CommandParameter="{Binding ElementName=passwordBox}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </PasswordBox>
-
-                    </Grid>
-                </StackPanel>
-                <Grid VerticalAlignment="Center" Margin="0 10 83 0" HorizontalAlignment="Right">
-                    <TextBlock FontSize="14">
-                                <Hyperlink Foreground="Black" Command="{Binding ShowQuenMK}">Quên mật khẩu?</Hyperlink>
-                    </TextBlock>
                 </Grid>
+            </Border>
 
-                <Button Width="180" Height="50" FontSize="18" Background="#3AB19B"
-                        Content="ĐĂNG NHẬP" FontWeight="Bold" BorderThickness="0"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                        Style="{StaticResource MaterialDesignFlatMidBgButton}" 
-                        materialDesign:ButtonAssist.CornerRadius="25"
-                        Margin="0 15 0 0"  Command="{Binding LoginCommand}"
-                        CommandParameter="{Binding ElementName=loginWindow}"
-                        IsDefault="True"/>
+            <Border Background ="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown">
+                <StackPanel Margin="0 110 0 0">
+                    <TextBlock Text="ĐĂNG NHẬP" Style="{StaticResource titleText}" Foreground="#FF51CFF9"
+               Margin="20 0 0 0"/>
 
-            </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="75 30 0 0" VerticalAlignment="Top">
+                        <materialDesign:PackIcon Kind="AccountCircle" Height="35" Width="35" Margin="0 7.5 0 0"/>
+                        <Grid Margin="10 0 0 0">
+                            <TextBox Height="50" Width="250"
+                     Text="{Binding UserName, Mode=TwoWay}"
+                     materialDesign:HintAssist.Hint="Tên đăng nhập"
+                     materialDesign:HintAssist.Foreground="#FF51CFF9"
+                     AcceptsReturn="True"
+                     IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#FF51CFF9"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"/>
 
-        </Border>
+                        </Grid>
+                    </StackPanel>
 
-    </Grid>
+                    <StackPanel Orientation="Horizontal" Margin="75 20 0 0" VerticalAlignment="Top">
+                        <materialDesign:PackIcon Kind="Lock" Height="35" Width="35" Margin="0 7.5 0 0"/>
+                        <Grid Margin="10 0 0 0">
+                            <PasswordBox 
+                    x:Name="passwordBox"
+                    Height="50" Width="250"
+                    materialDesign:HintAssist.Hint="Mật khẩu"
+                    materialDesign:HintAssist.Foreground="#FF51CFF9"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#FF51CFF9"
+                    IsEnabled="{Binding ElementName=RevealPasswordOutlinedEnabled, Path=IsChecked}"
+                    Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PasswordChanged">
+                                        <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
+                                                        CommandParameter="{Binding ElementName=passwordBox}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </PasswordBox>
+
+                        </Grid>
+                    </StackPanel>
+                    <Grid VerticalAlignment="Center" Margin="0 20 83 0" HorizontalAlignment="Right">
+                        <TextBlock FontSize="14">
+                            <Hyperlink Foreground="Black" Command="{Binding ShowQuenMK}">Quên mật khẩu?</Hyperlink>
+                        </TextBlock>
+                    </Grid>
+
+                    <Button Width="180" Height="50" FontSize="18" Background="#FF51CFF9"
+                    Content="ĐĂNG NHẬP" FontWeight="Bold" BorderThickness="0"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                    materialDesign:ButtonAssist.CornerRadius="25"
+                    Margin="33 20 0 0"  Command="{Binding LoginCommand}"
+                    CommandParameter="{Binding ElementName=loginWindow}"
+                    IsDefault="True"/>
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+    </Border>
 </Window>

@@ -72,7 +72,7 @@
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top">
                             <RadioButton x:Name="homeBtn" Style="{StaticResource menuRadioButton}" 
-                                         GroupName="MenuBtn" Command="{Binding UpdateViewCommand}" CommandParameter="Home">
+                                         GroupName="MenuBtn" Command="{Binding UpdateViewCommand}" CommandParameter="Home" Checked="homeBtn_Checked" Unchecked="homeBtn_Unchecked">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Home"/>
@@ -143,7 +143,7 @@
             </Grid>
 
             <!--Main Section-->
-            <Grid Grid.Column="1" Margin="30 0 20 10">
+            <Grid Grid.Column="1" Margin="20 0 20 10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="auto"/>
@@ -174,7 +174,7 @@
                 <!--Top Section-->
                 <Grid Grid.Row="1">
                     <StackPanel Orientation="Horizontal">
-                        <!--Search TextBox-->
+                        <!--Search TextBox--><!--
                         <Grid Width="300" HorizontalAlignment="Left">
                             <TextBlock Margin="20 0" Text="Search here ..." VerticalAlignment="Center"
                                        Foreground="#b0b9c6" IsHitTestVisible="False"
@@ -186,10 +186,10 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Right"
                                         Width="15" Height="15" Margin="0 0 15 0"/>
-                        </Grid>
+                        </Grid>-->
 
                         <Border Padding="10 5 10 5" Style="{StaticResource whiteBorder1}" Width="260" HorizontalAlignment="Left"
-                                Margin="50 0">
+                                Margin="350 0">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                 <Border Width="45" Height="45" CornerRadius="10" Margin="5 0 20 0">
                                     <Border.Background>
@@ -208,7 +208,7 @@
                         </Border>
                     </StackPanel>
                         <!--Top Buttons-->
-                        <Button Style="{StaticResource topButton}" Margin="0 0 15 0"
+                        <!--<Button Style="{StaticResource topButton}" Margin="0 0 15 0"
                                 HorizontalAlignment="Right">
                             <Icon:PackIconMaterial Kind="Cog"/>
                         </Button>
@@ -216,7 +216,7 @@
                         <Button Style="{StaticResource topButton}" Margin="0 0 65 0"
                                 HorizontalAlignment="Right">
                             <Icon:PackIconMaterial Kind="Bell"/>
-                        </Button>
+                        </Button>-->
                 </Grid>
 
 
