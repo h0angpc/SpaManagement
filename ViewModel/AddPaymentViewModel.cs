@@ -284,6 +284,9 @@ namespace SpaManagement.ViewModel
                     }
                 }
 
+                SelectedProduct = null;
+                PricePro = "";
+                ProQuantity = "";
             });
 
             RemoveProDetailCommand = new RelayCommand<PAYMENT_DETAIL_PRODUCT>((p) =>
@@ -313,7 +316,6 @@ namespace SpaManagement.ViewModel
                 {
                     return false;
                 }
-
                 return true;
             }, (p) =>
             {
@@ -347,6 +349,10 @@ namespace SpaManagement.ViewModel
                         TotalPrice += int.Parse(SerQuantity) * price_ser;
                     }
                 }
+
+                SelectedService = null;
+                SerQuantity = "";
+                PriceSer = "";
             });
 
             RemoveSerDetailCommand = new RelayCommand<PAYMENT_DETAIL_SERVICE>((p) =>
@@ -381,6 +387,14 @@ namespace SpaManagement.ViewModel
                         DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Add(prodetail);
                     }
                     DataProvider.Ins.DB.SaveChanges();
+                    bool? @bool = new MessageBoxCustom("Bạn có muốn in hóa đơn không?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                    if (@bool.Value)
+                    {
+                        PrintBillViewModel vm = new PrintBillViewModel(payment);
+                        PrintBillView billView = new PrintBillView();
+                        billView.DataContext = vm;
+                        billView.ShowDialog();
+                    }
                     MessageBoxCustom m = new MessageBoxCustom("Tạo hóa đơn thành công!", MessageType.Info, MessageButtons.Ok);
                     m.ShowDialog();
                     p.Close();
