@@ -34,6 +34,7 @@ namespace SpaManagement.Views
                 if (printDialog.ShowDialog() == true)
                 {
                     printDialog.PrintVisual(Print, "Invoice");
+                    this.Close();
                 }
             }
             finally
