@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -65,7 +66,16 @@ namespace SpaManagement.ViewModel
             }
         }
 
-
+        private DataTable _TopService;
+        public DataTable TopService
+        {
+            get => _TopService;
+            set
+            {
+                _TopService = value;
+                OnPropertyChanged();
+            }
+        }
 
         private int _step;
         public int step
@@ -143,8 +153,33 @@ namespace SpaManagement.ViewModel
             }
         }
 
+        private string _TotalProductThisMonth;
+
+        public string TotalProductThisMonth
+        {
+            get
+            {
+                return _TotalProductThisMonth;
+            }
+            set
+            {
+                _TotalProductThisMonth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _Visibility;
+
+        public string Visibility
+        {
+            get { return _Visibility; }
+            set { _Visibility = value; OnPropertyChanged(); }
+        }
+
+
         public ICommand LoadedPageCommand { get; set; }
         public ICommand LoadChart {  get; set; }
+        public ICommand ShowPreChart {  get; set; }
 
         public HomeViewModel() 
         {
@@ -158,13 +193,14 @@ namespace SpaManagement.ViewModel
             {
                 LoadInfoCard();
                 LoadTopProduct(4);
+                LoadTopService(4);
 
                 EndDate = DateTime.Now;
                 StartDate = EndDate.AddDays(-7);
                 Load();
             });
 
-            LoadChart = new RelayCommand<object>((p) => 
+            LoadChart = new RelayCommand<object>((p) =>
             {
                 if (EndDate <= StartDate)
                 {
@@ -178,6 +214,21 @@ namespace SpaManagement.ViewModel
                 MaxValueY = 0;
                 PercentRevenue = "";
                 Load();
+            });
+
+            ShowPreChart = new RelayCommand<CheckBox>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                if (p.IsChecked == true)
+                {
+                    Visibility = "Visible";
+                }
+                else
+                {
+                    Visibility = "Hidden";
+                }
             });
         }
 
@@ -246,6 +297,9 @@ namespace SpaManagement.ViewModel
             int tdayrevenue = GetRevenue(DateTime.Now);
 
             TodayRevenue = string.Format("{0:N0} VND", tdayrevenue);
+
+            LoadMonthTotalProduct(DateTime.Now.Month);
+
         }
 
         public int GetRevenue(DateTime date)
@@ -288,6 +342,72 @@ namespace SpaManagement.ViewModel
             connection.Close();
 
             TopProduct = UsersTalbe;
+        }
+
+        public void LoadTopService(int top)
+        {
+
+            QUANLYSPAEntities db = new QUANLYSPAEntities();
+
+            string conStr = db.Database.Connection.ConnectionString;
+
+            SqlConnection connection = new SqlConnection(conStr);
+
+            connection.Open();
+
+            string query = String.Format("EXECUTE TOP_SERVICE @TOP = {0}", top);
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            DataTable UsersTalbe = new DataTable();
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+            adapter.Fill(UsersTalbe);
+
+            connection.Close();
+
+            TopService = UsersTalbe;
+        }
+
+        public void LoadMonthTotalProduct(int month)
+        {
+            var a = DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Where(x => x.PAYMENT.DAYTIME.Month == month);
+            if (a.Count() < 0)
+            {
+                TotalProductThisMonth = "0";
+            }
+            else
+            {
+                QUANLYSPAEntities db = new QUANLYSPAEntities();
+
+                string conStr = db.Database.Connection.ConnectionString;
+
+                SqlConnection connection = new SqlConnection(conStr);
+
+                connection.Open();
+
+                string query = String.Format("EXEC dbo.TotalProduct @m = {0}", month);
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                DataTable TotalProduct = new DataTable();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                adapter.Fill(TotalProduct);
+
+                connection.Close();
+
+                try
+                {
+                    TotalProductThisMonth = Convert.ToString(TotalProduct.Rows[0][0]);
+                }
+                catch
+                {
+
+                }
+            }
         }
     }
 }

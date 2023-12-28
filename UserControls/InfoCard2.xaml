@@ -13,7 +13,6 @@
             <TextBlock Text="{Binding ElementName=infoCard2, Path=SubTitle}" Style="{StaticResource secondaryText}"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding ElementName=infoCard2, Path=Amount}" Style="{StaticResource valueText}"/>
-                <TextBlock Text="người" FontWeight="Bold" Margin="0 5 0 0" FontSize="24"/>
             </StackPanel>
         </StackPanel>
 

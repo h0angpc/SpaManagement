@@ -3,6 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -74,6 +75,24 @@ namespace SpaManagement
         private void mainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             homeBtn.IsChecked = true;
+        }
+
+        private void homeBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton radioButton = sender as RadioButton;
+            if (radioButton != null)
+            {
+                radioButton.IsEnabled = false;
+            }
+        }
+
+        private void homeBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RadioButton radioButton = sender as RadioButton;
+            if (radioButton != null)
+            {
+                radioButton.IsEnabled = true;
+            }
         }
     }
 
