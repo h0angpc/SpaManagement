@@ -67,7 +67,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Tên" Margin="10 0 0 0" TextWrapping="Wrap" FontWeight="Bold" Height="30" FontSize="20"/>
                         <TextBlock Text="Giá" Margin="60 0 0 0" TextWrapping="Wrap" FontWeight="Bold" Height="30" FontSize="20"/>
-                        <TextBlock Text="SL" Margin="43 0 40 0" TextWrapping="Wrap" FontWeight="Bold" Height="30" FontSize="20"  />
+                        <TextBlock Text="SL" Margin="41 0 34 0" TextWrapping="Wrap" FontWeight="Bold" Height="30" FontSize="20"  />
                         <TextBlock Text="Tổng" TextWrapping="Wrap" FontWeight="Bold" Height="30" FontSize="20" />
                     </StackPanel>
                     <Grid Grid.Row="1" Height="auto" >
@@ -100,8 +100,8 @@
                                                 <!--<TextBlock Foreground="Black" FontFamily="Times New Roman" FontWeight="ExtraBlack" TextWrapping="Wrap" Padding="10 0 0 0" Width="80" FontSize="16" HorizontalAlignment="Left" Text="{Binding Name}"></TextBlock>-->
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Foreground="Black" FontFamily="Times New Roman" FontWeight="ExtraBlack" TextWrapping="Wrap" Width="80" FontSize="16" HorizontalAlignment="Left" Text="{Binding Name}"></TextBlock>
-                                                    <TextBlock Foreground="Black" FontFamily="Times New Roman" Width="90" FontWeight="ExtraBlack" Margin="5 0 0 0" Padding="10 0 0 0" HorizontalAlignment="Left"  FontSize="16" Text="{Binding Price,StringFormat=\{0:N0\}}"></TextBlock>
-                                                    <TextBlock Foreground="Black" Width="50"  FontFamily="Times New Roman" FontWeight="ExtraBlack" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"   FontSize="16"  Text="{Binding Quantity}" ></TextBlock>
+                                                    <TextBlock Foreground="Black" FontFamily="Times New Roman" Width="85" FontWeight="ExtraBlack" Margin="5 0 0 0" Padding="10 0 0 0" HorizontalAlignment="Left"  FontSize="16" Text="{Binding Price,StringFormat=\{0:N0\}}"></TextBlock>
+                                                    <TextBlock Foreground="Black" Width="40"  FontFamily="Times New Roman" FontWeight="ExtraBlack" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"   FontSize="16"  Text="{Binding Quantity}" ></TextBlock>
                                                     <TextBlock Foreground="Black" FontFamily="Times New Roman" FontWeight="ExtraBlack" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left" FontSize="16" Text="{Binding AMOUNT,StringFormat=\{0:N0\}}"></TextBlock>
                                                 </StackPanel>
                                             </Grid>
