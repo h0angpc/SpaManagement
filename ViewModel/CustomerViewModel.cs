@@ -82,7 +82,7 @@ namespace SpaManagement.ViewModel
 
             _CustomerList = CustomerManager.GetCustomers();
             CustomerCollection = CollectionViewSource.GetDefaultView(_CustomerList);
-
+            
             ShowAddCusCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AddCustomerView wd = new AddCustomerView(); wd.ShowDialog();});
 
             ShowEditCusCommand = new RelayCommand<CUSTOMER>((p) => { return p!=null; }, (p) => { 
