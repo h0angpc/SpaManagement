@@ -173,6 +173,7 @@
     <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\CTHDViewModel.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
+    <Compile Include="ViewModel\EditBookingViewModel.cs" />
     <Compile Include="ViewModel\EditCustomerViewModel.cs" />
     <Compile Include="ViewModel\EditEmployeeViewModel.cs" />
     <Compile Include="ViewModel\EditProductViewModel.cs" />
@@ -222,6 +223,9 @@
     </Compile>
     <Compile Include="Views\CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditBookingView.xaml.cs">
+      <DependentUpon>EditBookingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditCustomerView.xaml.cs">
       <DependentUpon>EditCustomerView.xaml</DependentUpon>
@@ -360,6 +364,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditBookingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

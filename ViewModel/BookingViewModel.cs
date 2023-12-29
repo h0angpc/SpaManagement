@@ -75,6 +75,7 @@ namespace SpaManagement.ViewModel
         }
 
         public ICommand ShowAddBookCommand { get; set; }
+        public ICommand ShowEditBookCommand { get; set; }
         private ICollectionView _bookingCollection;
         public ICollectionView BookingCollection
         {
@@ -101,7 +102,18 @@ namespace SpaManagement.ViewModel
                 AddBookingView wd = new AddBookingView();
                 wd.ShowDialog();
             });
-
+            ShowEditBookCommand = new RelayCommand<BOOKING>((p) => { return p != null; }, (p) => {
+                if (p != null)
+                {
+                    var _theBooking = DataProvider.Ins.DB.BOOKINGs.FirstOrDefault(x => x.BK_ID == p.BK_ID);
+                    _theBooking.IS_EDITED = true;
+                    EditBookingViewModel editViewModel = new EditBookingViewModel(p);
+                    editViewModel.EditCompleted += EditViewModel_EditCompleted;
+                    EditBookingView editView = new EditBookingView();
+                    editView.DataContext = editViewModel;
+                    editView.ShowDialog();
+                }
+            });
         }
         private bool FilterByName(object book)
         {
@@ -149,7 +161,12 @@ namespace SpaManagement.ViewModel
             }
             return true;
         }
-       
+        private void EditViewModel_EditCompleted(object sender, EventArgs e)
+        {
+            _BookingList = BookingManager.GetBOOKINGs();
+            BookingCollection = CollectionViewSource.GetDefaultView(_BookingList);
+            BookingCollection.Refresh();
+        }
 
     }
 }

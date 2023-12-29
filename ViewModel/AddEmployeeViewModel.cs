@@ -189,7 +189,7 @@ namespace SpaManagement.ViewModel
                 MessageBoxCustom m = new MessageBoxCustom("Thêm nhân viên mới thành công", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();
                 Name = "";
-                Salary = "";
+                Salary = "0";
                 CCCD = "";
                 Phone = "";
                 Role = "";

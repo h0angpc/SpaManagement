@@ -31,7 +31,7 @@ namespace SpaManagement.ViewModel
         public DateTime SelectedDate { get { return _selectedDate; } set { _selectedDate = value; OnPropertyChanged(); } }
 
         private TimeSpan _selectedStart;
-        public TimeSpan SelectedStart { get { return _selectedStart; } set { _selectedStart = value; OnPropertyChanged(); } }
+        public TimeSpan SelectedStart { get { return _selectedStart; } set { _selectedStart = value; OnPropertyChanged(nameof(SelectedStart)); UpdateEndTime(); } }
 
         private TimeSpan _selectedEnd;
         public TimeSpan SelectedEnd { get { return _selectedEnd; } set { _selectedEnd = value; OnPropertyChanged(); } }
@@ -70,10 +70,8 @@ namespace SpaManagement.ViewModel
             {
                 TimeSpan time = new TimeSpan(hour, 0, 0);
                 StartTime.Add(time);
-                EndTime.Add(time);
             }
-
-
+            
             // Retrieve all employee IDs who have bookings within the selected time frame
             //var bookedEmployees = DataProvider.Ins.DB.BOOKINGs
             //    .Where(booking => booking.END_TIME > DB_startTime && booking.START_TIME < DB_endTime)
@@ -91,7 +89,7 @@ namespace SpaManagement.ViewModel
 
             PropertyChanged += (sender, e) =>
             {
-                if (e.PropertyName == nameof(SelectedStart) || e.PropertyName == nameof(SelectedEnd))
+                if (e.PropertyName == nameof(SelectedStart) || e.PropertyName == nameof(SelectedEnd) || e.PropertyName == nameof(SelectedDate))
                 {
                     // Check if both SelectedStart and SelectedEnd have valid values
                     if (SelectedStart != default(TimeSpan) && SelectedEnd != default(TimeSpan))
@@ -136,31 +134,22 @@ namespace SpaManagement.ViewModel
 
                 CusMA = SelectedCus.Split('|')[0].Trim();
                 CusID = DataProvider.Ins.DB.CUSTOMERs.FirstOrDefault(x => x.CUS_MA == CusMA).CUS_ID;
-
                 SerID = DataProvider.Ins.DB.SERVICESSes.FirstOrDefault(x => x.SER_NAME == SelectedSer).SER_ID;
                 DB_startTime = SelectedDate.Add(SelectedStart);
                 DB_endTime = SelectedDate.Add(SelectedEnd);
-                //MessageBox.Show(DB_startTime.ToString());
-
-
-
-
                 EmpMA = SelectedEmp.Split('|')[0].Trim();
                 EmpID = DataProvider.Ins.DB.EMPLOYEEs.FirstOrDefault(x => x.EMP_MA == EmpMA).EMP_ID;
-
-
-
-
                 var newBooking = new BOOKING()
                 {
                     C_ID = CusID,
                     E_ID = EmpID,
                     S_ID = SerID,
                     START_TIME = DB_startTime,
-                    END_TIME = DB_endTime
+                    END_TIME = DB_endTime,
+                    IS_EDITED = false
                 };
                 DataProvider.Ins.DB.BOOKINGs.Add(newBooking);
-                DataProvider.Ins.DB.SaveChanges();
+                DataProvider.Ins.DB.SaveChanges(); 
                 BookingManager.AddBooking(newBooking);
                 SelectedCus = string.Empty;
                 SelectedEmp = string.Empty;
@@ -184,6 +173,22 @@ namespace SpaManagement.ViewModel
                     w.Close();
                 }
             });
+        }
+        private void UpdateEndTime()
+        {
+            EndTime.Clear(); // Clear existing items in EndTime collection
+
+            if (SelectedStart != null && SelectedStart.Hours >= 8 && SelectedStart.Hours < 20)
+            {
+                int selectedHour = SelectedStart.Hours;
+
+                // Start populating EndTime from the hour after SelectedStart
+                for (int i = selectedHour + 1; i <= 20; i++)
+                {
+                    TimeSpan time = new TimeSpan(i, 0, 0);
+                    EndTime.Add(time);
+                }
+            }
         }
     }
 }
