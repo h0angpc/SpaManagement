@@ -75,56 +75,56 @@
                                          GroupName="MenuBtn" Command="{Binding UpdateViewCommand}" CommandParameter="Home" Checked="homeBtn_Checked" Unchecked="homeBtn_Unchecked">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Home"/>
+                                    <TextBlock Text="Trang Chủ"/>
                                 </StackPanel>
                             </RadioButton>
                             <RadioButton x:Name="cusBtn" Style="{StaticResource menuRadioButton}" 
                                          GroupName="MenuBtn" Command="{Binding UpdateViewCommand}" CommandParameter="Customer">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="AccountGroupOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Customer"/>
+                                    <TextBlock Text="Khách Hàng"/>
                                 </StackPanel>
                             </RadioButton>
                             <RadioButton x:Name="empBtn" Style="{StaticResource menuRadioButton}" 
                                          Command="{Binding UpdateViewCommand}" CommandParameter="Employee" GroupName="MenuBtn">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="AccountMultiple" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Employee"/>
+                                    <TextBlock Text="Nhân Viên"/>
                                 </StackPanel>
                             </RadioButton>
                             <RadioButton x:Name="bookBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn"
                                           Command="{Binding UpdateViewCommand}" CommandParameter="Booking">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Booking"/>
+                                    <TextBlock Text="Đặt Lịch"/>
                                 </StackPanel>
                             </RadioButton>
                             <RadioButton x:Name="serBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn"
                                          Command="{Binding UpdateViewCommand}" CommandParameter="Service">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="Spa" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Service"/>
+                                    <TextBlock Text="Dịch Vụ"/>
                                 </StackPanel>
                             </RadioButton>
                             <RadioButton x:Name="proBtn" Style="{StaticResource menuRadioButton}" GroupName="MenuBtn"
                                          Command="{Binding UpdateViewCommand}" CommandParameter="Product">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="PackageVariantClosed" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Product"/>
+                                    <TextBlock Text="Mỹ Phẩm"/>
                                 </StackPanel>
                             </RadioButton>
                             <RadioButton x:Name="payBtn" Style="{StaticResource menuRadioButton}" 
                                           Command="{Binding UpdateViewCommand}" CommandParameter="Payment" GroupName="MenuBtn" >
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="Shopping" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Payment"/>
+                                    <TextBlock Text="Hóa Đơn"/>
                                 </StackPanel>
                             </RadioButton>
                             <RadioButton x:Name="accBtn" Style="{StaticResource menuRadioButton}"
                                          GroupName="MenuBtn" Command="{Binding UpdateViewCommand}" CommandParameter="Account">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="AccountBox" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Account"/>
+                                    <TextBlock Text="Tài Khoản"/>
                                 </StackPanel>
                             </RadioButton>
                         </StackPanel>
@@ -134,7 +134,7 @@
                              Margin="15 0 15 20" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=mainWindow}">
                             <StackPanel Orientation="Horizontal" >
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="Log out"/>
+                                <TextBlock Text="Đăng Xuất"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>
@@ -143,7 +143,7 @@
             </Grid>
 
             <!--Main Section-->
-            <Grid Grid.Column="1" Margin="20 0 20 10">
+            <Grid Grid.Column="1" Margin="20 0 10 10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="auto"/>
@@ -151,7 +151,7 @@
                 </Grid.RowDefinitions>
                 <!--Control Bar-->
                 <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft"
-                                Margin="-217,0,-20,0" x:Name="controlBar"
+                                Margin="-217,0,-10,0" x:Name="controlBar"
                                 MouseLeftButtonDown="controlBar_MouseLeftButtonDown"
                                 MouseEnter="controlBar_MouseEnter" MouseDown="controlBar_MouseDown"
                                 Panel.ZIndex="2" Grid.Row="0" Background="Transparent"
