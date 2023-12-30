@@ -11,6 +11,7 @@ namespace SpaManagement.Model
         public string ID { get; set; }
         public string Name { get; set; }
         public string Quantity { get; set; }
+        public decimal Price { get; set; }
         public decimal AMOUNT { get; set; } 
     }
 }

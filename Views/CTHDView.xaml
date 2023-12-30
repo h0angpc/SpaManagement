@@ -123,8 +123,9 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding ID}" Header="Mã SP/DV" Width="auto"/>
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Tên SP/DV" Width="*"/>
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding Price, StringFormat=\{0:N0\}}" Header="Giá" Width="auto"/>
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding Quantity}" Header="SL" Width="60"/>
-                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding AMOUNT, StringFormat={}{0:#,0}}" Header="Thành tiền" Width="*"/>
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding AMOUNT, StringFormat=\{0:N0\}}" Header="Thành tiền" Width="*"/>
                     </DataGrid.Columns>
 
                 </DataGrid>

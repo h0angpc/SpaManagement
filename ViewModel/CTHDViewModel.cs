@@ -98,7 +98,7 @@ namespace SpaManagement.ViewModel
             {
                 if (detail != null)
                 {
-                    CTHD ct = new CTHD() { ID = detail.PRODUCT.PRO_MA, Name = detail.PRODUCT.PRO_NAME, Quantity = detail.QUANTITY.ToString(), AMOUNT = detail.PRODUCT.PRICE * detail.QUANTITY };
+                    CTHD ct = new CTHD() { ID = detail.PRODUCT.PRO_MA, Name = detail.PRODUCT.PRO_NAME, Price = detail.PRODUCT.PRICE , Quantity = detail.QUANTITY.ToString(), AMOUNT = detail.PRODUCT.PRICE * detail.QUANTITY };
                     CTHDsource.Add(ct);
                 }
             }
@@ -107,7 +107,7 @@ namespace SpaManagement.ViewModel
             {
                 if (detail != null)
                 {
-                    CTHD ct = new CTHD() { ID = detail.SERVICESS.SER_MA, Name = detail.SERVICESS.SER_NAME, Quantity = detail.QUANTITY.ToString(), AMOUNT = detail.SERVICESS.PRICE * detail.QUANTITY };
+                    CTHD ct = new CTHD() { ID = detail.SERVICESS.SER_MA, Name = detail.SERVICESS.SER_NAME, Price = detail.SERVICESS.PRICE , Quantity = detail.QUANTITY.ToString(), AMOUNT = detail.SERVICESS.PRICE * detail.QUANTITY };
                     CTHDsource.Add(ct);
                 }
             }
