@@ -12,6 +12,30 @@
 
     <Border Background="White" CornerRadius="15">
         <Grid>
+            <Grid.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <StackPanel>
+                                    <Border Padding="{TemplateBinding Padding}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="3">
+                                    </Border>
+                                    <ItemsControl ItemsSource="{TemplateBinding Validation.Errors}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Foreground="Red" Text="{Binding ErrorContent}"/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="85"/>
                 <RowDefinition Height="*"/>
@@ -63,7 +87,7 @@
                             Background="#FF51CFF9"
                             BorderThickness="0"
                             Content="CẬP NHẬT THÔNG TIN"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            IsEnabled="{Binding CanCreate}"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             Command="{Binding UpdateImfomation}"
                             ToolTip="Cập nhật " />

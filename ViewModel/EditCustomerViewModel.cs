@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,6 +20,19 @@ namespace SpaManagement.ViewModel
         public bool IsNumeric(string value)
         {
             return long.TryParse(value, out _);
+        }
+
+        public bool IsValidEmail(string email)
+        {
+            try
+            {
+                var mailAddress = new MailAddress(email);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
 
         public string ID { get; set; }
@@ -49,6 +63,13 @@ namespace SpaManagement.ViewModel
             set
             {
                 _email = value;
+
+                _errorsViewModel.ClearErrors(nameof(Email));
+                if (_email!= "" && !IsValidEmail(_email))
+                {
+                    _errorsViewModel.AddError(nameof(Email), "Email không hợp lệ");
+                }
+
                 OnPropertyChanged(nameof(Email));
             }
         }

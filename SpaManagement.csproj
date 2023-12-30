@@ -481,7 +481,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataBase\QUANLYSPA.sql" />
-    <Resource Include="niaBot.png" />
     <Resource Include="Images\customer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -506,6 +505,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\question1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\spalogo4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Content Include="Model\Model1.Context.tt">

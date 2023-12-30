@@ -1,10 +1,14 @@
 ﻿using SpaManagement.Model;
 using SpaManagement.Views;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Net.Mail;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,8 +16,26 @@ using System.Windows.Input;
 
 namespace SpaManagement.ViewModel
 {
-    public class AccountViewModel:BaseViewModel
+    public class AccountViewModel:BaseViewModel, INotifyDataErrorInfo
     {
+        public bool IsNumeric(string value)
+        {
+            return long.TryParse(value, out _);
+        }
+
+        public bool IsValidEmail(string email)
+        {
+            try
+            {
+                var mailAddress = new MailAddress(email);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
         private string _username;
         public string username { get => _username; set { _username = value; OnPropertyChanged(); } }
         public string _selectedGender;
@@ -26,10 +48,40 @@ namespace SpaManagement.ViewModel
         public DateTime ngaysinh { get => _ngaysinh; set { _ngaysinh = value; OnPropertyChanged(); } }
 
         public string _sdt;
-        public string sdt { get => _sdt; set { _sdt = value; OnPropertyChanged(); } }
+        public string sdt 
+        {
+            get => _sdt; 
+            set
+            {
+                _sdt = value;
+
+                _errorsViewModel.ClearErrors(nameof(sdt));
+                if (!IsNumeric(_sdt) && _sdt != "")
+                {
+                    _errorsViewModel.AddError(nameof(sdt), "Số điện thoại chỉ có các con số");
+                }
+
+                OnPropertyChanged(); 
+            }
+        }
 
         public string _email;
-        public string email { get => _email; set { _email = value; OnPropertyChanged(); } }
+        public string email 
+        {
+            get => _email; 
+            set 
+            {
+                _email = value;
+
+                _errorsViewModel.ClearErrors(nameof(email));
+                if (_email!= "" && !IsValidEmail(_email))
+                {
+                    _errorsViewModel.AddError(nameof(email), "Email không hợp lệ");
+                }
+
+                OnPropertyChanged(); 
+            }
+        }
 
         public string _diachi;
         public string diachi { get => _diachi; set { _diachi = value; OnPropertyChanged(); } }
@@ -37,8 +89,16 @@ namespace SpaManagement.ViewModel
         public ICommand UpdateImfomation { get; set; }
         public ICommand ChangePassword { get; set; }
 
+        public bool CanCreate => !HasErrors;
+
+        private readonly ErrorsViewModel _errorsViewModel;
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+        public bool HasErrors => _errorsViewModel.HasErrors;
+
         public AccountViewModel()
         {
+            _errorsViewModel = new ErrorsViewModel();
             var list = DataProvider.Ins.DB.ACCOUNTs;
             foreach (var account in list)
             {
@@ -56,7 +116,7 @@ namespace SpaManagement.ViewModel
 
             UpdateImfomation = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(hoten) || string.IsNullOrEmpty(ngaysinh.ToString()) || string.IsNullOrEmpty(hoten) || string.IsNullOrEmpty(sdt) || string.IsNullOrEmpty(diachi) || string.IsNullOrEmpty(SelectedGender))
+                if (string.IsNullOrEmpty(hoten) || string.IsNullOrEmpty(ngaysinh.ToString()) || string.IsNullOrEmpty(hoten) || string.IsNullOrEmpty(sdt) || string.IsNullOrEmpty(diachi) || string.IsNullOrEmpty(SelectedGender) || string.IsNullOrEmpty(email))
                 {
                     return false;
                 }
@@ -93,6 +153,19 @@ namespace SpaManagement.ViewModel
                 wd.DataContext = viewModel;
                 wd.ShowDialog();
             });
+
+            _errorsViewModel.ErrorsChanged += _errorsViewModel_ErrorsChanged;
+        }
+
+        private void _errorsViewModel_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
+        {
+            ErrorsChanged?.Invoke(this, e);
+            OnPropertyChanged(nameof(CanCreate));
+        }
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            return _errorsViewModel.GetErrors(propertyName);
         }
     }
 }

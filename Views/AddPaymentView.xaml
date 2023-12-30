@@ -15,7 +15,8 @@
         Background="Transparent"
         Name="AddPayment">
     <Border  CornerRadius="15" Background="White"
-            BorderThickness="1" BorderBrush="#FF33C1F0">
+            BorderThickness="1" BorderBrush="#FF33C1F0"
+             MouseDown="Border_MouseDown">
         <Grid Height="600" VerticalAlignment="Top">
             <Grid.Resources>
                 <Style TargetType="TextBox">
