@@ -23,7 +23,7 @@
                            Margin="20 0 0 0"/>
             </Border>
 
-            <Grid Grid.Row="1" Margin="0 3 0 0">
+            <Grid Grid.Row="1" Margin="0 30 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -98,13 +98,17 @@
                         materialDesign:HintAssist.Hint="Tên Đăng Nhập" 
                         FontSize="30" HorizontalAlignment="Center"
                         Width="300" Margin="0 15 0 0"
+                        materialDesign:TextFieldAssist.UnderlineBrush="#FF51CFF9"
+                        materialDesign:HintAssist.Foreground="#FF51CFF9"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                        Foreground="Black" FontStyle="Italic"  />
+                        Foreground="Black" FontStyle="Italic"  IsReadOnly="True" />
                     <TextBox
                         Text="(không hiển thị)"   
                         materialDesign:HintAssist.Hint="Mật khẩu" 
                         FontSize="30" HorizontalAlignment="Center"
                         Width="300" Margin="0 20 0 0"
+                        materialDesign:TextFieldAssist.UnderlineBrush="#FF51CFF9"
+                        materialDesign:HintAssist.Foreground="#FF51CFF9"                        
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                         Foreground="Black" FontStyle="Italic" IsEnabled="False" />
                     <Button

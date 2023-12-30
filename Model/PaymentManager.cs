@@ -15,12 +15,6 @@ namespace SpaManagement.Model
         {
             return _DatabasePayments;
         }
-        //public static ObservableCollection<CUSTOMER> _DatabaseCustomers = new ObservableCollection<CUSTOMER>(DataProvider.Ins.DB.CUSTOMERs);
-
-        //public static ObservableCollection<CUSTOMER> GetCustomers()
-        //{
-        //    return _DatabaseCustomers;
-        //}
         public static void AddPayment(PAYMENT payment)
         {
            _DatabasePayments.Add(payment);

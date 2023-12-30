@@ -21,5 +21,9 @@ namespace SpaManagement.Model
             _DatabaseEmployees.Add(employee);
 
         }
+        public static void RemoveEmployee(EMPLOYEE employee)
+        {
+            _DatabaseEmployees.Remove(employee);
+        }
     }
 }

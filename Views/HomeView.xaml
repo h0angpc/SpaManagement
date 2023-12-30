@@ -118,7 +118,7 @@
                                     </Style>
                                 </DatePicker.CalendarStyle>
                             </DatePicker>
-                            <CheckBox x:Name="Check" Background="#FF87DCFF" Margin="15 10 0 0" IsChecked="True"
+                            <CheckBox x:Name="Check" Background="#FF87DCFF" Margin="15 10 0 0" IsChecked="False"
                                       Command="{Binding ShowPreChart}" CommandParameter="{Binding ElementName=Check}"/>
                             <TextBlock Margin="5 12 -5 0" Text="Cùng kỳ năm trước" FontSize="12"/>
                         </StackPanel>
@@ -129,7 +129,7 @@
                         <StackPanel Margin="5 30 0 0" Orientation="Horizontal">
                             <TextBlock Text="{Binding TotalRevenue, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:#,0} VND}" FontWeight="Bold" Foreground="#2176F4" FontSize="17"/>
 
-                            <StackPanel Orientation="Horizontal" Margin="10 2.5 0 0">
+                            <StackPanel Orientation="Horizontal" Margin="10 2.5 0 0" Visibility="{Binding Visibility, UpdateSourceTrigger=PropertyChanged}">
                                 <Icon:PackIconMaterial Height="15" Width="13" Margin="0 1.8 5 0">
                                     <Icon:PackIconMaterial.Style>
                                         <Style TargetType="Icon:PackIconMaterial">
@@ -218,7 +218,7 @@
                         <Image Margin="0 0 0 0 " Width="70" Height="70" Source="/Images/service.png"/>
                         <TextBlock Text="Dịch vụ được yêu thích trong tháng" TextAlignment="Center" TextWrapping="Wrap" FontFamily="Montserrat" FontWeight="Bold" FontSize="20" 
                                    HorizontalAlignment="Center" Margin="0 20 0 0" Width="200" />
-                        <DataGrid IsReadOnly="True" Width="200"
+                        <DataGrid IsReadOnly="True" Width="240"
                                   Background="AliceBlue" HorizontalAlignment="Center"
                                   ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
                                   VerticalAlignment="Bottom" 
