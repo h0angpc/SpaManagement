@@ -141,7 +141,7 @@
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         ToolTip="MaterialDesignRaisedButton with Round Corners"
                         Background="#FF33C1F0" BorderThickness="0"
-                        Command="{Binding AddProductCommand}">
+                        Command="{Binding AddProductCommand}" IsEnabled="{Binding CanCreate}">
                         <TextBlock
                             Text="THÊM SẢN PHẨM" />
                     </Button>

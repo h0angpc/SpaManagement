@@ -66,7 +66,7 @@ namespace SpaManagement.ViewModel
 
             StartTime = new ObservableCollection<TimeSpan>();
             EndTime = new ObservableCollection<TimeSpan>();
-            for (int hour = 8; hour <= 20; hour++)
+            for (int hour = 8; hour < 20; hour++)
             {
                 TimeSpan time = new TimeSpan(hour, 0, 0);
                 StartTime.Add(time);
@@ -151,12 +151,10 @@ namespace SpaManagement.ViewModel
                 DataProvider.Ins.DB.BOOKINGs.Add(newBooking);
                 DataProvider.Ins.DB.SaveChanges(); 
                 BookingManager.AddBooking(newBooking);
-                SelectedCus = string.Empty;
-                SelectedEmp = string.Empty;
-                SelectedSer = string.Empty;
+                SelectedCus = null;
+                SelectedEmp = null;
+                SelectedSer = null;
                 SelectedDate = DateTime.Today;
-                SelectedStart = default(TimeSpan);
-                SelectedEnd = default(TimeSpan);
                 MessageBoxCustom m = new MessageBoxCustom("Thêm booking mới thành công", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();
 
@@ -178,9 +176,10 @@ namespace SpaManagement.ViewModel
         {
             EndTime.Clear(); // Clear existing items in EndTime collection
 
-            if (SelectedStart != null && SelectedStart.Hours >= 8 && SelectedStart.Hours < 20)
+            if (SelectedStart != default(TimeSpan) && SelectedStart.Hours >= 8 && SelectedStart.Hours < 20)
             {
                 int selectedHour = SelectedStart.Hours;
+                SelectedEnd = TimeSpan.Zero;
 
                 // Start populating EndTime from the hour after SelectedStart
                 for (int i = selectedHour + 1; i <= 20; i++)

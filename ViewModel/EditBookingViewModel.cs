@@ -145,6 +145,7 @@ namespace SpaManagement.ViewModel
             {
                 var _selectedBooking = DataProvider.Ins.DB.BOOKINGs.FirstOrDefault(x => x.BK_ID == SelectedBooking.BK_ID);
                 _selectedBooking.IS_EDITED = false;
+                DataProvider.Ins.DB.SaveChanges();
                 var w = (p);
                 if (w != null)
                 {
