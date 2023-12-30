@@ -189,6 +189,8 @@ namespace SpaManagement.ViewModel
             TotalRevenue = 0;
             PreTotalRevenue = 0;
             PercentRevenue = "";
+            Visibility = "Hidden";
+
             LoadedPageCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 LoadInfoCard();

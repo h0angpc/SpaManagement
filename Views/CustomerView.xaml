@@ -28,7 +28,7 @@
             </Grid.RowDefinitions>
 
             <!--Page Title-->
-            <TextBlock Text="Customer Management" Grid.Row="0" FontSize="28" FontWeight="Bold"
+            <TextBlock Text="Quản Lý Khách Hàng" Grid.Row="0" FontSize="28" FontWeight="Bold"
        Margin="15 20 0 0" HorizontalAlignment="Left" Foreground="#121518"/>
             <!--Add Button-->
             <Button Style="{StaticResource addButton}" Grid.Row="3" Margin="20,0,0,0" 
@@ -36,7 +36,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11"
                                        Height="11" Margin="0 1 8 0"/>
-                    <TextBlock Text="Add New Customer"/>
+                    <TextBlock Text="Thêm khách hàng"/>
                 </StackPanel>
             </Button>
 
@@ -89,7 +89,7 @@
                     <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding CUS_EMAIL}"/>
                     <DataGridTextColumn Header="SĐT" IsReadOnly="True" Width="*" Binding="{Binding CUS_PHONE}"/>
 
-                    <DataGridTemplateColumn Header="Tính Năng" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn Header="" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -97,7 +97,8 @@
                                             CommandParameter="{Binding SelectedItem,ElementName=customerDataGrid,Mode=TwoWay}">
                                         <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
-                                    <Button x:Name="rmvBtn" Style="{StaticResource gridRemoveButton}" 
+                                    <Button Style="{StaticResource gridRemoveButton}" Command="{Binding DataContext.RemoveCusCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                            CommandParameter="{Binding SelectedItem,ElementName=customerDataGrid,Mode=TwoWay}" 
                                         Margin="5 0 0 0">
                                         <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
@@ -108,35 +109,6 @@
 
                 </DataGrid.Columns>
             </DataGrid>
-            <!--Pagination Section-->
-            <!--<Border Grid.Row="5" HorizontalAlignment="Right" BorderBrush="#dee4ec" BorderThickness="1"
-    CornerRadius="5" Padding="5" Background="White" Margin="0 10 10 10">
-            <StackPanel Orientation="Horizontal">
-
-                <Button Style="{StaticResource pagingButton}">
-                    <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButonIcon}"/>
-                </Button>
-
-                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
-
-                <Button Style="{StaticResource pagingButton}" Content="1" Background="#E55ECBEB" Foreground="White"/>
-                <Button Style="{StaticResource pagingButton}" Content="2"/>
-                <Button Style="{StaticResource pagingButton}" Content="3"/>
-
-                <TextBlock Text="..." Foreground="#6c7682" VerticalAlignment="Center" FontSize="15" Margin="10 0"/>
-
-                <Button Style="{StaticResource pagingButton}" Content="7"/>
-                <Button Style="{StaticResource pagingButton}" Content="8"/>
-                <Button Style="{StaticResource pagingButton}" Content="9"/>
-
-                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
-
-                <Button Style="{StaticResource pagingButton}">
-                    <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButonIcon}"/>
-                </Button>
-
-            </StackPanel>
-        </Border>-->
         </Grid>
     </Border>
 </Page>

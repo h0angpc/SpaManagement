@@ -34,7 +34,7 @@ namespace SpaManagement.Views
                     break;
                 case MessageType.Confirmation:
                     txtTitle.Text = "Xác nhận";
-                    imgIcon.Source = new BitmapImage(new Uri("/Images/question.jpg", UriKind.Relative));
+                    imgIcon.Source = new BitmapImage(new Uri("/Images/question1.png", UriKind.Relative));
                     break;
                 //case MessageType.Success:
                 //    {

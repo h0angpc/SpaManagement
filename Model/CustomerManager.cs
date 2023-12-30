@@ -21,5 +21,10 @@ namespace SpaManagement.Model
             _DatabaseCustomers.Add(customer);
 
         }
+
+        public static void RemoveCustomer(CUSTOMER customer)
+        {
+            _DatabaseCustomers.Remove(customer);
+        }
     }
 }

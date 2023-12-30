@@ -90,7 +90,7 @@ namespace SpaManagement.ViewModel
                 }
                 else
                 {
-                    ErrorVisibility = Visibility.Collapsed;
+                    ErrorVisibility = Visibility.Hidden;
                 }
                 OnPropertyChanged(); 
             });
@@ -106,7 +106,7 @@ namespace SpaManagement.ViewModel
 
             SaveCommand = new RelayCommand<Window>((p) => 
             {
-                if (password1 == "" || password2 == "" || password3 =="")
+                if (password1 == null || password2 == null || password3 == null)
                 {
                     return false;
                 }

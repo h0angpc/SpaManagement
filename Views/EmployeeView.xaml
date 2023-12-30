@@ -26,7 +26,7 @@
             </Grid.RowDefinitions>
 
             <!--Page Title-->
-            <TextBlock Text="Employee Management" Grid.Row="0" FontSize="28" FontWeight="Bold"
+            <TextBlock Text="Quản Lý Nhân Viên" Grid.Row="0" FontSize="28" FontWeight="Bold"
                        Margin="15 20 0 0" HorizontalAlignment="Left" Foreground="#121518"/>
             <!--Add Button-->
             <Button Style="{StaticResource addButton}" Grid.Row="3" Margin="20,0,0,0" 
@@ -34,7 +34,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11"
                                             Height="11" Margin="0 1 8 0"/>
-                    <TextBlock Text="Add New Employee"/>
+                    <TextBlock Text="Thêm Nhân Viên"/>
                 </StackPanel>
             </Button>
 
@@ -76,26 +76,15 @@
                         x:Name="employeeDataGrid" CanUserDeleteRows="True"
                         SelectionMode="Single" ItemsSource="{Binding EmployeeCollection,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <!--<DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{DynamicResource CheckBoxStyle1}">
-                    <DataGridCheckBoxColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <CheckBox Visibility="Visible"  />
-                        </DataTemplate>
-                    </DataGridCheckBoxColumn.HeaderTemplate>
-
-                </DataGridCheckBoxColumn>-->
 
                     <DataGridTextColumn Header="Mã NV" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding EMP_MA}"/>
 
                     <DataGridTextColumn Header="Họ Tên" IsReadOnly="True" Width="*" Binding="{Binding EMP_DISPLAYNAME}"/>
 
                     <DataGridTextColumn Header="Địa Chỉ" IsReadOnly="True" Width="*" Binding="{Binding EMP_ADDRESS}"/>
-                    <!--<DataGridTextColumn Header="SĐT" IsReadOnly="True" Width="auto" Binding="{Binding Phone}"/>
-                    <DataGridTextColumn Header="CCCD" IsReadOnly="True" Width="auto" Binding="{Binding CCCD}"/>
-                    <DataGridTextColumn Header="Lương" IsReadOnly="True" Width="auto" Binding="{Binding Salary}"/>-->
                     <DataGridTextColumn Header="Chức Vụ" IsReadOnly="True" Width="*" Binding="{Binding EMP_ROLE}"/>
 
-                    <DataGridTemplateColumn Header="Tính Năng" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn Header="" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -103,7 +92,8 @@
                                             CommandParameter="{Binding SelectedItem,ElementName=employeeDataGrid,Mode=TwoWay}">
                                         <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
-                                    <Button x:Name="rmvBtn" Style="{StaticResource gridRemoveButton}" 
+                                    <Button Style="{StaticResource gridRemoveButton}" Command="{Binding DataContext.RemoveEmpCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                            CommandParameter="{Binding SelectedItem,ElementName=employeeDataGrid,Mode=TwoWay}" 
                                             Margin="5 0 0 0">
                                         <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
