@@ -42,18 +42,18 @@
                 <Border Grid.Row="1" CornerRadius="15" Margin="5 5 0 5">
                     <Border.Background>
                         <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
-                            <GradientStop Color="#FF11B0D2" Offset="0.558"/>
+                            <GradientStop Color="#FF3AC4E2" Offset="0.558"/>
                             <GradientStop Color="#FF33C1F0"/>
                         </LinearGradientBrush>
                     </Border.Background>
                     <DockPanel>
                         <!--Menu Logo-->
-                        <Border Width="80" Height="80" Padding="3" Background="White"
+                        <Border Width="100" Height="100" Padding="3" Background="White"
                                 CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Center"
-                                Margin="0 30 0 10">
-                            <Ellipse RenderTransformOrigin="0.486,0.895">
+                                Margin="0 25 0 10">
+                            <Ellipse RenderTransformOrigin="0.5,1">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Images/spalogo.jpg"/>
+                                    <ImageBrush ImageSource="/Images/spalogo4.jpg"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Border>
@@ -61,8 +61,8 @@
                         <!--Menu Titles-->
                         <TextBlock Text="Zenith Spa" Foreground="White" FontSize="27"
                                    FontWeight="Bold" DockPanel.Dock="Top"
-                                   TextAlignment="Center" Margin="5 17 0 10" FontFamily="Papyrus"/>
-                        <TextBlock Text="Lối Sống Đẳng Cấp Tinh Hoa Tại Đây" Foreground="#FFCEE7FC" FontSize="16"
+                                   TextAlignment="Center" Margin="5 10 0 10" FontFamily="Papyrus"/>
+                        <TextBlock Text="''Lối Sống Đẳng Cấp Tinh Hoa Tại Đây''" Foreground="#FFCEE7FC" FontSize="16"
                                    FontWeight="SemiBold" DockPanel.Dock="Top" Width="140" TextWrapping="Wrap"
                                    TextAlignment="Center" FontFamily="STFangsong"/>
 
@@ -131,7 +131,7 @@
                         <!--MLogout Button-->
                         <Button Style="{StaticResource menuButton}" 
                              VerticalAlignment="Bottom" DockPanel.Dock="Bottom"
-                             Margin="15 0 15 20" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                             Margin="15 0 15 15" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=mainWindow}">
                             <StackPanel Orientation="Horizontal" >
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Đăng Xuất"/>

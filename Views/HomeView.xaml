@@ -127,7 +127,7 @@
                         <!--Title-->
                         <TextBlock Text=" TỔNG DOANH THU" Style="{StaticResource titleText1}"/>
                         <StackPanel Margin="5 30 0 0" Orientation="Horizontal">
-                            <TextBlock Text="{Binding TotalRevenue, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:#,0} VND}" FontWeight="Bold" Foreground="#2176F4" FontSize="17"/>
+                            <TextBlock Text="{Binding TotalRevenue, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:#,0} VND}" FontWeight="Bold" Foreground="#2176F4" FontSize="19" Margin="3,0,0,0"/>
 
                             <StackPanel Orientation="Horizontal" Margin="10 2.5 0 0" Visibility="{Binding Visibility, UpdateSourceTrigger=PropertyChanged}">
                                 <Icon:PackIconMaterial Height="15" Width="13" Margin="0 1.8 5 0">
