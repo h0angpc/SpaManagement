@@ -107,6 +107,7 @@ namespace SpaManagement.ViewModel
                 {
                     var _theBooking = DataProvider.Ins.DB.BOOKINGs.FirstOrDefault(x => x.BK_ID == p.BK_ID);
                     _theBooking.IS_EDITED = true;
+                    DataProvider.Ins.DB.SaveChanges();
                     EditBookingViewModel editViewModel = new EditBookingViewModel(p);
                     editViewModel.EditCompleted += EditViewModel_EditCompleted;
                     EditBookingView editView = new EditBookingView();
