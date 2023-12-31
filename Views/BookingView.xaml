@@ -37,6 +37,7 @@
                     <TextBlock Text="Add New Booking"/>
                 </StackPanel>
             </Button>
+         
             <!--Seprator-->
             <Separator Height="1" Grid.Row="2" Background="#dae2ea" Margin="15 0 0 10"/>
 
