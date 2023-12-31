@@ -105,6 +105,7 @@ namespace SpaManagement.ViewModel
                 {
                     _errorsViewModel.AddError(nameof(Salary), "Lương nhân viên chỉ có các con số");
                 }
+                else
                 if (_salary != "")
                 {
                     decimal num = decimal.Parse(_salary);
@@ -152,7 +153,7 @@ namespace SpaManagement.ViewModel
 
         public AddEmployeeViewModel()
         {
-            rolesource = new ObservableCollection<string> { "Dịch vụ", "Quản lý", "Bảo vệ" };
+            rolesource = new ObservableCollection<string> { "Dịch vụ", "Bảo vệ" };
 
 
             CloseCommand = new RelayCommand<Window>((p) => { return p == null ? false : true; }, (p) => {
