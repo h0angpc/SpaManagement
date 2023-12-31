@@ -153,7 +153,7 @@ namespace SpaManagement.ViewModel
 
         public AddEmployeeViewModel()
         {
-            rolesource = new ObservableCollection<string> { "Dịch vụ", "Quản lý", "Bảo vệ" };
+            rolesource = new ObservableCollection<string> { "Dịch vụ", "Bảo vệ" };
 
 
             CloseCommand = new RelayCommand<Window>((p) => { return p == null ? false : true; }, (p) => {
