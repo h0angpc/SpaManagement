@@ -34,6 +34,9 @@ namespace SpaManagement.ViewModel
         public bool IsLoaded = false;
         public MainViewModel() 
         {
+            BookingViewModel bkVM = new BookingViewModel();
+            bkVM.DeleteExpiredBooking(bkVM.BookingList, bkVM.BookingCollection);
+
             UpdateViewCommand = new UpdateViewCommand(this);
 
             LogOutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
@@ -58,6 +61,7 @@ namespace SpaManagement.ViewModel
                 }
             }
             );
+
         }
    }
 }

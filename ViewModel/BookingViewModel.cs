@@ -115,6 +115,7 @@ namespace SpaManagement.ViewModel
                     editView.ShowDialog();
                 }
             });
+            //DeleteExpiredBooking(_BookingList, BookingCollection);
         }
         private bool FilterByName(object book)
         {
@@ -169,5 +170,18 @@ namespace SpaManagement.ViewModel
             BookingCollection.Refresh();
         }
 
+        public  void DeleteExpiredBooking(ObservableCollection<BOOKING> _BookingList, ICollectionView BookingCollection)
+        {
+            var expiredBookings = _BookingList.Where(booking => DateTime.Now.Subtract(booking.START_TIME).Days >= 1).ToList();
+
+            foreach (var booking in expiredBookings)
+            {
+                DataProvider.Ins.DB.BOOKINGs.Remove(booking);
+                _BookingList.Remove(booking);
+            }
+
+            DataProvider.Ins.DB.SaveChanges();
+            BookingCollection.Refresh();
+        }
     }
 }
