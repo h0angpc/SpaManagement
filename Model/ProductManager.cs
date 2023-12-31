@@ -21,5 +21,9 @@ namespace SpaManagement.Model
         {
             _DatabaseCustomers.Add(product);   
         }
+        public static void RemoveProduct(PRODUCT product)
+        {
+            _DatabaseCustomers.Remove(product);
+        }
     }
 }

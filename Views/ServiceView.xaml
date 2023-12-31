@@ -27,14 +27,14 @@
             </Grid.RowDefinitions>
 
             <!--Page Title-->
-            <TextBlock Text="Quản Lý Dịch Vụ " Grid.Row="0" FontSize="28" FontWeight="Bold"
+            <TextBlock Text="Dịch Vụ " Grid.Row="0" FontSize="28" FontWeight="Bold"
        Margin="15 20 0 0" HorizontalAlignment="Left" Foreground="#121518"/>
             <!--Add Button-->
             <Button
             Width="150" Grid.Row="3" HorizontalAlignment="Left" Margin="20,0,0,0"
             materialDesign:ButtonAssist.CornerRadius="10"
             Style="{StaticResource MaterialDesignRaisedButton}"
-            ToolTip="MaterialDesignRaisedButton with Round Corners"
+            ToolTip="Thêm"
             Background="#FF33C1F0" BorderThickness="0"
             Command="{Binding ShowAddSerCommand}">
                 <TextBlock
@@ -45,14 +45,22 @@
              Width="150" Grid.Row="3" HorizontalAlignment="Left" Margin="185,0,0,0"
              materialDesign:ButtonAssist.CornerRadius="10"
              Style="{StaticResource MaterialDesignRaisedButton}"
-             ToolTip="MaterialDesignRaisedButton with Round Corners"
+             ToolTip="Sửa"
              Background="#FF33C1F0" BorderThickness="0"
-             Command="{Binding ShowEditSerCommand}" CommandParameter="{Binding SelectedItem, ElementName=ProductListView, Mode=TwoWay}">
+             Command="{Binding ShowEditSerCommand}" CommandParameter="{Binding SelectedItem, ElementName=ServiceListView, Mode=TwoWay}">
                 <TextBlock Text="SỬA DỊCH VỤ"></TextBlock>
             </Button>
-            <!--Info Button-->
             
-
+            <!--Remove Button-->
+            <Button
+             Width="150" Grid.Row="3" HorizontalAlignment="Left" Margin="350,0,0,0"
+             materialDesign:ButtonAssist.CornerRadius="10"
+             Style="{StaticResource MaterialDesignRaisedButton}"
+             ToolTip="Xóa"
+             Background="#FF33C1F0" BorderThickness="0"
+             Command="{Binding RemoveSerCommand}" CommandParameter="{Binding SelectedItem, ElementName=ServiceListView, Mode=TwoWay}">
+                <TextBlock Text="XÓA DỊCH VỤ"></TextBlock>
+            </Button>
             <!--Seprator-->
 
             <Separator Height="1" Grid.Row="2" Background="#dae2ea" Margin="15 0 0 10"/>
@@ -71,7 +79,7 @@
                 </TextBox>
             </Grid>
 
-            <!--Customers Datagrid-->
+            <!--Service ListView-->
             <materialDesign:Card Grid.Row="4">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" >
                     <ListView x:Name="ServiceListView" ItemsSource="{Binding ServiceCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="461" Width="860" Margin="5" Foreground="#FF6B4309"

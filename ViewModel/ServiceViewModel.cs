@@ -22,7 +22,7 @@ namespace SpaManagement.ViewModel
         public ObservableCollection<SERVICESS> ServiceList { get => _ServiceList; set { _ServiceList = value; OnPropertyChanged(); } }
         public ICommand ShowAddSerCommand { get; set; }
         public ICommand ShowEditSerCommand { get; set; }
-
+        public ICommand RemoveSerCommand { get; set; }
         private ICollectionView _servicecollection;
         public ICollectionView ServiceCollection
         {
@@ -84,6 +84,53 @@ namespace SpaManagement.ViewModel
                 EditServiceView wd = new EditServiceView();
                 wd.DataContext = editServiceViewModel;
                 wd.ShowDialog();
+
+            });
+
+            RemoveSerCommand = new RelayCommand<SERVICESS>((p) =>
+            {
+                if (SelectedService == null)
+                    return false;
+                return true;
+            },
+            (p) =>
+            {
+                try
+                {
+                    if (p !=null)
+                    {
+                        PAYMENT_DETAIL_SERVICE pay = DataProvider.Ins.DB.PAYMENT_DETAIL_SERVICE.FirstOrDefault(x => x.S_ID == p.SER_ID);
+                        BOOKING book = DataProvider.Ins.DB.BOOKINGs.FirstOrDefault(x=> x.S_ID == p.SER_ID);
+
+                        if (pay!=null || book != null)
+                        {
+                            MessageBoxCustom m = new MessageBoxCustom("Không thể xóa dịch vụ này vì tồn tại nhiều dữ liệu liên quan", MessageType.Info, MessageButtons.Ok);
+                            m.ShowDialog();
+                        }
+                        else
+                        {
+                            bool? result = new MessageBoxCustom("Xác nhận xóa dịch vụ?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                            if (result.Value)
+                            {
+                                ServiceManager.RemoveServcie(p);
+                                DataProvider.Ins.DB.SERVICESSes.Remove(p);
+
+                                DataProvider.Ins.DB.SaveChanges();
+                                MessageBoxCustom m = new MessageBoxCustom("Xóa dịch vụ thành công!", MessageType.Info, MessageButtons.Ok);
+                                m.ShowDialog();
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBoxCustom m = new MessageBoxCustom(ex.Message, MessageType.Info, MessageButtons.Ok);
+                    m.ShowDialog();
+                }
 
             });
         }

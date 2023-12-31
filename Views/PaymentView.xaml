@@ -28,7 +28,7 @@
             </Grid.RowDefinitions>
 
             <!--Page Title-->
-            <TextBlock Text="Quản Lý Hóa Đơn" Grid.Row="0" FontSize="28" FontWeight="Bold"
+            <TextBlock Text="Hóa Đơn" Grid.Row="0" FontSize="28" FontWeight="Bold"
        Margin="15 20 0 0" HorizontalAlignment="Left" Foreground="#121518"/>
             <!--Add Button-->
             <Button Style="{StaticResource addButton}" Grid.Row="3" Margin="20,0,0,0" 

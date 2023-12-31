@@ -28,7 +28,7 @@
             </Grid.RowDefinitions>
 
             <!--Page Title-->
-            <TextBlock Text="Quản Lý Khách Hàng" Grid.Row="0" FontSize="28" FontWeight="Bold"
+            <TextBlock Text="Khách Hàng" Grid.Row="0" FontSize="28" FontWeight="Bold"
        Margin="15 20 0 0" HorizontalAlignment="Left" Foreground="#121518"/>
             <!--Add Button-->
             <Button Style="{StaticResource addButton}" Grid.Row="3" Margin="20,0,0,0" 
@@ -89,7 +89,7 @@
                     <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding CUS_EMAIL}"/>
                     <DataGridTextColumn Header="SĐT" IsReadOnly="True" Width="*" Binding="{Binding CUS_PHONE}"/>
 
-                    <DataGridTemplateColumn Header="" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn Header="" IsReadOnly="True" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

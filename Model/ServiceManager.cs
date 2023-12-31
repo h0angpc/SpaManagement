@@ -21,5 +21,9 @@ namespace SpaManagement.Model
         {
             _DatabaseService.Add(Service);
         }
+        public static void RemoveServcie(SERVICESS Service)
+        {
+            _DatabaseService.Remove(Service);
+        }
     }
 }
