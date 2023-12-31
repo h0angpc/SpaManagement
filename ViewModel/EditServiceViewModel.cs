@@ -17,31 +17,41 @@ using System.Xml.Linq;
 
 namespace SpaManagement.ViewModel
 {
-    public class EditServiceViewModel : BaseViewModel
+    public class EditServiceViewModel : BaseViewModel,INotifyDataErrorInfo
     {
         private string _ServiceName;
         public string ServiceName { get => _ServiceName; set { _ServiceName = value; OnPropertyChanged(); } }
 
         private string _ServicePrice;
+
         public string ServicePrice
         {
-            get => _ServicePrice;
+            get
+            {
+                return _ServicePrice;
+            }
             set
             {
                 _ServicePrice = value;
+
                 _errorsViewModel.ClearErrors(nameof(ServicePrice));
                 if (!IsNumeric(_ServicePrice.Replace(",", "")) && _ServicePrice != "")
                 {
-                    _errorsViewModel.AddError(nameof(ServicePrice), "Giá dịch vụ chỉ chứa những con số");
+                    _errorsViewModel.AddError(nameof(ServicePrice), "Giá tiền không được chứa chữ cái");
                 }
-
-                decimal num = decimal.Parse(_ServicePrice);
-                _ServicePrice = string.Format("{0:N0}", num);
+                else
+                if (_ServicePrice != "")
+                {
+                    decimal num = decimal.Parse(_ServicePrice);
+                    _ServicePrice = string.Format("{0:N0}", num);
+                }
 
 
                 OnPropertyChanged(nameof(ServicePrice));
             }
         }
+
+
 
         public bool CanCreate => !HasErrors;
 
@@ -56,6 +66,7 @@ namespace SpaManagement.ViewModel
             
             _errorsViewModel = new ErrorsViewModel();
             _errorsViewModel.ErrorsChanged += _errorsViewModel_ErrorsChanged;
+
             ServiceName = SelectedService.SER_NAME;
             ServicePrice = string.Format("{0:N0}", SelectedService.PRICE);
             CloseCommand = new RelayCommand<Window>((p) => { return p == null ? false : true; }, (p) => {

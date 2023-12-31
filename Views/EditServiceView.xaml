@@ -103,7 +103,7 @@
 >
                     </TextBox>
                 </StackPanel>
-                
+
             </Grid>
 
             <!--Confirm Button-->
@@ -115,7 +115,7 @@
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         ToolTip="MaterialDesignRaisedButton with Round Corners"
                         Background="#FF33C1F0" BorderThickness="0"
-                        Command="{Binding EditServiceCommand}" >
+                        Command="{Binding EditServiceCommand}" IsEnabled="{Binding CanCreate}" >
                         <TextBlock
                             Text="CẬP NHẬT DỊCH VỤ" />
                     </Button>
