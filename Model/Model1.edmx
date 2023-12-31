@@ -73,6 +73,7 @@
           <Property Name="PMT_ID" Type="int" Nullable="false" />
           <Property Name="P_ID" Type="int" Nullable="false" />
           <Property Name="QUANTITY" Type="int" Nullable="false" />
+          <Property Name="PRICE" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="PAYMENT_DETAIL_SERVICE">
           <Key>
@@ -82,6 +83,7 @@
           <Property Name="PMT_ID" Type="int" Nullable="false" />
           <Property Name="S_ID" Type="int" Nullable="false" />
           <Property Name="QUANTITY" Type="int" Nullable="false" />
+          <Property Name="PRICE" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="PRODUCT">
           <Key>
@@ -366,6 +368,7 @@
           <Property Name="PMT_ID" Type="Int32" Nullable="false" />
           <Property Name="P_ID" Type="Int32" Nullable="false" />
           <Property Name="QUANTITY" Type="Int32" Nullable="false" />
+          <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="PAYMENT" Relationship="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__4CA06362" FromRole="PAYMENT_DETAIL_PRODUCT" ToRole="PAYMENT" />
           <NavigationProperty Name="PRODUCT" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__P_ID__4D94879B" FromRole="PAYMENT_DETAIL_PRODUCT" ToRole="PRODUCT" />
         </EntityType>
@@ -377,6 +380,7 @@
           <Property Name="PMT_ID" Type="Int32" Nullable="false" />
           <Property Name="S_ID" Type="Int32" Nullable="false" />
           <Property Name="QUANTITY" Type="Int32" Nullable="false" />
+          <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="PAYMENT" Relationship="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__48CFD27E" FromRole="PAYMENT_DETAIL_SERVICE" ToRole="PAYMENT" />
           <NavigationProperty Name="SERVICESS" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__S_ID__49C3F6B7" FromRole="PAYMENT_DETAIL_SERVICE" ToRole="SERVICESS" />
         </EntityType>
@@ -573,6 +577,7 @@
           <EntitySetMapping Name="PAYMENT_DETAIL_PRODUCT">
             <EntityTypeMapping TypeName="QUANLYSPAModel.PAYMENT_DETAIL_PRODUCT">
               <MappingFragment StoreEntitySet="PAYMENT_DETAIL_PRODUCT">
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
                 <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
                 <ScalarProperty Name="P_ID" ColumnName="P_ID" />
                 <ScalarProperty Name="PMT_ID" ColumnName="PMT_ID" />
@@ -582,6 +587,7 @@
           <EntitySetMapping Name="PAYMENT_DETAIL_SERVICE">
             <EntityTypeMapping TypeName="QUANLYSPAModel.PAYMENT_DETAIL_SERVICE">
               <MappingFragment StoreEntitySet="PAYMENT_DETAIL_SERVICE">
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
                 <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
                 <ScalarProperty Name="S_ID" ColumnName="S_ID" />
                 <ScalarProperty Name="PMT_ID" ColumnName="PMT_ID" />

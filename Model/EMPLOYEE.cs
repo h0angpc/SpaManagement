@@ -12,14 +12,13 @@ namespace SpaManagement.Model
     using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
-
-    public partial class EMPLOYEE : BaseViewModel
+    
+    public partial class EMPLOYEE:BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EMPLOYEE()
         {
             this.BOOKINGs = new HashSet<BOOKING>();
-            this.PAYMENT_DETAIL_SERVICE = new HashSet<PAYMENT_DETAIL_SERVICE>();
         }
 
         public int EMP_ID { get; set; }
@@ -94,7 +93,5 @@ namespace SpaManagement.Model
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOKING> BOOKINGs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PAYMENT_DETAIL_SERVICE> PAYMENT_DETAIL_SERVICE { get; set; }
     }
 }

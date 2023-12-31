@@ -259,7 +259,7 @@ namespace SpaManagement.ViewModel
                 {
                     decimal sumprice = int.Parse(ProQuantity) * price_pro;
 
-                    var prodetail = new PAYMENT_DETAIL_PRODUCT() { PMT_ID = payment.PMT_ID, P_ID = MA_Pro, QUANTITY = int.Parse(ProQuantity), AMOUNT = sumprice };
+                    var prodetail = new PAYMENT_DETAIL_PRODUCT() { PMT_ID = payment.PMT_ID, P_ID = MA_Pro, QUANTITY = int.Parse(ProQuantity),PRICE = price_pro , AMOUNT = sumprice };
 
                     DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Add(prodetail);
 
@@ -324,7 +324,7 @@ namespace SpaManagement.ViewModel
                 {
                     decimal sumprice = int.Parse(SerQuantity) * price_ser;
 
-                    var serdetail = new PAYMENT_DETAIL_SERVICE() { PMT_ID = payment.PMT_ID, S_ID = MA_Ser, QUANTITY = int.Parse(SerQuantity), AMOUNT = sumprice };
+                    var serdetail = new PAYMENT_DETAIL_SERVICE() { PMT_ID = payment.PMT_ID, S_ID = MA_Ser, QUANTITY = int.Parse(SerQuantity), PRICE = price_ser, AMOUNT = sumprice };
 
                     DataProvider.Ins.DB.PAYMENT_DETAIL_SERVICE.Add(serdetail);
 
@@ -382,10 +382,6 @@ namespace SpaManagement.ViewModel
                     IsConfirm = true;
                     payment.PRICE = TotalPrice;
                     PaymentManager.AddPayment(payment);
-                    foreach (var prodetail in PM_Detail_Pro)
-                    {
-                        DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Add(prodetail);
-                    }
                     DataProvider.Ins.DB.SaveChanges();
                     bool? @bool = new MessageBoxCustom("Bạn có muốn in hóa đơn không?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
                     if (@bool.Value)

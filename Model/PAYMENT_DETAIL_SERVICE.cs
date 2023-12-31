@@ -12,8 +12,8 @@ namespace SpaManagement.Model
     using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
-
-    public partial class PAYMENT_DETAIL_SERVICE : BaseViewModel
+    
+    public partial class PAYMENT_DETAIL_SERVICE:BaseViewModel
     {
         public int PMT_ID { get; set; }
         public int S_ID { get; set; }
@@ -38,7 +38,8 @@ namespace SpaManagement.Model
                 OnPropertyChanged();
             }
         }
-
+        public decimal PRICE { get; set; }
+    
         public virtual PAYMENT PAYMENT { get; set; }
         public virtual SERVICESS SERVICESS { get; set; }
     }
