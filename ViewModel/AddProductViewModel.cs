@@ -39,21 +39,34 @@ namespace SpaManagement.ViewModel
         }
 
         private string _ProductPrice;
-        public string ProductPrice 
-        { 
-            get => _ProductPrice;
-            set 
-            { 
-                _ProductPrice = value;  
+
+        public string ProductPrice
+        {
+            get
+            {
+                return _ProductPrice;
+            }
+            set
+            {
+                _ProductPrice = value;
+
                 _errorsViewModel.ClearErrors(nameof(ProductPrice));
-                if (!IsNumeric(_ProductPrice) && _ProductPrice != "")
+                if (!IsNumeric(_ProductPrice.Replace(",", "")) && _ProductPrice != "")
                 {
-                    _errorsViewModel.AddError(nameof(ProductPrice), "Giá tiền chỉ có các con số");
+                    _errorsViewModel.AddError(nameof(ProductPrice), "Giá tiền không được chứa chữ cái");
                 }
+                else
+                if (_ProductPrice != "")
+                {
+                    decimal num = decimal.Parse(_ProductPrice);
+                    _ProductPrice = string.Format("{0:N0}", num);
+                }
+
 
                 OnPropertyChanged(nameof(ProductPrice));
             }
         }
+
 
         private string _ProductLink;
         public string ProductLink 

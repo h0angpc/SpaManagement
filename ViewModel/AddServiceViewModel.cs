@@ -26,7 +26,7 @@ namespace SpaManagement.ViewModel
             {
                 _ServiceName = value;
                 _errorsViewModel.ClearErrors(nameof(ServiceName));
-                if (!CheckIfProductExist(_ServiceName) && _ServiceName != "")
+                if (!CheckIfServiceExist(_ServiceName) && _ServiceName != "")
                 {
                     _errorsViewModel.AddError(nameof(ServiceName), "Dịch vụ đã tồn tại");
                 }
@@ -38,20 +38,30 @@ namespace SpaManagement.ViewModel
         private string _ServicePrice;
         public string ServicePrice
         {
-            get => _ServicePrice;
+            get
+            {
+                return _ServicePrice;
+            }
             set
             {
                 _ServicePrice = value;
+
                 _errorsViewModel.ClearErrors(nameof(ServicePrice));
-                if (!IsNumeric(_ServicePrice) && _ServicePrice != "")
+                if (!IsNumeric(_ServicePrice.Replace(",", "")) && _ServicePrice != "")
                 {
-                    _errorsViewModel.AddError(nameof(ServicePrice), "Giá tiền chỉ có các con số");
+                    _errorsViewModel.AddError(nameof(ServicePrice), "Giá tiền không được chứa chữ cái");
                 }
+                else
+                if (_ServicePrice != "")
+                {
+                    decimal num = decimal.Parse(_ServicePrice);
+                    _ServicePrice = string.Format("{0:N0}", num);
+                }
+
 
                 OnPropertyChanged(nameof(ServicePrice));
             }
         }
-
         public bool CanCreate => !HasErrors;
 
         private readonly ErrorsViewModel _errorsViewModel;
@@ -105,17 +115,9 @@ namespace SpaManagement.ViewModel
         {
             return _errorsViewModel.GetErrors(propertyName);
         }
-        public static bool IsValidUri(string uri)
-        {
-            if (!Uri.IsWellFormedUriString(uri, UriKind.Absolute))
-                return false;
-            Uri tmp;
-            if (!Uri.TryCreate(uri, UriKind.Absolute, out tmp))
-                return false;
-            return tmp.Scheme == Uri.UriSchemeHttp || tmp.Scheme == Uri.UriSchemeHttps;
-        }
+       
 
-        public bool CheckIfProductExist(string ProductName)
+        public bool CheckIfServiceExist(string ServiceName)
         {
             var displaylist = DataProvider.Ins.DB.SERVICESSes.Where(x => x.SER_NAME == ServiceName);
             if (displaylist == null || displaylist.Count() != 0)

@@ -100,6 +100,8 @@ namespace SpaManagement.ViewModel
             }, (p) =>
             {
                 AddBookingView wd = new AddBookingView();
+                AddBookingViewModel vm = new AddBookingViewModel();
+                wd.DataContext = vm;
                 wd.ShowDialog();
             });
             ShowEditBookCommand = new RelayCommand<BOOKING>((p) => { return p != null; }, (p) => {

@@ -23,20 +23,28 @@ namespace SpaManagement.ViewModel
         public string ProductName { get => _ProductName; set { _ProductName = value; OnPropertyChanged(); } }
 
         private string _ProductPrice;
+
         public string ProductPrice
         {
-            get => _ProductPrice;
+            get
+            {
+                return _ProductPrice;
+            }
             set
             {
                 _ProductPrice = value;
+
                 _errorsViewModel.ClearErrors(nameof(ProductPrice));
                 if (!IsNumeric(_ProductPrice.Replace(",", "")) && _ProductPrice != "")
                 {
-                    _errorsViewModel.AddError(nameof(ProductPrice), "Giá sản phẩm chỉ chứa những con số");
+                    _errorsViewModel.AddError(nameof(ProductPrice), "Giá tiền không được chứa chữ cái");
                 }
-
-                decimal num = decimal.Parse(_ProductPrice);
-                _ProductPrice = string.Format("{0:N0}", num);
+                else
+                if (_ProductPrice != "")
+                {
+                    decimal num = decimal.Parse(_ProductPrice);
+                    _ProductPrice = string.Format("{0:N0}", num);
+                }
 
 
                 OnPropertyChanged(nameof(ProductPrice));
