@@ -34,6 +34,7 @@ namespace SpaManagement.ViewModel
         public ICommand ShowAddProCommand { get; set; }
         public ICommand ShowEditProCommand { get; set; }
         public ICommand LinkButtonCommand { get; set; }
+        public ICommand RemoveProCommand { get; set; }
 
         private string _textToFilter;
 
@@ -118,6 +119,52 @@ namespace SpaManagement.ViewModel
                 EditProductView wd = new EditProductView();
                 wd.DataContext = editProductViewModel;
                 wd.ShowDialog();
+
+            });
+
+            RemoveProCommand = new RelayCommand<PRODUCT>((p) =>
+            {
+                if (SelectedProduct == null)
+                    return false;
+                return true;
+            },
+            (p) =>
+            {
+                try
+                {
+                    if (p !=null)
+                    {
+                        PAYMENT_DETAIL_PRODUCT pay = DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.FirstOrDefault(x => x.P_ID == p.PRO_ID);
+
+                        if (pay!=null)
+                        {
+                            MessageBoxCustom m = new MessageBoxCustom("Không thể xóa sản phẩm này vì tồn tại nhiều dữ liệu liên quan", MessageType.Info, MessageButtons.Ok);
+                            m.ShowDialog();
+                        }
+                        else
+                        {
+                            bool? result = new MessageBoxCustom("Xác nhận xóa sản phẩm?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                            if (result.Value)
+                            {
+                                ProductManager.RemoveProduct(p);
+                                DataProvider.Ins.DB.PRODUCTs.Remove(p);
+
+                                DataProvider.Ins.DB.SaveChanges();
+                                MessageBoxCustom m = new MessageBoxCustom("Xóa sản phẩm thành công!", MessageType.Info, MessageButtons.Ok);
+                                m.ShowDialog();
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBoxCustom m = new MessageBoxCustom(ex.Message, MessageType.Info, MessageButtons.Ok);
+                    m.ShowDialog();
+                }
 
             });
         }

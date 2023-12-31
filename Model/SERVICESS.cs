@@ -21,13 +21,13 @@ namespace SpaManagement.Model
             this.BOOKINGs = new HashSet<BOOKING>();
             this.PAYMENT_DETAIL_SERVICE = new HashSet<PAYMENT_DETAIL_SERVICE>();
         }
-    
+
         public int SER_ID { get; set; }
         public string SER_MA { get; set; }
         private string _SER_NAME;
         public string SER_NAME
         {
-            get => _SER_NAME ;
+            get => _SER_NAME;
             set
             {
                 _SER_NAME = value;
@@ -35,7 +35,7 @@ namespace SpaManagement.Model
             }
         }
         private decimal _PRICE;
-        public decimal PRICE 
+        public decimal PRICE
         {
             get => _PRICE;
             set
@@ -45,7 +45,7 @@ namespace SpaManagement.Model
             }
 
         }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOKING> BOOKINGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
