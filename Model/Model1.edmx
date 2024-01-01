@@ -40,7 +40,7 @@
           <Property Name="CUS_NAME" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CUS_PHONE" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="CUS_EMAIL" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="CUS_SEX" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="CUS_GENDER" Type="nvarchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="EMPLOYEE">
           <Key>
@@ -94,6 +94,26 @@
           <Property Name="PRO_NAME" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PRO_IMG" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PRO_URL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="INSTOCK" Type="int" Nullable="false" />
+          <Property Name="PRICE_OUT" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RECEIPT">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REC_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
+          <Property Name="REC_DATE" Type="datetime" Nullable="false" />
+          <Property Name="REC_PRICE" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RECEIPT_DETAIL">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="int" Nullable="false" />
+          <Property Name="P_ID" Type="int" Nullable="false" />
+          <Property Name="QUANTITY" Type="int" Nullable="false" />
           <Property Name="PRICE" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="SERVICESS">
@@ -105,7 +125,7 @@
           <Property Name="SER_NAME" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PRICE" Type="money" Nullable="false" />
         </EntityType>
-        <Association Name="FK__BOOKING__C_ID__412EB0B6">
+        <Association Name="FK__BOOKING__C_ID__4222D4EF">
           <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
           <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -117,7 +137,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BOOKING__E_ID__3F466844">
+        <Association Name="FK__BOOKING__E_ID__403A8C7D">
           <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
           <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -129,7 +149,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BOOKING__S_ID__403A8C7D">
+        <Association Name="FK__BOOKING__S_ID__412EB0B6">
           <End Role="SERVICESS" Type="Self.SERVICESS" Multiplicity="1" />
           <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -141,7 +161,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PAYMENT__C_ID__45F365D3">
+        <Association Name="FK__PAYMENT__C_ID__46E78A0C">
           <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
           <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -153,7 +173,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PAYMENT_D__PMT_I__48CFD27E">
+        <Association Name="FK__PAYMENT_D__PMT_I__49C3F6B7">
           <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="1" />
           <End Role="PAYMENT_DETAIL_SERVICE" Type="Self.PAYMENT_DETAIL_SERVICE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -165,7 +185,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PAYMENT_D__PMT_I__4CA06362">
+        <Association Name="FK__PAYMENT_D__PMT_I__4D94879B">
           <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="1" />
           <End Role="PAYMENT_DETAIL_PRODUCT" Type="Self.PAYMENT_DETAIL_PRODUCT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -177,7 +197,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PAYMENT_DE__P_ID__4D94879B">
+        <Association Name="FK__PAYMENT_DE__P_ID__4E88ABD4">
           <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
           <End Role="PAYMENT_DETAIL_PRODUCT" Type="Self.PAYMENT_DETAIL_PRODUCT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -189,7 +209,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PAYMENT_DE__S_ID__49C3F6B7">
+        <Association Name="FK__PAYMENT_DE__S_ID__4AB81AF0">
           <End Role="SERVICESS" Type="Self.SERVICESS" Multiplicity="1" />
           <End Role="PAYMENT_DETAIL_SERVICE" Type="Self.PAYMENT_DETAIL_SERVICE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -198,6 +218,30 @@
             </Principal>
             <Dependent Role="PAYMENT_DETAIL_SERVICE">
               <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RECEIPT_D__REC_I__534D60F1">
+          <End Role="RECEIPT" Type="Self.RECEIPT" Multiplicity="1" />
+          <End Role="RECEIPT_DETAIL" Type="Self.RECEIPT_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECEIPT">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="RECEIPT_DETAIL">
+              <PropertyRef Name="REC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RECEIPT_DE__P_ID__5441852A">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="RECEIPT_DETAIL" Type="Self.RECEIPT_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRO_ID" />
+            </Principal>
+            <Dependent Role="RECEIPT_DETAIL">
+              <PropertyRef Name="P_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -210,38 +254,48 @@
           <EntitySet Name="PAYMENT_DETAIL_PRODUCT" EntityType="Self.PAYMENT_DETAIL_PRODUCT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PAYMENT_DETAIL_SERVICE" EntityType="Self.PAYMENT_DETAIL_SERVICE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RECEIPT" EntityType="Self.RECEIPT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RECEIPT_DETAIL" EntityType="Self.RECEIPT_DETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SERVICESS" EntityType="Self.SERVICESS" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__BOOKING__C_ID__412EB0B6" Association="Self.FK__BOOKING__C_ID__412EB0B6">
+          <AssociationSet Name="FK__BOOKING__C_ID__4222D4EF" Association="Self.FK__BOOKING__C_ID__4222D4EF">
             <End Role="CUSTOMER" EntitySet="CUSTOMER" />
             <End Role="BOOKING" EntitySet="BOOKING" />
           </AssociationSet>
-          <AssociationSet Name="FK__BOOKING__E_ID__3F466844" Association="Self.FK__BOOKING__E_ID__3F466844">
+          <AssociationSet Name="FK__BOOKING__E_ID__403A8C7D" Association="Self.FK__BOOKING__E_ID__403A8C7D">
             <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
             <End Role="BOOKING" EntitySet="BOOKING" />
           </AssociationSet>
-          <AssociationSet Name="FK__BOOKING__S_ID__403A8C7D" Association="Self.FK__BOOKING__S_ID__403A8C7D">
+          <AssociationSet Name="FK__BOOKING__S_ID__412EB0B6" Association="Self.FK__BOOKING__S_ID__412EB0B6">
             <End Role="SERVICESS" EntitySet="SERVICESS" />
             <End Role="BOOKING" EntitySet="BOOKING" />
           </AssociationSet>
-          <AssociationSet Name="FK__PAYMENT__C_ID__45F365D3" Association="Self.FK__PAYMENT__C_ID__45F365D3">
+          <AssociationSet Name="FK__PAYMENT__C_ID__46E78A0C" Association="Self.FK__PAYMENT__C_ID__46E78A0C">
             <End Role="CUSTOMER" EntitySet="CUSTOMER" />
             <End Role="PAYMENT" EntitySet="PAYMENT" />
           </AssociationSet>
-          <AssociationSet Name="FK__PAYMENT_D__PMT_I__48CFD27E" Association="Self.FK__PAYMENT_D__PMT_I__48CFD27E">
+          <AssociationSet Name="FK__PAYMENT_D__PMT_I__49C3F6B7" Association="Self.FK__PAYMENT_D__PMT_I__49C3F6B7">
             <End Role="PAYMENT" EntitySet="PAYMENT" />
             <End Role="PAYMENT_DETAIL_SERVICE" EntitySet="PAYMENT_DETAIL_SERVICE" />
           </AssociationSet>
-          <AssociationSet Name="FK__PAYMENT_D__PMT_I__4CA06362" Association="Self.FK__PAYMENT_D__PMT_I__4CA06362">
+          <AssociationSet Name="FK__PAYMENT_D__PMT_I__4D94879B" Association="Self.FK__PAYMENT_D__PMT_I__4D94879B">
             <End Role="PAYMENT" EntitySet="PAYMENT" />
             <End Role="PAYMENT_DETAIL_PRODUCT" EntitySet="PAYMENT_DETAIL_PRODUCT" />
           </AssociationSet>
-          <AssociationSet Name="FK__PAYMENT_DE__P_ID__4D94879B" Association="Self.FK__PAYMENT_DE__P_ID__4D94879B">
+          <AssociationSet Name="FK__PAYMENT_DE__P_ID__4E88ABD4" Association="Self.FK__PAYMENT_DE__P_ID__4E88ABD4">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
             <End Role="PAYMENT_DETAIL_PRODUCT" EntitySet="PAYMENT_DETAIL_PRODUCT" />
           </AssociationSet>
-          <AssociationSet Name="FK__PAYMENT_DE__S_ID__49C3F6B7" Association="Self.FK__PAYMENT_DE__S_ID__49C3F6B7">
+          <AssociationSet Name="FK__PAYMENT_DE__S_ID__4AB81AF0" Association="Self.FK__PAYMENT_DE__S_ID__4AB81AF0">
             <End Role="SERVICESS" EntitySet="SERVICESS" />
             <End Role="PAYMENT_DETAIL_SERVICE" EntitySet="PAYMENT_DETAIL_SERVICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RECEIPT_D__REC_I__534D60F1" Association="Self.FK__RECEIPT_D__REC_I__534D60F1">
+            <End Role="RECEIPT" EntitySet="RECEIPT" />
+            <End Role="RECEIPT_DETAIL" EntitySet="RECEIPT_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RECEIPT_DE__P_ID__5441852A" Association="Self.FK__RECEIPT_DE__P_ID__5441852A">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="RECEIPT_DETAIL" EntitySet="RECEIPT_DETAIL" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -257,38 +311,48 @@
           <EntitySet Name="PAYMENT_DETAIL_PRODUCT" EntityType="QUANLYSPAModel.PAYMENT_DETAIL_PRODUCT" />
           <EntitySet Name="PAYMENT_DETAIL_SERVICE" EntityType="QUANLYSPAModel.PAYMENT_DETAIL_SERVICE" />
           <EntitySet Name="PRODUCTs" EntityType="QUANLYSPAModel.PRODUCT" />
+          <EntitySet Name="RECEIPTs" EntityType="QUANLYSPAModel.RECEIPT" />
+          <EntitySet Name="RECEIPT_DETAIL" EntityType="QUANLYSPAModel.RECEIPT_DETAIL" />
           <EntitySet Name="SERVICESSes" EntityType="QUANLYSPAModel.SERVICESS" />
-          <AssociationSet Name="FK__BOOKING__C_ID__412EB0B6" Association="QUANLYSPAModel.FK__BOOKING__C_ID__412EB0B6">
+          <AssociationSet Name="FK__BOOKING__C_ID__4222D4EF" Association="QUANLYSPAModel.FK__BOOKING__C_ID__4222D4EF">
             <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
             <End Role="BOOKING" EntitySet="BOOKINGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__BOOKING__E_ID__3F466844" Association="QUANLYSPAModel.FK__BOOKING__E_ID__3F466844">
+          <AssociationSet Name="FK__BOOKING__E_ID__403A8C7D" Association="QUANLYSPAModel.FK__BOOKING__E_ID__403A8C7D">
             <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
             <End Role="BOOKING" EntitySet="BOOKINGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__BOOKING__S_ID__403A8C7D" Association="QUANLYSPAModel.FK__BOOKING__S_ID__403A8C7D">
+          <AssociationSet Name="FK__BOOKING__S_ID__412EB0B6" Association="QUANLYSPAModel.FK__BOOKING__S_ID__412EB0B6">
             <End Role="SERVICESS" EntitySet="SERVICESSes" />
             <End Role="BOOKING" EntitySet="BOOKINGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__PAYMENT__C_ID__45F365D3" Association="QUANLYSPAModel.FK__PAYMENT__C_ID__45F365D3">
+          <AssociationSet Name="FK__PAYMENT__C_ID__46E78A0C" Association="QUANLYSPAModel.FK__PAYMENT__C_ID__46E78A0C">
             <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
             <End Role="PAYMENT" EntitySet="PAYMENTs" />
           </AssociationSet>
-          <AssociationSet Name="FK__PAYMENT_D__PMT_I__48CFD27E" Association="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__48CFD27E">
+          <AssociationSet Name="FK__PAYMENT_D__PMT_I__49C3F6B7" Association="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__49C3F6B7">
             <End Role="PAYMENT" EntitySet="PAYMENTs" />
             <End Role="PAYMENT_DETAIL_SERVICE" EntitySet="PAYMENT_DETAIL_SERVICE" />
           </AssociationSet>
-          <AssociationSet Name="FK__PAYMENT_D__PMT_I__4CA06362" Association="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__4CA06362">
+          <AssociationSet Name="FK__PAYMENT_D__PMT_I__4D94879B" Association="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__4D94879B">
             <End Role="PAYMENT" EntitySet="PAYMENTs" />
             <End Role="PAYMENT_DETAIL_PRODUCT" EntitySet="PAYMENT_DETAIL_PRODUCT" />
           </AssociationSet>
-          <AssociationSet Name="FK__PAYMENT_DE__P_ID__4D94879B" Association="QUANLYSPAModel.FK__PAYMENT_DE__P_ID__4D94879B">
+          <AssociationSet Name="FK__PAYMENT_DE__P_ID__4E88ABD4" Association="QUANLYSPAModel.FK__PAYMENT_DE__P_ID__4E88ABD4">
             <End Role="PRODUCT" EntitySet="PRODUCTs" />
             <End Role="PAYMENT_DETAIL_PRODUCT" EntitySet="PAYMENT_DETAIL_PRODUCT" />
           </AssociationSet>
-          <AssociationSet Name="FK__PAYMENT_DE__S_ID__49C3F6B7" Association="QUANLYSPAModel.FK__PAYMENT_DE__S_ID__49C3F6B7">
+          <AssociationSet Name="FK__PAYMENT_DE__S_ID__4AB81AF0" Association="QUANLYSPAModel.FK__PAYMENT_DE__S_ID__4AB81AF0">
             <End Role="SERVICESS" EntitySet="SERVICESSes" />
             <End Role="PAYMENT_DETAIL_SERVICE" EntitySet="PAYMENT_DETAIL_SERVICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RECEIPT_DE__P_ID__5441852A" Association="QUANLYSPAModel.FK__RECEIPT_DE__P_ID__5441852A">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="RECEIPT_DETAIL" EntitySet="RECEIPT_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RECEIPT_D__REC_I__534D60F1" Association="QUANLYSPAModel.FK__RECEIPT_D__REC_I__534D60F1">
+            <End Role="RECEIPT" EntitySet="RECEIPTs" />
+            <End Role="RECEIPT_DETAIL" EntitySet="RECEIPT_DETAIL" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ACCOUNT">
@@ -316,9 +380,9 @@
           <Property Name="START_TIME" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="END_TIME" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="IS_EDITED" Type="Boolean" />
-          <NavigationProperty Name="CUSTOMER" Relationship="QUANLYSPAModel.FK__BOOKING__C_ID__412EB0B6" FromRole="BOOKING" ToRole="CUSTOMER" />
-          <NavigationProperty Name="EMPLOYEE" Relationship="QUANLYSPAModel.FK__BOOKING__E_ID__3F466844" FromRole="BOOKING" ToRole="EMPLOYEE" />
-          <NavigationProperty Name="SERVICESS" Relationship="QUANLYSPAModel.FK__BOOKING__S_ID__403A8C7D" FromRole="BOOKING" ToRole="SERVICESS" />
+          <NavigationProperty Name="CUSTOMER" Relationship="QUANLYSPAModel.FK__BOOKING__C_ID__4222D4EF" FromRole="BOOKING" ToRole="CUSTOMER" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="QUANLYSPAModel.FK__BOOKING__E_ID__403A8C7D" FromRole="BOOKING" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="SERVICESS" Relationship="QUANLYSPAModel.FK__BOOKING__S_ID__412EB0B6" FromRole="BOOKING" ToRole="SERVICESS" />
         </EntityType>
         <EntityType Name="CUSTOMER">
           <Key>
@@ -329,9 +393,9 @@
           <Property Name="CUS_NAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CUS_PHONE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CUS_EMAIL" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CUS_SEX" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BOOKINGs" Relationship="QUANLYSPAModel.FK__BOOKING__C_ID__412EB0B6" FromRole="CUSTOMER" ToRole="BOOKING" />
-          <NavigationProperty Name="PAYMENTs" Relationship="QUANLYSPAModel.FK__PAYMENT__C_ID__45F365D3" FromRole="CUSTOMER" ToRole="PAYMENT" />
+          <Property Name="CUS_GENDER" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BOOKINGs" Relationship="QUANLYSPAModel.FK__BOOKING__C_ID__4222D4EF" FromRole="CUSTOMER" ToRole="BOOKING" />
+          <NavigationProperty Name="PAYMENTs" Relationship="QUANLYSPAModel.FK__PAYMENT__C_ID__46E78A0C" FromRole="CUSTOMER" ToRole="PAYMENT" />
         </EntityType>
         <EntityType Name="EMPLOYEE">
           <Key>
@@ -345,7 +409,7 @@
           <Property Name="EMP_CCCD" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="EMP_SALARY" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="EMP_ROLE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BOOKINGs" Relationship="QUANLYSPAModel.FK__BOOKING__E_ID__3F466844" FromRole="EMPLOYEE" ToRole="BOOKING" />
+          <NavigationProperty Name="BOOKINGs" Relationship="QUANLYSPAModel.FK__BOOKING__E_ID__403A8C7D" FromRole="EMPLOYEE" ToRole="BOOKING" />
         </EntityType>
         <EntityType Name="PAYMENT">
           <Key>
@@ -356,9 +420,9 @@
           <Property Name="C_ID" Type="Int32" Nullable="false" />
           <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="DAYTIME" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="CUSTOMER" Relationship="QUANLYSPAModel.FK__PAYMENT__C_ID__45F365D3" FromRole="PAYMENT" ToRole="CUSTOMER" />
-          <NavigationProperty Name="PAYMENT_DETAIL_SERVICE" Relationship="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__48CFD27E" FromRole="PAYMENT" ToRole="PAYMENT_DETAIL_SERVICE" />
-          <NavigationProperty Name="PAYMENT_DETAIL_PRODUCT" Relationship="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__4CA06362" FromRole="PAYMENT" ToRole="PAYMENT_DETAIL_PRODUCT" />
+          <NavigationProperty Name="CUSTOMER" Relationship="QUANLYSPAModel.FK__PAYMENT__C_ID__46E78A0C" FromRole="PAYMENT" ToRole="CUSTOMER" />
+          <NavigationProperty Name="PAYMENT_DETAIL_SERVICE" Relationship="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__49C3F6B7" FromRole="PAYMENT" ToRole="PAYMENT_DETAIL_SERVICE" />
+          <NavigationProperty Name="PAYMENT_DETAIL_PRODUCT" Relationship="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__4D94879B" FromRole="PAYMENT" ToRole="PAYMENT_DETAIL_PRODUCT" />
         </EntityType>
         <EntityType Name="PAYMENT_DETAIL_PRODUCT">
           <Key>
@@ -369,8 +433,8 @@
           <Property Name="P_ID" Type="Int32" Nullable="false" />
           <Property Name="QUANTITY" Type="Int32" Nullable="false" />
           <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="PAYMENT" Relationship="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__4CA06362" FromRole="PAYMENT_DETAIL_PRODUCT" ToRole="PAYMENT" />
-          <NavigationProperty Name="PRODUCT" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__P_ID__4D94879B" FromRole="PAYMENT_DETAIL_PRODUCT" ToRole="PRODUCT" />
+          <NavigationProperty Name="PAYMENT" Relationship="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__4D94879B" FromRole="PAYMENT_DETAIL_PRODUCT" ToRole="PAYMENT" />
+          <NavigationProperty Name="PRODUCT" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__P_ID__4E88ABD4" FromRole="PAYMENT_DETAIL_PRODUCT" ToRole="PRODUCT" />
         </EntityType>
         <EntityType Name="PAYMENT_DETAIL_SERVICE">
           <Key>
@@ -381,8 +445,8 @@
           <Property Name="S_ID" Type="Int32" Nullable="false" />
           <Property Name="QUANTITY" Type="Int32" Nullable="false" />
           <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="PAYMENT" Relationship="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__48CFD27E" FromRole="PAYMENT_DETAIL_SERVICE" ToRole="PAYMENT" />
-          <NavigationProperty Name="SERVICESS" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__S_ID__49C3F6B7" FromRole="PAYMENT_DETAIL_SERVICE" ToRole="SERVICESS" />
+          <NavigationProperty Name="PAYMENT" Relationship="QUANLYSPAModel.FK__PAYMENT_D__PMT_I__49C3F6B7" FromRole="PAYMENT_DETAIL_SERVICE" ToRole="PAYMENT" />
+          <NavigationProperty Name="SERVICESS" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__S_ID__4AB81AF0" FromRole="PAYMENT_DETAIL_SERVICE" ToRole="SERVICESS" />
         </EntityType>
         <EntityType Name="PRODUCT">
           <Key>
@@ -393,8 +457,32 @@
           <Property Name="PRO_NAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PRO_IMG" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PRO_URL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="INSTOCK" Type="Int32" Nullable="false" />
+          <Property Name="PRICE_OUT" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="PAYMENT_DETAIL_PRODUCT" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__P_ID__4E88ABD4" FromRole="PRODUCT" ToRole="PAYMENT_DETAIL_PRODUCT" />
+          <NavigationProperty Name="RECEIPT_DETAIL" Relationship="QUANLYSPAModel.FK__RECEIPT_DE__P_ID__5441852A" FromRole="PRODUCT" ToRole="RECEIPT_DETAIL" />
+        </EntityType>
+        <EntityType Name="RECEIPT">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REC_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="REC_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="REC_PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="RECEIPT_DETAIL" Relationship="QUANLYSPAModel.FK__RECEIPT_D__REC_I__534D60F1" FromRole="RECEIPT" ToRole="RECEIPT_DETAIL" />
+        </EntityType>
+        <EntityType Name="RECEIPT_DETAIL">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="Int32" Nullable="false" />
+          <Property Name="P_ID" Type="Int32" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int32" Nullable="false" />
           <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="PAYMENT_DETAIL_PRODUCT" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__P_ID__4D94879B" FromRole="PRODUCT" ToRole="PAYMENT_DETAIL_PRODUCT" />
+          <NavigationProperty Name="PRODUCT" Relationship="QUANLYSPAModel.FK__RECEIPT_DE__P_ID__5441852A" FromRole="RECEIPT_DETAIL" ToRole="PRODUCT" />
+          <NavigationProperty Name="RECEIPT" Relationship="QUANLYSPAModel.FK__RECEIPT_D__REC_I__534D60F1" FromRole="RECEIPT_DETAIL" ToRole="RECEIPT" />
         </EntityType>
         <EntityType Name="SERVICESS">
           <Key>
@@ -404,10 +492,10 @@
           <Property Name="SER_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="SER_NAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="BOOKINGs" Relationship="QUANLYSPAModel.FK__BOOKING__S_ID__403A8C7D" FromRole="SERVICESS" ToRole="BOOKING" />
-          <NavigationProperty Name="PAYMENT_DETAIL_SERVICE" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__S_ID__49C3F6B7" FromRole="SERVICESS" ToRole="PAYMENT_DETAIL_SERVICE" />
+          <NavigationProperty Name="BOOKINGs" Relationship="QUANLYSPAModel.FK__BOOKING__S_ID__412EB0B6" FromRole="SERVICESS" ToRole="BOOKING" />
+          <NavigationProperty Name="PAYMENT_DETAIL_SERVICE" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__S_ID__4AB81AF0" FromRole="SERVICESS" ToRole="PAYMENT_DETAIL_SERVICE" />
         </EntityType>
-        <Association Name="FK__BOOKING__C_ID__412EB0B6">
+        <Association Name="FK__BOOKING__C_ID__4222D4EF">
           <End Type="QUANLYSPAModel.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
           <End Type="QUANLYSPAModel.BOOKING" Role="BOOKING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -419,7 +507,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BOOKING__E_ID__3F466844">
+        <Association Name="FK__BOOKING__E_ID__403A8C7D">
           <End Type="QUANLYSPAModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="1" />
           <End Type="QUANLYSPAModel.BOOKING" Role="BOOKING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -431,7 +519,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BOOKING__S_ID__403A8C7D">
+        <Association Name="FK__BOOKING__S_ID__412EB0B6">
           <End Type="QUANLYSPAModel.SERVICESS" Role="SERVICESS" Multiplicity="1" />
           <End Type="QUANLYSPAModel.BOOKING" Role="BOOKING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -443,7 +531,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PAYMENT__C_ID__45F365D3">
+        <Association Name="FK__PAYMENT__C_ID__46E78A0C">
           <End Type="QUANLYSPAModel.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
           <End Type="QUANLYSPAModel.PAYMENT" Role="PAYMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -455,7 +543,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PAYMENT_D__PMT_I__48CFD27E">
+        <Association Name="FK__PAYMENT_D__PMT_I__49C3F6B7">
           <End Type="QUANLYSPAModel.PAYMENT" Role="PAYMENT" Multiplicity="1" />
           <End Type="QUANLYSPAModel.PAYMENT_DETAIL_SERVICE" Role="PAYMENT_DETAIL_SERVICE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -467,7 +555,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PAYMENT_D__PMT_I__4CA06362">
+        <Association Name="FK__PAYMENT_D__PMT_I__4D94879B">
           <End Type="QUANLYSPAModel.PAYMENT" Role="PAYMENT" Multiplicity="1" />
           <End Type="QUANLYSPAModel.PAYMENT_DETAIL_PRODUCT" Role="PAYMENT_DETAIL_PRODUCT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -479,7 +567,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PAYMENT_DE__P_ID__4D94879B">
+        <Association Name="FK__PAYMENT_DE__P_ID__4E88ABD4">
           <End Type="QUANLYSPAModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
           <End Type="QUANLYSPAModel.PAYMENT_DETAIL_PRODUCT" Role="PAYMENT_DETAIL_PRODUCT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -491,7 +579,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PAYMENT_DE__S_ID__49C3F6B7">
+        <Association Name="FK__PAYMENT_DE__S_ID__4AB81AF0">
           <End Type="QUANLYSPAModel.SERVICESS" Role="SERVICESS" Multiplicity="1" />
           <End Type="QUANLYSPAModel.PAYMENT_DETAIL_SERVICE" Role="PAYMENT_DETAIL_SERVICE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -500,6 +588,30 @@
             </Principal>
             <Dependent Role="PAYMENT_DETAIL_SERVICE">
               <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RECEIPT_DE__P_ID__5441852A">
+          <End Type="QUANLYSPAModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="QUANLYSPAModel.RECEIPT_DETAIL" Role="RECEIPT_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRO_ID" />
+            </Principal>
+            <Dependent Role="RECEIPT_DETAIL">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RECEIPT_D__REC_I__534D60F1">
+          <End Type="QUANLYSPAModel.RECEIPT" Role="RECEIPT" Multiplicity="1" />
+          <End Type="QUANLYSPAModel.RECEIPT_DETAIL" Role="RECEIPT_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECEIPT">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="RECEIPT_DETAIL">
+              <PropertyRef Name="REC_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -540,7 +652,7 @@
           <EntitySetMapping Name="CUSTOMERs">
             <EntityTypeMapping TypeName="QUANLYSPAModel.CUSTOMER">
               <MappingFragment StoreEntitySet="CUSTOMER">
-                <ScalarProperty Name="CUS_SEX" ColumnName="CUS_SEX" />
+                <ScalarProperty Name="CUS_GENDER" ColumnName="CUS_GENDER" />
                 <ScalarProperty Name="CUS_EMAIL" ColumnName="CUS_EMAIL" />
                 <ScalarProperty Name="CUS_PHONE" ColumnName="CUS_PHONE" />
                 <ScalarProperty Name="CUS_NAME" ColumnName="CUS_NAME" />
@@ -597,12 +709,33 @@
           <EntitySetMapping Name="PRODUCTs">
             <EntityTypeMapping TypeName="QUANLYSPAModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
-                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="PRICE_OUT" ColumnName="PRICE_OUT" />
+                <ScalarProperty Name="INSTOCK" ColumnName="INSTOCK" />
                 <ScalarProperty Name="PRO_URL" ColumnName="PRO_URL" />
                 <ScalarProperty Name="PRO_IMG" ColumnName="PRO_IMG" />
                 <ScalarProperty Name="PRO_NAME" ColumnName="PRO_NAME" />
                 <ScalarProperty Name="PRO_MA" ColumnName="PRO_MA" />
                 <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECEIPTs">
+            <EntityTypeMapping TypeName="QUANLYSPAModel.RECEIPT">
+              <MappingFragment StoreEntitySet="RECEIPT">
+                <ScalarProperty Name="REC_PRICE" ColumnName="REC_PRICE" />
+                <ScalarProperty Name="REC_DATE" ColumnName="REC_DATE" />
+                <ScalarProperty Name="REC_MA" ColumnName="REC_MA" />
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECEIPT_DETAIL">
+            <EntityTypeMapping TypeName="QUANLYSPAModel.RECEIPT_DETAIL">
+              <MappingFragment StoreEntitySet="RECEIPT_DETAIL">
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

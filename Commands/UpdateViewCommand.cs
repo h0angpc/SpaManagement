@@ -58,6 +58,10 @@ namespace SpaManagement.Commands
             {
                 viewModel.SelectedViewModel = new BookingViewModel();
             }
+            else if (parameter.ToString() == "Receipt")
+            {
+                viewModel.SelectedViewModel = new ReceiptViewModel();
+            }
         }
     }
 }

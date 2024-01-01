@@ -123,7 +123,7 @@ namespace SpaManagement.ViewModel
         {
             _errorsViewModel = new ErrorsViewModel();
             Name = SelectedCus.CUS_NAME;
-            Gender = SelectedCus.CUS_SEX;
+            Gender = SelectedCus.CUS_GENDER;
             Phone = SelectedCus.CUS_PHONE;
             Email = SelectedCus.CUS_EMAIL;
             ID = SelectedCus.CUS_MA;
@@ -146,7 +146,7 @@ namespace SpaManagement.ViewModel
                     return false;
                 }
 
-                var displaylist = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_NAME == Name && x.CUS_EMAIL == Email && x.CUS_SEX == Gender &&x.CUS_PHONE == Phone);
+                var displaylist = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_NAME == Name && x.CUS_EMAIL == Email && x.CUS_GENDER == Gender &&x.CUS_PHONE == Phone);
                 if (displaylist == null || displaylist.Count() != 0)
                 {
                     return false;
@@ -159,14 +159,14 @@ namespace SpaManagement.ViewModel
 
                 customer.CUS_NAME = Name;
                 customer.CUS_EMAIL = Email;
-                customer.CUS_SEX = Gender;
+                customer.CUS_GENDER = Gender;
                 customer.CUS_PHONE = Phone;
 
                 DataProvider.Ins.DB.SaveChanges();
 
                 SelectedCus.CUS_NAME = Name;    
                 SelectedCus.CUS_EMAIL = Email;
-                SelectedCus.CUS_SEX = Gender;
+                SelectedCus.CUS_GENDER = Gender;
                 SelectedCus.CUS_PHONE = Phone;
                 MessageBoxCustom m = new MessageBoxCustom("Cập nhật thành công!", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();

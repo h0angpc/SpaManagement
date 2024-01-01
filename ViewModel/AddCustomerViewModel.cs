@@ -140,7 +140,7 @@ namespace SpaManagement.ViewModel
                     return false;
                 }
 
-                var displaylist = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_NAME == Name && x.CUS_EMAIL == Email && x.CUS_SEX == Gender);
+                var displaylist = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_NAME == Name && x.CUS_EMAIL == Email && x.CUS_GENDER == Gender);
                 if (displaylist == null || displaylist.Count() != 0)
                 {
                     return false;
@@ -149,7 +149,7 @@ namespace SpaManagement.ViewModel
                 return true;
             }, (p) => 
             {
-                var customer = new CUSTOMER() {CUS_NAME = Name, CUS_EMAIL = Email, CUS_SEX = Gender, CUS_PHONE = Phone};
+                var customer = new CUSTOMER() {CUS_NAME = Name, CUS_EMAIL = Email, CUS_GENDER = Gender, CUS_PHONE = Phone};
 
                 DataProvider.Ins.DB.CUSTOMERs.Add(customer);
                 DataProvider.Ins.DB.SaveChanges();

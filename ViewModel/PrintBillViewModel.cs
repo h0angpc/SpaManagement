@@ -64,7 +64,7 @@ namespace SpaManagement.ViewModel
             {
                 if (detail != null)
                 {
-                    Bill ct = new Bill() {  Name = detail.PRODUCT.PRO_NAME, Price = detail.PRODUCT.PRICE, Quantity = detail.QUANTITY.ToString(), AMOUNT = detail.PRODUCT.PRICE * detail.QUANTITY };
+                    Bill ct = new Bill() {  Name = detail.PRODUCT.PRO_NAME, Price = detail.PRODUCT.PRICE_OUT, Quantity = detail.QUANTITY.ToString(), AMOUNT = detail.PRODUCT.PRICE_OUT * detail.QUANTITY };
                     Billsource.Add(ct);
                 }
             }

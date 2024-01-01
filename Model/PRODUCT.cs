@@ -12,18 +12,18 @@ namespace SpaManagement.Model
     using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
-
-    public partial class PRODUCT : BaseViewModel
+    
+    public partial class PRODUCT:BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCT()
         {
             this.PAYMENT_DETAIL_PRODUCT = new HashSet<PAYMENT_DETAIL_PRODUCT>();
+            this.RECEIPT_DETAIL = new HashSet<RECEIPT_DETAIL>();
         }
-
+    
         public int PRO_ID { get; set; }
         public string PRO_MA { get; set; }
-
         private string _PRO_NAME;
         public string PRO_NAME
         {
@@ -57,18 +57,31 @@ namespace SpaManagement.Model
             }
         }
 
-        private decimal _PRICE;
-        public decimal PRICE
+        private int _INSTOCK;
+        public int INSTOCK 
         {
-            get => _PRICE;
+            get => _INSTOCK;
             set
             {
-                _PRICE = value;
+                _INSTOCK = value;
                 OnPropertyChanged();
             }
         }
 
+        private decimal _PRICE_OUT;
+        public decimal PRICE_OUT 
+        {
+            get => _PRICE_OUT;
+            set
+            {
+                _PRICE_OUT = value;
+                OnPropertyChanged();
+            }
+        }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PAYMENT_DETAIL_PRODUCT> PAYMENT_DETAIL_PRODUCT { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RECEIPT_DETAIL> RECEIPT_DETAIL { get; set; }
     }
 }

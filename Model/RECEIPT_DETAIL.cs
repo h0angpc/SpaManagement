@@ -13,9 +13,9 @@ namespace SpaManagement.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class PAYMENT_DETAIL_PRODUCT:BaseViewModel
+    public partial class RECEIPT_DETAIL:BaseViewModel
     {
-        public int PMT_ID { get; set; }
+        public int REC_ID { get; set; }
         public int P_ID { get; set; }
 
         private int _QUANTITY;
@@ -28,20 +28,29 @@ namespace SpaManagement.Model
                 OnPropertyChanged();
             }
         }
+        private decimal _PRICE;
+        public decimal PRICE
+        {
+            get => _PRICE;
+            set
+            {
+                _PRICE = value;
+                OnPropertyChanged();
+            }
+        }
 
         private decimal _AMOUNT;
         public decimal AMOUNT
         {
-            get => _AMOUNT;
+            get => PRICE * QUANTITY;
             set
             {
                 _AMOUNT = value;
                 OnPropertyChanged();
             }
         }
-        public decimal PRICE { get; set; }
 
-        public virtual PAYMENT PAYMENT { get; set; }
         public virtual PRODUCT PRODUCT { get; set; }
+        public virtual RECEIPT RECEIPT { get; set; }
     }
 }

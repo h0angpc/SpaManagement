@@ -91,7 +91,7 @@ namespace SpaManagement.ViewModel
 
                     if (selectedPrice != null)
                     {
-                        price_pro  = selectedPrice.PRICE;
+                        price_pro  = selectedPrice.PRICE_OUT;
                         PricePro = string.Format("{0:N0}", price_pro);
                     }
                 }
@@ -239,7 +239,7 @@ namespace SpaManagement.ViewModel
 
             AddProDetailCommand = new RelayCommand<object>((p) => 
             {
-                if (string.IsNullOrEmpty(SelectedProduct) || ProQuantity == "0" || string.IsNullOrEmpty(ProQuantity) || !IsNumeric(ProQuantity)) 
+                if (string.IsNullOrEmpty(SelectedProduct) || ProQuantity == "0" || string.IsNullOrEmpty(ProQuantity) || !IsNumeric(ProQuantity) || int.Parse(ProQuantity) == 0) 
                 {
                     return false;
                 }

@@ -5,7 +5,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         
         WindowStartupLocation="CenterScreen" 
-        Height="780" Width="1200"
+        Height="800" Width="1300"
         x:Name="mainWindow"
         
         Loaded="mainWindow_Loaded"
@@ -67,7 +67,7 @@
                                    TextAlignment="Center" FontFamily="STFangsong"/>
 
                         <!--Menu Seprator-->
-                        <Separator Margin="23" DockPanel.Dock="Top" Height="0.8"
+                        <Separator Margin="23 23 23 10" DockPanel.Dock="Top" Height="0.8"
                                    Background="AliceBlue"/>
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top">
@@ -120,6 +120,13 @@
                                     <TextBlock Text="Hóa Đơn"/>
                                 </StackPanel>
                             </RadioButton>
+                            <RadioButton x:Name="recBtn" Style="{StaticResource menuRadioButton}"
+                                        GroupName="MenuBtn" Command="{Binding UpdateViewCommand}" CommandParameter="Receipt">
+                                <StackPanel Orientation="Horizontal" >
+                                    <Icon:PackIconMaterial Kind="Import" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Nhập hàng"/>
+                                </StackPanel>
+                            </RadioButton>
                             <RadioButton x:Name="accBtn" Style="{StaticResource menuRadioButton}"
                                          GroupName="MenuBtn" Command="{Binding UpdateViewCommand}" CommandParameter="Account">
                                 <StackPanel Orientation="Horizontal" >
@@ -131,7 +138,7 @@
                         <!--MLogout Button-->
                         <Button Style="{StaticResource menuButton}" 
                              VerticalAlignment="Bottom" DockPanel.Dock="Bottom"
-                             Margin="15 0 15 15" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                             Margin="15 0 15 5" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=mainWindow}">
                             <StackPanel Orientation="Horizontal" >
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Đăng Xuất"/>

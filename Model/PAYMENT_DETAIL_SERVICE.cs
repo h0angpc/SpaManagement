@@ -39,7 +39,7 @@ namespace SpaManagement.Model
             }
         }
         public decimal PRICE { get; set; }
-    
+
         public virtual PAYMENT PAYMENT { get; set; }
         public virtual SERVICESS SERVICESS { get; set; }
     }
