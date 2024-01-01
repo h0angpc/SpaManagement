@@ -38,22 +38,22 @@ namespace SpaManagement.ViewModel
             } 
         }
 
-        private string _ProductPrice;
-        public string ProductPrice 
-        { 
-            get => _ProductPrice;
-            set 
-            { 
-                _ProductPrice = value;  
-                _errorsViewModel.ClearErrors(nameof(ProductPrice));
-                if (!IsNumeric(_ProductPrice) && _ProductPrice != "")
-                {
-                    _errorsViewModel.AddError(nameof(ProductPrice), "Giá tiền chỉ có các con số");
-                }
+        //private string _ProductPrice;
+        //public string ProductPrice 
+        //{ 
+        //    get => _ProductPrice;
+        //    set 
+        //    { 
+        //        _ProductPrice = value;  
+        //        _errorsViewModel.ClearErrors(nameof(ProductPrice));
+        //        if (!IsNumeric(_ProductPrice) && _ProductPrice != "")
+        //        {
+        //            _errorsViewModel.AddError(nameof(ProductPrice), "Giá tiền chỉ có các con số");
+        //        }
 
-                OnPropertyChanged(nameof(ProductPrice));
-            }
-        }
+        //        OnPropertyChanged(nameof(ProductPrice));
+        //    }
+        //}
 
         private string _ProductLink;
         public string ProductLink 
@@ -92,7 +92,7 @@ namespace SpaManagement.ViewModel
 
             AddProductCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(ProductName) || string.IsNullOrEmpty(ProductLink) || string.IsNullOrEmpty(ProductPrice) || ProductImage == null)
+                if (string.IsNullOrEmpty(ProductName) || string.IsNullOrEmpty(ProductLink) || ProductImage == null)
                 {
                     return false;
                 }
@@ -104,7 +104,7 @@ namespace SpaManagement.ViewModel
                 return true;
             }, (p) =>
             {
-                var Product = new PRODUCT() { PRO_NAME = ProductName, PRICE_OUT = Convert.ToDecimal(ProductPrice), PRO_URL = ProductLink, PRO_IMG = ProductImage.ToString() };
+                var Product = new PRODUCT() { PRO_NAME = ProductName, PRICE_OUT = 0, PRO_URL = ProductLink, PRO_IMG = ProductImage.ToString() };
 
                 DataProvider.Ins.DB.PRODUCTs.Add(Product);
                 DataProvider.Ins.DB.SaveChanges();
@@ -114,7 +114,7 @@ namespace SpaManagement.ViewModel
                 MessageBoxCustom m = new MessageBoxCustom("Thêm sản phẩm mới thành công", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();
                 ProductName = "";
-                ProductPrice = "";
+                //ProductPrice = "";
                 ProductLink = "";
                 ProductImage = null;
             });
