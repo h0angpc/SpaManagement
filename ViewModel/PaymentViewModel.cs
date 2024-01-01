@@ -149,7 +149,7 @@ namespace SpaManagement.ViewModel
             if (!string.IsNullOrEmpty(TextToFilter))
             {
                 var payDetail = pay as PAYMENT;
-                payDetail.DAYTIME = DateTime.Now;
+                //payDetail.DAYTIME = DateTime.Now;
                 if (payDetail != null)
                 {
                     string filtertext = TextToFilter.ToLower();

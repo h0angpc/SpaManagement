@@ -202,7 +202,7 @@ namespace SpaManagement.ViewModel
             TotalPrice = 0;
             IsConfirm = false;
 
-            prosource = new ObservableCollection<string>(DataProvider.Ins.DB.PRODUCTs.Select(x => x.PRO_MA + " | " + x.PRO_NAME).ToList());
+            prosource = new ObservableCollection<string>(DataProvider.Ins.DB.PRODUCTs.Select(x => x.PRO_MA + " | " + x.PRO_NAME + " | " + x.INSTOCK).ToList());
             sersource = new ObservableCollection<string>(DataProvider.Ins.DB.SERVICESSes.Select(x => x.SER_MA + " | " + x.SER_NAME).ToList());
 
             Ma_Ten_KH = SelectedCus;
@@ -251,6 +251,11 @@ namespace SpaManagement.ViewModel
                     return false;
                 }
 
+                var pro = DataProvider.Ins.DB.PRODUCTs.FirstOrDefault(x => x.PRO_ID == MA_Pro);
+                if (int.Parse(ProQuantity) > pro.INSTOCK)
+                {
+                    return false;
+                }
                 return true;
             }, (p) =>
             {
@@ -382,6 +387,13 @@ namespace SpaManagement.ViewModel
                     IsConfirm = true;
                     payment.PRICE = TotalPrice;
                     PaymentManager.AddPayment(payment);
+
+                    foreach (var detail in PM_Detail_Pro)
+                    {
+                        PRODUCT pro = DataProvider.Ins.DB.PRODUCTs.FirstOrDefault(x => x.PRO_ID == detail.P_ID);
+                        pro.INSTOCK -= detail.QUANTITY;
+                    }
+
                     DataProvider.Ins.DB.SaveChanges();
                     bool? @bool = new MessageBoxCustom("Bạn có muốn in hóa đơn không?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
                     if (@bool.Value)

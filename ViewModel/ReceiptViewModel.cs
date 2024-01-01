@@ -15,6 +15,42 @@ namespace SpaManagement.ViewModel
 {
     public class ReceiptViewModel:BaseViewModel
     {
+        public ObservableCollection<string> filtersource { get; set; }
+        private string _TextToFilter;
+        public string TextToFilter
+        {
+            get { return _TextToFilter; }
+            set
+            {
+                _TextToFilter = value;
+                OnPropertyChanged(nameof(TextToFilter));
+
+                if (Filtercondition == "Ngày")
+                {
+                    ReceiptCollection.Filter = FilterByDate;
+                }
+                else if (Filtercondition == "Mã NH")
+                {
+                    ReceiptCollection.Filter = FilterByMA;
+                }
+
+            }
+        }
+
+        private string _filtercondition;
+        public string Filtercondition
+        {
+            get
+            {
+                return _filtercondition;
+            }
+            set
+            {
+                _filtercondition = value;
+                OnPropertyChanged(nameof(Filtercondition));
+            }
+        }
+
         private ObservableCollection<RECEIPT> _ReceiptList;
         public ObservableCollection<RECEIPT> ReceiptList
         {
@@ -40,6 +76,8 @@ namespace SpaManagement.ViewModel
 
         public ReceiptViewModel()
         {
+            filtersource = new ObservableCollection<string> { "Mã NH", "Ngày" };
+            Filtercondition = "Ngày"; // Default value
 
             _ReceiptList = ReceiptManager.GetReceipt();
 
@@ -72,6 +110,39 @@ namespace SpaManagement.ViewModel
                 }
 
             });
+        }
+
+        private bool FilterByMA(object rec)
+        {
+            if (!string.IsNullOrEmpty(TextToFilter))
+            {
+                var recDetail = rec as RECEIPT;
+                if (recDetail != null)
+                {
+                    string filtertext = TextToFilter.ToLower();
+                    string reciptMA = recDetail.REC_MA.ToLower();
+
+                    return reciptMA.Contains(filtertext);
+                }
+            }
+            return true;
+        }
+
+        private bool FilterByDate(object rec)
+        {
+            if (!string.IsNullOrEmpty(TextToFilter))
+            {
+                var recDetail = rec as RECEIPT;
+                //recDetail.REC_DATE = DateTime.Now;
+                if (recDetail != null)
+                {
+                    string filtertext = TextToFilter.ToLower();
+                    string date = recDetail.REC_DATE.ToString("dd/MM/yyyy HH:mm:ss");
+
+                    return date.Contains(filtertext);
+                }
+            }
+            return true;
         }
     }
 }

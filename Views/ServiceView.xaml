@@ -98,21 +98,21 @@
                         CornerRadius="10" Padding="5">
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition Height="150"></RowDefinition>
+                                            <RowDefinition Height="55"></RowDefinition>
                                             <RowDefinition Height="auto"></RowDefinition>
                                             <RowDefinition Height="auto"></RowDefinition>
                                         </Grid.RowDefinitions>
-                                        <Grid Grid.Row="0" Width="160" Height="130">
+                                        <Grid Grid.Row="0" Width="160">
                                             <Grid.Background>
                                                 <ImageBrush ImageSource="pack://application:,,/Images/Service.jpg"></ImageBrush>
                                             </Grid.Background>
                                         </Grid>
                                         <Grid Grid.Row="1">
-                                            <TextBlock  FontWeight="Bold" Margin="5" FontSize="12" HorizontalAlignment="Center" Grid.Row="0" Text="{Binding SER_NAME}"></TextBlock>
+                                            <TextBlock TextAlignment="Center" MaxWidth="160" TextWrapping="Wrap" FontWeight="Bold" Margin="5 5 5 5" FontSize="14" HorizontalAlignment="Center" Text="{Binding SER_NAME}"></TextBlock>
                                         </Grid>
-                                        <Grid Grid.Row="2">
-                                            <TextBlock HorizontalAlignment="Center" FontSize="11" Grid.Row="1" Text="{Binding PRICE,StringFormat=\{0:N0\}}"></TextBlock>
+                                        <Grid Grid.Row="3">
+                                            <TextBlock HorizontalAlignment="Center" FontSize="13" Grid.Row="1" Text="{Binding PRICE,StringFormat=\{0:N0\} VND}"></TextBlock>
                                         </Grid>
                                     </Grid>
                                 </Border>
