@@ -38,7 +38,7 @@
 
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock Text="Hi, Welcome back" Style="{StaticResource titleText}"/>
-                        <TextBlock Text="Hope you have had a great using experiecne" Style="{StaticResource normalText}"/>
+                        <TextBlock Text="Hope you have had a great using experience" Style="{StaticResource normalText}"/>
                     </StackPanel>
 
                 </Grid>
