@@ -1,14 +1,14 @@
 ﻿-- Dữ liệu cho bảng EMPLOYEE
 INSERT INTO EMPLOYEE (EMP_DISPLAYNAME, EMP_ADDRESS, EMP_PHONE, EMP_CCCD, EMP_SALARY, EMP_ROLE)
 VALUES
-  (N'Nguyễn Văn A', N'123 Đường ABC, Quận XYZ, Thành phố Hồ Chí Minh', N'0901234567', N'123456789', 5000000, N'Quản lý'),
-  (N'Trần Thị B', N'456 Đường XYZ, Quận ABC, Thành phố Hà Nội', N'0987654321', N'987654321', 6000000, N'Nhân viên'),
-  (N'Lê Văn C', N'789 Đường LMN, Quận DEF, Thành phố Đà Nẵng', N'0123456789', N'987654321', 7000000, N'Nhân viên'),
-  (N'Hồ Thị D', N'321 Đường KLM, Quận GHI, Thành phố Hải Phòng', N'0123456789', N'123456789', 5500000, N'Tư vấn'),
+  (N'Nguyễn Văn A', N'123 Đường ABC, Quận XYZ, Thành phố Hồ Chí Minh', N'0901234567', N'123456789', 5000000, N'Dịch vụ'),
+  (N'Trần Thị B', N'456 Đường XYZ, Quận ABC, Thành phố Hà Nội', N'0987654321', N'987654321', 6000000, N'Dịch vụ'),
+  (N'Lê Văn C', N'789 Đường LMN, Quận DEF, Thành phố Đà Nẵng', N'0123456789', N'987654321', 7000000, N'Dịch vụ'),
+  (N'Hồ Thị D', N'321 Đường KLM, Quận GHI, Thành phố Hải Phòng', N'0123456789', N'123456789', 5500000, N'Bảo vệ'),
   (N'Phạm Văn E', N'555 Đường UVW, Quận XYZ, Thành phố Cần Thơ', N'0909876543', N'123456789', 8000000, N'Bảo vệ');
 
 -- Dữ liệu cho bảng CUSTOMER
-INSERT INTO CUSTOMER (CUS_NAME, CUS_PHONE, CUS_EMAIL, CUS_SEX)
+INSERT INTO CUSTOMER (CUS_NAME, CUS_PHONE, CUS_EMAIL, CUS_GENDER)
 VALUES
   (N'Nguyễn Thị A', N'0901111111', N'kh1@example.com', N'Nữ'),
   (N'Trần Văn B', N'0912222222', N'kh2@example.com', N'Nam'),
@@ -17,13 +17,16 @@ VALUES
   (N'Phạm Thị E', N'0945555555', N'kh5@example.com', N'Nữ');
 
 -- Dữ liệu cho bảng PRODUCT
-INSERT INTO PRODUCT (PRO_NAME, PRO_IMG, PRO_URL, PRICE)
+INSERT INTO PRODUCT (PRO_NAME, PRO_IMG, PRO_URL, INSTOCK, PRICE_OUT)
 VALUES
-  (N'Kem dưỡng', 'https://www.shiseido.com.vn/on/demandware.static/-/Sites-itemmaster_shiseido/default/dw5abf09dc/images/products/18285/18285_S_01.jpg', 'https://www.shiseido.com.vn/vi/essential-energy-kem-d%C6%B0%E1%BB%A1ng-%E1%BA%A9m-essential-energy-hydrating-cream-1011828510.html', 100000),
-  (N'Bông tẩy trang', 'https://ipek.vn/Uploads/images/anh_web1/bong-tay-trang-ipek-sieu-mem-min-100-30-mieng.jpg','https://ipek.vn/bong-tay-trang-ipek-tho-nhi-ky-100-30-mieng', 40000),
-  (N'Nước tẩy trang', 'https://vonpreen.com/wp-content/uploads/2018/12/nuoc-tay-trang-Loreal-Micellar-Water-tuoi-mat.jpg', 'https://vonpreen.com/product/nuoc-tay-trang-tuoi-mat-loreal-micellar-water-400ml-lam-sach-sau-giu-am-va-duong-mem-da', 200000),
-  (N'Kem chống nắng', 'https://storage.beautyfulls.com/uploads-1/avatar/product/1200x/2022/05/12/figure-1652344045386.png', 'https://www.beautyfulls.com/kem-chong-nang/cell-fusion-c-mau-vang', 150000),
-  (N'Chấm mụn', 'https://bizweb.dktcdn.net/100/318/244/products/71wbvqxp6jl-sl1500.jpg?v=1637856857803', 'https://lingbeau.com/cham-mun-mario', 400000);
+  (N'Kem dưỡng', 'https://www.shiseido.com.vn/on/demandware.static/-/Sites-itemmaster_shiseido/default/dw5abf09dc/images/products/18285/18285_S_01.jpg', 'https://www.shiseido.com.vn/vi/essential-energy-kem-d%C6%B0%E1%BB%A1ng-%E1%BA%A9m-essential-energy-hydrating-cream-1011828510.html', 172, 100000),
+  (N'Bông tẩy trang', 'https://ipek.vn/Uploads/images/anh_web1/bong-tay-trang-ipek-sieu-mem-min-100-30-mieng.jpg','https://ipek.vn/bong-tay-trang-ipek-tho-nhi-ky-100-30-mieng', 72, 40000),
+  (N'Nước tẩy trang', 'https://vonpreen.com/wp-content/uploads/2018/12/nuoc-tay-trang-Loreal-Micellar-Water-tuoi-mat.jpg', 'https://vonpreen.com/product/nuoc-tay-trang-tuoi-mat-loreal-micellar-water-400ml-lam-sach-sau-giu-am-va-duong-mem-da',68, 200000),
+  (N'Kem chống nắng', 'https://storage.beautyfulls.com/uploads-1/avatar/product/1200x/2022/05/12/figure-1652344045386.png', 'https://www.beautyfulls.com/kem-chong-nang/cell-fusion-c-mau-vang',126, 150000),
+  (N'Chấm mụn', 'https://bizweb.dktcdn.net/100/318/244/products/71wbvqxp6jl-sl1500.jpg?v=1637856857803', 'https://lingbeau.com/cham-mun-mario',38, 400000),
+  (N'Sữa rửa mặt','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXxSK5s47LJ6sEpipxut2Fxl3ArfGaBDj9RA&usqp=CAU','https://www.cerave.com.vn/cham-soc-da/lam-sach/sua-rua-mat-danh-cho-da-thuong-va-da-kho',100,250000),
+  (N'Nước hoa hồng','https://classic.vn/wp-content/uploads/2023/03/nuoc-hoa-hong-khong-mui-klairs.jpeg','https://classic.vn/nuoc-hoa-hong-dear-klairs-supple-preparation-unscented-toner-180ml/',100,150000),
+  (N'Serum','https://product.hstatic.net/1000025647/product/the-ordinary-niacinamide-10-zinc-1_cf0ea884638c4e83917ce443ee6b9829_1024x1024.png','https://thegioisonmoi.com/products/serum-giam-mun-va-mo-tham-the-ordinary-niacinamide-10-zinc-1',50, 300000);
 
 -- Dữ liệu cho bảng SERVICESS
 INSERT INTO SERVICESS (SER_NAME, PRICE)
@@ -73,134 +76,216 @@ VALUES
   (4, 350000, '2023-01-18 16:20:00'),
   (5, 440000, '2023-01-19 14:10:00'),
   (1, 500000, '2023-01-20 15:30:00'),
-  (2, 300000, '2023-01-21 18:45:00');
+  (2, 300000, '2023-01-21 18:45:00'), 
+  (1, 1250000, '2021-12-24 15:30:00'),
+  (2, 780000, '2021-12-25 18:45:00'),
+  (3, 350000, '2021-12-26 12:00:00'),
+  (4, 500000, '2021-12-27 16:20:00'),
+  (5, 680000, '2021-12-28 14:10:00'),
+  (1, 500000, '2021-12-29 15:30:00'),
+  (2, 400000, '2021-12-30 18:45:00'),
+  (1, 1250000, '2021-12-31 15:30:00'),
+  (2, 780000, '2022-01-01 18:45:00'),
+  (3, 350000, '2022-01-02 12:00:00'),
+  (4, 500000, '2022-01-03 16:20:00'),
+  (5, 680000, '2022-01-04 14:10:00'),
+  (1, 500000, '2022-01-05 15:30:00'),
+  (2, 400000, '2022-01-06 18:45:00'),
+  (1, 1250000, '2022-01-07 15:30:00'),
+  (2, 780000, '2022-01-08 18:45:00'),
+  (3, 350000, '2022-01-09 12:00:00'),
+  (4, 500000, '2022-01-10 16:20:00'),
+  (5, 680000, '2022-01-11 14:10:00'),
+  (1, 500000, '2022-01-12 15:30:00'),
+  (2, 400000, '2022-01-13 18:45:00'),  
+  (1, 1250000, '2022-01-15 15:30:00'),
+  (2, 780000, '2022-01-16 18:45:00'),
+  (3, 350000, '2022-01-17 12:00:00'),
+  (4, 500000, '2022-01-18 16:20:00'),
+  (5, 680000, '2022-01-19 14:10:00'),
+  (1, 500000, '2022-01-20 15:30:00'),
+  (2, 400000, '2022-01-21 18:45:00');
   
 
  
 -- Dữ liệu cho bảng PAYMENT_DETAIL_SERVICE
-INSERT INTO PAYMENT_DETAIL_SERVICE (PMT_ID, S_ID, QUANTITY)
+INSERT INTO PAYMENT_DETAIL_SERVICE (PMT_ID, S_ID, QUANTITY, PRICE)
 VALUES
-  (1, 1, 1),
-  (1, 4, 1),
-
-  (2, 3, 1),
-
-  (3, 5, 1),
-
-  (4, 2, 1),
-  (4, 4, 1),
-
-  (5, 1, 1),
-
-  (6, 3, 1),
-  (7, 1, 1),
-   (8, 1, 1),
-  (8, 4, 1),
-
-  (9, 3, 1),
-
-  (10, 5, 1),
-
-  (11, 2, 1),
-  (11, 4, 1),
-
-  (12, 1, 1),
-
-  (13, 3, 1),
-  (14, 1, 1),
-  (15, 1, 1),
-  (15, 4, 1),
-
-  (16, 3, 1),
-
-  (17, 5, 1),
-
-  (18, 2, 1),
-  (18, 4, 1),
-
-  (19 1, 1),
-
-  (20, 3, 1),
-  (21, 1, 1),
-  (22, 1, 1),
-  (22, 4, 1),
-
-  (23, 3, 1),
-
-  (24, 5, 1),
-
-  (25, 2, 1),
-  (25, 4, 1),
-
-  (26, 1, 1),
-
-  (27, 3, 1),
-  (28, 1, 1) ;
+  (1, 1, 1, 200000),
+  (1, 4, 1, 50000),
+  (2, 3, 1, 300000),
+  (3, 5, 1, 200000),
+  (4, 2, 1, 150000),
+  (4, 4, 1, 50000),
+  (5, 1, 1, 200000),
+  (6, 3, 1, 300000),
+  (7, 1, 1, 200000),
+  (8, 1, 1, 200000),
+  (8, 4, 1, 50000),
+  (9, 3, 1, 300000),
+  (10, 5, 1, 200000),
+  (11, 2, 1, 150000),
+  (11, 4, 1, 50000),
+  (12, 1, 1, 200000),
+  (13, 3, 1, 300000),
+  (14, 1, 1, 200000),
+  (15, 1, 1, 200000),
+  (15, 4, 1, 50000),
+  (16, 3, 1, 300000),
+  (17, 5, 1, 200000),
+  (18, 2, 1, 150000),
+  (18, 4, 1, 50000),
+  (19, 1, 1, 200000),
+  (20, 3, 1, 300000),
+  (21, 1, 1, 200000),
+  (22, 1, 1, 200000),
+  (22, 4, 1, 50000),
+  (23, 3, 1, 300000),
+  (24, 5, 1, 200000),
+  (25, 2, 1, 150000),
+  (25, 4, 1, 50000),
+  (26, 1, 1, 200000),
+  (27, 3, 1, 300000),
+  (28, 1, 1, 200000),
+  (29, 1, 1, 200000),
+  (29, 4, 1, 50000),
+  (30, 3, 1, 300000),
+  (31, 5, 1, 200000),
+  (32, 2, 1, 150000),
+  (32, 4, 1, 50000),
+  (33, 1, 1, 200000),
+  (34, 3, 1, 300000),
+  (35, 1, 1, 200000),
+  (36, 1, 1, 200000),
+  (36, 4, 1, 50000),
+  (37, 3, 1, 300000),
+  (38, 5, 1, 200000),
+  (39, 2, 1, 150000),
+  (39, 4, 1, 50000),
+  (40, 1, 1, 200000),
+  (41, 3, 1, 300000),
+  (42, 1, 1, 200000),
+  (43, 1, 1, 200000),
+  (43, 4, 1, 50000),
+  (44, 3, 1, 300000),
+  (45, 5, 1, 200000),
+  (46, 2, 1, 150000),
+  (46, 4, 1, 50000),
+  (47, 1, 1, 200000),
+  (48, 3, 1, 300000),
+  (49, 1, 1, 200000),
+  (50, 1, 1, 200000),
+  (50, 4, 1, 50000),
+  (51, 3, 1, 300000),
+  (52, 5, 1, 200000),
+  (53, 2, 1, 150000),
+  (53, 4, 1, 50000),
+  (54, 1, 1, 200000),
+  (55, 3, 1, 300000),
+  (56, 1, 1, 200000);
 
 -- Dữ liệu cho bảng PAYMENT_DETAIL_PRODUCT
-INSERT INTO PAYMENT_DETAIL_PRODUCT (PMT_ID, P_ID, QUANTITY)
+INSERT INTO PAYMENT_DETAIL_PRODUCT (PMT_ID, P_ID, QUANTITY, PRICE)
 VALUES
-  (1, 1, 2),
-  (1, 5, 1),
+  (1, 1, 2, 100000),
+  (1, 5, 1, 400000),
+  (2, 2, 2, 40000),
+  (2, 3, 1, 200000),
+  (3, 4, 2, 150000),
+  (4, 4, 1, 150000),
+  (5, 2, 1, 40000),
+  (5, 3, 1, 200000),
+  (6, 3, 1, 200000),
+  (7, 1, 1, 100000),
+  
+  (8, 1, 2, 100000),
+  (8, 5, 1, 400000),
+  (9, 2, 2, 40000),
+  (9, 3, 1, 200000),
+  (10, 4, 2, 150000),
+  (11, 4, 1, 150000),
+  (12, 2, 1, 40000),
+  (12, 3, 1, 200000),
+  (13, 3, 1, 200000),
+  (14, 1, 1, 100000),
+  (15, 1, 2, 100000),
+  (15, 5, 1, 400000),
+  (16, 2, 2, 40000),
+  (16, 3, 1, 200000),
+  (17, 4, 2, 150000),
+  (18, 4, 1, 150000),
+  (19, 2, 1, 40000),
+  (19, 3, 1, 200000),
+  (20, 3, 1, 200000),
+  (21, 1, 1, 100000),
+  (22, 1, 2, 100000),
+  (22, 5, 1, 400000),
+  (23, 2, 2, 40000),
+  (23, 3, 1, 200000),
+  (24, 4, 2, 150000),
+  (25, 4, 1, 150000),
+  (26, 2, 1, 40000),
+  (26, 3, 1, 200000),
+  (27, 3, 1, 200000),
+  (28, 1, 1, 100000),
 
-  (2, 2, 2),
-  (2, 3, 1),
+  (29, 1, 2, 100000),
+  (29, 5, 2, 400000),
+  (30, 2, 2, 40000),
+  (30, 3, 2, 200000),
+  (31, 4, 1, 150000),
+  (32, 4, 2, 150000),
+  (33, 2, 2, 40000),
+  (33, 3, 2, 200000),
+  (34, 3, 1, 200000),
+  (35, 1, 2, 100000),
 
-  (3, 4, 2),
+  (36, 1, 2, 100000),
+  (36, 5, 2, 400000),
+  (37, 2, 2, 40000),
+  (37, 3, 2, 200000),
+  (38, 4, 1, 150000),
+  (39, 4, 2, 150000),
+  (40, 2, 2, 40000),
+  (40, 3, 2, 200000),
+  (41, 3, 1, 200000),
+  (42, 1, 2, 100000),
+  (43, 1, 2, 100000),
+  (43, 5, 2, 400000),
+  (44, 2, 2, 40000),
+  (44, 3, 2, 200000),
+  (45, 4, 1, 150000),
+  (46, 4, 2, 150000),
+  (47, 2, 2, 40000),
+  (47, 3, 2, 200000),
+  (48, 3, 1, 200000),
+  (49, 1, 2, 100000),
+  (50, 1, 2, 100000),
+  (50, 5, 2, 400000),
+  (51, 2, 2, 40000),
+  (51, 3, 2, 200000),
+  (52, 4, 1, 150000),
+  (53, 4, 2, 150000),
+  (54, 2, 2, 40000),
+  (54, 3, 2, 200000),
+  (55, 3, 1, 200000),
+  (56, 1, 2, 100000);
+  
 
-  (4, 4, 1),
-
-
-  (5, 2, 1),
-  (5, 3, 1),
-
-  (6, 3, 1),
-  (7, 1, 1),
-  (8, 1, 2),
-  (8, 5, 1),
-
-  (9, 2, 2),
-  (9, 3, 1),
-
-  (10, 4, 2),
-
-  (11, 4, 1),
-
-
-  (12, 2, 1),
-  (12, 3, 1),
-
-  (13, 3, 1),
-  (14, 1, 1),
-  (15, 1, 2),
-  (15, 5, 1),
-
-  (16, 2, 2),
-  (16, 3, 1),
-
-  (17, 4, 2),
-
-  (18, 4, 1),
-
-
-  (19, 2, 1),
-  (19, 3, 1),
-
-  (20, 3, 1),
-  (21, 1, 1),
-  (22, 1, 2),
-  (22, 5, 1),
-
-  (23, 2, 2),
-  (23, 3, 1),
-
-  (24, 4, 2),
-
-  (25, 4, 1),
+-- Dữ liệu cho bảng RECEIPT
+INSERT INTO RECEIPT ( REC_DATE, REC_PRICE)
+VALUES
+  ('2020-12-30 15:30:00', 100950000);
 
 
-  (26, 2, 1),
-  (26, 3, 1),
-
-  (27, 3, 1),
-  (28, 1, 1);
+-- DỮ liệu cho bảng RECEIPT_DETAIL
+INSERT INTO RECEIPT_DETAIL ( REC_ID, P_ID, QUANTITY, PRICE)
+VALUES
+  (1, 1, 200, 71000),
+  (1, 2, 100, 28000),
+  (1, 3, 100, 143000),
+  (1, 4, 150, 107000),
+  (1, 5, 50, 286000),
+  (1, 6, 100, 179000),
+  (1, 7, 100, 107000),
+  (1, 8, 50, 214000);
