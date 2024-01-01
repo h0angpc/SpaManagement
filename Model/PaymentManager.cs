@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpaManagement.Model
 {
-    internal class PaymentManager
+    public class PaymentManager
     {
         public static ObservableCollection<PAYMENT> _DatabasePayments = new ObservableCollection<PAYMENT>(DataProvider.Ins.DB.PAYMENTs);
 

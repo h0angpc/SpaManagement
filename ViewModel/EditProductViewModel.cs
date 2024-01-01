@@ -86,7 +86,7 @@ namespace SpaManagement.ViewModel
         {
             _errorsViewModel = new ErrorsViewModel();
             ProductName = SelectedProduct.PRO_NAME;
-            ProductPrice = string.Format("{0:N0}", SelectedProduct.PRICE);
+            ProductPrice = string.Format("{0:N0}", SelectedProduct.PRICE_OUT);
             ProductLink = SelectedProduct.PRO_URL;
             tempUri = new Uri(SelectedProduct.PRO_IMG);
             ProductImage = new BitmapImage(tempUri);
@@ -134,7 +134,7 @@ namespace SpaManagement.ViewModel
                 }
 
                 decimal temp_Price = decimal.Parse(ProductPrice);
-                var displaylist = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_NAME == ProductName && x.PRICE == temp_Price && x.PRO_URL == ProductLink && x.PRO_IMG == tempIMG); // nếu chưa thay đổi gì so với cái cũ thì button không được bật
+                var displaylist = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_NAME == ProductName && x.PRICE_OUT == temp_Price && x.PRO_URL == ProductLink && x.PRO_IMG == tempIMG); // nếu chưa thay đổi gì so với cái cũ thì button không được bật
                 if (displaylist == null || displaylist.Count() != 0)
                 {
                     return false;
@@ -147,7 +147,7 @@ namespace SpaManagement.ViewModel
 
 
                 product.PRO_NAME = ProductName;
-                product.PRICE = Convert.ToDecimal(ProductPrice);
+                product.PRICE_OUT = Convert.ToDecimal(ProductPrice);
                 product.PRO_URL = ProductLink;
                 product.PRO_IMG = ProductImage.ToString();
 
@@ -156,7 +156,7 @@ namespace SpaManagement.ViewModel
                 SelectedProduct.PRO_NAME = ProductName;
                 SelectedProduct.PRO_URL = ProductLink;
                 SelectedProduct.PRO_IMG = ProductImage.ToString();
-                SelectedProduct.PRICE = Convert.ToDecimal(ProductPrice);
+                SelectedProduct.PRICE_OUT = Convert.ToDecimal(ProductPrice);
 
 
                 MessageBoxCustom m = new MessageBoxCustom("Cập nhật sản phẩm mới thành công", MessageType.Info, MessageButtons.Ok);

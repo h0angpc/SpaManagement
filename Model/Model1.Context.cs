@@ -33,6 +33,8 @@ namespace SpaManagement.Model
         public virtual DbSet<PAYMENT_DETAIL_PRODUCT> PAYMENT_DETAIL_PRODUCT { get; set; }
         public virtual DbSet<PAYMENT_DETAIL_SERVICE> PAYMENT_DETAIL_SERVICE { get; set; }
         public virtual DbSet<PRODUCT> PRODUCTs { get; set; }
+        public virtual DbSet<RECEIPT> RECEIPTs { get; set; }
+        public virtual DbSet<RECEIPT_DETAIL> RECEIPT_DETAIL { get; set; }
         public virtual DbSet<SERVICESS> SERVICESSes { get; set; }
     }
 }

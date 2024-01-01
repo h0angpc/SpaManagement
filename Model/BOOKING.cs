@@ -9,18 +9,69 @@
 
 namespace SpaManagement.Model
 {
+    using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class BOOKING
+    public partial class BOOKING:BaseViewModel
     {
         public int BK_ID { get; set; }
         public string BK_MA { get; set; }
-        public int C_ID { get; set; }
-        public int E_ID { get; set; }
-        public int S_ID { get; set; }
-        public System.DateTime START_TIME { get; set; }
-        public System.DateTime END_TIME { get; set; }
+
+        private int _C_ID;
+        public int C_ID 
+        {
+            get => _C_ID;
+            set
+            {
+                _C_ID = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _E_ID;
+        public int E_ID 
+        {
+            get => _E_ID;
+            set
+            {
+                _E_ID = value;
+                OnPropertyChanged();
+            } 
+        }
+
+        private int _S_ID;
+        public int S_ID 
+        {
+            get => _S_ID;
+            set
+            {
+                _S_ID = value;
+                OnPropertyChanged();
+            } 
+        }
+
+        private System.DateTime _START_TIME;
+        public System.DateTime START_TIME 
+        {
+            get => _START_TIME;
+            set
+            {
+                _START_TIME = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private System.DateTime _END_TIME;
+        public System.DateTime END_TIME 
+        {
+            get => _END_TIME;
+            set
+            {
+                _END_TIME = value;
+                OnPropertyChanged();
+            }
+        }
         public Nullable<bool> IS_EDITED { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }

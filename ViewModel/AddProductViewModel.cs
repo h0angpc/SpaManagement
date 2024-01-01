@@ -117,7 +117,7 @@ namespace SpaManagement.ViewModel
                 return true;
             }, (p) =>
             {
-                var Product = new PRODUCT() { PRO_NAME = ProductName, PRICE = Convert.ToDecimal(ProductPrice), PRO_URL = ProductLink, PRO_IMG = ProductImage.ToString() };
+                var Product = new PRODUCT() { PRO_NAME = ProductName, PRICE_OUT = Convert.ToDecimal(ProductPrice), PRO_URL = ProductLink, PRO_IMG = ProductImage.ToString() };
 
                 DataProvider.Ins.DB.PRODUCTs.Add(Product);
                 DataProvider.Ins.DB.SaveChanges();

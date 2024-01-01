@@ -64,6 +64,7 @@ namespace SpaManagement.ViewModel
                 OnPropertyChanged(nameof(Filtercondition));
             }
         }
+
         private ObservableCollection<PAYMENT> _PaymentList;
         public ObservableCollection<PAYMENT> PaymentList
         {
