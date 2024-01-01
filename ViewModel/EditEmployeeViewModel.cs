@@ -106,9 +106,12 @@ namespace SpaManagement.ViewModel
                 {
                     _errorsViewModel.AddError(nameof(Salary), "Lương nhân viên chỉ có các con số");
                 }
-
-                decimal num = decimal.Parse(_salary);
-                _salary = string.Format("{0:N0}", num);
+                else
+                if (_salary != "")
+                {
+                    decimal num = decimal.Parse(_salary);
+                    _salary = string.Format("{0:N0}", num);
+                }
 
 
                 OnPropertyChanged(nameof(Salary));

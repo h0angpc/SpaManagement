@@ -92,16 +92,16 @@ namespace SpaManagement.ViewModel
 
         public string Salary
         {
-            get 
+            get
             {
-                return _salary; 
+                return _salary;
             }
-            set 
+            set
             {
                 _salary = value;
 
                 _errorsViewModel.ClearErrors(nameof(Salary));
-                if (!IsNumeric(_salary.Replace(",","")) && _salary != "")
+                if (!IsNumeric(_salary.Replace(",", "")) && _salary != "")
                 {
                     _errorsViewModel.AddError(nameof(Salary), "Lương nhân viên chỉ có các con số");
                 }

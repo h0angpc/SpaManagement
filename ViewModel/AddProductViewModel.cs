@@ -37,7 +37,6 @@ namespace SpaManagement.ViewModel
                 OnPropertyChanged(nameof(ProductName));
             } 
         }
-
         //private string _ProductPrice;
         //public string ProductPrice 
         //{ 
@@ -54,6 +53,8 @@ namespace SpaManagement.ViewModel
         //        OnPropertyChanged(nameof(ProductPrice));
         //    }
         //}
+
+
 
         private string _ProductLink;
         public string ProductLink 
