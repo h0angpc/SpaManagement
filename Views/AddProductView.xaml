@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Title="AddCustomer" Height="500" Width="400"
+        Title="AddCustomer" Height="400" Width="400"
         
         DataContext="{StaticResource AddProductVM}"
         WindowStyle="None"
@@ -96,7 +96,7 @@
 >
                     </TextBox>
                 </StackPanel>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,20,0,20">
+                <!--<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,20,0,20">
                     <TextBlock Text="GIÁ SẢN PHẨM" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>
                     <TextBox materialDesign:HintAssist.Hint="VD: 500,000"
                     materialDesign:HintAssist.IsFloating="False"
@@ -106,7 +106,7 @@
                     Text="{Binding ProductPrice, UpdateSourceTrigger=PropertyChanged}"
 >
                     </TextBox>
-                </StackPanel>
+                </StackPanel>-->
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,20,0,20">
                     <TextBlock Text="LINK SẢN PHẨM" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>
                     <TextBox materialDesign:HintAssist.Hint="VD: Bột rửa mặt Nia"
