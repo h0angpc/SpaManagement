@@ -139,7 +139,7 @@
                     <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
                 <Button Content="Xoá Thông Tin" Margin="17,14,5,14" 
-                        Background="#FF2AC1F0" Command="{Binding RemovePaymentCommand}"
+                        Background="#FF2AC1F0" Command="{Binding RemoveReceiptCommand}"
                         CommandParameter="{Binding ElementName=CTNH}"/>
 
                 <TextBlock Grid.Column="1" Text="TỔNG TIỀN:" HorizontalAlignment="Center"

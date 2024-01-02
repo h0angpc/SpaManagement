@@ -251,31 +251,36 @@ namespace SpaManagement.ViewModel
                     return false;
                 }
 
-                var pro = DataProvider.Ins.DB.PRODUCTs.FirstOrDefault(x => x.PRO_ID == MA_Pro);
-                if (int.Parse(ProQuantity) > pro.INSTOCK)
-                {
-                    return false;
-                }
                 return true;
             }, (p) =>
             {
+                var pro = DataProvider.Ins.DB.PRODUCTs.FirstOrDefault(x => x.PRO_ID == MA_Pro);
                 var detail = PM_Detail_Pro.Where(x => x.PMT_ID == payment.PMT_ID && x.P_ID == MA_Pro).SingleOrDefault();
                 if (detail == null)
                 {
-                    decimal sumprice = int.Parse(ProQuantity) * price_pro;
+                    if (int.Parse(ProQuantity) > pro.INSTOCK)
+                    {
+                        MessageBoxCustom m = new MessageBoxCustom("Không thể thêm quá số lượng tồn kho", MessageType.Info, MessageButtons.Ok);
+                        m.ShowDialog();
+                    }
+                    else
+                    {
+                        decimal sumprice = int.Parse(ProQuantity) * price_pro;
 
-                    var prodetail = new PAYMENT_DETAIL_PRODUCT() { PMT_ID = payment.PMT_ID, P_ID = MA_Pro, QUANTITY = int.Parse(ProQuantity),PRICE = price_pro , AMOUNT = sumprice };
+                        var prodetail = new PAYMENT_DETAIL_PRODUCT() { PMT_ID = payment.PMT_ID, P_ID = MA_Pro, QUANTITY = int.Parse(ProQuantity), PRICE = price_pro, AMOUNT = sumprice };
 
-                    DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Add(prodetail);
+                        DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Add(prodetail);
 
-                    PM_Detail_Pro.Add(prodetail);
+                        PM_Detail_Pro.Add(prodetail);
 
-                    TotalPrice += prodetail.AMOUNT;
+                        TotalPrice += prodetail.AMOUNT;
+
+                    }
                 }
                 else
                 {
-                    detail.QUANTITY += int.Parse(ProQuantity);
-                    if (detail.QUANTITY <= 0)
+                    int check = detail.QUANTITY + int.Parse(ProQuantity);
+                    if (check <= 0)
                     {
                         TotalPrice -= detail.AMOUNT;
                         DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Remove(detail);
@@ -283,10 +288,35 @@ namespace SpaManagement.ViewModel
                     }
                     else
                     {
-                        detail.AMOUNT += int.Parse(ProQuantity) * price_pro;
+                        if (check > pro.INSTOCK)
+                        {
+                            MessageBoxCustom m = new MessageBoxCustom("Không thể thêm quá số lượng tồn kho", MessageType.Info, MessageButtons.Ok);
+                            m.ShowDialog();
+                        }
+                        else
+                        {
+                            detail.QUANTITY = check;
 
-                        TotalPrice += int.Parse(ProQuantity) * price_pro;
+                            detail.AMOUNT += int.Parse(ProQuantity) * price_pro;
+
+                            TotalPrice += int.Parse(ProQuantity) * price_pro;
+                        }
                     }
+
+
+                    //detail.QUANTITY += int.Parse(ProQuantity);
+                    //if (detail.QUANTITY <= 0)
+                    //{
+                    //    TotalPrice -= detail.AMOUNT;
+                    //    DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Remove(detail);
+                    //    PM_Detail_Pro.Remove(detail);
+                    //}
+                    //else
+                    //{
+                    //    detail.AMOUNT += int.Parse(ProQuantity) * price_pro;
+
+                    //    TotalPrice += int.Parse(ProQuantity) * price_pro;
+                    //}
                 }
 
                 SelectedProduct = null;
