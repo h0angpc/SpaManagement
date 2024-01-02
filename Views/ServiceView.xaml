@@ -81,8 +81,8 @@
 
             <!--Service ListView-->
             <materialDesign:Card Grid.Row="4">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" >
-                    <ListView x:Name="ServiceListView" ItemsSource="{Binding ServiceCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="461" Width="860" Margin="5" Foreground="#FF6B4309"
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="Auto" Width="Auto" >
+                    <ListView x:Name="ServiceListView" ItemsSource="{Binding ServiceCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="Auto" Width="Auto" HorizontalAlignment="Center" Margin="5" Foreground="#FF6B4309"
                     SelectedItem="{Binding SelectedService, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
               ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
                         <ListView.ItemsPanel>

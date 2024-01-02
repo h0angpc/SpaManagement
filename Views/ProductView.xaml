@@ -94,10 +94,10 @@
 
             <!--Customers Datagrid-->
             <materialDesign:Card Grid.Row="4">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" >
-                    <ListView x:Name="ProductListView" ItemsSource="{Binding ProductCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="461" Width="860" Margin="5" Foreground="#FF6B4309"
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="Auto" Width="Auto"  >
+                    <ListView x:Name="ProductListView" ItemsSource="{Binding ProductCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="Auto" Width="Auto" Margin="5" HorizontalAlignment="Center" Foreground="#FF6B4309"
                     SelectedItem="{Binding SelectedProduct, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-              ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+              ScrollViewer.HorizontalScrollBarVisibility="Disabled"  >
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel></WrapPanel>
