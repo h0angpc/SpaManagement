@@ -87,15 +87,31 @@ namespace SpaManagement.ViewModel
                 {
                     return false;
                 }
+                var ser = DataProvider.Ins.DB.SERVICESSes.FirstOrDefault(x => x.SER_NAME == ServiceName);
+                if (ser != null && ser.IS_DELETED == false)
+                {
+                    return false;
+                }
                 return true;
             }, (p) =>
             {
-                var Service = new SERVICESS() { SER_NAME = ServiceName, PRICE = Convert.ToDecimal(ServicePrice) };
+                var ser = DataProvider.Ins.DB.SERVICESSes.FirstOrDefault(x => x.SER_NAME == ServiceName);
+                if(ser == null)
+                {
+                    var Service = new SERVICESS() { SER_NAME = ServiceName, PRICE = Convert.ToDecimal(ServicePrice) };
 
-                DataProvider.Ins.DB.SERVICESSes.Add(Service);
-                DataProvider.Ins.DB.SaveChanges();
+                    DataProvider.Ins.DB.SERVICESSes.Add(Service);
+                    DataProvider.Ins.DB.SaveChanges();
 
-                ServiceManager.AddServcie(Service);
+                    ServiceManager.AddServcie(Service);
+                }
+                else
+                {
+                    ser.IS_DELETED = false;
+                    ser.PRICE = Convert.ToDecimal(ServicePrice);
+                    DataProvider.Ins.DB.SaveChanges();
+                    ServiceManager.AddServcie(ser);
+                }
 
                 MessageBoxCustom m = new MessageBoxCustom("Thêm dịch vụ mới thành công", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();
@@ -115,11 +131,10 @@ namespace SpaManagement.ViewModel
         {
             return _errorsViewModel.GetErrors(propertyName);
         }
-       
 
         public bool CheckIfServiceExist(string ServiceName)
         {
-            var displaylist = DataProvider.Ins.DB.SERVICESSes.Where(x => x.SER_NAME == ServiceName);
+            var displaylist = DataProvider.Ins.DB.SERVICESSes.Where(x => x.SER_NAME == ServiceName && x.IS_DELETED == false);
             if (displaylist == null || displaylist.Count() != 0)
             {
                 return false;

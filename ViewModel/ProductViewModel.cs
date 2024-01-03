@@ -132,32 +132,47 @@ namespace SpaManagement.ViewModel
             {
                 try
                 {
-                    if (p !=null)
+                    //if (p !=null)
+                    //{
+                    //    PAYMENT_DETAIL_PRODUCT pay = DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.FirstOrDefault(x => x.P_ID == p.PRO_ID);
+
+                    //    if (pay!=null)
+                    //    {
+                    //        MessageBoxCustom m = new MessageBoxCustom("Không thể xóa sản phẩm này vì tồn tại nhiều dữ liệu liên quan", MessageType.Info, MessageButtons.Ok);
+                    //        m.ShowDialog();
+                    //    }
+                    //    else
+                    //    {
+                    //        bool? result = new MessageBoxCustom("Xác nhận xóa sản phẩm?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                    //        if (result.Value)
+                    //        {
+                    //            ProductManager.RemoveProduct(p);
+                    //            DataProvider.Ins.DB.PRODUCTs.Remove(p);
+
+                    //            DataProvider.Ins.DB.SaveChanges();
+                    //            MessageBoxCustom m = new MessageBoxCustom("Xóa sản phẩm thành công!", MessageType.Info, MessageButtons.Ok);
+                    //            m.ShowDialog();
+                    //        }
+                    //        else
+                    //        {
+                    //            return;
+                    //        }
+                    //    }
+                    //}
+                    bool? result = new MessageBoxCustom("Xác nhận xóa sản phẩm?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                    if (result.Value)
                     {
-                        PAYMENT_DETAIL_PRODUCT pay = DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.FirstOrDefault(x => x.P_ID == p.PRO_ID);
+                        var pro = DataProvider.Ins.DB.PRODUCTs.FirstOrDefault(x => x.PRO_ID == SelectedProduct.PRO_ID);
+                        pro.IS_DELETED = true;
 
-                        if (pay!=null)
-                        {
-                            MessageBoxCustom m = new MessageBoxCustom("Không thể xóa sản phẩm này vì tồn tại nhiều dữ liệu liên quan", MessageType.Info, MessageButtons.Ok);
-                            m.ShowDialog();
-                        }
-                        else
-                        {
-                            bool? result = new MessageBoxCustom("Xác nhận xóa sản phẩm?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-                            if (result.Value)
-                            {
-                                ProductManager.RemoveProduct(p);
-                                DataProvider.Ins.DB.PRODUCTs.Remove(p);
-
-                                DataProvider.Ins.DB.SaveChanges();
-                                MessageBoxCustom m = new MessageBoxCustom("Xóa sản phẩm thành công!", MessageType.Info, MessageButtons.Ok);
-                                m.ShowDialog();
-                            }
-                            else
-                            {
-                                return;
-                            }
-                        }
+                        ProductManager.RemoveProduct(SelectedProduct);
+                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBoxCustom m = new MessageBoxCustom("Xóa sản phẩm thành công!", MessageType.Info, MessageButtons.Ok);
+                        m.ShowDialog();
+                    }
+                    else
+                    {
+                        return;
                     }
                 }
                 catch (Exception ex)
