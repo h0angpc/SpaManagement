@@ -73,7 +73,7 @@
             </StackPanel>
 
             <!--Title-->
-            <TextBlock Grid.Row="1" Text="THÔNG TIN HOÁ ĐƠN" HorizontalAlignment="Center"
+            <TextBlock Grid.Row="1" Text="CHI TIẾT HOÁ ĐƠN" HorizontalAlignment="Center"
            FontWeight="Bold" FontSize="30"/>
 
             <Grid Grid.Row="2" Background="AliceBlue">
@@ -133,13 +133,13 @@
             </Grid >
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
-                <Button Content="Xoá hoá đơn" Margin="17,14,17,14" 
+                <!--<Button Content="Xoá hoá đơn" Margin="17,14,17,14" 
                         Background="#FF2AC1F0" Command="{Binding RemovePaymentCommand}"
-                        CommandParameter="{Binding ElementName=CTHD}"/>
+                        CommandParameter="{Binding ElementName=CTHD}"/>-->
                 
                 <TextBlock Grid.Column="1" Text="TỔNG TIỀN:" HorizontalAlignment="Center"
                     FontWeight="Bold" FontSize="25" Height="30" VerticalAlignment="Top" Margin="0,12,0,0"/>

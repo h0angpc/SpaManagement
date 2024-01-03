@@ -1,4 +1,5 @@
-﻿using SpaManagement.Commands;
+﻿using MaterialDesignThemes.Wpf;
+using SpaManagement.Commands;
 using SpaManagement.Model;
 using SpaManagement.Views;
 using System;
@@ -124,11 +125,14 @@ namespace SpaManagement.ViewModel
         {
             gendersource = new ObservableCollection<string> { "Nam", "Nữ" };
 
-
             CloseCommand = new RelayCommand<Window>((p) => { return p == null ? false : true; }, (p) => {
                 var w = (p);
                 if (w != null)
                 {
+                    Name = "";
+                    Email = "";
+                    Gender = "";
+                    Phone = "";
                     w.Close();
                 }
             });
@@ -140,8 +144,14 @@ namespace SpaManagement.ViewModel
                     return false;
                 }
 
-                var displaylist = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_NAME == Name && x.CUS_EMAIL == Email && x.CUS_GENDER == Gender);
-                if (displaylist == null || displaylist.Count() != 0)
+                //var displaylist = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_NAME == Name && x.CUS_EMAIL == Email && x.CUS_GENDER == Gender);
+                //if (displaylist == null || displaylist.Count() != 0)
+                //{
+                //    return false;
+                //}
+
+                var cus = DataProvider.Ins.DB.CUSTOMERs.FirstOrDefault(x => x.CUS_NAME == Name && x.CUS_EMAIL == Email && x.CUS_GENDER == Gender && x.CUS_PHONE == Phone);
+                if (cus != null && cus.IS_DELETED == false)
                 {
                     return false;
                 }
@@ -149,12 +159,23 @@ namespace SpaManagement.ViewModel
                 return true;
             }, (p) => 
             {
-                var customer = new CUSTOMER() {CUS_NAME = Name, CUS_EMAIL = Email, CUS_GENDER = Gender, CUS_PHONE = Phone};
+                var cus = DataProvider.Ins.DB.CUSTOMERs.FirstOrDefault(x => x.CUS_NAME == Name && x.CUS_EMAIL == Email && x.CUS_GENDER == Gender && x.CUS_PHONE == Phone);
+                if (cus == null)
+                {
+                    var customer = new CUSTOMER() { CUS_NAME = Name, CUS_EMAIL = Email, CUS_GENDER = Gender, CUS_PHONE = Phone, IS_DELETED = false };
 
-                DataProvider.Ins.DB.CUSTOMERs.Add(customer);
-                DataProvider.Ins.DB.SaveChanges();
+                    DataProvider.Ins.DB.CUSTOMERs.Add(customer);
+                    DataProvider.Ins.DB.SaveChanges();
 
-                CustomerManager.AddCustomer(customer);
+                    CustomerManager.AddCustomer(customer);
+                }
+                else
+                {
+                    cus.IS_DELETED = false;
+
+                    DataProvider.Ins.DB.SaveChanges();
+                    CustomerManager.AddCustomer(cus);
+                }
 
                 MessageBoxCustom m = new MessageBoxCustom("Thêm khách hàng mới thành công", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();

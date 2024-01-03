@@ -28,6 +28,7 @@ namespace SpaManagement.ViewModel
         public string MaHD { get; set; }
         public string NgHD { get; set; }
         public string TongTien { get; set; }
+        public string customer {  get; set; }
 
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand CloseCommand { get; set; }
@@ -36,6 +37,7 @@ namespace SpaManagement.ViewModel
         {
             MaHD = SelectedPay.PMT_MA;
             NgHD = SelectedPay.DAYTIME.ToString("dd/MM/yyyy HH:mm:ss");
+            customer = SelectedPay.CUSTOMER.CUS_NAME;
          
             TongTien = string.Format("{0:N0} đồng", SelectedPay.PRICE);
 

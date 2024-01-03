@@ -9,7 +9,7 @@ namespace SpaManagement.Model
 {
     public class CustomerManager
     {
-        public static ObservableCollection<CUSTOMER> _DatabaseCustomers = new ObservableCollection<CUSTOMER>(DataProvider.Ins.DB.CUSTOMERs);
+        public static ObservableCollection<CUSTOMER> _DatabaseCustomers = new ObservableCollection<CUSTOMER>(DataProvider.Ins.DB.CUSTOMERs.Where(x=> x.IS_DELETED == false));
 
         public static ObservableCollection<CUSTOMER> GetCustomers()
         {
