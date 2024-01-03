@@ -41,6 +41,7 @@
           <Property Name="CUS_PHONE" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="CUS_EMAIL" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="CUS_GENDER" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="IS_DELETED" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="EMPLOYEE">
           <Key>
@@ -54,6 +55,7 @@
           <Property Name="EMP_CCCD" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="EMP_SALARY" Type="money" Nullable="false" />
           <Property Name="EMP_ROLE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IS_DELETED" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="PAYMENT">
           <Key>
@@ -96,6 +98,7 @@
           <Property Name="PRO_URL" Type="nvarchar(max)" Nullable="false" />
           <Property Name="INSTOCK" Type="int" Nullable="false" />
           <Property Name="PRICE_OUT" Type="money" Nullable="false" />
+          <Property Name="IS_DELETED" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="RECEIPT">
           <Key>
@@ -124,6 +127,7 @@
           <Property Name="SER_MA" Type="char" MaxLength="6" StoreGeneratedPattern="Computed" />
           <Property Name="SER_NAME" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PRICE" Type="money" Nullable="false" />
+          <Property Name="IS_DELETED" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK__BOOKING__C_ID__4222D4EF">
           <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
@@ -394,6 +398,7 @@
           <Property Name="CUS_PHONE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CUS_EMAIL" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CUS_GENDER" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="IS_DELETED" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="BOOKINGs" Relationship="QUANLYSPAModel.FK__BOOKING__C_ID__4222D4EF" FromRole="CUSTOMER" ToRole="BOOKING" />
           <NavigationProperty Name="PAYMENTs" Relationship="QUANLYSPAModel.FK__PAYMENT__C_ID__46E78A0C" FromRole="CUSTOMER" ToRole="PAYMENT" />
         </EntityType>
@@ -409,6 +414,7 @@
           <Property Name="EMP_CCCD" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="EMP_SALARY" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="EMP_ROLE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IS_DELETED" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="BOOKINGs" Relationship="QUANLYSPAModel.FK__BOOKING__E_ID__403A8C7D" FromRole="EMPLOYEE" ToRole="BOOKING" />
         </EntityType>
         <EntityType Name="PAYMENT">
@@ -459,6 +465,7 @@
           <Property Name="PRO_URL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="INSTOCK" Type="Int32" Nullable="false" />
           <Property Name="PRICE_OUT" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="IS_DELETED" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="PAYMENT_DETAIL_PRODUCT" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__P_ID__4E88ABD4" FromRole="PRODUCT" ToRole="PAYMENT_DETAIL_PRODUCT" />
           <NavigationProperty Name="RECEIPT_DETAIL" Relationship="QUANLYSPAModel.FK__RECEIPT_DE__P_ID__5441852A" FromRole="PRODUCT" ToRole="RECEIPT_DETAIL" />
         </EntityType>
@@ -492,6 +499,7 @@
           <Property Name="SER_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="SER_NAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="IS_DELETED" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="BOOKINGs" Relationship="QUANLYSPAModel.FK__BOOKING__S_ID__412EB0B6" FromRole="SERVICESS" ToRole="BOOKING" />
           <NavigationProperty Name="PAYMENT_DETAIL_SERVICE" Relationship="QUANLYSPAModel.FK__PAYMENT_DE__S_ID__4AB81AF0" FromRole="SERVICESS" ToRole="PAYMENT_DETAIL_SERVICE" />
         </EntityType>
@@ -652,6 +660,7 @@
           <EntitySetMapping Name="CUSTOMERs">
             <EntityTypeMapping TypeName="QUANLYSPAModel.CUSTOMER">
               <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
                 <ScalarProperty Name="CUS_GENDER" ColumnName="CUS_GENDER" />
                 <ScalarProperty Name="CUS_EMAIL" ColumnName="CUS_EMAIL" />
                 <ScalarProperty Name="CUS_PHONE" ColumnName="CUS_PHONE" />
@@ -664,6 +673,7 @@
           <EntitySetMapping Name="EMPLOYEEs">
             <EntityTypeMapping TypeName="QUANLYSPAModel.EMPLOYEE">
               <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
                 <ScalarProperty Name="EMP_ROLE" ColumnName="EMP_ROLE" />
                 <ScalarProperty Name="EMP_SALARY" ColumnName="EMP_SALARY" />
                 <ScalarProperty Name="EMP_CCCD" ColumnName="EMP_CCCD" />
@@ -709,6 +719,7 @@
           <EntitySetMapping Name="PRODUCTs">
             <EntityTypeMapping TypeName="QUANLYSPAModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
                 <ScalarProperty Name="PRICE_OUT" ColumnName="PRICE_OUT" />
                 <ScalarProperty Name="INSTOCK" ColumnName="INSTOCK" />
                 <ScalarProperty Name="PRO_URL" ColumnName="PRO_URL" />
@@ -742,6 +753,7 @@
           <EntitySetMapping Name="SERVICESSes">
             <EntityTypeMapping TypeName="QUANLYSPAModel.SERVICESS">
               <MappingFragment StoreEntitySet="SERVICESS">
+                <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
                 <ScalarProperty Name="PRICE" ColumnName="PRICE" />
                 <ScalarProperty Name="SER_NAME" ColumnName="SER_NAME" />
                 <ScalarProperty Name="SER_MA" ColumnName="SER_MA" />

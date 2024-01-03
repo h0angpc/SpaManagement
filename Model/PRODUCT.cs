@@ -21,7 +21,7 @@ namespace SpaManagement.Model
             this.PAYMENT_DETAIL_PRODUCT = new HashSet<PAYMENT_DETAIL_PRODUCT>();
             this.RECEIPT_DETAIL = new HashSet<RECEIPT_DETAIL>();
         }
-    
+
         public int PRO_ID { get; set; }
         public string PRO_MA { get; set; }
         private string _PRO_NAME;
@@ -58,7 +58,7 @@ namespace SpaManagement.Model
         }
 
         private int _INSTOCK;
-        public int INSTOCK 
+        public int INSTOCK
         {
             get => _INSTOCK;
             set
@@ -69,7 +69,7 @@ namespace SpaManagement.Model
         }
 
         private decimal _PRICE_OUT;
-        public decimal PRICE_OUT 
+        public decimal PRICE_OUT
         {
             get => _PRICE_OUT;
             set
@@ -78,7 +78,18 @@ namespace SpaManagement.Model
                 OnPropertyChanged();
             }
         }
-    
+
+        private bool _IS_DELETED;
+        public bool IS_DELETED
+        {
+            get => _IS_DELETED;
+            set
+            {
+                _IS_DELETED = value;
+                OnPropertyChanged();
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PAYMENT_DETAIL_PRODUCT> PAYMENT_DETAIL_PRODUCT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -12,8 +12,8 @@ namespace SpaManagement.Model
     using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
-    
-    public partial class PAYMENT_DETAIL_SERVICE:BaseViewModel
+
+    public partial class PAYMENT_DETAIL_SERVICE : BaseViewModel
     {
         public int PMT_ID { get; set; }
         public int S_ID { get; set; }

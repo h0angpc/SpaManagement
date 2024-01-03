@@ -12,14 +12,14 @@ namespace SpaManagement.Model
     using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
-    
-    public partial class BOOKING:BaseViewModel
+
+    public partial class BOOKING : BaseViewModel
     {
         public int BK_ID { get; set; }
         public string BK_MA { get; set; }
 
         private int _C_ID;
-        public int C_ID 
+        public int C_ID
         {
             get => _C_ID;
             set
@@ -30,29 +30,29 @@ namespace SpaManagement.Model
         }
 
         private int _E_ID;
-        public int E_ID 
+        public int E_ID
         {
             get => _E_ID;
             set
             {
                 _E_ID = value;
                 OnPropertyChanged();
-            } 
+            }
         }
 
         private int _S_ID;
-        public int S_ID 
+        public int S_ID
         {
             get => _S_ID;
             set
             {
                 _S_ID = value;
                 OnPropertyChanged();
-            } 
+            }
         }
 
         private System.DateTime _START_TIME;
-        public System.DateTime START_TIME 
+        public System.DateTime START_TIME
         {
             get => _START_TIME;
             set
@@ -63,7 +63,7 @@ namespace SpaManagement.Model
         }
 
         private System.DateTime _END_TIME;
-        public System.DateTime END_TIME 
+        public System.DateTime END_TIME
         {
             get => _END_TIME;
             set
@@ -73,7 +73,7 @@ namespace SpaManagement.Model
             }
         }
         public Nullable<bool> IS_EDITED { get; set; }
-    
+
         public virtual CUSTOMER CUSTOMER { get; set; }
         public virtual EMPLOYEE EMPLOYEE { get; set; }
         public virtual SERVICESS SERVICESS { get; set; }

@@ -91,6 +91,17 @@ namespace SpaManagement.Model
             }
         }
 
+        private bool _IS_DELETED;
+        public bool IS_DELETED 
+        {
+            get => _IS_DELETED;
+            set
+            {
+                _IS_DELETED = value;
+                OnPropertyChanged();
+            }
+        }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOKING> BOOKINGs { get; set; }
     }
