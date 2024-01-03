@@ -96,36 +96,52 @@ namespace SpaManagement.ViewModel
                 }
             });
 
+            //Xóa mềm
             RemoveCusCommand = new RelayCommand<CUSTOMER>((p) => { return p!=null; }, (p) => {
                 try
                 {
-                    if (p !=null)
+                    //if (p !=null)
+                    //{
+                    //    PAYMENT pay = DataProvider.Ins.DB.PAYMENTs.FirstOrDefault(x => x.CUSTOMER.CUS_ID == p.CUS_ID);
+                    //    BOOKING book = DataProvider.Ins.DB.BOOKINGs.FirstOrDefault(x => x.CUSTOMER.CUS_ID == p.CUS_ID);
+
+                    //    if (pay!=null || book !=null)
+                    //    {
+                    //        MessageBoxCustom m = new MessageBoxCustom("Không thể xóa khách hàng này vì tồn tại nhiều dữ liệu liên quan", MessageType.Info, MessageButtons.Ok);
+                    //        m.ShowDialog();
+                    //    }
+                    //    else
+                    //    {
+                    //        bool? result = new MessageBoxCustom("Xác nhận xóa khách hàng?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                    //        if (result.Value)
+                    //        {
+                    //            CustomerManager.RemoveCustomer(p);
+                    //            DataProvider.Ins.DB.CUSTOMERs.Remove(p);
+
+                    //            DataProvider.Ins.DB.SaveChanges();
+                    //            MessageBoxCustom m = new MessageBoxCustom("Xóa khách hàng thành công!", MessageType.Info, MessageButtons.Ok);
+                    //            m.ShowDialog();
+                    //        }
+                    //        else
+                    //        {
+                    //            return;
+                    //        }
+                    //    }
+                    //}
+                    bool? result = new MessageBoxCustom("Xác nhận xóa khách hàng?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                    if (result.Value)
                     {
-                        PAYMENT pay = DataProvider.Ins.DB.PAYMENTs.FirstOrDefault(x => x.CUSTOMER.CUS_ID == p.CUS_ID);
-                        BOOKING book = DataProvider.Ins.DB.BOOKINGs.FirstOrDefault(x => x.CUSTOMER.CUS_ID == p.CUS_ID);
+                        var cus = DataProvider.Ins.DB.CUSTOMERs.FirstOrDefault(x => x.CUS_ID == p.CUS_ID);
+                        cus.IS_DELETED = true;
 
-                        if (pay!=null || book !=null)
-                        {
-                            MessageBoxCustom m = new MessageBoxCustom("Không thể xóa khách hàng này vì tồn tại nhiều dữ liệu liên quan", MessageType.Info, MessageButtons.Ok);
-                            m.ShowDialog();
-                        }
-                        else
-                        {
-                            bool? result = new MessageBoxCustom("Xác nhận xóa khách hàng?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-                            if (result.Value)
-                            {
-                                CustomerManager.RemoveCustomer(p);
-                                DataProvider.Ins.DB.CUSTOMERs.Remove(p);
-
-                                DataProvider.Ins.DB.SaveChanges();
-                                MessageBoxCustom m = new MessageBoxCustom("Xóa khách hàng thành công!", MessageType.Info, MessageButtons.Ok);
-                                m.ShowDialog();
-                            }
-                            else
-                            {
-                                return;
-                            }
-                        }
+                        CustomerManager.RemoveCustomer(cus);
+                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBoxCustom m = new MessageBoxCustom("Xóa khách hàng thành công!", MessageType.Info, MessageButtons.Ok);
+                        m.ShowDialog();
+                    }
+                    else
+                    {
+                        return;
                     }
                 }
                 catch (Exception ex)

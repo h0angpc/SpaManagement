@@ -129,6 +129,10 @@
                         <TextBlock Text="{Binding MaHD}"  FontSize="18" Height="30" Width="150" Margin="10 0 0 0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
+                        <TextBlock Text="Khách hàng:" FontSize="18" Height="30"/>
+                        <TextBlock Text="{Binding customer}"  FontSize="18" Height="30" Width="150" Margin="10 0 0 0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
                         <TextBlock Text="Thanh toán:" FontWeight="Bold" Height="30" FontSize="18"/>
                         <TextBlock Text="{Binding TongTien,StringFormat=\{0:N0\}}" FontWeight="Bold" Height="30" FontSize="18" Width="152" Margin="10 0 0 0"/>
                     </StackPanel>

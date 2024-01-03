@@ -94,35 +94,52 @@ namespace SpaManagement.ViewModel
                 }
             });
 
+            //Xóa mềm
             RemoveEmpCommand = new RelayCommand<EMPLOYEE>((p) => { return p!=null; }, (p) => {
                 try
                 {
-                    if (p !=null)
+                    //if (p !=null)
+                    //{
+                    //    BOOKING book = DataProvider.Ins.DB.BOOKINGs.FirstOrDefault(x => x.EMPLOYEE.EMP_ID == p.EMP_ID);
+
+                    //    if (book !=null)
+                    //    {
+                    //        MessageBoxCustom m = new MessageBoxCustom("Không thể xóa nhân viên này vì tồn tại nhiều dữ liệu liên quan", MessageType.Info, MessageButtons.Ok);
+                    //        m.ShowDialog();
+                    //    }
+                    //    else
+                    //    {
+                    //        bool? result = new MessageBoxCustom("Xác nhận xóa nhân viên?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                    //        if (result.Value)
+                    //        {
+                    //            EmployeeManager.RemoveEmployee(p);
+                    //            DataProvider.Ins.DB.EMPLOYEEs.Remove(p);
+
+                    //            DataProvider.Ins.DB.SaveChanges();
+                    //            MessageBoxCustom m = new MessageBoxCustom("Xóa nhân viên thành công!", MessageType.Info, MessageButtons.Ok);
+                    //            m.ShowDialog();
+                    //        }
+                    //        else
+                    //        {
+                    //            return;
+                    //        }
+                    //    }
+                    //}
+
+                    bool? result = new MessageBoxCustom("Xác nhận xóa nhân viên?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                    if (result.Value)
                     {
-                        BOOKING book = DataProvider.Ins.DB.BOOKINGs.FirstOrDefault(x => x.EMPLOYEE.EMP_ID == p.EMP_ID);
+                        var emp = DataProvider.Ins.DB.EMPLOYEEs.FirstOrDefault(x => x.EMP_ID == p.EMP_ID);
+                        emp.IS_DELETED = true;
 
-                        if (book !=null)
-                        {
-                            MessageBoxCustom m = new MessageBoxCustom("Không thể xóa nhân viên này vì tồn tại nhiều dữ liệu liên quan", MessageType.Info, MessageButtons.Ok);
-                            m.ShowDialog();
-                        }
-                        else
-                        {
-                            bool? result = new MessageBoxCustom("Xác nhận xóa nhân viên?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-                            if (result.Value)
-                            {
-                                EmployeeManager.RemoveEmployee(p);
-                                DataProvider.Ins.DB.EMPLOYEEs.Remove(p);
-
-                                DataProvider.Ins.DB.SaveChanges();
-                                MessageBoxCustom m = new MessageBoxCustom("Xóa nhân viên thành công!", MessageType.Info, MessageButtons.Ok);
-                                m.ShowDialog();
-                            }
-                            else
-                            {
-                                return;
-                            }
-                        }
+                        EmployeeManager.RemoveEmployee(p);
+                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBoxCustom m = new MessageBoxCustom("Xóa nhân viên thành công!", MessageType.Info, MessageButtons.Ok);
+                        m.ShowDialog();
+                    }
+                    else
+                    {
+                        return;
                     }
                 }
                 catch (Exception ex)

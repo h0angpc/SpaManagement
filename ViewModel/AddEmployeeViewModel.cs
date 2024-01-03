@@ -87,6 +87,7 @@ namespace SpaManagement.ViewModel
             }
         }
 
+        private decimal luong;
 
         private string _salary;
 
@@ -108,15 +109,13 @@ namespace SpaManagement.ViewModel
                 else
                 if (_salary != "")
                 {
-                    decimal num = decimal.Parse(_salary);
-                    _salary = string.Format("{0:N0}", num);
+                     luong = decimal.Parse(_salary);
+                    _salary = string.Format("{0:N0}", luong);
 
                 }
                 OnPropertyChanged(nameof(Salary));
             }
         }
-
-
 
         private string _cccd;
         public string CCCD
@@ -160,6 +159,12 @@ namespace SpaManagement.ViewModel
                 var w = (p);
                 if (w != null)
                 {
+                    Name = "";
+                    Salary = "";
+                    CCCD = "";
+                    Phone = "";
+                    Role = "";
+                    Address = "";
                     w.Close();
                 }
             });
@@ -171,8 +176,14 @@ namespace SpaManagement.ViewModel
                     return false;
                 }
 
-                var displaylist = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.EMP_DISPLAYNAME == Name && x.EMP_CCCD == CCCD);
-                if (displaylist == null || displaylist.Count() != 0)
+                //var displaylist = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.EMP_DISPLAYNAME == Name && x.EMP_CCCD == CCCD);
+                //if (displaylist == null || displaylist.Count() != 0)
+                //{
+                //    return false;
+                //}
+
+                var emp = DataProvider.Ins.DB.EMPLOYEEs.FirstOrDefault(x => x.EMP_DISPLAYNAME == Name && x.EMP_ROLE == Role && x.EMP_SALARY == luong && x.EMP_ADDRESS == Address && x.EMP_PHONE == Phone && x.EMP_CCCD == CCCD);
+                if (emp != null && emp.IS_DELETED == false)
                 {
                     return false;
                 }
@@ -180,12 +191,23 @@ namespace SpaManagement.ViewModel
                 return true;
             }, (p) =>
             {
-                var employee = new EMPLOYEE() { EMP_DISPLAYNAME = Name, EMP_SALARY = decimal.Parse(Salary), EMP_ADDRESS = Address, EMP_CCCD = CCCD, EMP_PHONE = Phone, EMP_ROLE = Role };
+                var emp = DataProvider.Ins.DB.EMPLOYEEs.FirstOrDefault(x => x.EMP_DISPLAYNAME == Name && x.EMP_ROLE == Role && x.EMP_SALARY == luong && x.EMP_ADDRESS == Address && x.EMP_PHONE == Phone && x.EMP_CCCD == CCCD);
+                if (emp == null)
+                {
+                    var employee = new EMPLOYEE() { EMP_DISPLAYNAME = Name, EMP_SALARY = luong, EMP_ADDRESS = Address, EMP_CCCD = CCCD, EMP_PHONE = Phone, EMP_ROLE = Role, IS_DELETED = false };
 
-                DataProvider.Ins.DB.EMPLOYEEs.Add(employee);
-                DataProvider.Ins.DB.SaveChanges();
+                    DataProvider.Ins.DB.EMPLOYEEs.Add(employee);
+                    DataProvider.Ins.DB.SaveChanges();
 
-                EmployeeManager.AddEmployee(employee);
+                    EmployeeManager.AddEmployee(employee);
+                }
+                else
+                {
+                    emp.IS_DELETED = false;
+
+                    DataProvider.Ins.DB.SaveChanges();
+                    EmployeeManager.AddEmployee(emp);
+                }
 
                 MessageBoxCustom m = new MessageBoxCustom("Thêm nhân viên mới thành công", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();

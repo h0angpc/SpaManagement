@@ -74,14 +74,14 @@
             </StackPanel>
 
             <!--Title-->
-            <TextBlock Grid.Row="1" Text="THÔNG TIN NHẬP HÀNG" HorizontalAlignment="Center"
+            <TextBlock Grid.Row="1" Text="CHI TIẾT NHẬP HÀNG" HorizontalAlignment="Center"
            FontWeight="Bold" FontSize="30"/>
 
             <Grid Grid.Row="2" Background="AliceBlue">
                 <StackPanel Grid.Column="0" Orientation="Horizontal" 
                             HorizontalAlignment="Center" Margin="0 5 0 0">
                     <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                        <TextBlock Text="Mã NH" FontWeight="Bold"/>
+                        <TextBlock Text="Mã Nhập Hàng" FontWeight="Bold"/>
                         <TextBox 
                             FontWeight="SemiBold"
                             IsReadOnly="True" Text="{Binding MaNH}"
@@ -134,13 +134,13 @@
             </Grid >
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
-                <Button Content="Xoá Thông Tin" Margin="17,14,5,14" 
+                <!--<Button Content="Xoá Thông Tin" Margin="17,14,5,14" 
                         Background="#FF2AC1F0" Command="{Binding RemoveReceiptCommand}"
-                        CommandParameter="{Binding ElementName=CTNH}"/>
+                        CommandParameter="{Binding ElementName=CTNH}"/>-->
 
                 <TextBlock Grid.Column="1" Text="TỔNG TIỀN:" HorizontalAlignment="Center"
                     FontWeight="Bold" FontSize="25" Height="30" VerticalAlignment="Top" Margin="0,12,0,0"/>

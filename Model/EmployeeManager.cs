@@ -9,7 +9,7 @@ namespace SpaManagement.Model
 {
     public class EmployeeManager
     {
-        public static ObservableCollection<EMPLOYEE> _DatabaseEmployees = new ObservableCollection<EMPLOYEE>(DataProvider.Ins.DB.EMPLOYEEs);
+        public static ObservableCollection<EMPLOYEE> _DatabaseEmployees = new ObservableCollection<EMPLOYEE>(DataProvider.Ins.DB.EMPLOYEEs.Where(x=> x.IS_DELETED == false));
 
         public static ObservableCollection<EMPLOYEE> GetEmployees()
         {
