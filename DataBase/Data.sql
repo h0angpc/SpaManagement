@@ -1,49 +1,49 @@
 ﻿-- Dữ liệu cho bảng EMPLOYEE
-INSERT INTO EMPLOYEE (EMP_DISPLAYNAME, EMP_ADDRESS, EMP_PHONE, EMP_CCCD, EMP_SALARY, EMP_ROLE)
+INSERT INTO EMPLOYEE (EMP_DISPLAYNAME, EMP_ADDRESS, EMP_PHONE, EMP_CCCD, EMP_SALARY, EMP_ROLE, IS_DELETED)
 VALUES
-  (N'Nguyễn Văn A', N'123 Đường ABC, Quận XYZ, Thành phố Hồ Chí Minh', N'0901234567', N'123456789', 5000000, N'Dịch vụ'),
-  (N'Trần Thị B', N'456 Đường XYZ, Quận ABC, Thành phố Hà Nội', N'0987654321', N'987654321', 6000000, N'Dịch vụ'),
-  (N'Lê Văn C', N'789 Đường LMN, Quận DEF, Thành phố Đà Nẵng', N'0123456789', N'987654321', 7000000, N'Dịch vụ'),
-  (N'Hồ Thị D', N'321 Đường KLM, Quận GHI, Thành phố Hải Phòng', N'0123456789', N'123456789', 5500000, N'Bảo vệ'),
-  (N'Phạm Văn E', N'555 Đường UVW, Quận XYZ, Thành phố Cần Thơ', N'0909876543', N'123456789', 8000000, N'Bảo vệ');
+  (N'Nguyễn Văn A', N'123 Đường ABC, Quận XYZ, Thành phố Hồ Chí Minh', N'0901234567', N'123456789', 5000000, N'Dịch vụ', 0),
+  (N'Trần Thị B', N'456 Đường XYZ, Quận ABC, Thành phố Hà Nội', N'0987654321', N'987654321', 6000000, N'Dịch vụ', 0),
+  (N'Lê Văn C', N'789 Đường LMN, Quận DEF, Thành phố Đà Nẵng', N'0123456789', N'987654321', 7000000, N'Dịch vụ', 0),
+  (N'Hồ Thị D', N'321 Đường KLM, Quận GHI, Thành phố Hải Phòng', N'0123456789', N'123456789', 5500000, N'Bảo vệ', 0),
+  (N'Phạm Văn E', N'555 Đường UVW, Quận XYZ, Thành phố Cần Thơ', N'0909876543', N'123456789', 8000000, N'Bảo vệ', 0);
 
 -- Dữ liệu cho bảng CUSTOMER
-INSERT INTO CUSTOMER (CUS_NAME, CUS_PHONE, CUS_EMAIL, CUS_GENDER)
+INSERT INTO CUSTOMER (CUS_NAME, CUS_PHONE, CUS_EMAIL, CUS_GENDER, IS_DELETED)
 VALUES
-  (N'Nguyễn Thị A', N'0901111111', N'kh1@example.com', N'Nữ'),
-  (N'Trần Văn B', N'0912222222', N'kh2@example.com', N'Nam'),
-  (N'Lê Thị C', N'0923333333', N'kh3@example.com', N'Nữ'),
-  (N'Hồ Văn D', N'0934444444', N'kh4@example.com', N'Nam'),
-  (N'Phạm Thị E', N'0945555555', N'kh5@example.com', N'Nữ');
+  (N'Nguyễn Thị A', N'0901111111', N'kh1@example.com', N'Nữ', 0),
+  (N'Trần Văn B', N'0912222222', N'kh2@example.com', N'Nam', 0),
+  (N'Lê Thị C', N'0923333333', N'kh3@example.com', N'Nữ', 0),
+  (N'Hồ Văn D', N'0934444444', N'kh4@example.com', N'Nam', 0),
+  (N'Phạm Thị E', N'0945555555', N'kh5@example.com', N'Nữ', 0);
 
 -- Dữ liệu cho bảng PRODUCT
-INSERT INTO PRODUCT (PRO_NAME, PRO_IMG, PRO_URL, INSTOCK, PRICE_OUT)
+INSERT INTO PRODUCT (PRO_NAME, PRO_IMG, PRO_URL, INSTOCK, PRICE_OUT, IS_DELETED)
 VALUES
-  (N'Kem dưỡng', 'https://www.shiseido.com.vn/on/demandware.static/-/Sites-itemmaster_shiseido/default/dw5abf09dc/images/products/18285/18285_S_01.jpg', 'https://www.shiseido.com.vn/vi/essential-energy-kem-d%C6%B0%E1%BB%A1ng-%E1%BA%A9m-essential-energy-hydrating-cream-1011828510.html', 172, 100000),
-  (N'Bông tẩy trang', 'https://ipek.vn/Uploads/images/anh_web1/bong-tay-trang-ipek-sieu-mem-min-100-30-mieng.jpg','https://ipek.vn/bong-tay-trang-ipek-tho-nhi-ky-100-30-mieng', 72, 40000),
-  (N'Nước tẩy trang', 'https://vonpreen.com/wp-content/uploads/2018/12/nuoc-tay-trang-Loreal-Micellar-Water-tuoi-mat.jpg', 'https://vonpreen.com/product/nuoc-tay-trang-tuoi-mat-loreal-micellar-water-400ml-lam-sach-sau-giu-am-va-duong-mem-da',68, 200000),
-  (N'Kem chống nắng', 'https://storage.beautyfulls.com/uploads-1/avatar/product/1200x/2022/05/12/figure-1652344045386.png', 'https://www.beautyfulls.com/kem-chong-nang/cell-fusion-c-mau-vang',126, 150000),
-  (N'Chấm mụn', 'https://bizweb.dktcdn.net/100/318/244/products/71wbvqxp6jl-sl1500.jpg?v=1637856857803', 'https://lingbeau.com/cham-mun-mario',38, 400000),
-  (N'Sữa rửa mặt','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXxSK5s47LJ6sEpipxut2Fxl3ArfGaBDj9RA&usqp=CAU','https://www.cerave.com.vn/cham-soc-da/lam-sach/sua-rua-mat-danh-cho-da-thuong-va-da-kho',100,250000),
-  (N'Nước hoa hồng','https://classic.vn/wp-content/uploads/2023/03/nuoc-hoa-hong-khong-mui-klairs.jpeg','https://classic.vn/nuoc-hoa-hong-dear-klairs-supple-preparation-unscented-toner-180ml/',100,150000),
-  (N'Serum','https://product.hstatic.net/1000025647/product/the-ordinary-niacinamide-10-zinc-1_cf0ea884638c4e83917ce443ee6b9829_1024x1024.png','https://thegioisonmoi.com/products/serum-giam-mun-va-mo-tham-the-ordinary-niacinamide-10-zinc-1',50, 300000);
+  (N'Kem dưỡng', 'https://www.shiseido.com.vn/on/demandware.static/-/Sites-itemmaster_shiseido/default/dw5abf09dc/images/products/18285/18285_S_01.jpg', 'https://www.shiseido.com.vn/vi/essential-energy-kem-d%C6%B0%E1%BB%A1ng-%E1%BA%A9m-essential-energy-hydrating-cream-1011828510.html', 172, 100000, 0),
+  (N'Bông tẩy trang', 'https://ipek.vn/Uploads/images/anh_web1/bong-tay-trang-ipek-sieu-mem-min-100-30-mieng.jpg','https://ipek.vn/bong-tay-trang-ipek-tho-nhi-ky-100-30-mieng', 72, 40000, 0),
+  (N'Nước tẩy trang', 'https://vonpreen.com/wp-content/uploads/2018/12/nuoc-tay-trang-Loreal-Micellar-Water-tuoi-mat.jpg', 'https://vonpreen.com/product/nuoc-tay-trang-tuoi-mat-loreal-micellar-water-400ml-lam-sach-sau-giu-am-va-duong-mem-da',68, 200000, 0),
+  (N'Kem chống nắng', 'https://storage.beautyfulls.com/uploads-1/avatar/product/1200x/2022/05/12/figure-1652344045386.png', 'https://www.beautyfulls.com/kem-chong-nang/cell-fusion-c-mau-vang',126, 150000, 0),
+  (N'Chấm mụn', 'https://bizweb.dktcdn.net/100/318/244/products/71wbvqxp6jl-sl1500.jpg?v=1637856857803', 'https://lingbeau.com/cham-mun-mario',38, 400000, 0),
+  (N'Sữa rửa mặt','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXxSK5s47LJ6sEpipxut2Fxl3ArfGaBDj9RA&usqp=CAU','https://www.cerave.com.vn/cham-soc-da/lam-sach/sua-rua-mat-danh-cho-da-thuong-va-da-kho',100,250000, 0),
+  (N'Nước hoa hồng','https://classic.vn/wp-content/uploads/2023/03/nuoc-hoa-hong-khong-mui-klairs.jpeg','https://classic.vn/nuoc-hoa-hong-dear-klairs-supple-preparation-unscented-toner-180ml/',100,150000, 0),
+  (N'Serum','https://product.hstatic.net/1000025647/product/the-ordinary-niacinamide-10-zinc-1_cf0ea884638c4e83917ce443ee6b9829_1024x1024.png','https://thegioisonmoi.com/products/serum-giam-mun-va-mo-tham-the-ordinary-niacinamide-10-zinc-1',50, 300000, 0);
 
 -- Dữ liệu cho bảng SERVICESS
-INSERT INTO SERVICESS (SER_NAME, PRICE)
+INSERT INTO SERVICESS (SER_NAME, PRICE, IS_DELETED)
 VALUES
-  (N'Nặn mụn', 200000),
-  (N'Triệt lông', 150000),
-  (N'Tẩy tế bào chết', 300000),
-  (N'Gội đầu', 50000),
-  (N'Massage', 200000);
+  (N'Nặn mụn', 200000, 0),
+  (N'Triệt lông', 150000, 0),
+  (N'Tẩy tế bào chết', 300000, 0),
+  (N'Gội đầu', 50000, 0),
+  (N'Massage', 200000, 0);
 
 -- Dữ liệu cho bảng BOOKING
 INSERT INTO BOOKING (C_ID, E_ID, S_ID, START_TIME, END_TIME, IS_EDITED)
 VALUES
   (1, 1, 1, '2023-01-01 10:00:00', '2023-01-01 12:00:00', 0),
-  (2, 2, 2, '2023-02-01 14:00:00', '2023-02-01 16:00:00', 1),
+  (2, 2, 2, '2023-02-01 14:00:00', '2023-02-01 16:00:00', 0),
   (3, 3, 3, '2023-03-01 09:00:00', '2023-03-01 11:00:00', 0),
-  (4, 4, 4, '2023-04-01 13:00:00', '2023-04-01 15:00:00', 1),
+  (4, 4, 4, '2023-04-01 13:00:00', '2023-04-01 15:00:00', 0),
   (5, 5, 5, '2023-05-01 11:00:00', '2023-05-01 13:00:00', 0);
 
 -- Dữ liệu cho bảng PAYMENT
@@ -228,7 +228,6 @@ VALUES
   (26, 3, 1, 200000),
   (27, 3, 1, 200000),
   (28, 1, 1, 100000),
-
   (29, 1, 2, 100000),
   (29, 5, 2, 400000),
   (30, 2, 2, 40000),
@@ -239,7 +238,6 @@ VALUES
   (33, 3, 2, 200000),
   (34, 3, 1, 200000),
   (35, 1, 2, 100000),
-
   (36, 1, 2, 100000),
   (36, 5, 2, 400000),
   (37, 2, 2, 40000),
@@ -289,3 +287,6 @@ VALUES
   (1, 6, 100, 179000),
   (1, 7, 100, 107000),
   (1, 8, 50, 214000);
+
+
+  

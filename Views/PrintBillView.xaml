@@ -52,7 +52,7 @@
                     <RowDefinition ></RowDefinition>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0">
-                    <TextBlock Height="auto" Width="auto"  FontSize="30" FontWeight="Bold" FontStyle="Italic" Text="*Quản lý SPA*" TextAlignment="Center"/>
+                    <TextBlock Height="auto" Width="auto"  FontSize="30" FontWeight="Bold" FontStyle="Italic" Text="*Zenith SPA*" TextAlignment="Center"/>
                     <TextBlock Height="35" FontSize="13" TextWrapping="Wrap" Text="Đường Hàn Thuyên, khu phố 6 P, Thủ Đức, Thành phố Hồ Chí Minh" TextAlignment="Center" />
                     <TextBlock Text="Hotline: 0123456789" FontSize="18" Height="30" TextAlignment="Center"  />
                     <TextBlock Text="Giờ in hóa đơn:" Height="30 " FontSize="18" TextAlignment="Center" HorizontalAlignment="Center" />
