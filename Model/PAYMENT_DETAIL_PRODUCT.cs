@@ -9,11 +9,11 @@
 
 namespace SpaManagement.Model
 {
-    using SpaManagement.ViewModel;
     using System;
     using System.Collections.Generic;
-    
-    public partial class PAYMENT_DETAIL_PRODUCT:BaseViewModel
+    using SpaManagement.ViewModel;
+
+    public partial class PAYMENT_DETAIL_PRODUCT : BaseViewModel
     {
         public int PMT_ID { get; set; }
         public int P_ID { get; set; }

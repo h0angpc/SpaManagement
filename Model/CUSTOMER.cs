@@ -30,10 +30,19 @@ namespace SpaManagement.Model
         public string CUS_PHONE { get => _CUS_PHONE; set { _CUS_PHONE = value; OnPropertyChanged(); } }
         private string _CUS_EMAIL;
         public string CUS_EMAIL { get => _CUS_EMAIL; set { _CUS_EMAIL = value; OnPropertyChanged(); } }
-        private string _CUS_GENDER;
-        public string CUS_GENDER { get => _CUS_GENDER; set { _CUS_GENDER = value; OnPropertyChanged(); } }
-
-
+        private string _CUS_SEX;
+        public string CUS_SEX { get => _CUS_SEX; set { _CUS_SEX = value; OnPropertyChanged(); } }
+        private bool _IS_DELETED;
+        public bool IS_DELETED
+        {
+            get => _IS_DELETED;
+            set
+            {
+                _IS_DELETED = value;
+                OnPropertyChanged();
+            }
+        }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOKING> BOOKINGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
