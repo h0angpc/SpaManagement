@@ -97,33 +97,48 @@ namespace SpaManagement.ViewModel
             {
                 try
                 {
-                    if (p !=null)
+                    //if (p !=null)
+                    //{
+                    //    PAYMENT_DETAIL_SERVICE pay = DataProvider.Ins.DB.PAYMENT_DETAIL_SERVICE.FirstOrDefault(x => x.S_ID == p.SER_ID);
+                    //    BOOKING book = DataProvider.Ins.DB.BOOKINGs.FirstOrDefault(x=> x.S_ID == p.SER_ID);
+
+                    //    if (pay!=null || book != null)
+                    //    {
+                    //        MessageBoxCustom m = new MessageBoxCustom("Không thể xóa dịch vụ này vì tồn tại nhiều dữ liệu liên quan", MessageType.Info, MessageButtons.Ok);
+                    //        m.ShowDialog();
+                    //    }
+                    //    else
+                    //    {
+                    //        bool? result = new MessageBoxCustom("Xác nhận xóa dịch vụ?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                    //        if (result.Value)
+                    //        {
+                    //            ServiceManager.RemoveServcie(p);
+                    //            DataProvider.Ins.DB.SERVICESSes.Remove(p);
+
+                    //            DataProvider.Ins.DB.SaveChanges();
+                    //            MessageBoxCustom m = new MessageBoxCustom("Xóa dịch vụ thành công!", MessageType.Info, MessageButtons.Ok);
+                    //            m.ShowDialog();
+                    //        }
+                    //        else
+                    //        {
+                    //            return;
+                    //        }
+                    //    }
+                    //}
+                    bool? result = new MessageBoxCustom("Xác nhận xóa dịch vụ?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                    if (result.Value)
                     {
-                        PAYMENT_DETAIL_SERVICE pay = DataProvider.Ins.DB.PAYMENT_DETAIL_SERVICE.FirstOrDefault(x => x.S_ID == p.SER_ID);
-                        BOOKING book = DataProvider.Ins.DB.BOOKINGs.FirstOrDefault(x=> x.S_ID == p.SER_ID);
+                        var pro = DataProvider.Ins.DB.SERVICESSes.FirstOrDefault(x => x.SER_ID == SelectedService.SER_ID);
+                        pro.IS_DELETED = true;
 
-                        if (pay!=null || book != null)
-                        {
-                            MessageBoxCustom m = new MessageBoxCustom("Không thể xóa dịch vụ này vì tồn tại nhiều dữ liệu liên quan", MessageType.Info, MessageButtons.Ok);
-                            m.ShowDialog();
-                        }
-                        else
-                        {
-                            bool? result = new MessageBoxCustom("Xác nhận xóa dịch vụ?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-                            if (result.Value)
-                            {
-                                ServiceManager.RemoveServcie(p);
-                                DataProvider.Ins.DB.SERVICESSes.Remove(p);
-
-                                DataProvider.Ins.DB.SaveChanges();
-                                MessageBoxCustom m = new MessageBoxCustom("Xóa dịch vụ thành công!", MessageType.Info, MessageButtons.Ok);
-                                m.ShowDialog();
-                            }
-                            else
-                            {
-                                return;
-                            }
-                        }
+                        ServiceManager.RemoveServcie(SelectedService);
+                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBoxCustom m = new MessageBoxCustom("Xóa sản phẩm thành công!", MessageType.Info, MessageButtons.Ok);
+                        m.ShowDialog();
+                    }
+                    else
+                    {
+                        return;
                     }
                 }
                 catch (Exception ex)

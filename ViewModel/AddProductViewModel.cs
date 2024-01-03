@@ -97,20 +97,31 @@ namespace SpaManagement.ViewModel
                 {
                     return false;
                 }
-                var displaylist = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_NAME == ProductName);
-                if (displaylist == null || displaylist.Count() != 0)
+                var pro = DataProvider.Ins.DB.PRODUCTs.FirstOrDefault(x => x.PRO_NAME == ProductName);
+                if (pro != null && pro.IS_DELETED == false)
                 {
                     return false;
                 }
                 return true;
             }, (p) =>
             {
-                var Product = new PRODUCT() { PRO_NAME = ProductName, PRICE_OUT = 0, PRO_URL = ProductLink, PRO_IMG = ProductImage.ToString() };
+                var pro = DataProvider.Ins.DB.PRODUCTs.FirstOrDefault(x => x.PRO_NAME == ProductName);
+                if (pro == null)
+                {
+                    var Product = new PRODUCT() { PRO_NAME = ProductName, PRICE_OUT = 0, PRO_URL = ProductLink, PRO_IMG = ProductImage.ToString() };
+                    DataProvider.Ins.DB.PRODUCTs.Add(Product);
+                    DataProvider.Ins.DB.SaveChanges();
 
-                DataProvider.Ins.DB.PRODUCTs.Add(Product);
-                DataProvider.Ins.DB.SaveChanges();
-
-                ProductManager.AddProduct(Product);
+                    ProductManager.AddProduct(Product);
+                }
+                else
+                {
+                    pro.IS_DELETED = false;
+                    pro.PRO_IMG = ProductImage.ToString();  
+                    pro.PRO_URL = ProductLink;
+                    DataProvider.Ins.DB.SaveChanges();
+                    ProductManager.AddProduct(pro);
+                }
 
                 MessageBoxCustom m = new MessageBoxCustom("Thêm sản phẩm mới thành công", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();
@@ -178,7 +189,7 @@ namespace SpaManagement.ViewModel
 
         public bool CheckIfProductExist(string ProductName)
         {
-            var displaylist = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_NAME == ProductName);
+            var displaylist = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_NAME == ProductName && x.IS_DELETED == false);
             if (displaylist == null || displaylist.Count() != 0)
             {
                 return false;

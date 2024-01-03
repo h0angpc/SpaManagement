@@ -10,20 +10,20 @@ namespace SpaManagement.Model
 {
     public class ProductManager
     {
-        public static ObservableCollection<PRODUCT> _DatabaseCustomers = new ObservableCollection<PRODUCT>(DataProvider.Ins.DB.PRODUCTs);
+        public static ObservableCollection<PRODUCT> _DatabaseProduct = new ObservableCollection<PRODUCT>(DataProvider.Ins.DB.PRODUCTs.Where(p => p.IS_DELETED == false));
 
         public static ObservableCollection<PRODUCT> GetProducts()
         {
-            return _DatabaseCustomers; 
+            return _DatabaseProduct; 
         }
 
         public static void AddProduct(PRODUCT product)
         {
-            _DatabaseCustomers.Add(product);   
+            _DatabaseProduct.Add(product);   
         }
         public static void RemoveProduct(PRODUCT product)
         {
-            _DatabaseCustomers.Remove(product);
+            _DatabaseProduct.Remove(product);
         }
     }
 }

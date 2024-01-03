@@ -10,7 +10,7 @@ namespace SpaManagement.Model
 {
     public class ServiceManager
     {
-        public static ObservableCollection<SERVICESS> _DatabaseService = new ObservableCollection<SERVICESS>(DataProvider.Ins.DB.SERVICESSes);
+        public static ObservableCollection<SERVICESS> _DatabaseService = new ObservableCollection<SERVICESS>(DataProvider.Ins.DB.SERVICESSes.Where(s => s.IS_DELETED == false));
 
         public static ObservableCollection<SERVICESS> GetService()
         {
