@@ -80,15 +80,16 @@
                 x:Name="customerDataGrid" CanUserDeleteRows="True"
                 SelectionMode="Single"  ItemsSource="{Binding BookingCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <DataGrid.Columns>
-                    
 
-                    <DataGridTextColumn Header="Tên KH" IsReadOnly="True" Width="auto" Binding="{Binding CUSTOMER.CUS_NAME}"/>
+                    <DataGridTextColumn Header="Mã BK" IsReadOnly="True" Width="auto" Binding="{Binding BK_MA}"/>
 
-                    <DataGridTextColumn Header="Tên DV" IsReadOnly="True" Width="auto" Binding="{Binding SERVICESS.SER_NAME}"/>
-                    <DataGridTextColumn Header="Giờ Bắt Đầu" IsReadOnly="True" Width="auto" Binding="{Binding START_TIME, StringFormat= HH:mm}"/>
-                    <DataGridTextColumn Header="Giờ Kết Thúc" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding END_TIME, StringFormat=HH:mm}"/>
-                    <DataGridTextColumn Header="Ngày" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding START_TIME, StringFormat=dd/MM/yyyy}"/>
-                    <DataGridTextColumn Header="Tên NV" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding EMPLOYEE.EMP_DISPLAYNAME}"/>
+                    <DataGridTextColumn Header="Tên KH" IsReadOnly="True" Width="*" Binding="{Binding CUSTOMER.CUS_NAME}"/>
+
+                    <DataGridTextColumn Header="Tên DV" IsReadOnly="True" Width="*" Binding="{Binding SERVICESS.SER_NAME}"/>
+                    <DataGridTextColumn Header="Giờ BĐ" IsReadOnly="True" Width="*" Binding="{Binding START_TIME, StringFormat= HH:mm}"/>
+                    <DataGridTextColumn Header="Giờ KT" IsReadOnly="True" CanUserResize="false" Width="*" Binding="{Binding END_TIME, StringFormat=HH:mm}"/>
+                    <DataGridTextColumn Header="Ngày" IsReadOnly="True" CanUserResize="false" Width="*" Binding="{Binding START_TIME, StringFormat=dd/MM/yyyy}"/>
+                    <DataGridTextColumn Header="Tên NV" IsReadOnly="True" CanUserResize="false" Width="*" Binding="{Binding EMPLOYEE.EMP_DISPLAYNAME}"/>
                     <DataGridTemplateColumn Header="Tính Năng" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -97,10 +98,7 @@
                                             CommandParameter="{Binding SelectedItem,ElementName=customerDataGrid,Mode=TwoWay}">
                                         <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
-                                    <Button x:Name="rmvBtn" Style="{StaticResource gridRemoveButton}" 
-                                        Margin="5 0 0 0">
-                                        <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                    </Button>
+                                    
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
