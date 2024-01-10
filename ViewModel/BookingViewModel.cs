@@ -45,7 +45,7 @@ namespace SpaManagement.ViewModel
             {
                 _TextToFilter = value;
                 OnPropertyChanged(nameof(TextToFilter));
-                if (Filtercondition == "Họ tên")
+                if (Filtercondition == "Tên KH")
                 {
                     BookingCollection.Filter = FilterByName;
                 }
@@ -88,8 +88,8 @@ namespace SpaManagement.ViewModel
 
         public BookingViewModel()
         {
-            filtersource = new ObservableCollection<string> { "Họ tên", "Mã BK", "Ngày" };
-            Filtercondition = "Họ tên"; // Default value
+            filtersource = new ObservableCollection<string> { "Tên KH", "Mã BK", "Ngày" };
+            Filtercondition = "Tên KH"; // Default value
             _CustomerList = CustomerManager.GetCustomers();
             _BookingList = BookingManager.GetBOOKINGs();
             BookingCollection = CollectionViewSource.GetDefaultView(_BookingList);
