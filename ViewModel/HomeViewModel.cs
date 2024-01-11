@@ -300,7 +300,7 @@ namespace SpaManagement.ViewModel
 
             TodayRevenue = string.Format("{0:N0} VND", tdayrevenue);
 
-            LoadMonthTotalProduct(DateTime.Now.Month);
+            LoadMonthTotalProduct(DateTime.Now.Month, DateTime.Now.Year);
 
         }
 
@@ -372,9 +372,9 @@ namespace SpaManagement.ViewModel
             TopService = UsersTalbe;
         }
 
-        public void LoadMonthTotalProduct(int month)
+        public void LoadMonthTotalProduct(int month, int year)
         {
-            var a = DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Where(x => x.PAYMENT.DAYTIME.Month == month);
+            var a = DataProvider.Ins.DB.PAYMENT_DETAIL_PRODUCT.Where(x => x.PAYMENT.DAYTIME.Month == month && x.PAYMENT.DAYTIME.Year == year);
             if (a.Count() < 0)
             {
                 TotalProductThisMonth = "0";
