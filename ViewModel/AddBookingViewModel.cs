@@ -62,7 +62,7 @@ namespace SpaManagement.ViewModel
         {
             SelectedDate = DateTime.Today;
             CusSource = new ObservableCollection<string>(DataProvider.Ins.DB.CUSTOMERs.Select(x => x.CUS_MA + " | " + x.CUS_NAME).ToList());
-            SerSource = new ObservableCollection<string>(DataProvider.Ins.DB.SERVICESSes.Select(x => x.SER_NAME).ToList());
+            SerSource = new ObservableCollection<string>(DataProvider.Ins.DB.SERVICESSes.Where(x => x.IS_DELETED == false).Select(x => x.SER_NAME).ToList());
 
             StartTime = new ObservableCollection<TimeSpan>();
             EndTime = new ObservableCollection<TimeSpan>();

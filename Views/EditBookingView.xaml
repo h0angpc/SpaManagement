@@ -87,17 +87,15 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,20,0,20">
                     <TextBlock Text="TÊN KHÁCH HÀNG" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>
-                    <ComboBox Margin="60,0,0,2" 
-                        Padding="5 5 5 5"  Width="180" Height="28"
-                        HorizontalAlignment="Right" 
-                        BorderBrush="Black" 
-                        BorderThickness="1"
-                        SelectedItem="{Binding SelectedCus, Mode=TwoWay}"
-                        ItemsSource="{Binding CusSource, UpdateSourceTrigger=PropertyChanged}"
-                        materialDesign:HintAssist.IsFloating="False"
-                        IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                    </ComboBox>
+                    <TextBox
+                        
+                    IsReadOnly="True"
+                    Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    Width="170" HorizontalAlignment="Left"
+                    Margin="60 0 0 0"
+                    Text="{Binding SelectedCus, UpdateSourceTrigger=PropertyChanged}"
+>
+                    </TextBox>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,20,0,20">
                     <TextBlock Text="TÊN DỊCH VỤ" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>

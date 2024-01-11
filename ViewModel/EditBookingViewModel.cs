@@ -67,7 +67,7 @@ namespace SpaManagement.ViewModel
            
             DataProvider.Ins.DB.SaveChanges();
             CusSource = new ObservableCollection<string>(DataProvider.Ins.DB.CUSTOMERs.Select(x => x.CUS_MA + " | " + x.CUS_NAME).ToList());
-            SerSource = new ObservableCollection<string>(DataProvider.Ins.DB.SERVICESSes.Select(x => x.SER_NAME).ToList());
+            SerSource = new ObservableCollection<string>(DataProvider.Ins.DB.SERVICESSes.Where(x => x.IS_DELETED == false).Select(x => x.SER_NAME).ToList());
 
             StartTime = new ObservableCollection<TimeSpan>();
             EndTime = new ObservableCollection<TimeSpan>();
@@ -108,12 +108,29 @@ namespace SpaManagement.ViewModel
 
             EditBookingCommand = new RelayCommand<Window>((p) =>
             {
-                return !string.IsNullOrEmpty(SelectedCus)
-                   && !string.IsNullOrEmpty(SelectedEmp)
-                   && !string.IsNullOrEmpty(SelectedSer)
-                   && SelectedDate != default(DateTime)
-                   && SelectedStart != default(TimeSpan)
-                   && SelectedEnd != default(TimeSpan);
+                if (string.IsNullOrEmpty(SelectedCus)
+                   || string.IsNullOrEmpty(SelectedEmp)
+                   || string.IsNullOrEmpty(SelectedSer)
+                   || SelectedDate == default(DateTime)
+                   || SelectedStart == default(TimeSpan)
+                   || SelectedEnd == default(TimeSpan))
+                {
+                    return false;
+                }
+                var _serID = DataProvider.Ins.DB.SERVICESSes.FirstOrDefault(x => x.SER_NAME == SelectedSer).SER_ID;
+                var _empMA = SelectedEmp.Split('|')[0].Trim();
+                var _empID = DataProvider.Ins.DB.EMPLOYEEs.FirstOrDefault(x => x.EMP_MA == _empMA).EMP_ID;
+                var _startTime = SelectedDate + SelectedStart;
+                var _endTime = SelectedDate + SelectedEnd;
+
+
+                var displaylist = DataProvider.Ins.DB.BOOKINGs.Where(x => x.S_ID == _serID && x.E_ID == _empID && x.START_TIME == _startTime && x.END_TIME == _endTime);
+                if (displaylist == null || displaylist.Count() != 0)
+                {
+                    return false;
+                }
+
+                return true;
             }, (p) =>
             {
                 CusMA = SelectedCus.Split('|')[0].Trim();
@@ -136,11 +153,9 @@ namespace SpaManagement.ViewModel
                 }
                 MessageBoxCustom m = new MessageBoxCustom("Cập nhật thành công!", MessageType.Info, MessageButtons.Ok);
                 m.ShowDialog();
-            });
-
-
-
-
+            })
+            {
+            };
             CloseCommand = new RelayCommand<Window>((p) => { return p == null ? false : true; }, (p) =>
             {
                 var _selectedBooking = DataProvider.Ins.DB.BOOKINGs.FirstOrDefault(x => x.BK_ID == SelectedBooking.BK_ID);

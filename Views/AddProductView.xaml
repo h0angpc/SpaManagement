@@ -87,6 +87,7 @@
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,20,0,20">
                     <TextBlock Text="TÊN SẢN PHẨM" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>
                     <TextBox
+                        
                         materialDesign:HintAssist.Hint="VD: Bột rửa mặt Nia"
                     materialDesign:HintAssist.IsFloating="False"
                     Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
@@ -109,8 +110,8 @@
                 </StackPanel>-->
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,20,0,20">
                     <TextBlock Text="LINK SẢN PHẨM" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>
-                    <TextBox materialDesign:HintAssist.Hint="VD: Bột rửa mặt Nia"
-                    materialDesign:HintAssist.IsFloating="False"
+                    <TextBox 
+                   
                     Padding="5 5 5 5" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     Width="170" HorizontalAlignment="Left"
                     Margin="75 0 0 0"
