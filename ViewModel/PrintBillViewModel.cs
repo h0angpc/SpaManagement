@@ -29,6 +29,7 @@ namespace SpaManagement.ViewModel
         public string NgHD { get; set; }
         public string TongTien { get; set; }
         public string customer {  get; set; }
+        public string address { get; set; }
 
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand CloseCommand { get; set; }
@@ -38,7 +39,11 @@ namespace SpaManagement.ViewModel
             MaHD = SelectedPay.PMT_MA;
             NgHD = SelectedPay.DAYTIME.ToString("dd/MM/yyyy HH:mm:ss");
             customer = SelectedPay.CUSTOMER.CUS_NAME;
-         
+            //ACCOUNT acc = DataProvider.Ins.DB.ACCOUNTs.FirstOrDefault(x => x.IsLogin == true);
+
+            //address = acc.A_ADDRESS;
+            
+
             TongTien = string.Format("{0:N0} đồng", SelectedPay.PRICE);
 
             CloseCommand = new RelayCommand<Window>((p) => { return p == null ? false : true; }, (p) =>
