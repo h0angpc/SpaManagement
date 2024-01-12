@@ -27,5 +27,10 @@ namespace SpaManagement.Views
         {
             InitializeComponent();
         }
+
+        private void employeeDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

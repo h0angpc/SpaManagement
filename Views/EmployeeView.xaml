@@ -74,7 +74,7 @@
             <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                         RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="4" 
                         x:Name="employeeDataGrid" CanUserDeleteRows="True"
-                        SelectionMode="Single" ItemsSource="{Binding EmployeeCollection,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                        SelectionMode="Single" ItemsSource="{Binding EmployeeCollection,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" SelectionChanged="employeeDataGrid_SelectionChanged">
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="Mã NV" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding EMP_MA}"/>
