@@ -89,7 +89,11 @@ namespace SpaManagement.ViewModel
                 {
                     return false;
                 }
-
+                var display = DataProvider.Ins.DB.SERVICESSes.Where(x => x.SER_ID != SelectedService.SER_ID && x.SER_NAME == ServiceName);
+                if(display.Count() != 0)
+                {
+                    return false;
+                }
                 return true;
             }, (p) =>
             {
