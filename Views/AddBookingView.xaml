@@ -174,7 +174,7 @@
                         Width="170" VerticalAlignment="Center"
                         materialDesign:ButtonAssist.CornerRadius="10"
                         Style="{StaticResource MaterialDesignRaisedButton}"
-                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                        ToolTip="Thêm"
                         Background="#FF33C1F0" BorderThickness="0"
                         Command="{Binding AddBookingCommand}">
                         <TextBlock

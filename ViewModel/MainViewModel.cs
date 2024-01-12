@@ -53,6 +53,7 @@ namespace SpaManagement.ViewModel
                     }
                     LoginWindow w = new LoginWindow();
                     p.Close();
+                    this.SelectedViewModel = new HomeViewModel();
                     w.Show();
                 }
                 else

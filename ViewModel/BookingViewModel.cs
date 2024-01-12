@@ -174,7 +174,7 @@ namespace SpaManagement.ViewModel
 
         public  void DeleteExpiredBooking(ObservableCollection<BOOKING> _BookingList, ICollectionView BookingCollection)
         {
-            var expiredBookings = _BookingList.Where(booking => DateTime.Now.Subtract(booking.START_TIME).Days >= 1).ToList();
+            var expiredBookings = _BookingList.Where(booking => DateTime.Now.Subtract(booking.START_TIME).Days >= 3).ToList();
 
             foreach (var booking in expiredBookings)
             {
